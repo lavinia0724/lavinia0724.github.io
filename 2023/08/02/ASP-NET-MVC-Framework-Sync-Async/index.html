@@ -13,27 +13,28 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/07/14/asp-net-mvc-framework-controller/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/08/02/asp-net-mvc-framework-sync-async/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Basic ASP.NET MVC Framework Controller Introduction">
+        <meta name="description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ASP.NET MVC Framework - Controller">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/07/14/ASP-NET-MVC-Framework-Controller/index.html">
+<meta property="og:title" content="ASP.NET MVC Framework - Sync &amp; Async">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/08/02/ASP-NET-MVC-Framework-Sync-Async/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Basic ASP.NET MVC Framework Controller Introduction">
+<meta property="og:description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MVC%E5%BB%BA%E7%AB%8B%E6%96%B0%E5%B0%88%E6%A1%88.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MVC%E5%BB%BA%E7%AB%8B%E7%A9%BA%E7%99%BD%E6%96%B0%E5%B0%88%E6%A1%88.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MVC%E6%96%B0%E5%A2%9E%E6%8E%A7%E5%88%B6%E5%99%A8.png">
-<meta property="article:published_time" content="2023-07-14T07:40:39.000Z">
-<meta property="article:modified_time" content="2023-07-22T10:05:54.538Z">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncExample.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AsyncExample.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncJavaScript.webp">
+<meta property="article:published_time" content="2023-08-01T17:08:10.000Z">
+<meta property="article:modified_time" content="2023-08-03T08:04:08.369Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="MVC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/MVC%E5%BB%BA%E7%AB%8B%E6%96%B0%E5%B0%88%E6%A1%88.png">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
     
     
     <!--- Icon Part-->
@@ -45,7 +46,7 @@
     
     <title>
         
-            ASP.NET MVC Framework - Controller -
+            ASP.NET MVC Framework - Sync &amp; Async -
         
         LALALAND
     </title>
@@ -302,8 +303,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post10.jpg" alt="ASP.NET MVC Framework - Controller" />
-                    <h1 class="article-title-cover">ASP.NET MVC Framework - Controller</h1>
+                    <img src="/images/post17.jpg" alt="ASP.NET MVC Framework - Sync &amp; Async" />
+                    <h1 class="article-title-cover">ASP.NET MVC Framework - Sync &amp; Async</h1>
                 </div>
             
                 
@@ -323,19 +324,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-14</span>
-        <span class="mobile">2023-07-14</span>
-        <!-- <span class="desktop">2023-07-14 15:40:39</span>
-        <span class="mobile">2023-07-14 15:40</span> -->
+        <span class="desktop">2023-08-02</span>
+        <span class="mobile">2023-08-02</span>
+        <!-- <span class="desktop">2023-08-02 01:08:10</span>
+        <span class="mobile">2023-08-02 01:08</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-22</span>
-            <span class="mobile">2023-07-22</span>
-            <!-- <span class="desktop">2023-07-22 18:05:54</span>
-            <span class="mobile">2023-07-22 18:05</span> -->
+            <span class="desktop">2023-08-03</span>
+            <span class="mobile">2023-08-03</span>
+            <!-- <span class="desktop">2023-08-03 16:04:08</span>
+            <span class="mobile">2023-08-03 16:04</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -385,40 +386,115 @@
             
 
             <div class="article-content markdown-body">
-                <h4 id="MVC：Model-View-Controller-軟體設計模式"><a href="#MVC：Model-View-Controller-軟體設計模式" class="headerlink" title="MVC：Model-View-Controller 軟體設計模式"></a>MVC：Model-View-Controller 軟體設計模式</h4><p>其中包含以下三大面向：</p>
-<ol>
-  <li style="font-weight:bold; font-size:120%">Controller：從 Model 拿資料再將其提供給 View</li>
-  <li><a href="https://lavinia0724.github.io/2023/07/14/ASP-NET-MVC-Framework-View"><p>View用：呈現使者看到的畫面</p></a><p></p></li>
-  <li><a href="https://lavinia0724.github.io/2023/07/14/ASP-NET-MVC-Framework-Model"><p>Model：處理商業邏輯，提供資料</p></a><p></p></li>
-</ol>
-
-
-<h2 id="MVC-Project-Build"><a href="#MVC-Project-Build" class="headerlink" title="MVC Project Build"></a>MVC Project Build</h2><p>使用 Visual Studio 2019 開新專案，選擇 <strong>ASP.NET Web Application (.NET Framework) Visual C#</strong> 範本</p>
-<img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC建立新專案.png">
-
-<p>一般使用可選擇空白範本，並勾選 MVC 加入資料夾和核心參考即可</p>
-<img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC建立空白新專案.png">
-
-<h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><p>一個系統可以有多個 Controller<br>例如：LoginController、HomeController、OrderController…</p>
-<h3 id="Controller-Build"><a href="#Controller-Build" class="headerlink" title="Controller Build"></a>Controller Build</h3><p>建置方式：<br>在專案的方案總管中 Controller 的資料夾上按右鍵選擇 <strong>加入</strong> -&gt; <strong>控制器</strong> -&gt; <strong>MVC5 控制器 - 空白</strong></p>
-<img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC新增控制器.png">
-
-<p>在新增 Controller 需取名，預設為 DefaultController</p>
-<div class="note-large orange"><div class="notel-title"><p>注意！！</p>
-</div><div class="notel-content"><p>Controller 取名時僅可更動前綴名稱，勿改動 Controller 結尾！！！千萬不可以拿掉<br>ex 可將 DefaultController 更名為 TestController<br><br><br>因為 MVC Routing 規則預設為 <code>url: &quot;{controller}/{action}/{id}&quot;</code><br>所以 MVC 會自動判斷 controller 名稱導入 routing 路徑</p>
+                <h2 id="Sync-amp-Async"><a href="#Sync-amp-Async" class="headerlink" title="Sync &amp; Async"></a>Sync &amp; Async</h2><p><img lazyload src="/images/loading.svg" data-src="\images\postImgs\Sync&Async.jpg"><!-- 分隔 --><br><a class="link" target="_blank" rel="noopener" href="https://www.oxxostudio.tw/articles/201706/javascript-promise-settimeout.html">圖片來源</a></p>
+<p>同步 Sync 與非同步 Async</p>
+<ul>
+<li>Sync 同步<ul>
+<li>發起 I&#x2F;O 請求的執行緒不從正在呼叫的 I&#x2F;O 操作函式返回（被阻塞），直到 I&#x2F;O 操作完成</li>
+</ul>
+</li>
+<li>Async 非同步<ul>
+<li>發起 I&#x2F;O 請求的執行緒不等 I&#x2F;O 操作完成，就繼續執行隨後的程式，而 I&#x2F;O 的結果再透過其他方式通知發起 I&#x2F;O 請求的程式</li>
+</ul>
+</li>
+</ul>
+<div class="note-large orange"><div class="notel-title"><p>簡單來說！</p>
+</div><div class="notel-content"><p>同步 Sync：<br>我有好多事要做，但一次只能做一件事，我要等這件事做完才能做其他<br><br>非同步 Async：<br>我有好多事要做，但有些事開始做以後要等他完成，我可以在這期間去做其他事，直到他做好後再回去處理他</p>
 </div></div>
 
-<h2 id="ActionResult"><a href="#ActionResult" class="headerlink" title="ActionResult"></a>ActionResult</h2><p>一個 Controller 裡可以有多個 Action<br>例如：OrderController 裡可能有 Index Action、InsertOrder Action、UperdateOrder Action、DeleteOrder Action..</p>
-<p>也就是一個 Controller 下會有多個 ActionResult，控制不同 function 的回傳，最常見為 return View()</p>
-<p>例如網頁預設路徑於 Index，即會撰寫如下</p>
-<div class="highlight-container" data-rel="C#"><figure class="iseeu highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DefaultController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 若網頁預設路徑導入 Default/Index </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ActionResult <span class="title">Index</span>()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> View();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="Sync-vs-Async"><a href="#Sync-vs-Async" class="headerlink" title="Sync vs Async"></a>Sync vs Async</h2><p>已準備早餐為例，要吃的東西有：</p>
+<ol>
+<li>咖啡</li>
+<li>蛋</li>
+<li>培根</li>
+<li>吐司</li>
+<li>柳橙汁</li>
+</ol>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p>以同步 Sync 的例子來說，我們會這樣準備：<br><img lazyload src="/images/loading.svg" data-src="\images\postImgs\SyncExample.png"><!-- 分隔 --><br><a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/">圖片來源</a></p>
+<ol>
+<li>倒杯咖啡</li>
+<li>加熱鍋子，發呆等著鍋子加熱</li>
+<li>熱好鍋子後煎兩顆蛋，發呆等著蛋煎熟</li>
+<li>煎完蛋後煎三片培根，發呆等著培根煎熟</li>
+<li>把吐司放進吐司機加熱，發呆等著吐司熱</li>
+<li>等吐司加熱好後，抹上果醬</li>
+<li>倒杯果汁</li>
+</ol>
 <blockquote>
-<p>順帶一提，可在 C# 裡寫包含 XML 標記的註解，快捷鍵是在 ActionResult 前打 <code>///</code></p>
+<p>但這樣我們會浪費好多時間在發呆等待，大約花了 30 分鐘準備早餐<br>可是在分秒必爭的早晨，這樣怎麼可以呢！</p>
 </blockquote>
-<h3 id="HttpPost-ActionResult"><a href="#HttpPost-ActionResult" class="headerlink" title="HttpPost ActionResult"></a>HttpPost ActionResult</h3><p>若希望讓 ActionResult 吃到以 Post 方式回傳的資料，可在 ActionResult 前加上 <code>[HttpPost()]</code></p>
-<div class="highlight-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DefaultController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 若網頁預設路徑導入 Default/Index </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    [<span class="meta">HttpPost()</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ActionResult <span class="title">Index</span>()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> View();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h3><p>如果站在程式非同步 Async 的角度來準備：<br><img lazyload src="/images/loading.svg" data-src="\images\postImgs\AsyncExample.png"><!-- 分隔 --><br><a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/">圖片來源</a></p>
+<ol>
+<li>倒杯咖啡</li>
+<li>加熱煎蛋的鍋子，等鍋子加熱的期間去做下一件事</li>
+<li>加熱煎培根的鍋子，等鍋子加熱的期間去做下一件事</li>
+<li>把吐司放進吐司機加熱，讓吐司慢慢加熱的同時，回去煎蛋</li>
+<li>把蛋煎熟</li>
+<li>把培根煎熟</li>
+<li>吐司加熱好了，抹上果醬</li>
+<li>倒杯果汁</li>
+</ol>
+<blockquote>
+<p>如此一來，我們只花了 15 分鐘準備早餐，就可以多多賴床 15 分鐘了呢！</p>
+</blockquote>
+<h2 id="Sync-or-Async"><a href="#Sync-or-Async" class="headerlink" title="Sync or Async"></a>Sync or Async</h2><p>一般程式碼是由上往下，一行一行程式碼同步 Sync 去執行的，乍看之下也沒什麼問題，甚至大部分的情境都是用同步的方式去撰寫程式</p>
+<p>但若是處理需要等待、不確定需要多久才能完成的任務，ex 存取 I&#x2F;O、外部資源、HTTP Request…等，就會需要使用非同步來處理了</p>
+<h4 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h4><ol>
+<li>JavaScript 用 setTimeout 倒數 10 秒後 alert 訊息，但在等待期間可以先做其他事</li>
+<li>JavaScript 發 HTTP Request 等待 Server 回傳資料的期間，可以先做其他事</li>
+</ol>
+<h3 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h3><p>而非同步中等待完成的任務，會呼叫 Callback Function 來處理接下來要做的事情</p>
+<p>Callback Function 是一個被作為參數帶入另一個函式中的「函式」，而這個作為參數帶入的函式將在未來某個時間點被呼叫和執行</p>
+<p>而在 AJAX 中也會使用到 CallbackFunction<br>關於什麼是 AJAX，可以參考我的這篇文章：<a href="https://lavinia0724.github.io/2023/07/22/ASP-NET-MVC-Framework-AJAX/">ASP.NET MVC Framework - AJAX</a></p>
+<p>這裡是一個範例：</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        var tr = $(this).closest(&#x27;tr&#x27;);</span><br><span class="line">        $(&quot;tr&quot;).remove();</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error)&#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="JsonResult"><a href="#JsonResult" class="headerlink" title="JsonResult"></a>JsonResult</h3><p>關於 JSON 的一些小知識：<a href="https://lavinia0724.github.io/2023/07/22/ASP-NET-MVC-Framework-JSON/">ASP.NET MVC Framework - JSON</a></p>
+<p>這段程式碼其實是這樣運作的：<br>Server 刪除書本後，Response 回傳給 Client 端，接著才會執行 success 定義的 Callback Function，也就是從 UI 上的 Table 移除該筆資料</p>
+<p>而 Callback Function 只會在非同步 Async 任務執行完成後才會觸發，也就是說，只要 Server 一直沒有 Response，那 Callback Function 就<strong>永遠不會被執行！</strong></p>
+<h3 id="Sync-amp-Async-in-JavaScript"><a href="#Sync-amp-Async-in-JavaScript" class="headerlink" title="Sync &amp; Async in JavaScript"></a>Sync &amp; Async in JavaScript</h3><p>JavaScript 是一種<strong>單執行緒</strong>的程式語言，所有的程式碼片段都會在 stack 中被執行<br>而且一次只會執行一個程式碼片段，也就是一次只做一件事</p>
+<p>但這樣會導致在同步 Sync 狀態下，例如 setTimeout、Event Callback、HTTP Request、UI Render 這些需要時間，卻又不確定觸發執行時間的操作，光等他們就飽了？</p>
+<p>於是可利用同步 Sync、非同步 Async 概念來處理這些事件，將他們以非同步的方式處理，待執行完同步的程式碼任務後，再來處理這些事件</p>
+<h3 id="Sync-in-JavaScript"><a href="#Sync-in-JavaScript" class="headerlink" title="Sync in JavaScript"></a>Sync in JavaScript</h3><p>但正如剛才提到，JavaScript 是單執行緒的程式語言，則該如何處理非同步事件呢？</p>
+<p><img lazyload src="/images/loading.svg" data-src="\images\postImgs\SyncJavaScript.webp"><!-- 分隔 --><br><a class="link" target="_blank" rel="noopener" href="https://medium.com/@pavelbely/javascript-event-loop-%D0%B2-%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0%D1%85-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1-a19e4d99f242">圖片來源</a></p>
+<ol>
+<li>setTimeout、Event、AJAX、UI Render…等等操作，會先被拉出 stack 以避免阻塞</li>
+<li>前一步驟中被拉出的任務執行完畢後，其 Callback Function 會被丟到工作佇列 Queue 中</li>
+<li>等到同步 Sync 的程式碼執行完（Stack 清空），才會去撈在佇列 Queue 中的 Function 執行，這個過程稱為 Event Loop</li>
+</ol>
+<h2 id="Sync-amp-Async-mixed-performance"><a href="#Sync-amp-Async-mixed-performance" class="headerlink" title="Sync &amp; Async mixed performance"></a>Sync &amp; Async mixed performance</h2><h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3><p>再來看看以下這段程式：</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        console.log(&quot;Server 已將資料刪除&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error) &#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&quot;想不到吧，是我先被印出&quot;);</span><br></pre></td></tr></table></figure></div>
+
+<p>他的執行順序是這樣：</p>
+<ol>
+<li>一開始先執行的 AJAX 先被拉出 stack</li>
+<li>印出 “想不到吧，是我先被印出”</li>
+<li>等到 Server Response 後，Callback Function 被丟到工作佇列</li>
+<li>同步執行的工作都完成後，撈出工作佇列的 Callback Function 執行</li>
+<li>印出 “Server 已將資料刪除”</li>
+</ol>
+<blockquote>
+<p>所以呀，無論 Server 處理速度多快，就算是瞬間回應，也不會先被印出<br>與此同理，Event 事件觸發、JavaScript 改變 UI…等，也是如此機制</p>
+</blockquote>
+<h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h3><p>再來看看這個例子：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click！&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>如果在 3 秒內觸發了 click Event，卻不會馬上印出 “Click！”<br>而是會等到 3 秒後<br>印出了 “Hello” 後，才會印出 “Click！”</p>
+<h3 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h3><p>那麼那麼，再來看看這個例子：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>因為渲染 Render 的事件也是被丟到非同步處理，所以會等所有的同步程式碼執行完才會觸發<br>因此執行的順序是：<br>等待 3 秒 -&gt; 印出 “Hello” -&gt; document.body.innerHTML 清空畫面</p>
+<h2 id="Async-VS-Multithreading"><a href="#Async-VS-Multithreading" class="headerlink" title="Async VS Multithreading"></a>Async VS Multithreading</h2><p>如此一來，雖然感覺非同步 Async 和多執行緒 Multithreading 感覺很像，都能讓完成所有任務的總時長縮減，但本質上兩者大不相同</p>
+<h3 id="Async-1"><a href="#Async-1" class="headerlink" title="Async"></a>Async</h3><ul>
+<li>允許執行緒在等待時間先處理其他作業，透過消除閒置增加效率</li>
+<li>對於吃 CPU 的作業無法處理（改用多執行緒處理會更有效率）</li>
+</ul>
+<h3 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h3><ul>
+<li>建立多執行緒，將多個任務交給不同執行緒個別處理，利用分工加速完成任務總時長</li>
+<li>對於等待 I&#x2F;O 回應的工作幫助不大（改用非同步處理會更有效率）</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Course 5 FrontEnd Advanced 課程（非公開）</li>
+</ul>
 
             </div>
 
@@ -439,29 +515,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/07/14/ASP-NET-MVC-Framework-View/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">ASP.NET MVC Framework - View</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/07/07/Web-jQuery/"
+                            href="/2023/07/22/ASP-NET-MVC-Framework-JSON/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Web - jQuery</span>
+                                    <span class="post-nav-title-item">ASP.NET MVC Framework - JSON</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -482,8 +543,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">LALALAND</div>
-        <div class="page-title">ASP.NET MVC Framework - Controller</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC-Project-Build"><span class="nav-text">MVC Project Build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller"><span class="nav-text">Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-Build"><span class="nav-text">Controller Build</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ActionResult"><span class="nav-text">ActionResult</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpPost-ActionResult"><span class="nav-text">HttpPost ActionResult</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JsonResult"><span class="nav-text">JsonResult</span></a></li></ol></li></ol>
+        <div class="page-title">ASP.NET MVC Framework - Sync &amp; Async</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-amp-Async"><span class="nav-text">Sync &amp; Async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-vs-Async"><span class="nav-text">Sync vs Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync"><span class="nav-text">Sync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async"><span class="nav-text">Async</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-or-Async"><span class="nav-text">Sync or Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Callback-Function"><span class="nav-text">Callback Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-amp-Async-in-JavaScript"><span class="nav-text">Sync &amp; Async in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-in-JavaScript"><span class="nav-text">Sync in JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-amp-Async-mixed-performance"><span class="nav-text">Sync &amp; Async mixed performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX"><span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addEventListener"><span class="nav-text">addEventListener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innerHTML"><span class="nav-text">innerHTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-VS-Multithreading"><span class="nav-text">Async VS Multithreading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-1"><span class="nav-text">Async</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multithreading"><span class="nav-text">Multithreading</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
