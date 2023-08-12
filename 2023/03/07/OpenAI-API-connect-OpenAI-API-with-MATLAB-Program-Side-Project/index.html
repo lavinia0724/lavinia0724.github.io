@@ -26,7 +26,7 @@
 <meta property="og:description" content="使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問、使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-03-07T15:19:26.000Z">
-<meta property="article:modified_time" content="2023-08-10T15:51:35.841Z">
+<meta property="article:modified_time" content="2023-08-12T16:08:45.820Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="OpenAI API">
 <meta property="article:tag" content="Side Project">
@@ -354,10 +354,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-10</span>
-            <span class="mobile">2023-08-10</span>
-            <!-- <span class="desktop">2023-08-10 23:51:35</span>
-            <span class="mobile">2023-08-10 23:51</span> -->
+            <span class="desktop">2023-08-13</span>
+            <span class="mobile">2023-08-13</span>
+            <!-- <span class="desktop">2023-08-13 00:08:45</span>
+            <span class="mobile">2023-08-13 00:08</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -423,7 +423,7 @@
 <p>所以順道有製作 Presentation PPT<br>雖然是全英文的，但如果需要理解程式碼和運作原理的話，可以加減參考</p>
 <a class="button  center large" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1aR0facxrC0Tgg9TTlim4lyyZxrkOACyi/view?usp=sharing" title="How to automatically connect OpenAI API with MATLAB Program"><i class="fa-solid fa-file-powerpoint"></i> How to automatically connect OpenAI API with MATLAB Program</a>
 
-<h2 id="What-is-API"><a href="#What-is-API" class="headerlink" title="What is API"></a>What is API</h2><p>本 side project 主要圍繞在如何應用 OpenAI 的 API 服務<br>那究竟什麼是 API 呢？<br><a href>可參考這篇文章：Web - What is API</a></p>
+<h2 id="What-is-API"><a href="#What-is-API" class="headerlink" title="What is API"></a>What is API</h2><p>本 side project 主要圍繞在如何應用 OpenAI 的 API 服務<br>那究竟什麼是 API 呢？<br><a href="https://lavinia0724.github.io/2023/03/06/Web-What-is-API/">可參考這篇文章：Web - What is API</a></p>
 <h2 id="Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問"><a href="#Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問" class="headerlink" title="Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問"></a>Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</h2><p>需先至 <a class="link" target="_blank" rel="noopener" href="https://platform.openai.com/account/api-keys">OpenAI API</a> 註冊帳號並生成自己的 API key<br><a href="https://lavinia0724.github.io/2023/03/07/OpenAI-API-How-to-generate-OpenAI-API-key/">如何生成 OpenAI API key 可以參考我的這篇文章</a></p>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><div class="highlight-container" data-rel="M"><figure class="iseeu highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import matlab.net.*</span><br><span class="line">import matlab.net.http.*</span><br><span class="line"></span><br><span class="line"><span class="comment">% Connect OpenAI API</span></span><br><span class="line">api_endpoint <span class="built_in">=</span> <span class="string">&quot;https://api.openai.com/v1/engines/davinci/completions&quot;</span>;</span><br><span class="line">api_key <span class="built_in">=</span> convertCharsToStrings(getenv(<span class="string">&quot;APIkey&quot;</span>)); <span class="comment">% 從環境變數裡提取 API key</span></span><br><span class="line"></span><br><span class="line">prompt <span class="built_in">=</span> <span class="string">&quot;Please introduce Cloud Computing&quot;</span> <span class="comment">% 向 Davinci model 詢問的 prompt 語句</span></span><br><span class="line">parameters <span class="built_in">=</span> struct(<span class="string">&#x27;prompt&#x27;</span>,prompt, <span class="string">&#x27;max_tokens&#x27;</span>,<span class="number">100</span>); <span class="comment">% 可接受 response 的最多 tocken 數</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% request 設定</span></span><br><span class="line">headers <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">headers(<span class="number">2</span>) <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Authorization&#x27;</span>, [<span class="string">&#x27;Bearer &#x27;</span> + api_key]);</span><br><span class="line">request <span class="built_in">=</span> matlab.net.http.RequestMessage(<span class="string">&#x27;post&#x27;</span>,headers,parameters);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 發送 request 並接收 response</span></span><br><span class="line">response <span class="built_in">=</span> send(request, URI(api_endpoint));</span><br><span class="line">response_text <span class="built_in">=</span> response.Body.Data; <span class="comment">% 從回傳的封包的 body 內容提取文字</span></span><br><span class="line">response_text <span class="built_in">=</span> response_text.choices(<span class="number">1</span>).text;</span><br><span class="line">disp(response_text);</span><br></pre></td></tr></table></figure></div>
 <p>幾個小小細節：<br><code>api_key = convertCharsToStrings(getenv(&quot;APIkey&quot;));</code>：</p>
@@ -451,7 +451,7 @@
 <p><code>password = convertCharsToStrings(getenv(&quot;Passwd&quot;));</code>：</p>
 <ul>
 <li>把密碼存於環境變數，這裡的密碼是 Google 帳戶應用程式登入密碼</li>
-<li><a class="link" target="_blank" rel="noopener" href="https://hackmd.io/@LAVI/rkvk8gG3h">如何設定 Google 帳戶應用程式登入密碼請看這篇文章</a></li>
+<li><a href="https://lavinia0724.github.io/2023/03/06/APP-Google-sign-in-with-app-passwords/">如何設定 Google 帳戶應用程式登入密碼請看這篇文章</a></li>
 </ul>
 <p><code>sendmail(&#39;&lt;destination&gt;@gmail.com&#39;,&#39;Introduction to Cloud Computing Homework&#39;&#39;The attached file is my Matlab homework Code, Thanks!&#39;, ...&#39;See the attached files for more info.&#39;,&#123;&#39;&lt;file path&gt;&#39;&#125;);</code>：</p>
 <ul>
