@@ -413,8 +413,6 @@
 <div class="note-large orange"><div class="notel-title"><p>為何需要 Transaction：</p>
 </div><div class="notel-content"><p>假設今天轉帳到一半，銀行突然停電<br>對方還沒接收到你轉帳的錢，但你的帳戶已經扣錢下去了，你會不會氣炸 XD <br><br>所以必須要讓整個交易都完成，<br>你的帳戶扣錢了，對方的帳戶也收到錢了，才能算是交易成功<br>否則需要 ROLLBACK 回原本的狀態</p>
 </div></div>
-
-
 <h3 id="Isolation-Levels"><a href="#Isolation-Levels" class="headerlink" title="Isolation Levels"></a>Isolation Levels</h3><p>Transaction 有多個隔離層級</p>
 <ul>
 <li>Serializable 可序列化<ul>
@@ -440,7 +438,6 @@
 <p><code>ERROR_NUMBER()</code> 是 SQL 內建函數，用於檢測是否有 ERROR 產生</p>
 <p>BEGIN TRANSACTION：判斷交易開始<br>COMMIT TRANSACTION：如果過程中沒有錯誤沒有錯誤，便開始交易<br>ROLLBACK TRANSACTION：如果過程中有錯誤，則需 ROLLBACK 回原本狀態</p>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRY</span><br><span class="line">    <span class="keyword">BEGIN</span> TRANSACTION</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName1 VALUE...</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName2 VALUE...</span><br><span class="line">    <span class="keyword">COMMIT</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> TRY</span><br><span class="line"><span class="keyword">BEGIN</span> CATCH</span><br><span class="line">    <span class="keyword">SELECT</span> ERROR_NUMBER()</span><br><span class="line">    <span class="keyword">ROLLBACK</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> CATCH;</span><br></pre></td></tr></table></figure></div>
-
 <p>TRANSACTION 要包的很小心，以免若有其他需要讀取被包入的資料時，會被 lock 住讀不到</p>
 <h3 id="Using-XACT-ABORT"><a href="#Using-XACT-ABORT" class="headerlink" title="Using XACT_ABORT"></a>Using XACT_ABORT</h3><p>亦可以利用 XACT_ABORT，在錯誤產生時自動啟動 ROLLBACK<br>因為有時有些 ERROR 難以判斷或難以判斷如何包入 TRANSACTION 中</p>
 <p>XACT_ABORT 預設為 OFF，故將其 ON 起來</p>
@@ -448,7 +445,6 @@
 <p>但其實當你想到要 ON 起來，你就會想到要包 TRANSACTION ㄌ</p>
 </blockquote>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> XACT_ABORT <span class="keyword">ON</span>;</span><br></pre></td></tr></table></figure></div>
-
 <p>TRANSACTION 不一定都包在資料庫，也有可能會包在程式前端，但也要包得小心</p>
 
             </div>

@@ -412,31 +412,35 @@
                 <h2 id="SQL-Note"><a href="#SQL-Note" class="headerlink" title="SQL Note"></a>SQL Note</h2><p>紀錄一些碰到的資料庫 SQL 中比較特別或怕會忘記的語法  <i class="fa-solid fa-database"></i></p>
 <h3 id="DECLARE-宣告變數"><a href="#DECLARE-宣告變數" class="headerlink" title="DECLARE 宣告變數"></a>DECLARE 宣告變數</h3><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@CustomerID</span> <span class="type">int</span> <span class="operator">=</span> <span class="number">775</span></span><br><span class="line"><span class="keyword">SELECT</span> OrderID, CustomerID, OrderDate, Quantity, Amount</span><br><span class="line"><span class="keyword">FROM</span> dbo.Orders</span><br><span class="line"><span class="keyword">WHERE</span> CustomerID <span class="operator">=</span> <span class="variable">@CustomerID</span>;</span><br></pre></td></tr></table></figure></div>
 <h3 id="時間選取函數"><a href="#時間選取函數" class="headerlink" title="時間選取函數"></a>時間選取函數</h3><p>假設 Table 名稱為：<code>Book_Lend_Record</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">ID</th>
-<th align="left">BookName</th>
-<th align="left">LendTime</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">BookName</th>
+<th style="text-align:left">LendTime</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">哈利波特</td>
-<td align="left">2023-07-04 00:00:00</td>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">哈利波特</td>
+<td style="text-align:left">2023-07-04 00:00:00</td>
 </tr>
 <tr>
-<td align="left">2</td>
-<td align="left">波西傑克森</td>
-<td align="left">2023-07-05 03:00:00</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">波西傑克森</td>
+<td style="text-align:left">2023-07-05 03:00:00</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><code>YEAR (dateTime)</code><ul>
 <li>下例的回傳值會是 2023<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">YEAR</span> (LendTime)</span><br><span class="line"><span class="keyword">FROM</span> Book_Lend_Record</span><br><span class="line"><span class="keyword">WHERE</span> BookName <span class="operator">=</span> <span class="string">&#x27;哈利波特&#x27;</span></span><br></pre></td></tr></table></figure></div></li>
 </ul>
 </li>
-<li><code>DATENAME (datepart , dateTime) </code><ul>
+<li><code>DATENAME (datepart , dateTime)</code><ul>
 <li>回傳指定 dateTime 中的 datepart </li>
 <li>datapart 可以是：year、month、quarter、day、week、hour、minute、second…</li>
 <li>下例的回傳值會是 2023<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DATENAME (<span class="keyword">year</span>, LendTime) </span><br><span class="line"><span class="keyword">FROM</span> Book_Lend_Record</span><br><span class="line"><span class="keyword">WHERE</span> BookName <span class="operator">=</span> <span class="string">&#x27;哈利波特&#x27;</span> </span><br></pre></td></tr></table></figure></div></li>
@@ -452,131 +456,151 @@
 </li>
 <li>FORMAT() 字串函數<ul>
 <li>傳回以指定格式與選擇性文化特性所格式化的值</li>
-<li>ex: 想輸出 <code>2023/7/5</code> (月份日期前不補 0)<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> FORMAT(BD.BOOK_BOUGHT_DATE, <span class="string">&#x27;d&#x27;</span>) <span class="keyword">AS</span> <span class="string">&#x27;購書日期&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> BOOK_DATA <span class="keyword">AS</span> BD </span><br></pre></td></tr></table></figure></div></li>
+<li>ex: 想輸出 <code>2023/7/5</code> (月份日期前不補 0)<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> FORMAT(BD.BOOK_BOUGHT_DATE, <span class="string">&#x27;d&#x27;</span>) <span class="keyword">AS</span> <span class="string">&#x27;購書日期&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> BOOK_DATA <span class="keyword">AS</span> BD </span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 </li>
 </ul>
 <h3 id="金額顯示千分位逗點"><a href="#金額顯示千分位逗點" class="headerlink" title="金額顯示千分位逗點"></a>金額顯示千分位逗點</h3><ul>
 <li><code>CONVERT(VARCHAR(12), CONVERT(MONEY, &#39;1234567&#39;), 1)</code> 完後會輸出 <code>11,450.00</code>，但因最後不需要小數點，故再利用 <code>REPLACE</code> 處理</li>
-<li>會輸出 <code>11,450 元</code><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> REPLACE(<span class="keyword">CONVERT</span>(<span class="type">VARCHAR</span>(<span class="number">12</span>), <span class="keyword">CONVERT</span>(MONEY, BD.BOOK_AMOUNT), <span class="number">1</span>), <span class="string">&#x27;.00&#x27;</span>, <span class="string">&#x27; 元&#x27;</span>) <span class="keyword">AS</span> <span class="string">&#x27;購書金額&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> BOOK_DATA <span class="keyword">AS</span> BD </span><br></pre></td></tr></table></figure></div></li>
+<li>會輸出 <code>11,450 元</code><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> REPLACE(<span class="keyword">CONVERT</span>(<span class="type">VARCHAR</span>(<span class="number">12</span>), <span class="keyword">CONVERT</span>(MONEY, BD.BOOK_AMOUNT), <span class="number">1</span>), <span class="string">&#x27;.00&#x27;</span>, <span class="string">&#x27; 元&#x27;</span>) <span class="keyword">AS</span> <span class="string">&#x27;購書金額&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> BOOK_DATA <span class="keyword">AS</span> BD </span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 <h3 id="字串串接"><a href="#字串串接" class="headerlink" title="字串串接"></a>字串串接</h3><ul>
 <li>將多筆資料合併為一筆複合字串<ul>
 <li>SELECT 的欄位之間不用逗號，改為 <code>&#39;&lt;欲作為中間連間的字符&gt;&#39;</code></li>
-<li>輸出為 <code>&lt;USER_ID&gt;-&lt;USER_CNAME&gt;(USER_ENAME)</code><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> M.USER_ID <span class="operator">+</span> <span class="string">&#x27;-&#x27;</span> <span class="operator">+</span> M.USER_CNAME <span class="operator">+</span> <span class="string">&#x27;(&#x27;</span> <span class="operator">+</span> M.USER_ENAME <span class="operator">+</span> <span class="string">&#x27;)&#x27;</span> <span class="keyword">AS</span> <span class="string">&#x27;借閱人&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> MEMBER_M <span class="keyword">AS</span> M</span><br></pre></td></tr></table></figure></div></li>
+<li>輸出為 <code>&lt;USER_ID&gt;-&lt;USER_CNAME&gt;(USER_ENAME)</code><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> M.USER_ID <span class="operator">+</span> <span class="string">&#x27;-&#x27;</span> <span class="operator">+</span> M.USER_CNAME <span class="operator">+</span> <span class="string">&#x27;(&#x27;</span> <span class="operator">+</span> M.USER_ENAME <span class="operator">+</span> <span class="string">&#x27;)&#x27;</span> <span class="keyword">AS</span> <span class="string">&#x27;借閱人&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> MEMBER_M <span class="keyword">AS</span> M</span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 </li>
 </ul>
 <h3 id="CASE-WHEN-END"><a href="#CASE-WHEN-END" class="headerlink" title="CASE..WHEN..END"></a>CASE..WHEN..END</h3><ul>
 <li>用作邏輯判斷<br>假設 Table 名稱為：<code>Grading_Survey</code></li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">ID</th>
-<th align="left">Name</th>
-<th align="left">Grade</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Grade</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">LAVI</td>
-<td align="left">1</td>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">LAVI</td>
+<td style="text-align:left">1</td>
 </tr>
 <tr>
-<td align="left">2</td>
-<td align="left">Momi</td>
-<td align="left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">Momi</td>
+<td style="text-align:left">2</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Name, <span class="keyword">CASE</span> Grade</span><br><span class="line">	<span class="keyword">when</span> <span class="number">1</span> <span class="keyword">then</span> <span class="string">&#x27;LIKE&#x27;</span></span><br><span class="line">	<span class="keyword">when</span> <span class="number">2</span> <span class="keyword">then</span> <span class="string">&#x27;LOVE&#x27;</span></span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"><span class="keyword">FROM</span> Grading_Survey;</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>會輸出</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="left">Grade</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Grade</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">LAVI</td>
-<td align="left">LIKE</td>
+<tbody>
+<tr>
+<td style="text-align:left">LAVI</td>
+<td style="text-align:left">LIKE</td>
 </tr>
 <tr>
-<td align="left">Momi</td>
-<td align="left">LOVE</td>
+<td style="text-align:left">Momi</td>
+<td style="text-align:left">LOVE</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="COUNT"><a href="#COUNT" class="headerlink" title="COUNT()"></a>COUNT()</h3><ul>
 <li>特別用法，結合 CASE..WHEN..END</li>
-<li>同時 COUNT 同一欄位的多個條件<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>)</span><br></pre></td></tr></table></figure></div></li>
+<li>同時 COUNT 同一欄位的多個條件<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>),</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">&lt;</span>Condiction<span class="operator">&gt;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">END</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 <h2 id="Sorting-and-Filtering-Data"><a href="#Sorting-and-Filtering-Data" class="headerlink" title="Sorting and Filtering Data"></a>Sorting and Filtering Data</h2><h3 id="TOP"><a href="#TOP" class="headerlink" title="TOP"></a>TOP</h3><ul>
 <li>排序取前幾名 </li>
 <li>TOP 預設判斷排序方式為由小到大<br>假設 Table 名稱為：<code>Bread_Price</code></li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">ID</th>
-<th align="left">BreadName</th>
-<th align="left">Price</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">BreadName</th>
+<th style="text-align:left">Price</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">紅豆麵包</td>
-<td align="left">25</td>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">紅豆麵包</td>
+<td style="text-align:left">25</td>
 </tr>
 <tr>
-<td align="left">2</td>
-<td align="left">藍莓奶酪餅</td>
-<td align="left">45</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">藍莓奶酪餅</td>
+<td style="text-align:left">45</td>
 </tr>
 <tr>
-<td align="left">3</td>
-<td align="left">蜂蜜吐司</td>
-<td align="left">30</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">蜂蜜吐司</td>
+<td style="text-align:left">30</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP (<span class="number">2</span>) ID, BreadName, Price</span><br><span class="line"><span class="keyword">FROM</span> Bread_Price</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> ID, BreadName, Price</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Price;</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>會輸出</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">ID</th>
-<th align="left">BreadName</th>
-<th align="left">Price</th>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">BreadName</th>
+<th style="text-align:left">Price</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">紅豆麵包</td>
-<td align="left">25</td>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">紅豆麵包</td>
+<td style="text-align:left">25</td>
 </tr>
 <tr>
-<td align="left">3</td>
-<td align="left">蜂蜜吐司</td>
-<td align="left">30</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">蜂蜜吐司</td>
+<td style="text-align:left">30</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="Window-Ranking-amp-Offset-amp-Aggregate-Functions"><a href="#Window-Ranking-amp-Offset-amp-Aggregate-Functions" class="headerlink" title="Window Ranking &amp; Offset &amp; Aggregate Functions"></a>Window Ranking &amp; Offset &amp; Aggregate Functions</h2><h3 id="RANK"><a href="#RANK" class="headerlink" title="RANK()"></a>RANK()</h3><ul>
 <li>一種 Window Ranking 函數 (視窗函數)</li>
-<li>預設依照 ORDER BY 排序，若有同分則同名，但下一分段會變成當前名次 + 同名人數<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">RANK</span> (integer_expression) </span><br><span class="line"> <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )  </span><br></pre></td></tr></table></figure></div></li>
+<li>預設依照 ORDER BY 排序，若有同分則同名，但下一分段會變成當前名次 + 同名人數<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">RANK</span> (integer_expression) </span><br><span class="line"> <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )  </span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 <h3 id="DENSE-RANK"><a href="#DENSE-RANK" class="headerlink" title="DENSE_RANK()"></a>DENSE_RANK()</h3><ul>
 <li>一種 Window Ranking 函數 (視窗函數)</li>
-<li>預設依照 ORDER BY 排序，若有同分則同名，但下一分段會接續當前名次<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">DENSE_RANK</span>(integer_expression) </span><br><span class="line"> <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )  </span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="NTILE-n"><a href="#NTILE-n" class="headerlink" title="NTILE(n)"></a>NTILE(n)</h3><ul>
-<li>平均等分成 n 等份<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NTILE</span>(integer_expression) <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )</span><br></pre></td></tr></table></figure></div></li>
-</ul>
+<li>預設依照 ORDER BY 排序，若有同分則同名，但下一分段會接續當前名次<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">DENSE_RANK</span>(integer_expression) </span><br><span class="line"> <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )  </span><br></pre></td></tr></table></figure></div>
+<h3 id="NTILE-n"><a href="#NTILE-n" class="headerlink" title="NTILE(n)"></a>NTILE(n)</h3></li>
+<li>平均等分成 n 等份<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NTILE</span>(integer_expression) <span class="keyword">OVER</span> ( [ <span class="operator">&lt;</span><span class="keyword">PARTITION</span> <span class="keyword">BY</span> ...<span class="operator">&gt;</span> ] <span class="operator">&lt;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> ... <span class="operator">&gt;</span> )</span><br></pre></td></tr></table></figure></div>
 <h3 id="ROW-NUMBER"><a href="#ROW-NUMBER" class="headerlink" title="ROW_NUMBER ()"></a>ROW_NUMBER ()</h3><div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ROW_NUMBER</span> () <span class="keyword">OVER</span> ( [ <span class="keyword">PARTITION</span> <span class="keyword">BY</span> value_expression , ... [ n ] ] order_by_clause )</span><br></pre></td></tr></table></figure></div>
-
+</li>
+</ul>
 <h3 id="LAG-amp-LEAD"><a href="#LAG-amp-LEAD" class="headerlink" title="LAG() &amp; LEAD()"></a>LAG() &amp; LEAD()</h3><ul>
 <li>LAG() <ul>
 <li>利用 PARTITION BY 和 ORDER BY 進行分割跟排序後，排列好的資料集，列出前一筆的該值</li>
@@ -589,43 +613,45 @@
 </ul>
 <h2 id="Queries-with-PIVOT"><a href="#Queries-with-PIVOT" class="headerlink" title="Queries with PIVOT"></a>Queries with PIVOT</h2><ul>
 <li>使用 PIVOT 扭轉資料，由直列轉為橫向資料 <div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> BOOK_CLASS_ID, [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">1</span><span class="operator">&gt;</span>], [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">2</span><span class="operator">&gt;</span>], </span><br><span class="line">    [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">3</span><span class="operator">&gt;</span>], [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">4</span><span class="operator">&gt;</span>]</span><br><span class="line"><span class="keyword">FROM</span> ( <span class="keyword">SELECT</span> BOOK_CLASS_ID, <span class="operator">&lt;</span>欄位Y<span class="operator">&gt;</span></span><br><span class="line">	   <span class="keyword">FROM</span> BOOK_DATA <span class="keyword">AS</span> BD </span><br><span class="line">	 ) <span class="keyword">AS</span> SRCTAB</span><br><span class="line">PIVOT( <span class="operator">&lt;</span>Aggregate <span class="keyword">Function</span><span class="operator">&gt;</span> <span class="keyword">FOR</span> <span class="operator">&lt;</span>欄位Y<span class="operator">&gt;</span> <span class="keyword">IN</span> ([<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">1</span><span class="operator">&gt;</span>], [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">2</span><span class="operator">&gt;</span>], </span><br><span class="line">    [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">3</span><span class="operator">&gt;</span>], [<span class="operator">&lt;</span>要變成欄位名稱的行值<span class="number">4</span><span class="operator">&gt;</span>])</span><br><span class="line">     ) <span class="keyword">AS</span> PIVOTTAB</span><br></pre></td></tr></table></figure></div></li>
-<li>動態 PIVOT 使用 EXEC sp_executeSQL<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@ColumnGroup</span> NVARCHAR(<span class="number">200</span>) <span class="operator">=</span> <span class="string">&#x27;&lt;要 SELECT 的欄位&gt;,</span></span><br><span class="line"><span class="string">	[&lt;要變成欄位名稱的行值1&gt;], [&lt;要變成欄位名稱的行值2&gt;], </span></span><br><span class="line"><span class="string">    [&lt;要變成欄位名稱的行值3&gt;], [&lt;要變成欄位名稱的行值4&gt;]&#x27;</span></span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@PivotSQL</span> NVARCHAR(MAX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@PivotSQL</span> <span class="operator">=</span> N<span class="string">&#x27;</span></span><br><span class="line"><span class="string">	SELECT &#x27;</span> <span class="operator">+</span> <span class="variable">@ColumnGroup</span> <span class="operator">+</span> N<span class="string">&#x27; </span></span><br><span class="line"><span class="string">	FROM (</span></span><br><span class="line"><span class="string">			SELECT BOOK_CLASS_ID, &lt;欄位Y&gt;</span></span><br><span class="line"><span class="string">	        FROM BOOK_DATA AS BD </span></span><br><span class="line"><span class="string">		 ) AS SRCTAB</span></span><br><span class="line"><span class="string">	PIVOT(</span></span><br><span class="line"><span class="string">			&lt;Aggregate Function&gt; FOR &lt;欄位Y&gt; IN ([&lt;要變成欄位名稱的行值1&gt;], [&lt;要變成欄位名稱的行值2&gt;], </span></span><br><span class="line"><span class="string">            [&lt;要變成欄位名稱的行值3&gt;], [&lt;要變成欄位名稱的行值4&gt;])</span></span><br><span class="line"><span class="string">		 ) AS PIVOTTAB</span></span><br><span class="line"><span class="string">	ORDER BY BOOK_CLASS_ID;</span></span><br><span class="line"><span class="string">	&#x27;</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_executeSQL <span class="variable">@PivotSQL</span></span><br></pre></td></tr></table></figure></div></li>
+<li>動態 PIVOT 使用 EXEC sp_executeSQL<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@ColumnGroup</span> NVARCHAR(<span class="number">200</span>) <span class="operator">=</span> <span class="string">&#x27;&lt;要 SELECT 的欄位&gt;,</span></span><br><span class="line"><span class="string">	[&lt;要變成欄位名稱的行值1&gt;], [&lt;要變成欄位名稱的行值2&gt;], </span></span><br><span class="line"><span class="string">    [&lt;要變成欄位名稱的行值3&gt;], [&lt;要變成欄位名稱的行值4&gt;]&#x27;</span></span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@PivotSQL</span> NVARCHAR(MAX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@PivotSQL</span> <span class="operator">=</span> N<span class="string">&#x27;</span></span><br><span class="line"><span class="string">	SELECT &#x27;</span> <span class="operator">+</span> <span class="variable">@ColumnGroup</span> <span class="operator">+</span> N<span class="string">&#x27; </span></span><br><span class="line"><span class="string">	FROM (</span></span><br><span class="line"><span class="string">			SELECT BOOK_CLASS_ID, &lt;欄位Y&gt;</span></span><br><span class="line"><span class="string">	        FROM BOOK_DATA AS BD </span></span><br><span class="line"><span class="string">		 ) AS SRCTAB</span></span><br><span class="line"><span class="string">	PIVOT(</span></span><br><span class="line"><span class="string">			&lt;Aggregate Function&gt; FOR &lt;欄位Y&gt; IN ([&lt;要變成欄位名稱的行值1&gt;], [&lt;要變成欄位名稱的行值2&gt;], </span></span><br><span class="line"><span class="string">            [&lt;要變成欄位名稱的行值3&gt;], [&lt;要變成欄位名稱的行值4&gt;])</span></span><br><span class="line"><span class="string">		 ) AS PIVOTTAB</span></span><br><span class="line"><span class="string">	ORDER BY BOOK_CLASS_ID;</span></span><br><span class="line"><span class="string">	&#x27;</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_executeSQL <span class="variable">@PivotSQL</span></span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 <h3 id="Programming-with-Transact-SQL"><a href="#Programming-with-Transact-SQL" class="headerlink" title="Programming with Transact-SQL"></a>Programming with Transact-SQL</h3><ul>
 <li>@@ROWCOUNT<ul>
 <li>被影響或讀取的資料列數</li>
-<li>可利用此方式找出所搜尋之資料共有多少列<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> </span><br><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@ROWCOUNT</span></span><br></pre></td></tr></table></figure></div></li>
+<li>可利用此方式找出所搜尋之資料共有多少列<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> </span><br><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@ROWCOUNT</span></span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/kevinya/2014/09/05/146474" >各式各樣的 GETDATE() 時間格式轉換 CONVERT</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://dotblogs.com.tw/kevinya/2014/09/05/146474">各式各樣的 GETDATE() 時間格式轉換 CONVERT</a></li>
 <li><a target="_blank" rel="noopener" href="http://sharedderrick.blogspot.com/2012/07/sql-server-2012-format.html">FORMAT() 字串函數<br>傳回以指定格式與選擇性文化特性所格式化的值</a> </li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.sqlservertutorial.net/sql-server-system-functions/convert-string-to-datetime/" >Convert String to Datetime</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.fooish.com/sql/case.html" >CASE 語法 (SQL CASE Syntax)</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.tpisoftware.com/tpu/articleDetails/1145" >將多筆資料合併為一筆複合字串</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://harry-lin.blogspot.com/2018/12/mssql.html" >金額顯示千分位逗點</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.sqlservertutorial.net/sql-server-system-functions/convert-string-to-datetime/">Convert String to Datetime</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.fooish.com/sql/case.html">CASE 語法 (SQL CASE Syntax)</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://www.tpisoftware.com/tpu/articleDetails/1145">將多筆資料合併為一筆複合字串</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://harry-lin.blogspot.com/2018/12/mssql.html">金額顯示千分位逗點</a></li>
 <li>Sorting and Filtering Data<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35972907/article/details/110069588" >sql server 按年、季度、月份、周統計訂單銷量 金額 top10 均價</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35972907/article/details/110069588">sql server 按年、季度、月份、周統計訂單銷量 金額 top10 均價</a></li>
 </ul>
 </li>
 <li>Window Ranking, Offset &amp; Aggregate Functions<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10196411" >透過 RANK() 與 DENSE_RANK() 進行資料排序</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/jerrytab/2012/12/20/85817" >程式設計師之家</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://couplehonest.com/sql-lead-lag/" >SQL LEAD() LAG() 函數怎麼寫？5 種用法教學</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/t-sql/functions/datename-transact-sql?view=sql-server-ver16" >DATENAME (Transact-SQL)</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10028431/how-to-select-count-of-ranges-from-mysql-table" >同時 COUNT 同一欄位的多個條件</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10196411">透過 RANK() 與 DENSE_RANK() 進行資料排序</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://dotblogs.com.tw/jerrytab/2012/12/20/85817">程式設計師之家</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://couplehonest.com/sql-lead-lag/">SQL LEAD() LAG() 函數怎麼寫？5 種用法教學</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/t-sql/functions/datename-transact-sql?view=sql-server-ver16">DATENAME (Transact-SQL)</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10028431/how-to-select-count-of-ranges-from-mysql-table">同時 COUNT 同一欄位的多個條件</a></li>
 </ul>
 </li>
 <li>Queries with PIVOT<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://littlehorseboy.github.io/2020/05/31/2020-t-sql-pivot/#%E5%BB%BA%E7%AB%8B-TempTable-%E7%9A%84%E7%A4%BA%E7%AF%84%E8%B3%87%E6%96%99" >PIVOT</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/joysdw12/2013/09/10/asp-net-sql-for-xml-path-cte-pivot-dymanic-columns" >動態串接 + PIVOT</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/s/for%20xml%20path('')%20type" >FOR XML PATH(‘’),TYPE).value(‘.’, ‘NVARCHAR(max)’)</a>.value(‘.’%20’nvarchar(max)’)%201%201%20’’))</li>
+<li><a class="link" target="_blank" rel="noopener" href="https://littlehorseboy.github.io/2020/05/31/2020-t-sql-pivot/#%E5%BB%BA%E7%AB%8B-TempTable-%E7%9A%84%E7%A4%BA%E7%AF%84%E8%B3%87%E6%96%99">PIVOT</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://dotblogs.com.tw/joysdw12/2013/09/10/asp-net-sql-for-xml-path-cte-pivot-dymanic-columns">動態串接 + PIVOT</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://juejin.cn/s/for%20xml%20path(&#39;&#39;">FOR XML PATH(‘’),TYPE).value(‘.’, ‘NVARCHAR(max)’)</a>%20type).value(‘.’%20’nvarchar(max)’)%201%201%20’’))</li>
 </ul>
 </li>
 <li>Programming with T-SQL<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/t-sql/functions/rowcount-transact-sql?view=sql-server-ver16" >@@ROWCOUNT (Transact-SQL)</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/joysdw12/2013/09/10/asp-net-sql-for-xml-path-cte-pivot-dymanic-columns" >使用 FOR XML PATH 、CTE、PIVOT 產生動態欄位統計表</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/t-sql/functions/rowcount-transact-sql?view=sql-server-ver16">@@ROWCOUNT (Transact-SQL)</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://dotblogs.com.tw/joysdw12/2013/09/10/asp-net-sql-for-xml-path-cte-pivot-dymanic-columns">使用 FOR XML PATH 、CTE、PIVOT 產生動態欄位統計表</a></li>
 </ul>
 </li>
 </ul>

@@ -407,18 +407,18 @@
             <div class="article-content markdown-body">
                 <h2 id="Hexo-Note"><a href="#Hexo-Note" class="headerlink" title="Hexo Note"></a>Hexo Note</h2><p>LAVI’s Blog 誕生啦<br>紀錄一下在架設這個網站過程的一些筆記 <i class="fa-solid fa-pen"></i><br>接下來應該會陸陸續續補上一些以前的重要記事和筆記</p>
 <h3 id="環境配置"><a href="#環境配置" class="headerlink" title="環境配置"></a>環境配置</h3><ol>
-<li>下載 <a class="link"   target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download" >node.js</a> <i class="fa-brands fa-node fa-2xl"></i></li>
+<li>下載 <a class="link" target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download">node.js</a> <i class="fa-brands fa-node fa-2xl"></i></li>
 <li>安裝 Hexo CLI<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure></div></li>
 <li>建立 Project<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;projectname&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;projectname&gt;</span><br></pre></td></tr></table></figure></div></li>
 <li>安裝 Hexo 相關套件<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure></div></li>
 <li>啟動 Hexo<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
 <blockquote>
-<p>此時 terminal 會出現 <code>Hexo is running at http://localhost:4000/ </code><br>若連線 <code>http://localhost:4000/</code> 出現了 Hexo 預設畫面，則代表成功</p>
+<p>此時 terminal 會出現 <code>Hexo is running at http://localhost:4000/</code><br>若連線 <code>http://localhost:4000/</code> 出現了 Hexo 預設畫面，則代表成功</p>
 </blockquote>
 </li>
 </ol>
 <hr>
-<h3 id="Hexo-主題修改"><a href="#Hexo-主題修改" class="headerlink" title="Hexo 主題修改"></a>Hexo 主題修改</h3><p><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >Hexo 官方主題模板</a></p>
+<h3 id="Hexo-主題修改"><a href="#Hexo-主題修改" class="headerlink" title="Hexo 主題修改"></a>Hexo 主題修改</h3><p><a class="link" target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo 官方主題模板</a></p>
 <ol>
 <li>選擇喜歡的主題後下載解壓縮於 <code>&lt;projectname&gt;\themes</code></li>
 <li>開啟位於 <code>&lt;projectname&gt;\_config.yml</code> 檔案，找到 <code>theme</code> 並修改<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: redefine <span class="comment"># 這邊修改為你下載的主題</span></span><br></pre></td></tr></table></figure></div></li>
@@ -429,7 +429,8 @@
 <h3 id="佈署到-Github"><a href="#佈署到-Github" class="headerlink" title="佈署到 Github"></a>佈署到 Github</h3><ol>
 <li>安裝 Hexo deployer git 套件<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></div></li>
 <li>修改位於 <code>&lt;projectname&gt;\_config.yml</code> 的<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git </span><br><span class="line">  repo: <span class="comment"># 自己的 Github repositories git 連結</span></span><br><span class="line">  branch: main <span class="comment"># 自訂分支名稱</span></span><br></pre></td></tr></table></figure></div></li>
-<li>利用 Hexo CLI 將本地更新好的整體網頁佈署到 Github <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 生成靜態頁面</span></span><br><span class="line">$ hexo deploy <span class="comment"># deploy</span></span><br></pre></td></tr></table></figure></div></li>
+<li>利用 Hexo CLI 將本地更新好的整體網頁佈署到 Github <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 生成靜態頁面</span></span><br><span class="line">$ hexo deploy <span class="comment"># deploy</span></span><br></pre></td></tr></table></figure></div>
+</li>
 </ol>
 <hr>
 <h3 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;New Post Title&gt;</span><br></pre></td></tr></table></figure></div>
@@ -440,20 +441,20 @@
 <li>post.md 新增文章 (預設若無寫 <code>[layout]</code> 時為此方式)</li>
 </ol>
 </li>
-<li>更多新增文章方式：<a class="link"   target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/" >Hexo 新增文章和頁面</a></li>
+<li>更多新增文章方式：<a class="link" target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/">Hexo 新增文章和頁面</a></li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><h3 id="Redefine-Documents"><a href="#Redefine-Documents" class="headerlink" title="Redefine Documents"></a>Redefine Documents</h3><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >Hexo Themes</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/hexo-theme-redefine" >hexo-theme-redefine</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/redefine-demo" >Redefine Demo</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://fontawesome.com/search" >fontawesome</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/" >Redefine Documents</a>：我所選用的 Hexo 框架主題模板 Redefine 文件，作者把如何架設的方式寫的簡單扼要，受益良多</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ohevan.com/" >EvanNotFound’s Blog</a>：Redefine 作者的個人部落格</li>
+<li><a class="link" target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo Themes</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://github.com/EvanNotFound/hexo-theme-redefine">hexo-theme-redefine</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://github.com/EvanNotFound/redefine-demo">Redefine Demo</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://fontawesome.com/search">fontawesome</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/">Redefine Documents</a>：我所選用的 Hexo 框架主題模板 Redefine 文件，作者把如何架設的方式寫的簡單扼要，受益良多</li>
+<li><a class="link" target="_blank" rel="noopener" href="https://ohevan.com/">EvanNotFound’s Blog</a>：Redefine 作者的個人部落格</li>
 </ul>
 <h3 id="Hexo-Teaching-Articles"><a href="#Hexo-Teaching-Articles" class="headerlink" title="Hexo Teaching Articles"></a>Hexo Teaching Articles</h3><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10310727" >使用 HEXO 和 github page 建置自己的 Blog</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://israynotarray.com/hexo/20190411/932826160/" >架設 Hexo + GitHub</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/" >Hexo 新增文章和頁面</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10310727">使用 HEXO 和 github page 建置自己的 Blog</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://israynotarray.com/hexo/20190411/932826160/">架設 Hexo + GitHub</a></li>
+<li><a class="link" target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/">Hexo 新增文章和頁面</a></li>
 </ul>
 
             </div>

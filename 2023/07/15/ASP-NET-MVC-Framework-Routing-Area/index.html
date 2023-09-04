@@ -413,16 +413,11 @@
 
             <div class="article-content markdown-body">
                 <h1 id="ASP-NET-MVC-Framework-Routing-amp-Area"><a href="#ASP-NET-MVC-Framework-Routing-amp-Area" class="headerlink" title="ASP.NET MVC Framework - Routing &amp; Area"></a>ASP.NET MVC Framework - Routing &amp; Area</h1><div class="note-large orange"><div class="notel-title"><p>突然想到講一下的小技巧</p>
-</div><div class="notel-content"><p>Visual Studio 中<br>註解的快捷鍵是 ctrl + K + C<br>解註解的快捷鍵是 ctrl + K + U <br><br>要一口氣選起來註解&#x2F;解註解也可以哦</p>
+</div><div class="notel-content"><p>Visual Studio 中<br>註解的快捷鍵是 ctrl + K + C<br>解註解的快捷鍵是 ctrl + K + U <br><br>要一口氣選起來註解/解註解也可以哦</p>
 </div></div>
-
 <h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>檔案位置定位</p>
-<p>例如</p>
-<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://localhost:44368/Default/Index</span><br></pre></td></tr></table></figure></div>
-<p>在方案總管下的 APP_DATA 資料夾裡有一個 RouteConfig.cs 寫了 MVC 的 Routing 規則</p>
-<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p>簡而言之就是：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: &quot;&#123;controller&#125;/&#123;action&#125;/&#123;id&#125;&quot;</span><br></pre></td></tr></table></figure></div>
-
+<p>例如<br><div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://localhost:44368/Default/Index</span><br></pre></td></tr></table></figure></div><br>在方案總管下的 APP_DATA 資料夾裡有一個 RouteConfig.cs 寫了 MVC 的 Routing 規則</p>
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p>簡而言之就是：<br><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: &quot;&#123;controller&#125;/&#123;action&#125;/&#123;id&#125;&quot;</span><br></pre></td></tr></table></figure></div></p>
 <ul>
 <li>controller：controller 的名稱</li>
 <li>action：action function 的名稱</li>
@@ -431,14 +426,12 @@
 <p>所以 controller、action、id 的名稱都要取有意義的名字，方便使用者理解這條路徑的用意<br>也可以利用 Routing 區分不同功能的顯示路徑</p>
 <h2 id="Area"><a href="#Area" class="headerlink" title="Area"></a>Area</h2><p>Area 提供開發人員更具彈性的架構和模組化能力</p>
 <p>在專案目錄下按右鍵，選擇 <strong>加入</strong> -&gt; <strong>新增 Scaffold 項目</strong></p>
-<img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC新增區域.png">
-
+<p><img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC新增區域.png"></p>
 <p>在新增 Scaffold 項目左側欄位選擇 <strong>MVC</strong> -&gt; <strong>區域</strong> -&gt; <strong>MVC 5 區域</strong> -&gt; 為區域名稱命名</p>
-<img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC新增區域空白範本.png">
-
+<p><img lazyload src="/images/loading.svg" data-src="\images\postImgs\MVC新增區域空白範本.png"></p>
 <p>在在專案的方案總管中可以看到多了一個 Areas 的資料夾，裡面有剛才新增的 Area 資料夾<br>新增 Area 後，其內預設會有 Controllers、Models、Views 資料夾，使用方法皆相同</p>
-<h3 id="Area-Routing"><a href="#Area-Routing" class="headerlink" title="Area Routing"></a>Area Routing</h3><p>和原本專案的 Routing 規則相同，但是在 url 前方多了一層 Area </p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: &quot;&#123;Area&#125;/&#123;controller&#125;/&#123;action&#125;/&#123;id&#125;&quot;</span><br></pre></td></tr></table></figure></div>
+<h3 id="Area-Routing"><a href="#Area-Routing" class="headerlink" title="Area Routing"></a>Area Routing</h3><p>和原本專案的 Routing 規則相同，但是在 url 前方多了一層 Area<br><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: &quot;&#123;Area&#125;/&#123;controller&#125;/&#123;action&#125;/&#123;id&#125;&quot;</span><br></pre></td></tr></table></figure></div></p>
+
             </div>
 
             
