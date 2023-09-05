@@ -318,428 +318,204 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
-
-$avatarWidth = 46px
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
-
-.post-page-container
-  display flex
-  position relative
-  justify-content space-between
-  box-sizing border-box
-  width 100%
-  height 100%
-
-  &.show-toc
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
-
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
-
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
-
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
-
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
-
-    .article-content-container
-      width calc(100% - 210px) !important
-
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
-
-    .article-content-container
-      width 100% !important
-
-    &.show-toc
-      .toc-content-container
-        display none
-
-      .article-content-container
-        width 100% !important
-
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      30px,
-      30px
-    )
-
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-
-    .article-title
-      position relative
-      width 100%
-
-      img
-        margin -30px -30px 0 -30px
-        width calc(100% + 60px)
-        height 350px
-        object-fit cover
-        border-radius $redefine-border-radius-large-top
-
-        +redefine-tablet()
-          height 300px
-          margin -24px -24px 0 -24px
-          width calc(100% + 60px * 0.8)
-
-        +redefine-mobile()
-          height 200px
-          border-radius 0px
-          margin -24px -24px 0 -24px
-          width calc(100% + 80px * 0.6)
-
-      .article-title-regular
-        font-size $article-title-font-size
-        font-weight 700
-        margin 0px 0 30px 0
-        line-height 1.4
-        color var(--second-text-color)
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-
-      .article-title-cover
-        display flex
-        padding 0.4rem 1.5rem 0.5rem 1.5rem
-        line-height 1.5
-        margin 0 auto
-        position absolute
-        bottom 36px
-        left 0
-        text-align center
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-        color var(--second-text-color)
-        font-size $article-title-font-size
-        font-weight 700
-        background-color var(--background-color-transparent)
-        backdrop-filter blur(10px)
-        -webkit-backdrop-filter blur(10px)
-        border 1.5px solid var(--home-banner-icons-container-border-color)
-        border-radius $redefine-border-radius-large
-
-        +redefine-tablet()
-          font-size: $article-title-font-size * 0.8
-          bottom 36px * 0.8
-
-        +redefine-mobile()
-          font-size: $article-title-font-size * 0.6
-          bottom 36px * 0.6
-          border-radius $redefine-border-radius-medium
-
-    .article-header
-      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
-      position relative
-      padding-left $avatarWidth
-      width 100%
-      height $avatarWidth
-      box-sizing border-box
-
-      .avatar
-        position absolute
-        top 0
-        left 0
-        width $avatarWidth
-        height $avatarWidth
-        padding 1px
-        box-sizing border-box
-        border 1px solid var(--border-color)
-        border-radius $redefine-border-radius-medium
-
-        img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-      .info
-        padding 2px 0
-        margin-left 10px
-        box-sizing border-box
-        display flex
-        flex-direction column
-        justify-content space-between
-        width 100%
-        height 100%
-
-        .author
-          font-weight regular
-          font-size 1.18rem
-          display flex
-          align-items center
-
-          .name
-            color var(--default-text-color)
-
-          .author-label
-            margin-left 5px
-            font-size 0.8rem
-            font-weight 500
-            padding 2px 8px
-            border-radius $redefine-border-radius-small
-            color var(--third-text-color)
-            border 1px solid var(--shadow-color-1)
-
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .post-tags-box
-      display none
-      margin-top 1.6rem
-      justify-content center
-      font-size 1.1rem
-
-      +redefine-tablet()
-        display flex
-
-      +redefine-mobile()
-        margin-top 1.2rem
-        font-size 1rem
-
-      .tag-item
-        margin 0 0.25rem
-
-    .post-copyright-info
-      margin-top $spacing-unit
-      width 100%
-
-      +redefine-tablet()
-        margin-top ($spacing-unit * 0.8) !important
-
-    .article-nav
-      height 40px
-      margin-top $spacing-unit
-
-      .article-prev, .article-next
-        max-width $post-nav-max-width
-        height 100%
-        box-sizing border-box
-        border-radius $redefine-border-radius-medium !important
-        redefine-container(
-          true,
-          1.03,
-          1.03,
-          10px,
-          0
-        )
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .article-prev
-        float left
-
-      .article-next
-        float right
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-header
-        font-size 28px
-        font-weight 550
-        margin-top 2.8rem
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
-
-@media (prefers-color-scheme dark)
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
-
-.dark-mode
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post19.jpg" alt="Web Security - Insecure Deserialization" />
+                    <h1 class="article-title-cover">Web Security - Insecure Deserialization</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-08-08</span>
+        <span class="mobile">2023-08-08</span>
+        <!-- <span class="desktop">2023-08-08 23:53:50</span>
+        <span class="mobile">2023-08-08 23:53</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-08-10</span>
+            <span class="mobile">2023-08-10</span>
+            <!-- <span class="desktop">2023-08-10 23:50:33</span>
+            <span class="mobile">2023-08-10 23:50</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Web-Security/">Web Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Web-Security/Insecure-Deserialization/">Insecure Deserialization</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web-Security/">Web Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在 <a href="https://lavinia0724.github.io/2023/07/22/ASP-NET-MVC-Framework-JSON/">ASP.NET MVC Framework - JSON</a> 中有提到關於 Serialization 序列化 &amp; Deserialization 反序列化的觀念</p>
+<p>而不安全的反序列化其實是 OWASP 十大漏洞之一！</p>
+<div class="tabs" id="tab-insecure-deserialization"><ul class="nav-tabs"><li class="tab active"><a class="#insecure-deserialization-1">威脅目標</a></li><li class="tab"><a class="#insecure-deserialization-2">舉例來說</a></li><li class="tab"><a class="#insecure-deserialization-3">漏洞防護</a></li></ul><div class="tab-content"><div class="tab-pane active" id="insecure-deserialization-1"><p>對資料進行序列化和反序列化的 Web 應用程式<br><br>序列化是指從應用程式碼中獲取物件，並將其轉換為可用於其他目的的格式<br>反序列化將資料轉回為應用程式可以使用的物件</p></div><div class="tab-pane" id="insecure-deserialization-2"><p>序列化就像在搬家之前將傢俱打包到箱子裡，而反序列化就像在搬家之後拆開箱子並組裝傢俱<br>而不安全的反序列化攻擊就像搬家公司在拆箱之前篡改箱子中的物品！</p></div><div class="tab-pane" id="insecure-deserialization-3"><p>不安全的反序列化漏洞利用，是不可信來源的資料反序列化的結果<br>防止不安全反序列化攻擊的唯一肯定有效的方法是，禁止來自不受信任來源的資料反序列化<br></p></div></div></div>
+
+<h2 id="Serialization-Deserialization"><a href="#Serialization-Deserialization" class="headerlink" title="Serialization &amp; Deserialization"></a>Serialization &amp; Deserialization</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://media.licdn.com/dms/image/D4D12AQF8kMqP6Z2ujg/article-inline_image-shrink_1000_1488/0/1658131269673?e=1696464000&v=beta&t=O7PXYxuKbpXYHZLOe3oZk0WMVA0HR95FWTaAPak5-CI"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://www.linkedin.com/pulse/understanding-insecure-deserialization-cpxholding" >圖片來源</a></p>
+<p>讓我們複習一下什麼是 Serialization 序列化和 Deserialization 反序列化：</p>
+<ul>
+<li>Serialization：序列化<ul>
+<li>將資料結構或物件狀態轉換成可儲存的格式</li>
+</ul>
+</li>
+<li>Deserialization：反序列化<ul>
+<li>相反的過程，從一系列位元組中，提取資料結構</li>
+</ul>
+</li>
+</ul>
+<h2 id="Insecure-Deserialization-Cause"><a href="#Insecure-Deserialization-Cause" class="headerlink" title="Insecure Deserialization Cause"></a>Insecure Deserialization Cause</h2><p>嗚姆，那什麼是造成不安全的反序列化成因呢？</p>
+<p>當不受信任的資料用於濫用應用程式的邏輯流程、執行任意程式碼，或在反序列化時執行阻斷服務（DoS，Denial Of Service）時，即可能造成 Insecure Deserialization 不安全的反序列化</p>
+<p>造成 Insecure Deserialization 的原因：</p>
+<blockquote>
+<p>開發人員通常更信任淨化的物件提供的資料，而不是傳統的使用者輸入 <i class="fa-regular fa-eyes"></i></p>
+</blockquote>
+<h3 id="Insecure-Deserialization-Example"><a href="#Insecure-Deserialization-Example" class="headerlink" title="Insecure Deserialization Example"></a>Insecure Deserialization Example</h3><p>假設一個線上商店使用 Serialization 序列化來儲存使用者的購物車，使用者儲存購物車的狀態，並從網站接收序列化物件，例如：</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;productId&quot;</span><span class="punctuation">:</span><span class="number">6</span><span class="punctuation">,</span> <span class="attr">&quot;amount&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span> <span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">42.00</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>但在此例中，只要使用者更改序列化物件</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;productId&quot;</span><span class="punctuation">:</span><span class="number">6</span><span class="punctuation">,</span> <span class="attr">&quot;amount&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span> <span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">5.00</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<p>將價格變更為 5，若應用程式不檢查序列化物件而使用新價格<br>當物件被載入、由應用程式反序列化，以及未經驗證就使用資料時，就會發生不安全的反序列化<br>使用者只需要為反序列化物件支付價格，此時僅需支付 5 元而已！</p>
+<p>哎呀，這樣商家就虧爛了啊！</p>
+<h2 id="Insecure-Deserialization-Impact"><a href="#Insecure-Deserialization-Impact" class="headerlink" title="Insecure Deserialization Impact"></a>Insecure Deserialization Impact</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://secumantra.com/wp-content/uploads/2020/11/image-7-1536x479.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://secumantra.com/owasp-insecure-deserialization/" >圖片來源</a></p>
+<p>而　Insecure Deserialization 不安全的反序列化可能會造成深遠的影響</p>
+<p>不安全的反序列化可用於執行任意程式碼、濫用應用程式的邏輯流程，甚至可造成阻斷服務攻擊（DoS，Denial Of Service）</p>
+<p>根據序列化物件的使用方式，Insecure Deserialization 亦可能造成 SQL Injection、Cross-Site Scripting（XSS）、Remote Code Execution 攻擊！</p>
+<h2 id="Insecure-Deserialization-Prevent"><a href="#Insecure-Deserialization-Prevent" class="headerlink" title="Insecure Deserialization Prevent"></a>Insecure Deserialization Prevent</h2><p>嚇都嚇鼠了，那該怎麼防禦呢？</p>
+<ol>
+<li>開發人員透過篩選或驗證，將序列化物件的資料清理為不受信任的使用者輸入</li>
+<li>對任何序列化物件實施完整性檢查，例如數位簽章，防止篡改</li>
+<li>隔離並執行在低特權環境中反序列化的程式碼</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.gss.com.tw/scw" >Secure Code Warrior 安全學習平台</a><br><a class="link"   target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-tw/learning/security/threats/owasp-top-10/" >OWASP Top 10</a><br><a class="link"   target="_blank" rel="noopener" href="https://secumantra.com/owasp-insecure-deserialization/" >OWASP Top Ten: Insecure Deserialization</a><br><a class="link"   target="_blank" rel="noopener" href="https://www.linkedin.com/pulse/understanding-insecure-deserialization-cpxholding" >Understanding Insecure Deserialization</a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Web-Security/">#Web Security</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/08/04/Web-Security-XXE/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Web Security - XXE</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">LALALAND</div>
+        <div class="page-title">Web Security - Insecure Deserialization</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serialization-Deserialization"><span class="nav-text">Serialization &amp; Deserialization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insecure-Deserialization-Cause"><span class="nav-text">Insecure Deserialization Cause</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Insecure-Deserialization-Example"><span class="nav-text">Insecure Deserialization Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insecure-Deserialization-Impact"><span class="nav-text">Insecure Deserialization Impact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insecure-Deserialization-Prevent"><span class="nav-text">Insecure Deserialization Prevent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
 
                 
 

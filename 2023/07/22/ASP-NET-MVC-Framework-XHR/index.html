@@ -316,428 +316,223 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
-
-$avatarWidth = 46px
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
-
-.post-page-container
-  display flex
-  position relative
-  justify-content space-between
-  box-sizing border-box
-  width 100%
-  height 100%
-
-  &.show-toc
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
-
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
-
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
-
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
-
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
-
-    .article-content-container
-      width calc(100% - 210px) !important
-
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
-
-    .article-content-container
-      width 100% !important
-
-    &.show-toc
-      .toc-content-container
-        display none
-
-      .article-content-container
-        width 100% !important
-
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      30px,
-      30px
-    )
-
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-
-    .article-title
-      position relative
-      width 100%
-
-      img
-        margin -30px -30px 0 -30px
-        width calc(100% + 60px)
-        height 350px
-        object-fit cover
-        border-radius $redefine-border-radius-large-top
-
-        +redefine-tablet()
-          height 300px
-          margin -24px -24px 0 -24px
-          width calc(100% + 60px * 0.8)
-
-        +redefine-mobile()
-          height 200px
-          border-radius 0px
-          margin -24px -24px 0 -24px
-          width calc(100% + 80px * 0.6)
-
-      .article-title-regular
-        font-size $article-title-font-size
-        font-weight 700
-        margin 0px 0 30px 0
-        line-height 1.4
-        color var(--second-text-color)
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-
-      .article-title-cover
-        display flex
-        padding 0.4rem 1.5rem 0.5rem 1.5rem
-        line-height 1.5
-        margin 0 auto
-        position absolute
-        bottom 36px
-        left 0
-        text-align center
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-        color var(--second-text-color)
-        font-size $article-title-font-size
-        font-weight 700
-        background-color var(--background-color-transparent)
-        backdrop-filter blur(10px)
-        -webkit-backdrop-filter blur(10px)
-        border 1.5px solid var(--home-banner-icons-container-border-color)
-        border-radius $redefine-border-radius-large
-
-        +redefine-tablet()
-          font-size: $article-title-font-size * 0.8
-          bottom 36px * 0.8
-
-        +redefine-mobile()
-          font-size: $article-title-font-size * 0.6
-          bottom 36px * 0.6
-          border-radius $redefine-border-radius-medium
-
-    .article-header
-      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
-      position relative
-      padding-left $avatarWidth
-      width 100%
-      height $avatarWidth
-      box-sizing border-box
-
-      .avatar
-        position absolute
-        top 0
-        left 0
-        width $avatarWidth
-        height $avatarWidth
-        padding 1px
-        box-sizing border-box
-        border 1px solid var(--border-color)
-        border-radius $redefine-border-radius-medium
-
-        img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-      .info
-        padding 2px 0
-        margin-left 10px
-        box-sizing border-box
-        display flex
-        flex-direction column
-        justify-content space-between
-        width 100%
-        height 100%
-
-        .author
-          font-weight regular
-          font-size 1.18rem
-          display flex
-          align-items center
-
-          .name
-            color var(--default-text-color)
-
-          .author-label
-            margin-left 5px
-            font-size 0.8rem
-            font-weight 500
-            padding 2px 8px
-            border-radius $redefine-border-radius-small
-            color var(--third-text-color)
-            border 1px solid var(--shadow-color-1)
-
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .post-tags-box
-      display none
-      margin-top 1.6rem
-      justify-content center
-      font-size 1.1rem
-
-      +redefine-tablet()
-        display flex
-
-      +redefine-mobile()
-        margin-top 1.2rem
-        font-size 1rem
-
-      .tag-item
-        margin 0 0.25rem
-
-    .post-copyright-info
-      margin-top $spacing-unit
-      width 100%
-
-      +redefine-tablet()
-        margin-top ($spacing-unit * 0.8) !important
-
-    .article-nav
-      height 40px
-      margin-top $spacing-unit
-
-      .article-prev, .article-next
-        max-width $post-nav-max-width
-        height 100%
-        box-sizing border-box
-        border-radius $redefine-border-radius-medium !important
-        redefine-container(
-          true,
-          1.03,
-          1.03,
-          10px,
-          0
-        )
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .article-prev
-        float left
-
-      .article-next
-        float right
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-header
-        font-size 28px
-        font-weight 550
-        margin-top 2.8rem
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
-
-@media (prefers-color-scheme dark)
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
-
-.dark-mode
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post15.jpg" alt="ASP.NET MVC Framework - XHR" />
+                    <h1 class="article-title-cover">ASP.NET MVC Framework - XHR</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-07-22</span>
+        <span class="mobile">2023-07-22</span>
+        <!-- <span class="desktop">2023-07-22 17:24:40</span>
+        <span class="mobile">2023-07-22 17:24</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-07-22</span>
+            <span class="mobile">2023-07-22</span>
+            <!-- <span class="desktop">2023-07-22 17:53:38</span>
+            <span class="mobile">2023-07-22 17:53</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/ASP-NET/">ASP.NET</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/ASP-NET/MVC/">MVC</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/ASP-NET/MVC/AJAX/">AJAX</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/MVC/">MVC</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/AJAX/">AJAX</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="XHR"><a href="#XHR" class="headerlink" title="XHR"></a>XHR</h2><p>Ajax 在 JavaScirpt 中，是透過 XML HttpRequest（XHR）物件作為實作<br>他能夠在 Client 端對 Server 端送出 Http Request，使用的資料格式是 JSON (也可以用 XML 格式)</p>
+<p>原生的 JavaScript 就可以使用 Ajax，不一定要用 jQuery 封裝 Ajax</p>
+<h3 id="XHR-process"><a href="#XHR-process" class="headerlink" title="XHR process"></a>XHR process</h3><p>XHR 的流程</p>
+<ol>
+<li>建立一個 XHR 物件，設定 URL 與 HTTP Method 然後送出 Request</li>
+<li>等待伺服器 Response 後，透過 Callback Function 來進行後續動作</li>
+</ol>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// true: 非同步, false: 同步</span></span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;http://xxx&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="XHR-readyState"><a href="#XHR-readyState" class="headerlink" title="XHR readyState"></a>XHR readyState</h3><p>XMLHttpRequest 有各種狀態碼（readyState），能夠知道當前進行到什麼狀態了</p>
+<ul>
+<li>0<ul>
+<li>已經產生 XMLHttpRequest，但還沒連結到要取得的網址</li>
+</ul>
+</li>
+<li>1<ul>
+<li>用了 open()，但還沒傳送資料過去</li>
+</ul>
+</li>
+<li>2<ul>
+<li>用了 send()</li>
+</ul>
+</li>
+<li>3<ul>
+<li>loading 資料</li>
+</ul>
+</li>
+<li>4<ul>
+<li>撈回資料了，數據已接收完全</li>
+</ul>
+</li>
+</ul>
+<h3 id="XHR-Get"><a href="#XHR-Get" class="headerlink" title="XHR Get"></a>XHR Get</h3><p>透過 API 取得資料</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立配置並使用 API</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;http://xxx&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 傳送資訊</span></span><br><span class="line">xhr.<span class="title function_">send</span>(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收伺服器回傳資料</span></span><br><span class="line">xhr.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(xhr.<span class="property">responseText</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="XHR-Post"><a href="#XHR-Post" class="headerlink" title="XHR Post"></a>XHR Post</h3><div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;http://xxx&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 設定 RequestHeader，設定發送的資料是 form 的格式</span></span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-type&#x27;</span>, <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因為要 Login 所以需要帳號密碼</span></span><br><span class="line">xhr.<span class="title function_">send</span>(<span class="string">&#x27;name=Test&amp;password=123456&#x27;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="XHR-Post-JSON"><a href="#XHR-Post-JSON" class="headerlink" title="XHR Post JSON"></a>XHR Post JSON</h3><p>JSON 格式，記得先序列化</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 寫好要發送的資料（JavaScript Object）</span></span><br><span class="line"><span class="keyword">var</span> account = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Test&#x27;</span>,</span><br><span class="line">    <span class="attr">password</span>: <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;http://xxx&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 設定 RequestHeader，設定發送的資料是 JSON 的格式</span></span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-type&#x27;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 資料先用 JSON 序列化，才能將其送給後端</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(account);</span><br><span class="line">xhr.<span class="title function_">send</span>(data);</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>由於現今網站普遍需要複雜的應用，為了不讓程式碼裡滿滿的都在建立新的 XMLHttpRequest 實例，造成程式碼可讀性、可維護性降低</p>
+<p>通常不會使用原生的方式操作 AJAX，而是利用 jQuery 或 Fetch 等方式<br><del>不過還是要瞭解一下嘛</del></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/MVC/">#MVC</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/AJAX/">#AJAX</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/07/22/ASP-NET-MVC-Framework-JSON/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">ASP.NET MVC Framework - JSON</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/07/22/ASP-NET-MVC-Framework-AJAX/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">ASP.NET MVC Framework - AJAX</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">LALALAND</div>
+        <div class="page-title">ASP.NET MVC Framework - XHR</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XHR"><span class="nav-text">XHR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XHR-process"><span class="nav-text">XHR process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XHR-readyState"><span class="nav-text">XHR readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XHR-Get"><span class="nav-text">XHR Get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XHR-Post"><span class="nav-text">XHR Post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XHR-Post-JSON"><span class="nav-text">XHR Post JSON</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
 
                 
 
