@@ -13,20 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/tags/csie/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/05/02/uva-00572-oil-deposits/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="LAVI">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LAVI">
-<meta property="og:url" content="https://lavinia0724.github.io/tags/CSIE/index.html">
+        <meta name="description" content="UVA-00572-Oil-Deposits">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UVA 00572 - Oil Deposits">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/05/02/UVA-00572-Oil-Deposits/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="LAVI">
+<meta property="og:description" content="UVA-00572-Oil-Deposits">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-05-02T06:44:19.000Z">
+<meta property="article:modified_time" content="2023-09-05T07:01:17.750Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="LAVI">
+<meta property="article:tag" content="UVA">
 <meta name="twitter:card" content="summary">
     
     
@@ -39,7 +41,7 @@
     
     <title>
         
-            標籤: CSIE -
+            UVA 00572 - Oil Deposits -
         
         INCLAVIC
     </title>
@@ -314,39 +316,177 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="tag-container">
-        <div class="tag-name"><i class="fa-solid fa-tag"></i>&nbsp;CSIE
-        </div>
-        <div class="tag-post-list">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
             
-<div class="archive-list-container">
+                      
+                <div class="article-title">
+                    <img src="/images/post26.jpg" alt="UVA 00572 - Oil Deposits" />
+                    <h1 class="article-title-cover">UVA 00572 - Oil Deposits</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-05-02</span>
+        <span class="mobile">2022-05-02</span>
+        <!-- <span class="desktop">2022-05-02 14:44:19</span>
+        <span class="mobile">2022-05-02 14:44</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <!-- <span class="archive-year-post-count">[1]</span> -->
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='05-10'>
-                <a href="/2022/05/10/CSIE-Computer-Organization/">
-                  <span class="article-title">CSIE - Computer Organization</span>
-                </a>
-              </li>
-              
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-09-05</span>
+            <span class="mobile">2023-09-05</span>
+            <!-- <span class="desktop">2023-09-05 15:01:17</span>
+            <span class="mobile">2023-09-05 15:01</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Programming-Contest/">Programming Contest</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Contest/UVA/">UVA</a>&nbsp;
+                    </li>
+                
             </ul>
-        </section>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UVA/">UVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="解題觀念"><a href="#解題觀念" class="headerlink" title="解題觀念"></a>解題觀念</h2><p>BFS</p>
+<p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://slides.com/lavi_0724/bfs_dfs/fullscreen" >BFS &amp; DFS</a></p>
+<h2 id="題目敘述"><a href="#題目敘述" class="headerlink" title="題目敘述"></a>題目敘述</h2><p>有家石油公司負責探勘某塊地底下的石油含量，這塊地是矩行的<br>含有石油的一小塊地稱作一個 pocket，假如兩個 pocket 相連，則這兩個 pocket 屬於同一個 oil deposit</p>
+<p>你的任務就是要找出這塊地包含幾個不同的 oil deposit</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>輸入包含好幾組資料，每組資料的第一行有 2 個整數 m, n<br>m 代表這塊地的列數，n代表這塊地的行數（1 &lt;&#x3D; m, n &lt;&#x3D; 100）</p>
+<p>接下來的 m 行是這塊地探勘的內容<br><code>@</code> 代表此小塊含石油，<code>*</code>代表此小塊不含石油</p>
+<p>當 m &#x3D; 0 &amp;&amp; n &#x3D; 0 則輸入結束</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// Sample Input</span><br><span class="line">1 1</span><br><span class="line">*</span><br><span class="line">3 5</span><br><span class="line">*@*@*</span><br><span class="line">**@**</span><br><span class="line">*@*@*</span><br><span class="line">1 8</span><br><span class="line">@@****@*</span><br><span class="line">5 5</span><br><span class="line">****@</span><br><span class="line">*@@*@</span><br><span class="line">*@**@</span><br><span class="line">@@@*@</span><br><span class="line">@@**@</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>對每組測試資料輸出 oil deposit 的數目</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Sample Output</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> m, n;</span><br><span class="line"><span class="type">int</span> x_now, y_now, x_next, y_next;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> ans;</span><br><span class="line"><span class="type">char</span> oil[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> row[] = &#123; <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span> &#125;;</span><br><span class="line"><span class="type">int</span> column[] = &#123; <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">( <span class="type">int</span> x_now, <span class="type">int</span> y_now )</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++ )&#123;</span><br><span class="line"></span><br><span class="line">        x_next = x_now + row[j];</span><br><span class="line">        y_next = y_now + column[j];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( x_next &lt; m &amp;&amp; y_next &lt; n &amp;&amp; x_next &gt;= <span class="number">0</span> &amp;&amp; y_next &gt;= <span class="number">0</span> &amp;&amp; oil[ x_next ][ y_next ] == <span class="string">&#x27;@&#x27;</span> )&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 此點已找過 就把他改成普通地板</span></span><br><span class="line">            oil[ x_next ][ y_next ] = <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">            <span class="built_in">bfs</span>( x_next, y_next );</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( cin &gt;&gt; m &gt;&gt; n &amp;&amp; m &amp;&amp; n )&#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>( oil, <span class="string">&#x27;0&#x27;</span>, <span class="built_in">sizeof</span>(oil) );</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++ )&#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++ )&#123;</span><br><span class="line">                cin &gt;&gt; oil[i][j];          </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++ )&#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++ )&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>( oil[i][j] == <span class="string">&#x27;@&#x27;</span> )&#123;</span><br><span class="line">                   ans++;</span><br><span class="line">                   <span class="built_in">bfs</span>( i, j );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/UVA/">#UVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/05/10/CSIE-Computer-Organization/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">CSIE - Computer Organization</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2021/12/13/UVA-11988-Broken-Keyboard/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">UVA 11988 - Broken Keyboard</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
         </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">LALALAND</div>
+        <div class="page-title">UVA 00572 - Oil Deposits</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E8%A7%80%E5%BF%B5"><span class="nav-text">解題觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li></ol>
+
     </div>
-
-    <div class="tag-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span>
 </div>
-
+            </div>
+        
     </div>
 </div>
 
@@ -401,6 +541,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
@@ -509,6 +666,16 @@
 
 
 <div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
     
 </div>
 
