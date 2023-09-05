@@ -13,28 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/08/02/asp-net-mvc-framework-sync-async/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/05/02/uva-00439-knight-moves/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
+        <meta name="description" content="UVA 00439 Knight Moves">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ASP.NET MVC Framework - Sync &amp; Async">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/08/02/ASP-NET-MVC-Framework-Sync-Async/index.html">
+<meta property="og:title" content="UVA 00439 - Knight Moves">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/05/02/UVA-00439-Knight-Moves/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
+<meta property="og:description" content="UVA 00439 Knight Moves">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncExample.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AsyncExample.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncJavaScript.webp">
-<meta property="article:published_time" content="2023-08-01T17:08:10.000Z">
-<meta property="article:modified_time" content="2023-08-03T08:35:43.720Z">
+<meta property="og:image" content="https://i.imgur.com/5lZo50E.png">
+<meta property="article:published_time" content="2022-05-02T07:06:30.000Z">
+<meta property="article:modified_time" content="2023-09-05T07:22:52.878Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="UVA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/5lZo50E.png">
     
     
     <!--- Icon Part-->
@@ -46,7 +43,7 @@
     
     <title>
         
-            ASP.NET MVC Framework - Sync &amp; Async -
+            UVA 00439 - Knight Moves -
         
         INCLAVIC
     </title>
@@ -327,8 +324,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post17.jpg" alt="ASP.NET MVC Framework - Sync &amp; Async" />
-                    <h1 class="article-title-cover">ASP.NET MVC Framework - Sync &amp; Async</h1>
+                    <img src="/images/post27.jpg" alt="UVA 00439 - Knight Moves" />
+                    <h1 class="article-title-cover">UVA 00439 - Knight Moves</h1>
                 </div>
             
                 
@@ -348,19 +345,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-08-02</span>
-        <span class="mobile">2023-08-02</span>
-        <!-- <span class="desktop">2023-08-02 01:08:10</span>
-        <span class="mobile">2023-08-02 01:08</span> -->
+        <span class="desktop">2022-05-02</span>
+        <span class="mobile">2022-05-02</span>
+        <!-- <span class="desktop">2022-05-02 15:06:30</span>
+        <span class="mobile">2022-05-02 15:06</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-08-03</span>
-            <span class="mobile">2023-08-03</span>
-            <!-- <span class="desktop">2023-08-03 16:35:43</span>
-            <span class="mobile">2023-08-03 16:35</span> -->
+            <span class="desktop">2023-09-05</span>
+            <span class="mobile">2023-09-05</span>
+            <!-- <span class="desktop">2023-09-05 15:22:52</span>
+            <span class="mobile">2023-09-05 15:22</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -371,11 +368,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/ASP-NET/">ASP.NET</a>&nbsp;
+                        <a href="/categories/Programming-Contest/">Programming Contest</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/ASP-NET/MVC/">MVC</a>&nbsp;
+                        &gt; <a href="/categories/Programming-Contest/UVA/">UVA</a>&nbsp;
                     </li>
                 
             </ul>
@@ -387,7 +384,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/MVC/">MVC</a>&nbsp;
+                        <a href="/tags/UVA/">UVA</a>&nbsp;
                     </li>
                 
             </ul>
@@ -410,136 +407,24 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Sync-Async"><a href="#Sync-Async" class="headerlink" title="Sync &amp; Async"></a>Sync &amp; Async</h2><p><img  
+                <h2 id="解題觀念"><a href="#解題觀念" class="headerlink" title="解題觀念"></a>解題觀念</h2><p>BFS</p>
+<p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://slides.com/lavi_0724/bfs_dfs/fullscreen" >BFS &amp; DFS</a></p>
+<h2 id="題目敘述"><a href="#題目敘述" class="headerlink" title="題目敘述"></a>題目敘述</h2><p>你的朋友正在做關於西洋棋中騎士旅行問題（Traveling Knight Problem）的研究<br>他希望你幫他解決一個問題：給你 2 個格子的位置 X 及 Y</p>
+<p>請你找出騎士從 X 走到 Y 最少需要走幾步</p>
+<p>西洋棋騎士走法：<br><a class="link"   target="_blank" rel="noopener" href="https://blog.udn.com/puzzlez/4342425" >圖片來源</a><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\postImgs\Sync&Async.jpg"
+                     data-src="https://i.imgur.com/5lZo50E.png"
                      
-                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://www.oxxostudio.tw/articles/201706/javascript-promise-settimeout.html" >圖片來源</a></p>
-<p>同步 Sync 與非同步 Async</p>
-<ul>
-<li>Sync 同步<ul>
-<li>發起 I&#x2F;O 請求的執行緒不從正在呼叫的 I&#x2F;O 操作函式返回（被阻塞），直到 I&#x2F;O 操作完成</li>
-</ul>
-</li>
-<li>Async 非同步<ul>
-<li>發起 I&#x2F;O 請求的執行緒不等 I&#x2F;O 操作完成，就繼續執行隨後的程式，而 I&#x2F;O 的結果再透過其他方式通知發起 I&#x2F;O 請求的程式</li>
-</ul>
-</li>
-</ul>
-<div class="note-large orange"><div class="notel-title"><p>簡單來說！</p>
-</div><div class="notel-content"><p>同步 Sync：<br>我有好多事要做，但一次只能做一件事，我要等這件事做完才能做其他<br><br>非同步 Async：<br>我有好多事要做，但有些事開始做以後要等他完成，我可以在這期間去做其他事，直到他做好後再回去處理他</p>
-</div></div>
+                ></p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>每筆測試資料一列<br>每列有 2 個西洋棋的座標位置</p>
+<p>每個位置座標是由一個英文字母（a-h，代表棋盤的第幾欄）<br>及一個數字（1-8，代表棋盤的第幾列）組成</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Sample Input</span><br><span class="line">e2 e4</span><br><span class="line">a1 b2</span><br><span class="line">b2 c3</span><br><span class="line">a1 h8</span><br><span class="line">a1 h7</span><br><span class="line">h8 a1</span><br><span class="line">b1 c3</span><br><span class="line">f6 f6</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="Sync-vs-Async"><a href="#Sync-vs-Async" class="headerlink" title="Sync vs Async"></a>Sync vs Async</h2><p>已準備早餐為例，要吃的東西有：</p>
-<ol>
-<li>咖啡</li>
-<li>蛋</li>
-<li>培根</li>
-<li>吐司</li>
-<li>柳橙汁</li>
-</ol>
-<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p>以同步 Sync 的例子來說，我們會這樣準備：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\SyncExample.png"
-                     
-                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/" >圖片來源</a></p>
-<ol>
-<li>倒杯咖啡</li>
-<li>加熱鍋子，發呆等著鍋子加熱</li>
-<li>熱好鍋子後煎兩顆蛋，發呆等著蛋煎熟</li>
-<li>煎完蛋後煎三片培根，發呆等著培根煎熟</li>
-<li>把吐司放進吐司機加熱，發呆等著吐司熱</li>
-<li>等吐司加熱好後，抹上果醬</li>
-<li>倒杯果汁</li>
-</ol>
-<blockquote>
-<p>但這樣我們會浪費好多時間在發呆等待，大約花了 30 分鐘準備早餐<br>可是在分秒必爭的早晨，這樣怎麼可以呢！</p>
-</blockquote>
-<h3 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h3><p>如果站在程式非同步 Async 的角度來準備：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\AsyncExample.png"
-                     
-                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/" >圖片來源</a></p>
-<ol>
-<li>倒杯咖啡</li>
-<li>加熱煎蛋的鍋子，等鍋子加熱的期間去做下一件事</li>
-<li>加熱煎培根的鍋子，等鍋子加熱的期間去做下一件事</li>
-<li>把吐司放進吐司機加熱，讓吐司慢慢加熱的同時，回去煎蛋</li>
-<li>把蛋煎熟</li>
-<li>把培根煎熟</li>
-<li>吐司加熱好了，抹上果醬</li>
-<li>倒杯果汁</li>
-</ol>
-<blockquote>
-<p>如此一來，我們只花了 15 分鐘準備早餐，就可以多多賴床 15 分鐘了呢！</p>
-</blockquote>
-<h2 id="Sync-or-Async"><a href="#Sync-or-Async" class="headerlink" title="Sync or Async"></a>Sync or Async</h2><p>一般程式碼是由上往下，一行一行程式碼同步 Sync 去執行的，乍看之下也沒什麼問題，甚至大部分的情境都是用同步的方式去撰寫程式</p>
-<p>但若是處理需要等待、不確定需要多久才能完成的任務，ex 存取 I&#x2F;O、外部資源、HTTP Request…等，就會需要使用非同步來處理了</p>
-<h4 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h4><ol>
-<li>JavaScript 用 setTimeout 倒數 10 秒後 alert 訊息，但在等待期間可以先做其他事</li>
-<li>JavaScript 發 HTTP Request 等待 Server 回傳資料的期間，可以先做其他事</li>
-</ol>
-<h3 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h3><p>而非同步中等待完成的任務，會呼叫 Callback Function 來處理接下來要做的事情</p>
-<p>Callback Function 是一個被作為參數帶入另一個函式中的「函式」，而這個作為參數帶入的函式將在未來某個時間點被呼叫和執行</p>
-<p>而在 AJAX 中也會使用到 CallbackFunction<br>關於什麼是 AJAX，可以參考我的這篇文章：<a href="https://lavinia0724.github.io/2023/07/22/ASP-NET-MVC-Framework-AJAX/">ASP.NET MVC Framework - AJAX</a></p>
-<p>這裡是一個範例：</p>
-<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        var tr = $(this).closest(&#x27;tr&#x27;);</span><br><span class="line">        $(&quot;tr&quot;).remove();</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error)&#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>對每一列輸入<br>輸出：To get from xx to yy takes n knight moves.</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Sample Output</span><br><span class="line">To get from e2 to e4 takes 2 knight moves.</span><br><span class="line">To get from a1 to b2 takes 4 knight moves.</span><br><span class="line">To get from b2 to c3 takes 2 knight moves.</span><br><span class="line">To get from a1 to h8 takes 6 knight moves.</span><br><span class="line">To get from a1 to h7 takes 5 knight moves.</span><br><span class="line">To get from h8 to a1 takes 6 knight moves.</span><br><span class="line">To get from b1 to c3 takes 1 knight moves.</span><br><span class="line">To get from f6 to f6 takes 0 knight moves.</span><br></pre></td></tr></table></figure></div>
 
-<p>這段程式碼其實是這樣運作的：<br>Server 刪除書本後，Response 回傳給 Client 端，接著才會執行 success 定義的 Callback Function，也就是從 UI 上的 Table 移除該筆資料</p>
-<p>而 Callback Function 只會在非同步 Async 任務執行完成後才會觸發，也就是說，只要 Server 一直沒有 Response，那 Callback Function 就<strong>永遠不會被執行！</strong></p>
-<h3 id="Sync-Async-in-JavaScript"><a href="#Sync-Async-in-JavaScript" class="headerlink" title="Sync &amp; Async in JavaScript"></a>Sync &amp; Async in JavaScript</h3><p>JavaScript 是一種<strong>單執行緒</strong>的程式語言，所有的程式碼片段都會在 stack 中被執行<br>而且一次只會執行一個程式碼片段，也就是一次只做一件事</p>
-<p>但這樣會導致在同步 Sync 狀態下，例如 setTimeout、Event Callback、HTTP Request、UI Render 這些需要時間，卻又不確定觸發執行時間的操作，光等他們就飽了？</p>
-<p>於是可利用同步 Sync、非同步 Async 概念來處理這些事件，將他們以非同步的方式處理，待執行完同步的程式碼任務後，再來處理這些事件</p>
-<h3 id="Sync-in-JavaScript"><a href="#Sync-in-JavaScript" class="headerlink" title="Sync in JavaScript"></a>Sync in JavaScript</h3><p>但正如剛才提到，JavaScript 是單執行緒的程式語言，則該如何處理非同步事件呢？</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\SyncJavaScript.webp"
-                     
-                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@pavelbely/javascript-event-loop-%D0%B2-%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0%D1%85-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1-a19e4d99f242" >圖片來源</a></p>
-<ol>
-<li>setTimeout、Event、AJAX、UI Render…等等操作，會先被拉出 stack 以避免阻塞</li>
-<li>前一步驟中被拉出的任務執行完畢後，其 Callback Function 會被丟到工作佇列 Queue 中</li>
-<li>等到同步 Sync 的程式碼執行完（Stack 清空），才會去撈在佇列 Queue 中的 Function 執行，這個過程稱為 Event Loop</li>
-</ol>
-<h2 id="Sync-Async-mixed-performance"><a href="#Sync-Async-mixed-performance" class="headerlink" title="Sync &amp; Async mixed performance"></a>Sync &amp; Async mixed performance</h2><h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3><p>再來看看以下這段程式：</p>
-<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        console.log(&quot;Server 已將資料刪除&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error) &#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&quot;想不到吧，是我先被印出&quot;);</span><br></pre></td></tr></table></figure></div>
-
-<p>他的執行順序是這樣：</p>
-<ol>
-<li>一開始先執行的 AJAX 先被拉出 stack</li>
-<li>印出 “想不到吧，是我先被印出”</li>
-<li>等到 Server Response 後，Callback Function 被丟到工作佇列</li>
-<li>同步執行的工作都完成後，撈出工作佇列的 Callback Function 執行</li>
-<li>印出 “Server 已將資料刪除”</li>
-</ol>
-<blockquote>
-<p>所以呀，無論 Server 處理速度多快，就算是瞬間回應，也不會先被印出<br>與此同理，Event 事件觸發、JavaScript 改變 UI…等，也是如此機制</p>
-</blockquote>
-<h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h3><p>再來看看這個例子：</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click！&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<p>如果在 3 秒內觸發了 click Event，卻不會馬上印出 “Click！”<br>而是會等到 3 秒後<br>印出了 “Hello” 後，才會印出 “Click！”</p>
-<h3 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h3><p>那麼那麼，再來看看這個例子：</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<p>因為渲染 Render 的事件也是被丟到非同步處理，所以會等所有的同步程式碼執行完才會觸發<br>因此執行的順序是：<br>等待 3 秒 -&gt; 印出 “Hello” -&gt; document.body.innerHTML 清空畫面</p>
-<h2 id="Async-VS-Multithreading"><a href="#Async-VS-Multithreading" class="headerlink" title="Async VS Multithreading"></a>Async VS Multithreading</h2><p>如此一來，雖然感覺非同步 Async 和多執行緒 Multithreading 感覺很像，都能讓完成所有任務的總時長縮減，但本質上兩者大不相同</p>
-<h3 id="Async-1"><a href="#Async-1" class="headerlink" title="Async"></a>Async</h3><ul>
-<li>允許執行緒在等待時間先處理其他作業，透過消除閒置增加效率</li>
-<li>對於吃 CPU 的作業無法處理（改用多執行緒處理會更有效率）</li>
-</ul>
-<h3 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h3><ul>
-<li>建立多執行緒，將多個任務交給不同執行緒個別處理，利用分工加速完成任務總時長</li>
-<li>對於等待 I&#x2F;O 回應的工作幫助不大（改用非同步處理會更有效率）</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>Course 5 FrontEnd Advanced 課程（非公開）</li>
-</ul>
-
+<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> letter1, letter2;</span><br><span class="line"><span class="type">int</span> letter_start, digit_start, letter_end, digit_end;</span><br><span class="line"><span class="type">int</span> letter_now, digit_now, letter_next, digit_next;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> chess[<span class="number">10000</span>+<span class="number">5</span>][<span class="number">2</span>], step[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="type">bool</span> visited[<span class="number">8</span>][<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> row[<span class="number">8</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-2</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"><span class="type">int</span> column[<span class="number">8</span>] = &#123; <span class="number">2</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-2</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    chess[<span class="number">0</span>][<span class="number">0</span>] = letter_start;</span><br><span class="line">    chess[<span class="number">0</span>][<span class="number">1</span>] = digit_start;</span><br><span class="line">    visited[ letter_start ][ digit_start ] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>, knights = <span class="number">1</span>; i &lt; knights; i++ )&#123;</span><br><span class="line">        letter_now = chess[i][<span class="number">0</span>];</span><br><span class="line">        digit_now = chess[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( letter_now == letter_end &amp;&amp; digit_now == digit_end )&#123;</span><br><span class="line">            <span class="keyword">return</span> step[ letter_now ][ digit_now ];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++ )&#123;        </span><br><span class="line">            letter_next = letter_now + column[j];</span><br><span class="line">            digit_next = digit_now + row[j];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>( letter_next &lt; <span class="number">1</span> || digit_next &lt; <span class="number">1</span> || letter_next &gt; <span class="number">8</span> || digit_next &gt; <span class="number">8</span> || visited[ letter_next ][ digit_next ] )&#123;         </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                visited[ letter_next ][ digit_next ] = <span class="literal">true</span>;</span><br><span class="line">                step[ letter_next ][ digit_next ] = step[ letter_now ][ digit_now ] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                chess[ knights ][<span class="number">0</span>] = letter_next;</span><br><span class="line">                chess[ knights ][<span class="number">1</span>] = digit_next;</span><br><span class="line"></span><br><span class="line">                knights++;</span><br><span class="line">       	    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( cin &gt;&gt; letter1 &gt;&gt; digit_start &gt;&gt; letter2 &gt;&gt; digit_end )&#123;</span><br><span class="line">       </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;To get from &quot;</span> &lt;&lt; letter1 &lt;&lt; digit_start &lt;&lt; <span class="string">&quot; to &quot;</span> &lt;&lt; letter2 &lt;&lt; digit_end &lt;&lt; <span class="string">&quot; takes &quot;</span>;</span><br><span class="line">   </span><br><span class="line">        letter_start = letter1 - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>;</span><br><span class="line">        letter_end = letter2 - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ )&#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ )&#123;             </span><br><span class="line">                step[i][j] = <span class="number">0</span>;</span><br><span class="line">                visited[i][j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">bfs</span>() &lt;&lt; <span class="string">&quot; knight moves.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
             </div>
 
             
@@ -548,7 +433,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/MVC/">#MVC</a>&nbsp;
+                            <a href="/tags/UVA/">#UVA</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -562,13 +447,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2023/08/04/Web-Security-XXE/"
+                            href="/2022/05/10/CSIE-Computer-Organization/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Web Security - XXE</span>
+                                    <span class="post-nav-title-item">CSIE - Computer Organization</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -578,10 +463,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/07/22/ASP-NET-MVC-Framework-JSON/"
+                            href="/2022/05/02/UVA-00572-Oil-Deposits/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">ASP.NET MVC Framework - JSON</span>
+                                    <span class="post-nav-title-item">UVA 00572 - Oil Deposits</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -602,8 +487,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">LALALAND</div>
-        <div class="page-title">ASP.NET MVC Framework - Sync &amp; Async</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-Async"><span class="nav-text">Sync &amp; Async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-vs-Async"><span class="nav-text">Sync vs Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync"><span class="nav-text">Sync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async"><span class="nav-text">Async</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-or-Async"><span class="nav-text">Sync or Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Callback-Function"><span class="nav-text">Callback Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-Async-in-JavaScript"><span class="nav-text">Sync &amp; Async in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-in-JavaScript"><span class="nav-text">Sync in JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-Async-mixed-performance"><span class="nav-text">Sync &amp; Async mixed performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX"><span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addEventListener"><span class="nav-text">addEventListener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innerHTML"><span class="nav-text">innerHTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-VS-Multithreading"><span class="nav-text">Async VS Multithreading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-1"><span class="nav-text">Async</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multithreading"><span class="nav-text">Multithreading</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">UVA 00439 - Knight Moves</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E8%A7%80%E5%BF%B5"><span class="nav-text">解題觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li></ol>
 
     </div>
 </div>
