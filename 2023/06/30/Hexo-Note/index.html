@@ -315,204 +315,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post1.jpg" alt="Hexo - Note" />
-                    <h1 class="article-title-cover">Hexo - Note</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-06-30</span>
-        <span class="mobile">2023-06-30</span>
-        <!-- <span class="desktop">2023-06-30</span>
-        <span class="mobile">2023-06-30 00</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-09-05</span>
-            <span class="mobile">2023-09-05</span>
-            <!-- <span class="desktop">2023-09-05 21:47:04</span>
-            <span class="mobile">2023-09-05 21:47</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Hexo/">Hexo</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="Hexo-Note"><a href="#Hexo-Note" class="headerlink" title="Hexo Note"></a>Hexo Note</h2><p>LAVI’s Blog 誕生啦<br>紀錄一下在架設這個網站過程的一些筆記 <i class="fa-solid fa-pen"></i><br>接下來應該會陸陸續續補上一些以前的重要記事和筆記</p>
-<h3 id="環境配置"><a href="#環境配置" class="headerlink" title="環境配置"></a>環境配置</h3><ol>
-<li>下載 <a class="link"   target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download" >node.js</a> <i class="fa-brands fa-node fa-2xl"></i></li>
-<li>安裝 Hexo CLI<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure></div></li>
-<li>建立 Project<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;projectname&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;projectname&gt;</span><br></pre></td></tr></table></figure></div></li>
-<li>安裝 Hexo 相關套件<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure></div></li>
-<li>啟動 Hexo<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>此時 terminal 會出現 <code>Hexo is running at http://localhost:4000/ </code><br>若連線 <code>http://localhost:4000/</code> 出現了 Hexo 預設畫面，則代表成功</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<h3 id="Hexo-主題修改"><a href="#Hexo-主題修改" class="headerlink" title="Hexo 主題修改"></a>Hexo 主題修改</h3><p><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >Hexo 官方主題模板</a></p>
-<ol>
-<li>選擇喜歡的主題後下載解壓縮於 <code>&lt;projectname&gt;\themes</code></li>
-<li>開啟位於 <code>&lt;projectname&gt;\_config.yml</code> 檔案，找到 <code>theme</code> 並修改<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: redefine <span class="comment"># 這邊修改為你下載的主題</span></span><br></pre></td></tr></table></figure></div></li>
-<li>重啟 Hexo server，此時網頁更新為下載的模板樣<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div></li>
-<li>針對位於 <code>&lt;projectname&gt;\themes\redefine\_config.yml</code> 進行修改，就可以將模板個人化成自己的部落格ㄌ</li>
-</ol>
-<hr>
-<h3 id="佈署到-Github"><a href="#佈署到-Github" class="headerlink" title="佈署到 Github"></a>佈署到 Github</h3><ol>
-<li>安裝 Hexo deployer git 套件<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></div></li>
-<li>修改位於 <code>&lt;projectname&gt;\_config.yml</code> 的<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git </span><br><span class="line">  repo: <span class="comment"># 自己的 Github repositories git 連結</span></span><br><span class="line">  branch: main <span class="comment"># 自訂分支名稱</span></span><br></pre></td></tr></table></figure></div></li>
-<li>利用 Hexo CLI 將本地更新好的整體網頁佈署到 Github <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate <span class="comment"># 生成靜態頁面</span></span><br><span class="line">$ hexo deploy <span class="comment"># deploy</span></span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<hr>
-<h3 id="新增文章"><a href="#新增文章" class="headerlink" title="新增文章"></a>新增文章</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;New Post Title&gt;</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>layout 為模板種類，預設有以下三種<ol>
-<li>draft.md 新增草稿</li>
-<li>page.md 新增頁面</li>
-<li>post.md 新增文章 (預設若無寫 <code>[layout]</code> 時為此方式)</li>
-</ol>
-</li>
-<li>更多新增文章方式：<a class="link"   target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/" >Hexo 新增文章和頁面</a></li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><h3 id="Redefine-Documents"><a href="#Redefine-Documents" class="headerlink" title="Redefine Documents"></a>Redefine Documents</h3><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >Hexo Themes</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/hexo-theme-redefine" >hexo-theme-redefine</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/redefine-demo" >Redefine Demo</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://fontawesome.com/search" >fontawesome</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/" >Redefine Documents</a>：我所選用的 Hexo 框架主題模板 Redefine 文件，作者把如何架設的方式寫的簡單扼要，受益良多</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ohevan.com/" >EvanNotFound’s Blog</a>：Redefine 作者的個人部落格</li>
-</ul>
-<h3 id="Hexo-Teaching-Articles"><a href="#Hexo-Teaching-Articles" class="headerlink" title="Hexo Teaching Articles"></a>Hexo Teaching Articles</h3><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10310727" >使用 HEXO 和 github page 建置自己的 Blog</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://israynotarray.com/hexo/20190411/932826160/" >架設 Hexo + GitHub</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/" >Hexo 新增文章和頁面</a></li>
-</ul>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-            </div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-            
+    .article-content-container
+      width calc(100% - 210px) !important
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Hexo/">#Hexo</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-            
+    .article-content-container
+      width 100% !important
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/07/04/SQL-Note/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Note</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/05/16/OpenAI-API-EasyOCR-with-OpenAI-API/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">OpenAI API - EasyOCR with OpenAI API and Unsplash API Side Project</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+    &.show-toc
+      .toc-content-container
+        display none
 
+      .article-content-container
+        width 100% !important
 
-            
-        </div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Hexo - Note</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Note"><span class="nav-text">Hexo Note</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">環境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A1%8C%E4%BF%AE%E6%94%B9"><span class="nav-text">Hexo 主題修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%88%E7%BD%B2%E5%88%B0-Github"><span class="nav-text">佈署到 Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%96%87%E7%AB%A0"><span class="nav-text">新增文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redefine-Documents"><span class="nav-text">Redefine Documents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Teaching-Articles"><span class="nav-text">Hexo Teaching Articles</span></a></li></ol></li></ol>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+    .article-title
+      position relative
+      width 100%
 
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
+
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
+
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
+
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
+
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
+
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
+
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 

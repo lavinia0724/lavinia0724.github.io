@@ -317,186 +317,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post27.jpg" alt="UVA 00439 - Knight Moves" />
-                    <h1 class="article-title-cover">UVA 00439 - Knight Moves</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-05-02</span>
-        <span class="mobile">2022-05-02</span>
-        <!-- <span class="desktop">2022-05-02 15:06:30</span>
-        <span class="mobile">2022-05-02 15:06</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-09-05</span>
-            <span class="mobile">2023-09-05</span>
-            <!-- <span class="desktop">2023-09-05 15:22:52</span>
-            <span class="mobile">2023-09-05 15:22</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Programming-Contest/">Programming Contest</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/Programming-Contest/UVA/">UVA</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/UVA/">UVA</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="解題觀念"><a href="#解題觀念" class="headerlink" title="解題觀念"></a>解題觀念</h2><p>BFS</p>
-<p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://slides.com/lavi_0724/bfs_dfs/fullscreen" >BFS &amp; DFS</a></p>
-<h2 id="題目敘述"><a href="#題目敘述" class="headerlink" title="題目敘述"></a>題目敘述</h2><p>你的朋友正在做關於西洋棋中騎士旅行問題（Traveling Knight Problem）的研究<br>他希望你幫他解決一個問題：給你 2 個格子的位置 X 及 Y</p>
-<p>請你找出騎士從 X 走到 Y 最少需要走幾步</p>
-<p>西洋棋騎士走法：<br><a class="link"   target="_blank" rel="noopener" href="https://blog.udn.com/puzzlez/4342425" >圖片來源</a><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/5lZo50E.png"
-                     
-                ></p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>每筆測試資料一列<br>每列有 2 個西洋棋的座標位置</p>
-<p>每個位置座標是由一個英文字母（a-h，代表棋盤的第幾欄）<br>及一個數字（1-8，代表棋盤的第幾列）組成</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Sample Input</span><br><span class="line">e2 e4</span><br><span class="line">a1 b2</span><br><span class="line">b2 c3</span><br><span class="line">a1 h8</span><br><span class="line">a1 h7</span><br><span class="line">h8 a1</span><br><span class="line">b1 c3</span><br><span class="line">f6 f6</span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>對每一列輸入<br>輸出：To get from xx to yy takes n knight moves.</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Sample Output</span><br><span class="line">To get from e2 to e4 takes 2 knight moves.</span><br><span class="line">To get from a1 to b2 takes 4 knight moves.</span><br><span class="line">To get from b2 to c3 takes 2 knight moves.</span><br><span class="line">To get from a1 to h8 takes 6 knight moves.</span><br><span class="line">To get from a1 to h7 takes 5 knight moves.</span><br><span class="line">To get from h8 to a1 takes 6 knight moves.</span><br><span class="line">To get from b1 to c3 takes 1 knight moves.</span><br><span class="line">To get from f6 to f6 takes 0 knight moves.</span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> letter1, letter2;</span><br><span class="line"><span class="type">int</span> letter_start, digit_start, letter_end, digit_end;</span><br><span class="line"><span class="type">int</span> letter_now, digit_now, letter_next, digit_next;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> chess[<span class="number">10000</span>+<span class="number">5</span>][<span class="number">2</span>], step[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="type">bool</span> visited[<span class="number">8</span>][<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> row[<span class="number">8</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-2</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"><span class="type">int</span> column[<span class="number">8</span>] = &#123; <span class="number">2</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-2</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    chess[<span class="number">0</span>][<span class="number">0</span>] = letter_start;</span><br><span class="line">    chess[<span class="number">0</span>][<span class="number">1</span>] = digit_start;</span><br><span class="line">    visited[ letter_start ][ digit_start ] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>, knights = <span class="number">1</span>; i &lt; knights; i++ )&#123;</span><br><span class="line">        letter_now = chess[i][<span class="number">0</span>];</span><br><span class="line">        digit_now = chess[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( letter_now == letter_end &amp;&amp; digit_now == digit_end )&#123;</span><br><span class="line">            <span class="keyword">return</span> step[ letter_now ][ digit_now ];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++ )&#123;        </span><br><span class="line">            letter_next = letter_now + column[j];</span><br><span class="line">            digit_next = digit_now + row[j];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>( letter_next &lt; <span class="number">1</span> || digit_next &lt; <span class="number">1</span> || letter_next &gt; <span class="number">8</span> || digit_next &gt; <span class="number">8</span> || visited[ letter_next ][ digit_next ] )&#123;         </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                visited[ letter_next ][ digit_next ] = <span class="literal">true</span>;</span><br><span class="line">                step[ letter_next ][ digit_next ] = step[ letter_now ][ digit_now ] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                chess[ knights ][<span class="number">0</span>] = letter_next;</span><br><span class="line">                chess[ knights ][<span class="number">1</span>] = digit_next;</span><br><span class="line"></span><br><span class="line">                knights++;</span><br><span class="line">       	    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( cin &gt;&gt; letter1 &gt;&gt; digit_start &gt;&gt; letter2 &gt;&gt; digit_end )&#123;</span><br><span class="line">       </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;To get from &quot;</span> &lt;&lt; letter1 &lt;&lt; digit_start &lt;&lt; <span class="string">&quot; to &quot;</span> &lt;&lt; letter2 &lt;&lt; digit_end &lt;&lt; <span class="string">&quot; takes &quot;</span>;</span><br><span class="line">   </span><br><span class="line">        letter_start = letter1 - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>;</span><br><span class="line">        letter_end = letter2 - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( <span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ )&#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ )&#123;             </span><br><span class="line">                step[i][j] = <span class="number">0</span>;</span><br><span class="line">                visited[i][j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">bfs</span>() &lt;&lt; <span class="string">&quot; knight moves.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-            </div>
+    .article-content-container
+      width calc(100% - 210px) !important
 
-            
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/UVA/">#UVA</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+    .article-content-container
+      width 100% !important
 
-            
+    &.show-toc
+      .toc-content-container
+        display none
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2022/05/02/UVA-10189-Minesweeper/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">UVA 10189 - Minesweeper</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2022/05/02/UVA-00572-Oil-Deposits/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">UVA 00572 - Oil Deposits</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+      .article-content-container
+        width 100% !important
 
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-            
-        </div>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">UVA 00439 - Knight Moves</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E8%A7%80%E5%BF%B5"><span class="nav-text">解題觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li></ol>
+    .article-title
+      position relative
+      width 100%
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
 
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
+
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
+
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
+
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
+
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
+
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 

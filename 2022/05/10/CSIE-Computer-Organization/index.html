@@ -317,1118 +317,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post24.jpg" alt="CSIE - Computer Organization" />
-                    <h1 class="article-title-cover">CSIE - Computer Organization</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-05-10</span>
-        <span class="mobile">2022-05-10</span>
-        <!-- <span class="desktop">2022-05-10 22:44:08</span>
-        <span class="mobile">2022-05-10 22:44</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-09-05</span>
-            <span class="mobile">2023-09-05</span>
-            <!-- <span class="desktop">2023-09-05 00:42:37</span>
-            <span class="mobile">2023-09-05 00:42</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/CSIE/">CSIE</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/CSIE/Computer-Organization/">Computer Organization</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/CSIE/">CSIE</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="Ch-1-Computer-Abstractions-and-Technology"><a href="#Ch-1-Computer-Abstractions-and-Technology" class="headerlink" title="Ch 1 Computer Abstractions and Technology"></a>Ch 1 Computer Abstractions and Technology</h2><h3 id="Formula"><a href="#Formula" class="headerlink" title="Formula"></a>Formula</h3><ul>
-<li>$\frac{CPU Time &#x3D; CPU Clock Cycles}{Clock Rate}$<ul>
-<li>$&#x3D; CPU Clock Cycles * Clock Cycle Time$</li>
-<li>$&#x3D; Instruction Count * CPI * Clock Cycle Time$</li>
-<li>$&#x3D; \frac{Instruction Count * CPI}{Clock Rate}$</li>
-<li>$&#x3D; \frac{Instructions}{Program} * \frac{Clock Cycles}{Instruction} * \frac{Seconds}{Clock Cycle}$</li>
-<li>$&#x3D; \frac{Instruction}{IPS}$</li>
-</ul>
-</li>
-<li>$\frac{CPI &#x3D; Clock Cycles}{Instruction Count}$</li>
-<li>$CPU Clock Cycles &#x3D; Instruction Count * Cycles per Instruction$<ul>
-<li>$&#x3D; CPU Time * Rate$  <!-- - $= CPIs 子 CPI \* instruction n count$ --></li>
-</ul>
-</li>
-<li>$Rate &#x3D; \frac{seconds}{Cycle}$<ul>
-<li>$&#x3D; \frac{1}{Clock Cycle Time}$</li>
-</ul>
-</li>
-<li>$IPS &#x3D; \frac{Instructions}{CPU Time}$<ul>
-<li>$&#x3D; \frac{Rate}{CPI}$</li>
-</ul>
-</li>
-<li>$Instructions &#x3D; \frac{IPS}{CPU Time}$</li>
-<li>$MIPS &#x3D; \frac{Instructions}{CPU Time * 10^6}$<ul>
-<li>$&#x3D; \frac{Rate}{CPI * 10^6}$</li>
-</ul>
-</li>
-<li>$SpeedUp &#x3D; \frac{1}{(1 - f) + (\frac{f}{s})}$<ul>
-<li>&#x3D; $\frac{ExecutionTime_old}{ExecutionTime_new}$</li>
-<li>&#x3D; $\frac{Old CPU Time}{Amount of improvement}$</li>
-</ul>
-</li>
-<li>$f &#x3D; Fraction_{enhance}$<ul>
-<li>該 processor 在整體電腦裡所佔的比例</li>
-</ul>
-</li>
-<li>$s &#x3D; SpeedUp_{enhance}$<ul>
-<li>加速多少倍</li>
-</ul>
-</li>
-<li>$GHz &#x3D; 10^9$</li>
-<li>$Clock Cycles !&#x3D; Cycles per Instruction $</li>
-</ul>
-<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><ul>
-<li>CPI<ul>
-<li>Average Clock cycles per instruction.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Ch2-Conclusion"><a href="#Ch2-Conclusion" class="headerlink" title="Ch2 Conclusion"></a>Ch2 Conclusion</h2><h3 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h3><p><a href="#R-format">R format 詳細</a></p>
-<table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">rd</th>
-<th align="center">shamt</th>
-<th align="center">funct</th>
-</tr>
-</thead>
-</table>
-<ul>
-<li>R format 的 op code 是 0<ul>
-<li>沒有 shamt 的邏輯 &#x2F; Conditional 指令是 <code>func rd, rs, rt</code><ul>
-<li>ex <code>add</code>、<code>sub</code>、<code>mult</code>、<code>slt</code>、<code>and</code></li>
-</ul>
-</li>
-<li>有 shamt 的邏輯指令是 <code>func rd, rt, shamt</code><ul>
-<li>ex <code>sll</code>、<code>srl</code></li>
-<li>如何判斷是否有 shamt -&gt; 看神奇小卡</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><a href="#I-format">I format 詳細</a></p>
-<table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">constant or address</th>
-</tr>
-</thead>
-</table>
-<ul>
-<li>I format 的 op code <strong>不是</strong> 0<ul>
-<li>儲存型 (跟記憶體有關的) 指令是 <code>func rt, offset(rs)</code><ul>
-<li>offset 以 byte 為單位<ul>
-<li>&#x3D; index * 4</li>
-</ul>
-</li>
-<li>ex <code>lw</code>、<code>sw</code>、<code>lbu</code>、<code>sb</code>、<code>ll</code>、<code>sc</code></li>
-</ul>
-</li>
-<li>Conditional 型的指令是 <code>func rs, rt, Label</code> <ul>
-<li>如果符合 func 的指令條件就跳去 L1</li>
-<li>ex <code>beq</code>、<code>bne</code>、<code>blt</code></li>
-</ul>
-</li>
-<li>immediate 型的 Conditional 指令是 <code>func rt, rs, constant</code><ul>
-<li>ex <code>slti</code>、<code>addi</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">address</th>
-</tr>
-</thead>
-</table>
-<ul>
-<li><p>J format 的 op code <strong>不是</strong> 0</p>
-<ul>
-<li>jump and link 指令是 <code>func Label/procedure</code><ul>
-<li>ex <code>j</code>、<code>jal</code></li>
-</ul>
-</li>
-<li>jump register 指令是 <code>func $ra</code><ul>
-<li>ex <code>jr</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>index、constant 都比直觀思考要多 * 4 bytes</p>
-</li>
-<li><p>Conditional 有可能是 I fromat 或 R format，要看小卡上他是否有 destination (不限 rd、rt)</p>
-<ul>
-<li>如果有 -&gt; R format</li>
-<li>如果沒有 -&gt; I format</li>
-</ul>
-</li>
-</ul>
-<h3 id="Instruction"><a href="#Instruction" class="headerlink" title="Instruction"></a>Instruction</h3><ul>
-<li>R format<ul>
-<li>add 是 reg + reg，addi 是 reg + constant</li>
-<li>slt 通常會搭配 bne 使用，有點像旗標的概念</li>
-</ul>
-</li>
-</ul>
-<h3 id="Register-判斷"><a href="#Register-判斷" class="headerlink" title="Register 判斷"></a>Register 判斷</h3><ul>
-<li>判斷 rd、rt、rs</li>
-<li>看小卡</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">Name</th>
-<th align="center">Number</th>
-<th align="center">Use</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">$zero</td>
-<td align="center">0</td>
-<td align="center">Value 0</td>
-</tr>
-<tr>
-<td align="center">$at</td>
-<td align="center">1</td>
-<td align="center">Assembler Temporary</td>
-</tr>
-<tr>
-<td align="center">$v0 ~ $v1</td>
-<td align="center">2 ~ 3</td>
-<td align="center">Value of Func Results 回傳值</td>
-</tr>
-<tr>
-<td align="center">$a0 ~ $a3</td>
-<td align="center">4 ~ 7</td>
-<td align="center">Arguments 參數</td>
-</tr>
-<tr>
-<td align="center">$t0 ~ $t7</td>
-<td align="center">8 ~ 15</td>
-<td align="center">Temporaries 暫存值</td>
-</tr>
-<tr>
-<td align="center">$s0 ~ $s7</td>
-<td align="center">16 ~ 23</td>
-<td align="center">Saved Temporaries 陣列</td>
-</tr>
-<tr>
-<td align="center">$t8 ~ $t9</td>
-<td align="center">24 ~ 25</td>
-<td align="center">Temporaries</td>
-</tr>
-<tr>
-<td align="center">$k0 ~ $k1</td>
-<td align="center">26 ~ 27</td>
-<td align="center">Reserved for OS Kernel</td>
-</tr>
-<tr>
-<td align="center">$gp</td>
-<td align="center">28</td>
-<td align="center">Global Pointer</td>
-</tr>
-<tr>
-<td align="center">$sp</td>
-<td align="center">29</td>
-<td align="center">Stack Pointer</td>
-</tr>
-<tr>
-<td align="center">$fp</td>
-<td align="center">30</td>
-<td align="center">Frame Pointer</td>
-</tr>
-<tr>
-<td align="center">$ra</td>
-<td align="center">31</td>
-<td align="center">Return Address 回家的路</td>
-</tr>
-</tbody></table>
-<h3 id="Function-指令判斷"><a href="#Function-指令判斷" class="headerlink" title="Function 指令判斷"></a>Function 指令判斷</h3><ul>
-<li>R format 根據 Func code 判斷</li>
-<li>I、J format 根據 OP code 判斷</li>
-<li>看小卡<blockquote>
-<p>列幾個常用的</p>
-</blockquote>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">Func</th>
-<th align="center">Format</th>
-<th align="center">Decimal</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">sll</td>
-<td align="center">R</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">j</td>
-<td align="center">J</td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td align="center">jal</td>
-<td align="center">J</td>
-<td align="center">3</td>
-</tr>
-<tr>
-<td align="center">beq</td>
-<td align="center">I</td>
-<td align="center">4</td>
-</tr>
-<tr>
-<td align="center">bne</td>
-<td align="center">I</td>
-<td align="center">5</td>
-</tr>
-<tr>
-<td align="center">addi</td>
-<td align="center">I</td>
-<td align="center">8</td>
-</tr>
-<tr>
-<td align="center">slti</td>
-<td align="center">I</td>
-<td align="center">10</td>
-</tr>
-<tr>
-<td align="center">mult</td>
-<td align="center">R</td>
-<td align="center">24</td>
-</tr>
-<tr>
-<td align="center">div</td>
-<td align="center">R</td>
-<td align="center">26</td>
-</tr>
-<tr>
-<td align="center">lb</td>
-<td align="center">I</td>
-<td align="center">32</td>
-</tr>
-<tr>
-<td align="center">add</td>
-<td align="center">R</td>
-<td align="center">32</td>
-</tr>
-<tr>
-<td align="center">sub</td>
-<td align="center">R</td>
-<td align="center">34</td>
-</tr>
-<tr>
-<td align="center">lw</td>
-<td align="center">I</td>
-<td align="center">35</td>
-</tr>
-<tr>
-<td align="center">and</td>
-<td align="center">R</td>
-<td align="center">36</td>
-</tr>
-<tr>
-<td align="center">sb</td>
-<td align="center">I</td>
-<td align="center">40</td>
-</tr>
-<tr>
-<td align="center">sw</td>
-<td align="center">I</td>
-<td align="center">43</td>
-</tr>
-<tr>
-<td align="center">ll</td>
-<td align="center">I</td>
-<td align="center">48</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="Ch2-ISA-Instruction-Set-architecture-of-MIPS"><a href="#Ch2-ISA-Instruction-Set-architecture-of-MIPS" class="headerlink" title="Ch2 ISA - Instruction Set architecture of MIPS"></a>Ch2 ISA - Instruction Set architecture of MIPS</h2><h3 id="Opcode"><a href="#Opcode" class="headerlink" title="Opcode"></a>Opcode</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/8HFQ0qS.png"
-                     
-                ></p>
-<h3 id="Assembler-names"><a href="#Assembler-names" class="headerlink" title="Assembler names"></a>Assembler names</h3><ul>
-<li>$t0, $t1, …, $t9 for temporary values</li>
-<li>$s0, $s1, …, $s7 for saved variables</li>
-</ul>
-<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>c<ul>
-<li>f &#x3D; (g + h) - (i + j);</li>
-<li>f ~ j in $s0 … $s4</li>
-</ul>
-</li>
-<li>compiled MIPS code<div class="highlight-container" data-rel="Mips"><figure class="iseeu highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; load operation</span></span><br><span class="line"><span class="keyword">lw </span>$<span class="built_in">s1</span>, g</span><br><span class="line"><span class="keyword">lw </span>$<span class="built_in">s2</span>, h</span><br><span class="line"><span class="keyword">lw </span>$<span class="built_in">s3</span>, i</span><br><span class="line"><span class="keyword">lw </span>$<span class="built_in">s4</span>, <span class="keyword">j</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="comment">; compiled MIPS code</span></span><br><span class="line"><span class="keyword">add </span>$<span class="built_in">t0</span>, $<span class="built_in">s1</span>, $<span class="built_in">s2</span></span><br><span class="line"><span class="keyword">add </span>$<span class="built_in">t1</span>, $<span class="built_in">s3</span>, $<span class="built_in">s4</span></span><br><span class="line"><span class="keyword">sub </span>$<span class="built_in">s0</span>, $<span class="built_in">t0</span>, $<span class="built_in">t1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; store operation</span></span><br><span class="line"><span class="keyword">sw </span>f, $<span class="built_in">s0</span></span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="MIPS-is-Big-Endian"><a href="#MIPS-is-Big-Endian" class="headerlink" title="MIPS is Big Endian"></a>MIPS is Big Endian</h3><table>
-<thead>
-<tr>
-<th align="center">記憶體位址</th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">high address</td>
-<td align="center">0x78</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">0x56</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">0x34</td>
-</tr>
-<tr>
-<td align="center">low address</td>
-<td align="center">0x12</td>
-</tr>
-</tbody></table>
-<h3 id="Memory-Operand"><a href="#Memory-Operand" class="headerlink" title="Memory Operand"></a>Memory Operand</h3><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h4><ul>
-<li>c<ul>
-<li><code>g = h + A[8];</code><ul>
-<li>g in $s1, h in $s2, base address of A in $s3</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>MIPS code<ul>
-<li>Index 8 requires offset of 32<ul>
-<li>4 bytes per word</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="highlight-container" data-rel="Mips"><figure class="iseeu highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lw </span> $<span class="built_in">t0</span>, <span class="number">32</span>($<span class="built_in">s3</span>)   <span class="comment">; load word</span></span><br><span class="line"><span class="keyword">add </span>$<span class="built_in">s1</span>, $<span class="built_in">s2</span>, $<span class="built_in">t0</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h4><ul>
-<li>c<ul>
-<li><code>A[12] = h + A[8];</code></li>
-<li>h in $s2, base address of A in $s3</li>
-</ul>
-</li>
-<li>MIPS code<div class="highlight-container" data-rel="Mips"><figure class="iseeu highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lw </span> $<span class="built_in">t0</span>, <span class="number">32</span>($<span class="built_in">s3</span>)    <span class="comment">; load word</span></span><br><span class="line"><span class="keyword">add </span>$<span class="built_in">t0</span>, $<span class="built_in">s2</span>, $<span class="built_in">t0</span></span><br><span class="line"><span class="keyword">sw </span> $<span class="built_in">t0</span>, <span class="number">48</span>($<span class="built_in">s3</span>)    <span class="comment">; store word</span></span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="Immediate-Operands"><a href="#Immediate-Operands" class="headerlink" title="Immediate Operands"></a>Immediate Operands</h3><ul>
-<li>可以用常數在指令裡<ul>
-<li>addi $s3, $s3, 4</li>
-</ul>
-</li>
-<li>沒有減法指令<ul>
-<li>所以要用加 negative constant 的方式</li>
-<li>addi $s2, $s1, -1</li>
-</ul>
-</li>
-<li>不用 load</li>
-<li>0 的寫法是 $zero</li>
-</ul>
-<h3 id="Binary-Integers"><a href="#Binary-Integers" class="headerlink" title="Binary Integers"></a>Binary Integers</h3><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>x &#x3D; x<del>n-1</del>2^n-1^ + x<del>n-2</del>2^n-2^ + … + x<del>1</del>2^1^ + x<del>0</del>2^0^<ul>
-<li>Range: 0 to + 2^n^ - 1</li>
-</ul>
-</li>
-<li>0000 0000 0000 0000 0000 0000 0000 1011</li>
-<li>0 + … + 1×2^3^ + 0×2^2^ + 1×2^1^ + 1×2^0^</li>
-</ul>
-<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>x &#x3D; -x<del>n-1</del>2^n-1^ + x<del>n-2</del>2^n-2^ + … + x<del>1</del>2^1^ + x<del>0</del>2^0^<ul>
-<li>Range: –2^n–1^ to + 2^n-1^ - 1</li>
-</ul>
-</li>
-<li>1111 1111 1111 1111 1111 1111 1111 1100</li>
-<li>0 + … + 1×2^3^ + 0×2^2^ + 1×2^1^ + 1×2^0^</li>
-</ul>
-<h3 id="R-format"><a href="#R-format" class="headerlink" title="R-format"></a>R-format</h3><h4 id="MIPS-R-format-Instructions"><a href="#MIPS-R-format-Instructions" class="headerlink" title="MIPS R-format Instructions"></a>MIPS R-format Instructions</h4><p><a href="#Conclusion">點此回總結</a></p>
-<table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">rd</th>
-<th align="center">shamt</th>
-<th align="center">funct</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">6 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">6 bits</td>
-</tr>
-</tbody></table>
-<ul>
-<li>op : operation code (opcode)</li>
-<li>rs : first source register number</li>
-<li>rt : second source register number</li>
-<li>rd : destination register number</li>
-<li>shamt : shift amount (00000 for now)</li>
-<li>funct : function code (extends opcode)</li>
-</ul>
-<h4 id="Example-3"><a href="#Example-3" class="headerlink" title="Example"></a>Example</h4><table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">rd</th>
-<th align="center">shamt</th>
-<th align="center">funct</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">6 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">6 bits</td>
-</tr>
-</tbody></table>
-<ul>
-<li>add $t0, $s1, $s2</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">special</th>
-<th align="center">$s1</th>
-<th align="center">$s2</th>
-<th align="center">$t0</th>
-<th align="center">0</th>
-<th align="center">add</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">17</td>
-<td align="center">18</td>
-<td align="center">8</td>
-<td align="center">0</td>
-<td align="center">32</td>
-</tr>
-<tr>
-<td align="center">000000</td>
-<td align="center">10001</td>
-<td align="center">10010</td>
-<td align="center">01000</td>
-<td align="center">00000</td>
-<td align="center">100000</td>
-</tr>
-</tbody></table>
-<h3 id="Hexadecimal"><a href="#Hexadecimal" class="headerlink" title="Hexadecimal"></a>Hexadecimal</h3><ul>
-<li>4 bits per hex digit</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">0000</td>
-<td align="center">4</td>
-<td align="center">0100</td>
-<td align="center">8</td>
-<td align="center">1000</td>
-<td align="center">c</td>
-<td align="center">1100</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">0001</td>
-<td align="center">5</td>
-<td align="center">0101</td>
-<td align="center">9</td>
-<td align="center">1001</td>
-<td align="center">d</td>
-<td align="center">1101</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">0010</td>
-<td align="center">6</td>
-<td align="center">0110</td>
-<td align="center">a</td>
-<td align="center">1010</td>
-<td align="center">e</td>
-<td align="center">1110</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">0011</td>
-<td align="center">7</td>
-<td align="center">0111</td>
-<td align="center">b</td>
-<td align="center">1011</td>
-<td align="center">f</td>
-<td align="center">1111</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Example : eca8 6420<ul>
-<li>1110 1100 1010 1000 0110 0100 0010 0000</li>
-</ul>
-</li>
-</ul>
-<h3 id="I-format"><a href="#I-format" class="headerlink" title="I-format"></a>I-format</h3><h4 id="MIPS-I-format-Instructions"><a href="#MIPS-I-format-Instructions" class="headerlink" title="MIPS I-format Instructions"></a>MIPS I-format Instructions</h4><p><a href="#Conclusion">點此回總結</a></p>
-<table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">constant or address</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">6 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">16 bits</td>
-</tr>
-</tbody></table>
-<ul>
-<li>rt : destination or source register number</li>
-<li>rs : source register</li>
-<li>Constant : –2^15^ to +2^15^–1</li>
-<li>Address : offset added to base address in rs</li>
-</ul>
-<h3 id="Logical-Operations"><a href="#Logical-Operations" class="headerlink" title="Logical Operations"></a>Logical Operations</h3><table>
-<thead>
-<tr>
-<th align="center">Operation</th>
-<th align="center">C</th>
-<th align="center">MIPS</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Shift left</td>
-<td align="center">&lt;&lt;</td>
-<td align="center">sll</td>
-</tr>
-<tr>
-<td align="center">Shift right</td>
-<td align="center">&gt;&gt;</td>
-<td align="center">srl</td>
-</tr>
-<tr>
-<td align="center">Bitwise AND</td>
-<td align="center">&amp;</td>
-<td align="center">and&#x2F;andi</td>
-</tr>
-<tr>
-<td align="center">Bitwise OR</td>
-<td align="center">|</td>
-<td align="center">or&#x2F;ori</td>
-</tr>
-<tr>
-<td align="center">Bitwise NOT</td>
-<td align="center">~</td>
-<td align="center">nor</td>
-</tr>
-</tbody></table>
-<h3 id="Shift-Operations"><a href="#Shift-Operations" class="headerlink" title="Shift Operations"></a>Shift Operations</h3><table>
-<thead>
-<tr>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">rd</th>
-<th align="center">shamt</th>
-<th align="center">funct</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">6 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">5 bits</td>
-<td align="center">6 bits</td>
-</tr>
-</tbody></table>
-<ul>
-<li>shamt : how many positions to shift<ul>
-<li>Shift left logical<ul>
-<li>Shift left and fill with 0 bits</li>
-<li><code>sll</code> by i bits <strong>multiplies</strong> by 2^i^</li>
-</ul>
-</li>
-<li>Shift right logical<ul>
-<li>Shift right and fill with 0 bits</li>
-<li><code>srl</code> by i bits <strong>divides</strong> by 2^i^ (unsigned only)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Conditional-Operations"><a href="#Conditional-Operations" class="headerlink" title="Conditional Operations"></a>Conditional Operations</h3><ul>
-<li>beq rs, rt, L1<ul>
-<li>if (rs &#x3D;&#x3D; rt) branch to instruction labeled L1;</li>
-</ul>
-</li>
-<li>bne rs, rt, L1<ul>
-<li>if (rs !&#x3D; rt) branch to instruction labeled L1;</li>
-</ul>
-</li>
-<li>j L1<ul>
-<li>unconditional jump to instruction labeled L1</li>
-</ul>
-</li>
-<li>slt rd, rs, rt<ul>
-<li>if (rs &lt; rt) rd &#x3D; 1; else rd &#x3D; 0;</li>
-</ul>
-</li>
-<li>slti rt, rs, constant<ul>
-<li>if (rs &lt; constant) rt &#x3D; 1; else rt &#x3D; 0;</li>
-</ul>
-</li>
-</ul>
-<h3 id="MIPS-machine-language"><a href="#MIPS-machine-language" class="headerlink" title="MIPS machine language"></a>MIPS machine language</h3><ul>
-<li>Format : R</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">rd</th>
-<th align="center">shamt</th>
-<th align="center">funct</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">add $s1, $s2, $s3</td>
-<td align="center">0</td>
-<td align="center">18</td>
-<td align="center">19</td>
-<td align="center">17</td>
-<td align="center">0</td>
-<td align="center">32</td>
-</tr>
-<tr>
-<td align="center">sub $s1, $s2, $s3</td>
-<td align="center">0</td>
-<td align="center">18</td>
-<td align="center">19</td>
-<td align="center">17</td>
-<td align="center">0</td>
-<td align="center">34</td>
-</tr>
-<tr>
-<td align="center">slt $s1, $s2, $s3</td>
-<td align="center">0</td>
-<td align="center">18</td>
-<td align="center">19</td>
-<td align="center">17</td>
-<td align="center">0</td>
-<td align="center">42</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Format : I</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">op</th>
-<th align="center">rs</th>
-<th align="center">rt</th>
-<th align="center">constant or address</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">lw $s1, 100($s2)</td>
-<td align="center">35</td>
-<td align="center">18</td>
-<td align="center">17</td>
-<td align="center">100</td>
-</tr>
-<tr>
-<td align="center">sw $s1, 100($s2)</td>
-<td align="center">43</td>
-<td align="center">18</td>
-<td align="center">17</td>
-<td align="center">100</td>
-</tr>
-<tr>
-<td align="center">beq $s1, $s2, 100</td>
-<td align="center">4</td>
-<td align="center">17</td>
-<td align="center">18</td>
-<td align="center">25</td>
-</tr>
-<tr>
-<td align="center">bne $s1, $s2, 100</td>
-<td align="center">5</td>
-<td align="center">17</td>
-<td align="center">18</td>
-<td align="center">25</td>
-</tr>
-</tbody></table>
-<ul>
-<li>Format : J</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">op</th>
-<th align="center">address</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">j 1000</td>
-<td align="center">2</td>
-<td align="center">2500</td>
-</tr>
-</tbody></table>
-<h3 id="Signed-vs-Unsigned"><a href="#Signed-vs-Unsigned" class="headerlink" title="Signed vs. Unsigned"></a>Signed vs. Unsigned</h3><ul>
-<li>Signed comparison :<ul>
-<li><code>slt</code>、<code>slti</code></li>
-</ul>
-</li>
-<li>Unsigned comparison : <ul>
-<li><code>sltu</code>、<code>sltui</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="Example-4"><a href="#Example-4" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>$s0 &#x3D; 1111 1111 1111 1111 1111 1111 1111 1111</li>
-<li>$s1 &#x3D; 0000 0000 0000 0000 0000 0000 0000 0001</li>
-<li><code>slt $t0, $s0, $s1</code>  # signed<ul>
-<li>–1 &lt; +1 $\therefore$ $t0 &#x3D; 1</li>
-</ul>
-</li>
-<li><code>sltu $t0, $s0, $s1</code> # unsigned<ul>
-<li>+4,294,967,295 &gt; +1 $\therefore$ $t0 &#x3D; 0</li>
-</ul>
-</li>
-</ul>
-<h3 id="Procedure-Calling"><a href="#Procedure-Calling" class="headerlink" title="Procedure Calling"></a>Procedure Calling</h3><ol>
-<li>Place parameters in registers</li>
-<li>Transfer control to procedure</li>
-<li>Acquire獲得 storage for procedure</li>
-<li>Perform procedure’s operations</li>
-<li>Place result in register for caller</li>
-<li>Return to place of cal</li>
-</ol>
-<h3 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h3><h4 id="Register-Usage"><a href="#Register-Usage" class="headerlink" title="Register Usage"></a>Register Usage</h4><p><a href="#Conclusion">點此回總結</a></p>
-<ul>
-<li><code>$a0 –$a3</code>: arguments (reg’s 4 –7) 參數</li>
-<li><code>$v0, $v1</code>: result values (reg’s 2 and 3) 結果存放值</li>
-<li><code>$t0 –$t9</code>: temporaries 暫存<ul>
-<li>Can be overwritten by callee</li>
-</ul>
-</li>
-<li><code>$s0 – $s7</code>: saved 儲存<ul>
-<li>Must be saved&#x2F;restored by callee</li>
-</ul>
-</li>
-<li><code>$gp</code>: global pointer for static data (reg 28) 全域指標</li>
-<li><code>$sp</code>: stack pointer (reg 29) stack指標</li>
-<li><code>$fp</code>: frame pointer (reg 30)</li>
-<li><code>$ra</code>: return address (reg 31)</li>
-</ul>
-<h3 id="Procedure-Call-Instructions"><a href="#Procedure-Call-Instructions" class="headerlink" title="Procedure Call Instructions"></a>Procedure Call Instructions</h3><h4 id="Procedure-call-jump-and-link"><a href="#Procedure-call-jump-and-link" class="headerlink" title="Procedure call : jump and link"></a>Procedure call : jump and link</h4><ul>
-<li><code>jal ProcedureLabel</code><ul>
-<li>Address of following instruction put in <code>$ra</code></li>
-<li>Jumps to target address</li>
-</ul>
-</li>
-</ul>
-<h4 id="Procedure-return-jump-register"><a href="#Procedure-return-jump-register" class="headerlink" title="Procedure return : jump register"></a>Procedure return : jump register</h4><ul>
-<li><code>jr $ra</code><ul>
-<li>Copies <code>$ra</code> to program counter</li>
-<li>Can also be used for computed jumps</li>
-</ul>
-</li>
-</ul>
-<h3 id="Leaf-Procedure"><a href="#Leaf-Procedure" class="headerlink" title="Leaf Procedure"></a>Leaf Procedure</h3><ul>
-<li>普通的 call 一輪 fuc 的 procedure<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">leaf_example</span> <span class="params">(<span class="type">int</span> g, h, i, j)</span>&#123; </span><br><span class="line">    <span class="type">int</span> f;</span><br><span class="line">    f = (g + h) -(i + j);</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="Non-Leaf-Procedure"><a href="#Non-Leaf-Procedure" class="headerlink" title="Non-Leaf Procedure"></a>Non-Leaf Procedure</h3><ul>
-<li>Procedures that call other procedures<ul>
-<li>遞迴的 procedure</li>
-</ul>
-</li>
-<li>For nested call, caller needs to save on the stack<ul>
-<li>Its return address</li>
-<li>Any arguments and temporaries needed after the call</li>
-</ul>
-</li>
-<li>Restore from the stack after the call<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fact</span> <span class="params">(<span class="type">int</span> n)</span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">return</span> f;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> n * fact(n <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="Not-much-Important"><a href="#Not-much-Important" class="headerlink" title="Not much Important"></a>Not much Important</h3><h4 id="Three-address-machines"><a href="#Three-address-machines" class="headerlink" title="Three-address machines"></a>Three-address machines</h4><ul>
-<li>2 source operands &amp; 1 result</li>
-<li>RISC processors<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">add    dest,src1,src2 </span><br><span class="line">    ; M(dest)=[src1]+[src2]</span><br><span class="line">sub    dest,src1,src2 </span><br><span class="line">    ; M(dest)=[src1]-[src2]</span><br><span class="line">mult   dest,src1,src2 </span><br><span class="line">    ; M(dest)=[src1]*[src2]</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="Eample"><a href="#Eample" class="headerlink" title="Eample"></a>Eample</h4><ul>
-<li>c<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = B + C * D – E + F + A</span><br></pre></td></tr></table></figure></div></li>
-<li>equivalent code<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mult   T,C,D  ;T = C*D</span><br><span class="line">add    T,T,B  ;T = B+C*D</span><br><span class="line">sub    T,T,E  ;T = B+C*D-E</span><br><span class="line">add    T,T,F  ;T = B+C*D-E+F</span><br><span class="line">add    A,T,A  ;A = B+C*D-E+F+A</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="Two-address-machines"><a href="#Two-address-machines" class="headerlink" title="Two-address machines"></a>Two-address machines</h4><ul>
-<li>1 source operand &amp; 1 result<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">load   dest,src; M(dest)=[src] </span><br><span class="line">add    dest,src; M(dest)=[dest]+[src]</span><br><span class="line">sub    dest,src; M(dest)=[dest]-[src]</span><br><span class="line">mult   dest,src; M(dest)=[dest]*[src]</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="Example-5"><a href="#Example-5" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>c<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = B + C * D – E + F + A</span><br></pre></td></tr></table></figure></div></li>
-<li>equivalent code<ul>
-<li>相較於 three address machine，多了 <code>load</code> 的步驟<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">load   T,C  ;T = C</span><br><span class="line">mult   T,D  ;T = C*D</span><br><span class="line">add    T,B  ;T = B+C*D</span><br><span class="line">sub    T,E  ;T = B+C*D-E</span><br><span class="line">add    T,F  ;T = B+C*D-E+F</span><br><span class="line">add    A,T  ;A = B+C*D-E+F+A</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-</li>
-</ul>
-<h4 id="One-address-machines"><a href="#One-address-machines" class="headerlink" title="One-address machines"></a>One-address machines</h4><ul>
-<li>Uses special set of registers called accumulators<ul>
-<li>Specify one source operand &amp; receive the result</li>
-</ul>
-</li>
-<li>Called accumulator machines<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">load   addr; accum = [addr] </span><br><span class="line">store  addr; M[addr] = accum </span><br><span class="line">add    addr; accum = accum + [addr]</span><br><span class="line">sub    addr; accum = accum -[addr]</span><br><span class="line">mult   addr; accum = accum * [addr]</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="Example-6"><a href="#Example-6" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>c<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = B + C * D – E + F + A</span><br></pre></td></tr></table></figure></div></li>
-<li>equivalent code<ul>
-<li>相較 two address machine 多了 <code>store</code> 的步驟<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">load   C  ;load C into accum</span><br><span class="line">mult   D  ;accum = C*D</span><br><span class="line">add    B  ;accum = C*D+B</span><br><span class="line">sub    E  ;accum = B+C*D-E</span><br><span class="line">add    F  ;accum = B+C*D-E+F</span><br><span class="line">add    A  ;accum = B+C*D-E+F+A</span><br><span class="line">store  A  ;store accum contents in A</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-</li>
-</ul>
-<h4 id="Zero-address-machines"><a href="#Zero-address-machines" class="headerlink" title="Zero-address machines"></a>Zero-address machines</h4><ul>
-<li><strong>Stack</strong> supplies operands and receives the result<ul>
-<li>Special instructions to load and store use an address</li>
-</ul>
-</li>
-<li>call stack machine<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push   addr ; push([addr]) </span><br><span class="line">pop    addr ; pop([addr]) </span><br><span class="line">add         ; push(pop + pop)</span><br><span class="line">sub         ; push(pop -pop)</span><br><span class="line">mult        ; push(pop * pop)</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h4 id="Example-7"><a href="#Example-7" class="headerlink" title="Example"></a>Example</h4><ul>
-<li>c<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = B + C * D – E + F + A</span><br></pre></td></tr></table></figure></div></li>
-<li>equivalent code<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">push E</span><br><span class="line">push C</span><br><span class="line">push D</span><br><span class="line">mult</span><br><span class="line">push B</span><br><span class="line">add</span><br><span class="line">sub </span><br><span class="line">push F</span><br><span class="line">add</span><br><span class="line">push A</span><br><span class="line">add</span><br><span class="line">pop A</span><br></pre></td></tr></table></figure></div></li>
-<li>運算是把 st(0) &#x3D; st(0) +-*&#x2F; st(1) 的概念，最後會存回 st(0)</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">運算</th>
-<th align="center">push</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">C*D+B-E+F+A</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">A</td>
-</tr>
-<tr>
-<td align="center">C*D+B-E+F</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">F</td>
-</tr>
-<tr>
-<td align="center">C*D+B-E</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">C*D+B</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">B</td>
-</tr>
-<tr>
-<td align="center">C*D</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">D</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">C</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">E</td>
-</tr>
-</tbody></table>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-            </div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-            
+    .article-content-container
+      width calc(100% - 210px) !important
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/CSIE/">#CSIE</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-            
+    .article-content-container
+      width 100% !important
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2022/05/11/CSIE-Operating-System/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">CSIE - Operating System</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2022/05/02/UVA-00216-Getting-in-Line/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">UVA 00216 - Getting in Line</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+    &.show-toc
+      .toc-content-container
+        display none
 
+      .article-content-container
+        width 100% !important
 
-            
-        </div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">CSIE - Computer Organization</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch-1-Computer-Abstractions-and-Technology"><span class="nav-text">Ch 1 Computer Abstractions and Technology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Formula"><span class="nav-text">Formula</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-text">Definition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch2-Conclusion"><span class="nav-text">Ch2 Conclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Format"><span class="nav-text">Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction"><span class="nav-text">Instruction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Register-%E5%88%A4%E6%96%B7"><span class="nav-text">Register 判斷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-%E6%8C%87%E4%BB%A4%E5%88%A4%E6%96%B7"><span class="nav-text">Function 指令判斷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ch2-ISA-Instruction-Set-architecture-of-MIPS"><span class="nav-text">Ch2 ISA - Instruction Set architecture of MIPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Opcode"><span class="nav-text">Opcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assembler-names"><span class="nav-text">Assembler names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS-is-Big-Endian"><span class="nav-text">MIPS is Big Endian</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Operand"><span class="nav-text">Memory Operand</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Immediate-Operands"><span class="nav-text">Immediate Operands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Integers"><span class="nav-text">Binary Integers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-format"><span class="nav-text">R-format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexadecimal"><span class="nav-text">Hexadecimal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-format"><span class="nav-text">I-format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-Operations"><span class="nav-text">Logical Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shift-Operations"><span class="nav-text">Shift Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional-Operations"><span class="nav-text">Conditional Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS-machine-language"><span class="nav-text">MIPS machine language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Signed-vs-Unsigned"><span class="nav-text">Signed vs. Unsigned</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Procedure-Calling"><span class="nav-text">Procedure Calling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Register"><span class="nav-text">Register</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Procedure-Call-Instructions"><span class="nav-text">Procedure Call Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leaf-Procedure"><span class="nav-text">Leaf Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-Leaf-Procedure"><span class="nav-text">Non-Leaf Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Not-much-Important"><span class="nav-text">Not much Important</span></a></li></ol></li></ol>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+    .article-title
+      position relative
+      width 100%
 
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
+
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
+
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
+
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
+
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
+
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
+
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 

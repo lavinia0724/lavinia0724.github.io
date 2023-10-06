@@ -338,1285 +338,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post36.jpg" alt="CSIE - Operating System" />
-                    <h1 class="article-title-cover">CSIE - Operating System</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-05-11</span>
-        <span class="mobile">2022-05-11</span>
-        <!-- <span class="desktop">2022-05-11 20:44:56</span>
-        <span class="mobile">2022-05-11 20:44</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-09-06</span>
-            <span class="mobile">2023-09-06</span>
-            <!-- <span class="desktop">2023-09-06 21:02:34</span>
-            <span class="mobile">2023-09-06 21:02</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/CSIE/">CSIE</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/CSIE/Operating-System/">Operating System</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/CSIE/">CSIE</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="Chapter-5"><a href="#Chapter-5" class="headerlink" title="Chapter 5"></a>Chapter 5</h2><ul>
-<li>Real-Time CPU Scheduling<ul>
-<li>soft real-time system<ul>
-<li>沒有保證 real-time process 何時被排班</li>
-</ul>
-</li>
-<li>hard real-time systems<ul>
-<li>任務必須在期限內被服務</li>
-</ul>
-</li>
-<li>interrupt latency<ul>
-<li>從 interrupt 到達到他開始被服務的時間</li>
-</ul>
-</li>
-<li>dispatch latency<ul>
-<li>停止當前行程並啟動另一個行程的時間</li>
-<li>conflict phase<ul>
-<li>任何在 kernel 的行程都可搶先</li>
-<li>低優先權的行程釋放資源給高優先權</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Priority-based Scheduling<ul>
-<li>periodic<ul>
-<li>在固定的間隔週期要求 CPU</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Rate-Monotonic Scheduling<ul>
-<li>優先權是週期的倒數</li>
-<li>ex: <ul>
-<li>p1 &#x3D; 50, p2 &#x3D; 100</li>
-<li>t1 &#x3D; 20, t2 &#x3D; 35</li>
-<li>CPU utilization &#x3D; time&#x2F;period &#x3D; 20&#x2F;50 + 35&#x2F;100 &#x3D; 75%<blockquote>
-<p>不合，因為 p1 過了 deadline</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/06SZkrc.png"
-                     
-                ><blockquote>
-<p>符合，使用 Rate-Monotonic Scheduling，看優先權</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/GKWE0Gk.png"
-                     
-                ></li>
-</ul>
-</li>
-<li>Rate-Monotonic Scheduling 被視為最佳，不能用它做的別人也做不了</li>
-</ul>
-</li>
-<li>Earliest-Deadline-First (EDF) Scheduling<ul>
-<li>優先權看 deadline，越早越高<ul>
-<li>deadline，一開始 d&#x3D;p，完成 t 後 d +&#x3D; p</li>
-</ul>
-</li>
-<li>ex: <ul>
-<li>p1 &#x3D; 50, p2 &#x3D; 100</li>
-<li>t1 &#x3D; 20, t2 &#x3D; 35</li>
-<li>CPU utilization &#x3D; time&#x2F;period &#x3D; 25&#x2F;50 + 35&#x2F;100 &#x3D; 75%<blockquote>
-<p>第二輪週期時，d1 &#x3D; 100, d2 &#x3D; 160<br>所以 p2 在 t&#x3D;100 時被 p1 搶先，因為 p1 優先權高</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/1IpnOaJ.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Proportional Share Scheduling<ul>
-<li>配置 T 個分享，單位時間能接收 N 次分享，每個 process 收到 N&#x2F;T 的處理時間</li>
-<li>ex:<ul>
-<li>T &#x3D; 100</li>
-<li>N: A &#x3D; 50，B &#x3D; 15，C &#x3D; 20</li>
-<li>A 有總處理器時間的 50&#x2F;100 &#x3D; 50%，B 有 15%，C 有 20%</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Little’s Formula<ul>
-<li>n &#x3D; average queue length</li>
-<li>W &#x3D; average waiting time in queue</li>
-<li>λ &#x3D; average arrival rate into queue<ul>
-<li>n &#x3D; λ x W</li>
-<li>ex:</li>
-<li>已知每秒平均有 7 個 process 到達(λ)，並且通常有 14 個 process 在佇列中(n)，就可以求出每個 process 的平均等待時間為 2 秒鐘(W)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Simulations<ul>
-<li>Trace tape<ul>
-<li>監督實際系統，紀錄實際事件順序</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-6"><a href="#Chapter-6" class="headerlink" title="Chapter 6"></a>Chapter 6</h2><ul>
-<li>Race Condition<ul>
-<li>數個行程同時存取和處理相同資料的情況，執行的結果取決於存取時的特定順序</li>
-<li>ex: count &#x3D; 5<ul>
-<li>T0: producer execute register1 &#x3D; counter {register1 &#x3D; 5}</li>
-<li>T1: producer execute register1 &#x3D; register1 + 1 {register1 &#x3D; 6}</li>
-<li>T2: consumer execute register2 &#x3D; counter {register2 &#x3D; 5}</li>
-<li>T3: consumer execute register2 &#x3D; register2 – 1 {register2 &#x3D; 4}</li>
-<li>T4: producer execute counter &#x3D; register1 {counter &#x3D; 6 }</li>
-<li>T5: consumer execute counter &#x3D; register2 {counter &#x3D; 4}<blockquote>
-<p>不正常的狀態，count &#x3D;&#x3D; 4，紀錄有 4 個緩衝區，但實際上有 5 個</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Critical Section Problem<ul>
-<li>Each process has <strong>critical section</strong> segment of code<ul>
-<li>當一個行程在他的 critical section執行，不允許其他行程在此 critical section 執行</li>
-</ul>
-</li>
-<li>每個 process 必須要求允許，才能進入臨界區間<ul>
-<li>entry section -&gt; critical section -&gt; exit section -&gt; remainder section</li>
-</ul>
-</li>
-<li>Solution to Critical-Section Problem<ol>
-<li>mutual exclusion:<ul>
-<li>如果行程 p<del>i</del> 正在 critical section 內執行，則其他的行程不能在其 critical section 內執行</li>
-</ul>
-</li>
-<li>progress:<ul>
-<li>如果沒有行程在 critical section 內執行，同時某一行程想要進入其 critical section，那他就會立即的可以進入  critical section</li>
-</ul>
-</li>
-<li>bounded waiting:<ul>
-<li>在一個行程已經要求進入其 critical section，而此要求尚未被答應之前，允許其他行程進入其 critical section 的次數有一個限制</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Preemptive kernel<ul>
-<li>讓一個行程在核心模式中執行時可以被搶先</li>
-</ul>
-</li>
-<li>Non-preemptive kernel<ul>
-<li>直到離開 kernel mod、block、自動交出 CPU 控制前，都不可</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Peterson’s Solution<ul>
-<li>solve Critical-Section Problem<ul>
-<li><code>int turn</code><ul>
-<li>輪到誰進入 critical section</li>
-</ul>
-</li>
-<li><code>boolean flag[2]</code><ul>
-<li>表示一個行程是否準備進入 critical section</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>為了證明解答是對的，需要證明:<ol>
-<li>mutual exclusion 存在<ul>
-<li>flag[j] &#x3D; false or turn &#x3D; i</li>
-</ul>
-</li>
-<li>progress 要求都能被滿足</li>
-<li>bounded waiting 要求可以符合</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>Memory Barriers<ul>
-<li>strongly ordered<ul>
-<li>修改 memory 位址時，馬上立即可知</li>
-</ul>
-</li>
-<li>weakly ordered<ul>
-<li>修改 memory 位址時，不會立即可知</li>
-</ul>
-</li>
-<li>memory barriers&#x2F;memory fences<ul>
-<li>可以強制將 memory 的任何修改傳遞給其他 processor 的指令</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Hardware Instructions<ul>
-<li>Atomic &#x3D; non-interruptible</li>
-<li><code>test_and_set()</code><ul>
-<li>test memory word and set value</li>
-</ul>
-<ol>
-<li>不可中斷的執行</li>
-<li>Returns the original value of passed parameter</li>
-<li>Set the new value of passed parameter to “TRUE”</li>
-</ol>
-</li>
-<li><code>compare_and_swap()</code><ul>
-<li>swap contents of two words</li>
-</ul>
-<ol>
-<li>不可中斷的執行</li>
-<li>Returns the original value of passed parameter “value”</li>
-<li>只有當 if(value &#x3D;&#x3D; expected) &#x3D;&#x3D; true 時，value 才會設置成 new_value</li>
-</ol>
-</li>
-<li>只有第一個行程可以進入 critical section </li>
-<li>Atomic Variables<ul>
-<li>compare_and_swap() 用作建立解決 Critical-Section Problem 的工具</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Mutex Locks<ul>
-<li>保護 critical section，進入 critical section 前須 call acquire()、離開後須 call release()，兩者不可分割</li>
-<li>會造成 busy waiting，因此也被稱 spinlock<ul>
-<li>再進入前會在 acquire() 不斷執行(旋轉)</li>
-</ul>
-</li>
-<li>Contended lock<ul>
-<li>a thread blocks while trying to acquire the lock</li>
-</ul>
-</li>
-<li>Uncontended lock<ul>
-<li>a lock is available when a thread attempts to acquire it</li>
-</ul>
-</li>
-<li>short duration<ul>
-<li>less than 2 context switches (one to wait and one to restore)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Semaphore<ul>
-<li>只能經由 wait() 和 signal() 兩個不可分割的方式執行</li>
-<li>counting semaphore<ul>
-<li>integer value 不受限制</li>
-</ul>
-</li>
-<li>Binary semaphore<ul>
-<li>可以是 0 或 1，類似 mutex lock</li>
-</ul>
-</li>
-<li><code>sleep()</code><ul>
-<li>當 semaphore 不為正，在 waiting queue 裡 invoke <code>wait()</code></li>
-</ul>
-</li>
-<li><code>wakeup()</code><ul>
-<li>當 process 執行 <code>signal()</code>，把一個在 waiting queue 裡的 process 移到 ready queue</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Monitors<ul>
-<li>一種高階、抽象的資料結構，提供便利且有效率的 process 同步機制</li>
-<li>只能存取在 monitor 內部的變數或參數</li>
-<li>同一時間內只有一個 process 在 monitor 內活動</li>
-<li><code>x.wait()</code><ul>
-<li>執行這個運作的行程，必須先暫時等待，直到另一個行程執行 x.signal()</li>
-</ul>
-</li>
-<li><code>x.signal()</code><ul>
-<li>每次只能恢復一個 invoke <code>x.wait()</code> 的 process</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Liveness<ul>
-<li>系統必須遵循的特性，以確保 process 讓 progress make progress during their execution life cycle</li>
-<li>liveness failure<ul>
-<li>Infinite loop</li>
-<li>Busy wait presents the possibility of starvation</li>
-<li>Deadlock</li>
-<li>Priority inversion</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Deadlock<ul>
-<li>多個 process 無限期的等待只能由在 waiting 的 process 發出的事件</li>
-</ul>
-</li>
-<li>Priority Inversion<ul>
-<li>排班問題，低優先權持有高優先權所需的 lock</li>
-<li>解決: 使用 priority-inheritance protocol<ul>
-<li>priority: L &lt; M &lt; H</li>
-<li>讓低優先權 L 暫時繼承高優先權 H，以阻止被 M 搶先，避免 H 要等 M</li>
-<li>執行完後再放棄繼承到的優先權</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-7"><a href="#Chapter-7" class="headerlink" title="Chapter 7"></a>Chapter 7</h2><ul>
-<li>Bounded-Buffer Problem<ul>
-<li>n buffers, each can hold one item</li>
-<li>Semaphore <strong>mutex</strong> initialized to the value 1</li>
-<li>Semaphore <strong>full</strong> initialized to the value 0</li>
-<li>Semaphore <strong>empty</strong> initialized to the value n<ul>
-<li>producer<ul>
-<li>produce -&gt; wait(empty) -&gt; wait(mutex) -&gt; add -&gt; signal(mutex) -&gt; signal(full)</li>
-</ul>
-</li>
-<li>consumer<ul>
-<li>wait(full) -&gt; wait(mutex) -&gt; remove -&gt; signal(mutex) -&gt; signal(empty)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Readers-Writers Problem<ul>
-<li>reader<ul>
-<li>only read the data set，do not perform any update</li>
-</ul>
-</li>
-<li>writer<ul>
-<li>both read and writer</li>
-</ul>
-</li>
-<li>problem<ul>
-<li>有 writer 和其他 reader&#x2F;writer 同時存取共用資料</li>
-</ul>
-</li>
-<li>解決:<ul>
-<li>Semaphore <strong>rw_mutex</strong> initialized to 1<ul>
-<li>確保 writer&#x2F;第一個 reader&#x2F;最後一個 reader 是 mutual exclusion</li>
-</ul>
-</li>
-<li>Semaphore <strong>mutex</strong> initialized to 1<ul>
-<li>確保 reader 是 mutual exclusion，配合計算 readcount</li>
-</ul>
-</li>
-<li>Integer <strong>read_count</strong> initialized to 0<ul>
-<li>有幾個正在讀取 reader</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>變形:<ol>
-<li>first<ul>
-<li>reader 只會等待 writer，不用等待 reader</li>
-<li>writer 可能會 starve</li>
-</ul>
-</li>
-<li>second<ul>
-<li>只要有一個 writer 在等待，就沒有 reader 可以讀取資料</li>
-<li>reader 可能會 starve</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>Dining-Philosophers Problem<ul>
-<li><del>哲學家搶筷子吃飯問題</del><ul>
-<li>solution<ul>
-<li>semaphore<ul>
-<li>利用 <code>semaphore chopstick[5];</code></li>
-<li>可能產生 deadlock，解決方法:<ol>
-<li>最多允許 4 個哲學家同時坐在桌旁</li>
-<li>允許一個哲學家只有當左右兩側的筷子都可用時才拿筷子</li>
-<li>讓奇數&#x2F;偶數位子的哲學家先拿左邊的筷子，再拿右邊的筷子</li>
-</ol>
-</li>
-<li>解決 deadlock 但還是可能會 starvation</li>
-</ul>
-</li>
-<li>monitor<ul>
-<li>哲學家只有當左右兩側的筷子都可用時才拿筷子</li>
-<li>哲學家只有當左右兩側的鄰居都不在吃飯時才可以吃飯<ul>
-<li><code>enum &#123;THINKING, HUNGRY, EATING&#125; state[5];</code></li>
-<li><code> state[(i+4) % 5] != EATING and state[(i+1) % 5] != EATING</code></li>
-</ul>
-</li>
-<li>雖然很餓，但無法取得兩側筷子時，必須先 delay<ul>
-<li><code>condition self[5];</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Transactional Memory<ul>
-<li>不可中斷的一連串 read&#x2F;writer 操作</li>
-<li>當 transaction 都被執行完畢，交付 memory transaction；否則，操作將被終止並撤回<ul>
-<li>確保不可中斷性</li>
-<li>辨識哪些 block 可以一次被完成，哪些可以平行被執行</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-8"><a href="#Chapter-8" class="headerlink" title="Chapter 8"></a>Chapter 8</h2><ul>
-<li>Deadlock Characterization<blockquote>
-<p>同時出現 4 項就會 deadlock</p>
-</blockquote>
-<ol>
-<li>Mutual exclusion<ul>
-<li>一次只有一個 process 可以使用此資源，如果有別人想用，就要等待此資源被釋放</li>
-</ul>
-</li>
-<li>hold and wait<ul>
-<li>一個 process 拿著至少一項資源，但正在等待其他已被其他 process 占用的資源</li>
-</ul>
-</li>
-<li>no preemption<ul>
-<li>資源不能被搶先</li>
-</ul>
-</li>
-<li>circular wait<ul>
-<li>如果 T0 所等待的資源已被 T1 占用，而 T1 等待的資源被 T2 占用，Tn 的資源又被 T0 占用</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Resource-Allocation Graph (RAG)<ul>
-<li>說明 deadlock 現象</li>
-<li>ex:<ul>
-<li>process 狀態:<ul>
-<li>T1 占用 R2 的一個 instance，並正在等待 R1 的一個 instance</li>
-<li>T2 占用 R1 和 R2 的各一個 instance，並正在等待 R3 的一個 instance</li>
-<li>T3 占用 R3 的一個 instance<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/kLdF6Rc.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如果 RAG 有環，每個 R 只有一個 instance 時，必 deadlock<ul>
-<li>沒有還，沒有 deadlock；有環但有多個 instance，可能 deadlock</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Deadlock Prevention<ol>
-<li>mutual exclusion<ul>
-<li>不要要求可共享的資源</li>
-<li>占用不可分享資源</li>
-</ul>
-</li>
-<li>hold and wait<ul>
-<li>必須確保 thread 在不占用其他資源時，才可以要求資源<ul>
-<li>在每個 thread 執行前先要求並取得所需資源</li>
-<li>thread 只有在未占用資源時可以要求資源</li>
-<li>缺點: resource utlization 低、可能 starvation</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>non preemptive<ul>
-<li>如果一個 process 占用著某些資源，但還要求無法立即被取得的資源，則他目前持有的資源可以被他人 preemptive，他要釋放那些資源</li>
-<li>這些 preempted 的資源會被加到 process 正在等候的 waiting list</li>
-<li>當 thread 重新或的原有的資源和正要求的資源後，才會重新開始</li>
-</ul>
-</li>
-<li>circular wait<ul>
-<li>對所有的資源形式強迫安排一個線性的順序，thread 要求資源時必須按照數字大小、遞增的提出要求</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Deadlock Avoidance<ul>
-<li>取得關於資源的前置資訊<ul>
-<li>每個 thread 聲明其所需的每種資源的最大數量</li>
-<li>動態檢查資源數量，確保不會 circular wait</li>
-<li>resource-allocation state</li>
-</ul>
-</li>
-<li>safe state<ul>
-<li>如果系統能以某種順序將其資源分配給各 thread，而且能避免死結，就稱為 safe state<blockquote>
-<p>safe state: T1、T0、T2</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/6hzrlzS.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Resource-Allocation Graph 方案<ul>
-<li>Single instances</li>
-<li>Claim edge: Ti → Rj 表示出 thread Tj 可能在未來需要資源 Rj，以虛線表示<ul>
-<li>Claim edge 轉換成 request edge，當 thread 要求資源時；Request edge 轉換成 assignment edge，當資源被分配給 thread；assignment edge 轉換成 claim edge 當 thread 釋放資源後</li>
-<li>當 Request edge 轉換成 assignment edge 不會產生環時，才會被允許</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Banker’s Algorithm<ul>
-<li>Multiple instances<br>  - 𝑁𝑒𝑒𝑑[𝑖][𝑗] &#x3D; 𝑀𝑎𝑥[𝑖][𝑗] − 𝐴𝑙𝑙𝑜𝑐𝑎𝑡𝑖𝑜𝑛[𝑖][𝑗]</li>
-<li>safety algorithm<blockquote>
-<p>整張都是重點</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/R41FO0p.png"
-                     
-                >  <!-- 	- Resource-Request Algorithm
-      ![](https://i.imgur.com/6qQ7Ewp.png) --></li>
-<li>ex:<ul>
-<li>5 thread T0 到 T4</li>
-<li>3 resource types: A (10 instances), B (5instances), and C (7 instances)</li>
-<li>設定在時間 t0 時，狀態如下<blockquote>
-<p>safety state: T1、T3、T0、T2、T4</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/yr4xWNs.png"
-                     
-                ><br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/clsXGSg.png"
-                     
-                ></li>
-<li>T1 再要求 (1, 0, 2)<ul>
-<li>先確認 (1, 0, 2) 是否 &lt;&#x3D; available (3, 3, 2)<ul>
-<li>available &#x3D; available - request</li>
-<li>allocation &#x3D; allocation + request</li>
-<li>need &#x3D; need - request<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/jDss78L.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>T4 再要求 (3, 3, 0) -&gt; No</li>
-<li>T0 再要求 (0, 2, 0) -&gt; No</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Deadlock Detection<ul>
-<li>wait-for graph<ul>
-<li>Single Instance of Each Resource Type<ul>
-<li>Resource-Allocation Graph 的變形</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Detection Algorith<ul>
-<li>Several Instances of a Resource Type<blockquote>
-<p>似乎和 safety algorithm 只差在第四步檢查的東西不同<br>還有第二步，是 request 和 work 做比較，不用 need</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/kKhHSr3.png"
-                     
-                ></li>
-</ul>
-</li>
-<li>ex:<ul>
-<li>5 threads T0 到 T4</li>
-<li>Three resource types: A (7 instances), B (2 instances), and C (6 instances)</li>
-<li>在 t0 時有下列資源分配狀態:<blockquote>
-<p>sequence: T0、T2、T3、T1、T4，使 all finish[i] &#x3D; ture</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/0CRmxzT.png"
-                     
-                ></li>
-<li>if T2 requests an additional instance of type C<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/n90qNo1.png"
-                     
-                ><ul>
-<li>會 deadlock</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Recovery from Deadlock<ul>
-<li>取消所有死結中的行程<ul>
-<li>代價大</li>
-</ul>
-</li>
-<li>一次取消一個行程直到死結循環被消除為止<ul>
-<li>超額費用</li>
-<li>如何決定取消誰:<ol>
-<li>Priority of the process</li>
-<li>此行程已運作多久，在完成指定工作前還需要多少時間</li>
-<li>process 已經使用的資源</li>
-<li>行程還需要多少資源，才能完成此行程</li>
-<li>有多少行程須被終止</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>Resource Preemption<ul>
-<li>逐步搶先行程的某先資源，直到死結被消除<ol>
-<li>Selecting a victim</li>
-<li>Rollback<ul>
-<li>必須將其撤回某一安全狀態，在從此狀態重新開始</li>
-</ul>
-</li>
-<li>Starvation<ul>
-<li>某些行程可能總是被選為犧牲者，使得他永遠無法執行完他的工作，所以要設定被選為犧牲者的次數</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-9"><a href="#Chapter-9" class="headerlink" title="Chapter 9"></a>Chapter 9</h2><ul>
-<li>cache 在 CPU 和主記憶體之間，用來配合速度差異的記憶體緩衝器</li>
-<li>Base and Limit Registers<ul>
-<li>定義一個 logical address space</li>
-</ul>
-</li>
-<li>Address Binding<ul>
-<li>first user process physical address always at 0000addresses 在下述方式的任何步驟中完成:<ul>
-<li>compile time:<ul>
-<li>如果已確知程式在記憶體中的位址，absolute code 即可產生；在過一段時間後，因為起始位址已改變，所以需要重新編譯</li>
-</ul>
-</li>
-<li>load time:<ul>
-<li>程式在 compile time 若不能確定在記憶體中的位址，則編譯器必須產生 relocatable code</li>
-</ul>
-</li>
-<li>execution time:<ul>
-<li>如果行程在執行時能被由原來的記憶段落移到另一段落位址，則連 binding 的動作就會被延遲到執行時間才發生；need base and limit registers</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Logical vs. Physical Address Space<ul>
-<li>logical address<ul>
-<li>CPU 所產生的位址，也可以稱為虛擬位址 virtual address</li>
-</ul>
-</li>
-<li>physical address<ul>
-<li>memory unit 所看到的位址</li>
-</ul>
-</li>
-<li>logical address space<ul>
-<li>一個程式所產生的所有 logical address 集合</li>
-</ul>
-</li>
-<li>physical address space<ul>
-<li>一個程式所產生的所有 physical address 集合</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Memory-Management Unit (MMU)<ul>
-<li>硬體執行 virtual address map to 到 physical address 的工作</li>
-<li>relocation register<ul>
-<li>當行程產生的位址被送往記憶體時，就加上 relocation register 的數值</li>
-</ul>
-</li>
-<li>user program 只會處理 logical addresses，永遠無法看到 physical addresses</li>
-</ul>
-</li>
-<li>Dynamic Loading<ul>
-<li>static linking<ul>
-<li>系統程式將可藉由 loader 將 system libraries and program code 併入二進制程式內</li>
-</ul>
-</li>
-<li>dynamic linking<ul>
-<li>連結被推遲直到執行時才發生</li>
-</ul>
-</li>
-<li>stub<ul>
-<li>used to 定位合適的 memory-resident library routine</li>
-<li>將自己替換成 routine 的位址，並執行 routine</li>
-</ul>
-</li>
-<li>dynamic linked library DLL<ul>
-<li>被執行時連結到使用者程式系統的程式庫，也稱為共享程式庫 shared libraries</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Memory Protection<ul>
-<li>Relocation registers 存放著最小的 physical address</li>
-<li>Limit register 存放著 logical addresses</li>
-</ul>
-</li>
-<li>Memory Allocation<ul>
-<li>Hole<ul>
-<li>還未劃分的記憶體區間</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Dynamic Storage-Allocation Problem<ul>
-<li>如何從可用區間 free holes 去滿足 n 個大小<ul>
-<li>First-fit<ul>
-<li>配置第一個足夠大的 hole</li>
-</ul>
-</li>
-<li>Best-fit:<ul>
-<li>在所有容量夠大的區間中，將最小的一個區間分配給行程，除非區間串列依照容量大小的順序排序，否則需要搜尋整個串列才能符合這項策略</li>
-<li>會找出最小的剩餘區間</li>
-</ul>
-</li>
-<li>Worst-fit:<ul>
-<li>將最大的區間配給行程，一樣除非區間串列依照容量大小的順序排序，否則需要搜尋整個串列才能符合這項策略</li>
-<li>會找出最大的剩餘區間</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Fragmentation<ul>
-<li><strong>Ex</strong>ternal Fragmentation 外部斷裂<ul>
-<li>有足夠的總記憶體空間得以滿足需求，但這些可用空間非連續</li>
-<li>reduce external fragementation: compaction<ul>
-<li>收集記憶體內零散的可用空間，使成一大空間</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>In</strong>ternal Fragmentation 內部斷裂<ul>
-<li>配置給一個行程的記憶體可能比實際需要多一點，要不然需要額外的功夫去記住剩下的小空間，而這些小部分沒有被使用到的記憶體就是 Internal Fragmentation</li>
-</ul>
-</li>
-<li>50-percent rule<ul>
-<li>first-fit 分析顯示，給予 N 個配置區間，由於斷裂現象所以將遺失其 0.5 N，則 1&#x2F;3 的記憶體可能沒有使用到</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Paging<ul>
-<li>允許行程的 Physical address space 是不連續的</li>
-<li>frame<ul>
-<li>將 physical memory 打散為許多固定大小區塊的欄 frame</li>
-</ul>
-</li>
-<li>page<ul>
-<li>將 logical memory 打散為大小相同區塊的頁 page</li>
-</ul>
-</li>
-<li>page table<ul>
-<li>設置 page table 轉換 logical addresses 成 physical addresses</li>
-</ul>
-</li>
-<li>頁數 page number, p &amp; 頁偏移量 Page offset, d<ul>
-<li>任何由 CPU 產生的位址都分為此兩個部分</li>
-<li>page number<ul>
-<li>被當作指向 page table 的索引，在 page table 中存在每一 page 的 physical memory 的 base address</li>
-</ul>
-</li>
-<li>page offset<ul>
-<li>承上，此 base address 再和 page offset 結合，定義送往 memory unit 的 physical memory address</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Logical Address Translation to Physical Address step by MMU:<ol>
-<li>提取 page number p，並將其當作 page offset 的索引</li>
-<li>從 page offset 中提取相對應的 frame number f</li>
-<li>將 logical address 中的 p 替換為 f</li>
-</ol>
-</li>
-<li>計算內部斷裂<ul>
-<li>如果 Page size &#x3D; 2,048 bytes</li>
-<li>Process size &#x3D; 72,766 bytes</li>
-<li>需要 35 pages + 1,086 bytes</li>
-<li>造成 Internal fragmentation of 2,048 - 1,086 &#x3D; 962 bytes 位元組的內部斷裂</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Hardware Support<ul>
-<li>Page-table base register (PTBR)<br>  - 指向 page table</li>
-</ul>
-</li>
-<li>translation look-aside buffers (TLB)<ul>
-<li>TLB works as follows:<ul>
-<li>當有一 logical memory 由 CPU 產生後，MMU 會先檢查他的 page number 是否出現在 TLB，如果找到了，他的 frame 就立即有效且被用來存取記憶體，如果沒有，則稱為 TLB miss<ul>
-<li>Needs address translation</li>
-<li>需要從記憶體中找到 page table</li>
-<li>把 page 和 frame 加到 TLB 中</li>
-<li>如果 TLB 已經存滿了，作業系統需要找一項做置換</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>TLB 在每個 TLB 項目中儲存 address-space identifiers (ASIDs)<ul>
-<li>ASID 可以識別該行程，並用來提供行程的位址空間保護</li>
-</ul>
-</li>
-<li>Hit ratio<ul>
-<li>在 TLB 中找一個 page number 所花時間的百分比率</li>
-</ul>
-</li>
-<li>Effective Access Time (EAT)<ul>
-<li>計算 expectation of memory-access time</li>
-</ul>
-</li>
-<li>ex: Consider the following setting<ul>
-<li>Hit ratio 80%</li>
-<li>Memory access time: 10ns</li>
-<li>EAT: <strong>0.80 × 10</strong> (hit ratio * 10 所花的時間) <strong>+ 0.20 × 20</strong> (沒找到 page number 的比例 * 要花兩倍時間重找) <strong>&#x3D; 12 ns</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Protection<ul>
-<li>在 page table 中的每一項都會加上另一個額外的位元: 有效-無效位元 Valid-invalid bit<ul>
-<li>當這個位元被設定為有效時，表示這一頁是在此行程的邏輯位址空間內，因此是一個合法的頁</li>
-<li>如果被設定為無效，表示這一頁不在此行程的邏輯位址空間內</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Structure of the Page Table<ul>
-<li>階層式分頁 Hierarchical Paging<ul>
-<li>forward-mapped page table<blockquote>
-<p>p1 是指向外層 page table 的索引值<br>p2 是內層 page table 所指的 page table 之 page offset</p>
-</blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/us9sHuV.png"
-                     
-                ></li>
-<li>two-level paging<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/gODFgqG.png"
-                     
-                ><ul>
-<li>避免一個如此巨大的表格的解法是，將外層分頁表分為兩個較小的片段<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/nLIiaYl.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Hashed Page Tables<ul>
-<li>The virtual page number is hashed into a page table<ul>
-<li>This page table contains a chain of elements hashing to the same location</li>
-<li>每個 elements 由三個欄位組成<ol>
-<li>the virtual page number</li>
-<li>the value of the mapped page frame</li>
-<li>the pointer to the next element</li>
-</ol>
-</li>
-<li>Virtual page numbers 與此 chain 的欄 1 做比較<ul>
-<li>如果兩者相同，相關分頁欄被用來形成所需要的 physical address</li>
-<li>如果不同，就會搜尋接下來的 chain 以找出符合的數值</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Inverted Page Table<ul>
-<li>對於 memory 的每一 page 都有一個進入點</li>
-<li>每一項中包含儲存在此 page 的 real memory location 所對應的 virtual address，以擁有該 page 的 process</li>
-<li>使用 hash table 幫助限制只搜尋一項或最多幾項<ul>
-<li>TLB 可以加速搜尋</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Swapping<ul>
-<li>一個行程可能被置換出記憶體到 backing store，然後再回到記憶體被繼續執行</li>
-<li>backing store<ul>
-<li>一個足夠大的 disk，可以容納 copies of all memory images</li>
-</ul>
-</li>
-<li>Roll out, roll in<ul>
-<li>低優先權的 process 被置換，讓高優先權的 process 可以被 loaded 並執行</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Chapter-10"><a href="#Chapter-10" class="headerlink" title="Chapter 10"></a>Chapter 10</h2><ul>
-<li>Demand Paging<ul>
-<li>只載入 process 所需的分頁；使用 demand paging 的記憶體，page 只有在程式有需要時才載入</li>
-<li>就像使用 swapping 的分頁系統<ul>
-<li>Page is needed -&gt; reference to it</li>
-<li>invalid reference -&gt; abort 中止</li>
-<li>not-in-memory -&gt; bring to memory</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Page Fault<ul>
-<li>如果程式想要使用一分頁尚未被載入記憶體的資料時，存取會標示為無效的分頁，造成 page fault</li>
-<li>處理分頁錯誤的流程:<ol>
-<li>檢查行程的內部表格，決定是屬於有效還是無效的記憶體存取，如果是無效的 -&gt; 中止，如果是有效的，那就是我們還沒將該頁載入，現在載入</li>
-<li>find free frame</li>
-<li>排定 disk 去將那 page swap into 新找到的 frame </li>
-<li>修改 tables，指出該頁目前已在記憶體中，Set validation bit &#x3D; v</li>
-<li>重新啟動因 page fault 而被中斷的指令</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>Performance of Demand Paging<ul>
-<li>Based on the effective access time (EAT)<ul>
-<li>EAT &#x3D; (1−p) × ma + p × pf</li>
-<li>p: 分頁錯誤出現的機率 (0 ≤ p ≤ 1)</li>
-<li>ma: memory-access time</li>
-<li>pf: page fault time</li>
-</ul>
-</li>
-<li>分頁錯誤會引起下列一連串事情發生:<ol>
-<li>對作業系統發出 trap</li>
-<li>保存 user register 與行程的狀態</li>
-<li>認定該 interrupt 是 page fault</li>
-<li>核對其對某頁參考是合規定的，並且決定該頁在 disk 上的位置</li>
-<li>產生一次由 disk 讀取可用 free frame 的讀取動作<br> a. 在 queue 等待，直到讀出的要求被完成<br> b. 等待該裝置的搜尋及&#x2F;或潛伏時間<br> c. 開始將該頁轉移至一個 free frame 內</li>
-<li>在等待的時候，可以把 CPU 分配給其他的使用者 (CPU 排班)</li>
-<li>接收從儲存 I&#x2F;O 子系統來的中斷信號 (I&#x2F;O 做完了)</li>
-<li>將 process stage 與 user register 保存起來</li>
-<li>確認 interrupt 來自 disk</li>
-<li>更正 page table 與 tables，以表示所要的某頁已在記憶體中</li>
-<li>等待 CPU 再次分配給這個行程</li>
-<li>重新存入 user register、process state、page table，然後恢復中斷指令</li>
-</ol>
-</li>
-<li>ex:<ul>
-<li>Memory access time &#x3D; 200 nanoseconds</li>
-<li>Average page-fault service time &#x3D; 8 milliseconds</li>
-<li>EAT &#x3D; (1 – p) x 200 + p (8 milliseconds)<br>  &#x3D; 1 – p x 200 + p x 8,000,000<br>  &#x3D; 200 + p x 7,999,800</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>First-In-First-Out (FIFO) Algorithm<ul>
-<li>Reference string:<ul>
-<li>當需要替換一頁時，去找最老的一頁</li>
-<li>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</li>
-<li>3 frames (3 pages can be in memory at a time per process)</li>
-<li>15 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/ua5fr2E.png"
-                     
-                ></li>
-<li>畢雷地異常 Belady’s Anomaly:<ul>
-<li>增加更多的欄可能會造成更多的分頁錯誤</li>
-<li>ex 四個欄(10) 比三個欄(9) 多<br>   <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/XqoCC0A.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Optimal page-replacement algorithm OPT<ul>
-<li>replace 往未來看，最久沒被用的 page<ul>
-<li>9 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/z5sD3GP.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Least Recently Used (LRU) Algorithm<ul>
-<li>replace 往過去看，最久未被使用的那一頁<ul>
-<li>12 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/LykWDzf.png"
-                     
-                ></li>
-</ul>
-</li>
-<li>Counter implementation:<ul>
-<li>令每一 page 有一個 counter，page 每被 reference 一次後 counter 就 ++</li>
-<li>如果當需要替換分頁時，就尋找 counter 中最小的值</li>
-</ul>
-</li>
-<li>堆疊 Stack implementation<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/A2z4mc1.png"
-                     
-                ><ul>
-<li>保存一個由 page number 組成的堆疊來執行</li>
-<li>當某一頁被參考後:<ul>
-<li>將他從 stack 中移出並放在頂端</li>
-</ul>
-</li>
-<li>每次更新都花費許多時間，但在做替換工作時不需搜尋</li>
-</ul>
-</li>
-<li>LRU 和 OPT 一樣，都不會受 Belady’s Anomaly 影響，這種稱為堆疊演算法 stack algorithms</li>
-</ul>
-</li>
-<li>Second-chance algorithm<ul>
-<li>是一種 FIFO + 會檢視 Reference bit<ul>
-<li>reference bit<ul>
-<li>initially &#x3D; 0；set to 1，代表被使用過</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Clock replacement，環狀的去取代，以一個指標標示著下一個被替換掉的頁<ul>
-<li>Reference bit &#x3D; 0 -&gt; replace it</li>
-<li>reference bit &#x3D; 1 then:<ul>
-<li>set reference bit 0, leave page in memory</li>
-<li>找下一個被置換的頁，用相同方法<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/flgT3xv.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>加強第二次機會演算法 Enhanced Second-Chance Algorithm<ul>
-<li>藉由把參考位元 reference bit 和修改位元 modify bit 視為一組<ul>
-<li>Take ordered pair (reference, modify)<ol>
-<li>(0, 0) 表示從未使用過也未被修改過 -&gt; 最佳替換分頁</li>
-<li>(0, 1) 代表近來未被使用過但曾被修改過 -&gt; 沒那麼好，因為此頁需要被寫出，才可以被替換</li>
-<li>(1, 0) 表示近來被使用但未被修改過 -&gt; 可能很快會被再使用到</li>
-<li>(1, 1) 表示曾被使用過且被修改過 -&gt; 可能會再被用到，再替換掉此頁之前，必須把它寫出輔助儲存體</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Fixed Allocation<ul>
-<li>比例分配 Proportional allocation<ul>
-<li>可用記憶體根據每個行程的大小分配<ul>
-<li>行程 pi 的大小: si</li>
-<li>定義 s &#x3D; sigma si</li>
-<li>可用的總欄數是 m，分配 ai 個欄給 pi<ul>
-<li>ai &#x3D; si&#x2F;s * m<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/f5FCRRa.png"
-                     
-                ></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Thrashing<ul>
-<li>如果行程沒有足夠的 frame，過程中將快速出現 page fault<ul>
-<li>Page fault to get page，替換接下來的 demand page</li>
-<li>但因為很快的又出現錯誤，所以又要替換並帶回分頁</li>
-<li>會導致:<ul>
-<li>Low CPU utilization</li>
-<li>Operating system thinking that it needs to increase the degree of multiprogramming</li>
-<li>Another process added to the system</li>
-</ul>
-</li>
-<li>輾轉現象 Thrashing<ul>
-<li>一個行程花費在分頁時間比執行時間還多</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>榮佐老師的課程簡報</p>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-            </div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-            
+    .article-content-container
+      width calc(100% - 210px) !important
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/CSIE/">#CSIE</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-            
+    .article-content-container
+      width 100% !important
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2022/10/06/CSIE-Database/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">CSIE - Database</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2022/05/10/CSIE-Computer-Organization/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">CSIE - Computer Organization</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+    &.show-toc
+      .toc-content-container
+        display none
 
+      .article-content-container
+        width 100% !important
 
-            
-        </div>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">CSIE - Operating System</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5"><span class="nav-text">Chapter 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6"><span class="nav-text">Chapter 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-7"><span class="nav-text">Chapter 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-8"><span class="nav-text">Chapter 8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-9"><span class="nav-text">Chapter 9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-10"><span class="nav-text">Chapter 10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+    .article-title
+      position relative
+      width 100%
 
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
+
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
+
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
+
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
+
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
+
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
+
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 

@@ -316,200 +316,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post16.jpg" alt="ASP.NET MVC Framework - JSON" />
-                    <h1 class="article-title-cover">ASP.NET MVC Framework - JSON</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-22</span>
-        <span class="mobile">2023-07-22</span>
-        <!-- <span class="desktop">2023-07-22 18:09</span>
-        <span class="mobile">2023-07-22 18</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-22</span>
-            <span class="mobile">2023-07-22</span>
-            <!-- <span class="desktop">2023-07-22 18:07:21</span>
-            <span class="mobile">2023-07-22 18:07</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/ASP-NET/">ASP.NET</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/ASP-NET/MVC/">MVC</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/ASP-NET/MVC/JSON/">JSON</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/MVC/">MVC</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/JSON/">JSON</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON：JavaScript Object Notation</p>
-<p>JSON 是一種輕量級資料交換格式<br>JSON 是純文字，無關任何程式語言<br>JSON 長得和 JavaScript 的 Object 差不多，只是在傳值時會先序列化成文字，要使用時再反序列化</p>
-<h3 id="JavaScript-Object"><a href="#JavaScript-Object" class="headerlink" title="JavaScript Object"></a>JavaScript Object</h3><p>由 key 和 value 組成</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myData = &#123;</span><br><span class="line">    <span class="string">&quot;BookId&quot;</span> : <span class="number">123</span>,</span><br><span class="line">    <span class="string">&quot;BookName&quot;</span> : <span class="string">&quot;Harry Potter&quot;</span>,</span><br><span class="line">    <span class="string">&quot;BookAuthor&quot;</span> : <span class="string">&quot;J.K. Rowling&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用物件取值時可寫</span></span><br><span class="line">myData.<span class="property">BookName</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 就可以得到輸出：&#x27;Harry Potter&#x27;</span></span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-<h2 id="Serialization-Deserialization"><a href="#Serialization-Deserialization" class="headerlink" title="Serialization &amp; Deserialization"></a>Serialization &amp; Deserialization</h2><h3 id="Serialization：序列化"><a href="#Serialization：序列化" class="headerlink" title="Serialization：序列化"></a>Serialization：序列化</h3><p>資料從前端傳到後端時，不能直接用 JavaScript Object<br>所以可以在 JavaScript 用 <strong>JSON.stringify()</strong> 將其轉為序列化的型態</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(myData)</span><br><span class="line"></span><br><span class="line"><span class="comment">// myData 輸出</span></span><br><span class="line"><span class="string">&#x27;&#123;&quot;BookId&quot;:123, &quot;BookName&quot;:&quot;Harry Potter&quot;, &quot;BookAuthor&quot;:&quot;J.K. Rowling&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure></div>
-<p>後端收到後，可再把此段序列化 JSON 轉為該語言使用的形式</p>
-<h3 id="Deserialization：反序列化"><a href="#Deserialization：反序列化" class="headerlink" title="Deserialization：反序列化"></a>Deserialization：反序列化</h3><p>而資料從後端傳到前端時，可在 JavaScript 使用 <strong>JSON.parse()</strong> 將其反序列化，轉回 JavaScript Object 的形式<br>假設現在將方才轉換成序列化的 myData 重新反序列化</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(myData)</span><br><span class="line"></span><br><span class="line"><span class="comment">// myData 轉回</span></span><br><span class="line"><span class="string">&quot;BookId&quot;</span> : <span class="number">123</span></span><br><span class="line"><span class="string">&quot;BookName&quot;</span> : <span class="string">&quot;Harry Potter&quot;</span></span><br><span class="line"><span class="string">&quot;BookAuthor&quot;</span> : <span class="string">&quot;J.K. Rowling&quot;</span></span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-<h2 id="JsonResult"><a href="#JsonResult" class="headerlink" title="JsonResult"></a>JsonResult</h2><p>可以在 Controller 中透過撰寫 JsonResult 回傳 JSON 形式的資料</p>
-<div class="highlight-container" data-rel="C#"><figure class="iseeu highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost()</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> JsonResult <span class="title">Test</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.Json(<span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.Json(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+    .article-content-container
+      width calc(100% - 210px) !important
 
-<h2 id="Summery"><a href="#Summery" class="headerlink" title="Summery"></a>Summery</h2><ol>
-<li>前端傳資料給後端，沒辦法直接傳 Object 給 Server，因此會先序列化 Object 成文字</li>
-<li>沒辦法直接把 Object 存進 LocalStorage、DataBase，因此會先序列化 Object 成文字</li>
-<li>前端拿到後端回傳的 JSON 資料，想要進一步用 JavaScript 操作，要先反序列化成 Object</li>
-</ol>
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-            </div>
+    .article-content-container
+      width 100% !important
 
-            
+    &.show-toc
+      .toc-content-container
+        display none
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/MVC/">#MVC</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/JSON/">#JSON</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+      .article-content-container
+        width 100% !important
 
-            
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/08/02/ASP-NET-MVC-Framework-Sync-Async/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">ASP.NET MVC Framework - Sync &amp; Async</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/07/22/ASP-NET-MVC-Framework-XHR/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">ASP.NET MVC Framework - XHR</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
+    .article-title
+      position relative
+      width 100%
 
-            
-        </div>
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">ASP.NET MVC Framework - JSON</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Object"><span class="nav-text">JavaScript Object</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serialization-Deserialization"><span class="nav-text">Serialization &amp; Deserialization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Serialization%EF%BC%9A%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">Serialization：序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization%EF%BC%9A%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">Deserialization：反序列化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JsonResult"><span class="nav-text">JsonResult</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summery"><span class="nav-text">Summery</span></a></li></ol>
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
 
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
+
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
+
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
+
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 

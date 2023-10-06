@@ -315,206 +315,428 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
+                    @import '../common/variables'
 
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post3.jpg" alt="SQL - Stored Procedure" />
-                    <h1 class="article-title-cover">SQL - Stored Procedure</h1>
-                </div>
-            
-                
-            
+$avatarWidth = 46px
+$arrow-icon-width = 16px
+$post-nav-max-width = 220px
+$article-title-font-size = 3.2rem
+$temp-toc-width = hexo-config('global.sidebar_width')
+$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
+$without-toc-container-width = calc(100% - $temp-toc-width)
+$gap = 30px
 
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-05</span>
-        <span class="mobile">2023-07-05</span>
-        <!-- <span class="desktop">2023-07-05 21:36:28</span>
-        <span class="mobile">2023-07-05 21:36</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-09</span>
-            <span class="mobile">2023-07-09</span>
-            <!-- <span class="desktop">2023-07-09 19:35:42</span>
-            <span class="mobile">2023-07-09 19:35</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
+.post-page-container
+  display flex
+  position relative
+  justify-content space-between
+  box-sizing border-box
+  width 100%
+  height 100%
 
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/SQL/">SQL</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/SQL/Stored-Procedure/">Stored Procedure</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/SQL/">SQL</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  &.show-toc
+    .toc-content-container
+      display block
+      opacity 1
+      transition opacity 0.2s ease-in 0.2s
+      width $toc-container-width
 
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+      &:hover::-webkit-scrollbar-thumb
+        border 3px solid rgba(183, 183, 183, 0.3)
 
-                        </div>
-                    </div>
-                </div>
-            
+      &::-webkit-scrollbar
+        width 6px
+        height 6px
+        transition all 0.2s ease
+        display block
 
-            <div class="article-content markdown-body">
-                <h2 id="Stored-Procedure-Intro"><a href="#Stored-Procedure-Intro" class="headerlink" title="Stored Procedure Intro"></a>Stored Procedure Intro</h2><p>一般會將較複雜的運算放入 Stored Procedure 內運算<br>用法為 <code>EXECUTE</code> 或 <code>EXEC</code></p>
-<p>例如：</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> SchemaName.StoredProcedureName</span><br><span class="line">	<span class="variable">@parameter</span> <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-track
+        background transparent
+        border none
 
-<p>Stored Procedure 傳參數時，參數名稱可以省略，所以也可以寫成</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> SchemaName.StoredProcedureName <span class="number">1</span>;</span><br></pre></td></tr></table></figure></div>
+      &::-webkit-scrollbar-thumb
+        border-radius 20px
+        border 3px solid rgba(183, 183, 183, 0)
+        transition all 0.2s ease
 
-<h3 id="Passing-Input-Parameters-to-Stored-Procedure"><a href="#Passing-Input-Parameters-to-Stored-Procedure" class="headerlink" title="Passing Input Parameters to Stored Procedure"></a>Passing Input Parameters to Stored Procedure</h3><p>直接執行，回傳 SELECT statement</p>
-<p><code>宣告</code></p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> SchemaName.StoredProcedureName</span><br><span class="line">	(<span class="variable">@parameter</span> <span class="keyword">AS</span> <span class="type">INT</span>)</span><br><span class="line"><span class="keyword">AS</span> <span class="operator">&lt;</span>Stored <span class="keyword">Procedure</span> 的任務<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></div>
-<p><code>呼叫</code></p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> SchemaName.StoredProcedureName <span class="number">1</span>;</span><br></pre></td></tr></table></figure></div>
+    .article-content-container
+      width calc(100% - 210px) !important
 
-<h3 id="Working-with-OUTPUT-Parameter"><a href="#Working-with-OUTPUT-Parameter" class="headerlink" title="Working with OUTPUT Parameter"></a>Working with OUTPUT Parameter</h3><p>與 Passing Input Parameters to Stored Procedure 的最大區別是，在需告的變數 <code>@parameter</code> 最後一個會有 OUTPUT</p>
-<p>代表在做這個 Stored Procedure 的最後，會回傳一個值<br>因此在呼叫時，第一句需要先宣告一個變數 (和 Stored Procedure 最後一個參數名稱相同)，為了承接 OUTPUT 的回傳值</p>
-<p><code>宣告</code></p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> SchemaName.StoredProcedureName</span><br><span class="line">	(<span class="variable">@parameterInput</span> <span class="keyword">AS</span> <span class="type">INT</span>,</span><br><span class="line">	 <span class="variable">@parameterOutput</span> <span class="keyword">AS</span> <span class="type">INT</span> OUTPUT)</span><br><span class="line"><span class="keyword">AS</span> <span class="operator">&lt;</span>Stored <span class="keyword">Procedure</span> 的任務<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></div>
-<p><code>呼叫</code><br>此時 SELECT @parameterOutput 結果會是 2</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@parameterOutput</span> <span class="keyword">AS</span> <span class="type">INT</span></span><br><span class="line"><span class="keyword">EXEC</span> SchemaName.StoredProcedureName <span class="number">1</span>, <span class="number">2</span> OUTPUT;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="variable">@parameterOutput</span> </span><br></pre></td></tr></table></figure></div>
+  +redefine-tablet()
+    .toc-content-container
+      display none !important
 
-<h3 id="Creating-Procedure-to-Return-Rows"><a href="#Creating-Procedure-to-Return-Rows" class="headerlink" title="Creating Procedure to Return Rows"></a>Creating Procedure to Return Rows</h3><p>根據 CREATE Stored Procedure 中，AS 後的 Stored Procedure 的任務決定<br>Stored Procedure 的任務可以由多個 SELECT statement 組成，可以有多個回傳值</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> SchemaName.StoredProcedureName</span><br><span class="line">	(<span class="variable">@parameterInput</span> <span class="keyword">AS</span> <span class="type">INT</span>,</span><br><span class="line">	 <span class="variable">@parameterOutput</span> <span class="keyword">AS</span> <span class="type">INT</span> OUTPUT)</span><br><span class="line"><span class="keyword">AS</span> <span class="operator">&lt;</span>Stored <span class="keyword">Procedure</span> 的任務<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></div>
+    .article-content-container
+      width 100% !important
 
-<p>通常 Stored Procedure 會利用 ALTER 來進行操作，如此一來便可以不用 DROP 或 RECREATE，以避免權限在轉移的過程中遺失</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">PROCEDURE</span> statement</span><br></pre></td></tr></table></figure></div>
+    &.show-toc
+      .toc-content-container
+        display none
 
-<h3 id="Creating-Procedure-That-Accept-Parameter"><a href="#Creating-Procedure-That-Accept-Parameter" class="headerlink" title="Creating Procedure That Accept Parameter"></a>Creating Procedure That Accept Parameter</h3><p>SchemaName.StoredProcedureName 中宣告的參數用於 SELECT statement 中<br>若有多個 SELECT statement，可使用 BEGIN END 包起來，可以提升程式碼觀看性</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> SchemaName.StoredProcedureName</span><br><span class="line">	(<span class="variable">@parameter1</span> <span class="keyword">AS</span> <span class="type">INT</span>, <span class="variable">@parameter2</span> <span class="keyword">AS</span> <span class="type">INT</span>)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	<span class="keyword">SELECT</span> TOP (<span class="variable">@parameter1</span>) ColumnName1, ColumnName2, ColumnName3</span><br><span class="line">	<span class="keyword">FROM</span> SchemaName.TableName</span><br><span class="line">	<span class="keyword">WHERE</span> ColumnName4 <span class="operator">=</span> <span class="variable">@parameter2</span>;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure></div>
+      .article-content-container
+        width 100% !important
 
-<h2 id="Dynamic-SQL"><a href="#Dynamic-SQL" class="headerlink" title="Dynamic SQL"></a>Dynamic SQL</h2><h3 id="Constructing-Dynamic-SQL"><a href="#Constructing-Dynamic-SQL" class="headerlink" title="Constructing Dynamic SQL"></a>Constructing Dynamic SQL</h3><p>有兩種方式可以 Dynamic 的執行 SQL statement</p>
-<ol>
-<li><p>EXEC 執行 SQL 字串</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> (N<span class="string">&#x27; &lt;SELECT statement&gt; &#x27;</span>);</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>sp_executesql ()</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@SQLCode</span> <span class="keyword">AS</span> NVARCHAR(max) <span class="operator">=</span> </span><br><span class="line">	N<span class="string">&#x27; &lt;SELECT statement&gt; &#x27;</span>;</span><br><span class="line"><span class="keyword">EXEC</span> sp_executesql <span class="variable">@Statement</span> <span class="operator">=</span> <span class="variable">@SQLCode</span>;</span><br></pre></td></tr></table></figure></div></li>
-</ol>
+  .article-content-container
+    width 100%
+    transition width 0.2s ease
+    redefine-container(
+      false,
+      0,
+      0,
+      30px,
+      30px
+    )
 
-            </div>
+    +redefine-mobile()
+      padding 1.2rem 0.2rem
+      box-shadow none !important
 
-            
+    .article-title
+      position relative
+      width 100%
 
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/SQL/">#SQL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
+      img
+        margin -30px -30px 0 -30px
+        width calc(100% + 60px)
+        height 350px
+        object-fit cover
+        border-radius $redefine-border-radius-large-top
 
-            
+        +redefine-tablet()
+          height 300px
+          margin -24px -24px 0 -24px
+          width calc(100% + 60px * 0.8)
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/07/06/SQL-Transaction/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Transaction</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/07/04/SQL-Note/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Note</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
+        +redefine-mobile()
+          height 200px
+          border-radius 0px
+          margin -24px -24px 0 -24px
+          width calc(100% + 80px * 0.6)
 
+      .article-title-regular
+        font-size $article-title-font-size
+        font-weight 700
+        margin 0px 0 30px 0
+        line-height 1.4
+        color var(--second-text-color)
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
 
-            
-        </div>
+      .article-title-cover
+        display flex
+        padding 0.4rem 1.5rem 0.5rem 1.5rem
+        line-height 1.5
+        margin 0 auto
+        position absolute
+        bottom 36px
+        left 0
+        text-align center
+        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
+        color var(--second-text-color)
+        font-size $article-title-font-size
+        font-weight 700
+        background-color var(--background-color-transparent)
+        backdrop-filter blur(10px)
+        -webkit-backdrop-filter blur(10px)
+        border 1.5px solid var(--home-banner-icons-container-border-color)
+        border-radius $redefine-border-radius-large
 
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">SQL - Stored Procedure</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-Procedure-Intro"><span class="nav-text">Stored Procedure Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Passing-Input-Parameters-to-Stored-Procedure"><span class="nav-text">Passing Input Parameters to Stored Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Working-with-OUTPUT-Parameter"><span class="nav-text">Working with OUTPUT Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Procedure-to-Return-Rows"><span class="nav-text">Creating Procedure to Return Rows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Procedure-That-Accept-Parameter"><span class="nav-text">Creating Procedure That Accept Parameter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-SQL"><span class="nav-text">Dynamic SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructing-Dynamic-SQL"><span class="nav-text">Constructing Dynamic SQL</span></a></li></ol></li></ol>
+        +redefine-tablet()
+          font-size: $article-title-font-size * 0.8
+          bottom 36px * 0.8
 
-    </div>
-</div>
-            </div>
-        
-    </div>
-</div>
+        +redefine-mobile()
+          font-size: $article-title-font-size * 0.6
+          bottom 36px * 0.6
+          border-radius $redefine-border-radius-medium
 
+    .article-header
+      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
+      position relative
+      padding-left $avatarWidth
+      width 100%
+      height $avatarWidth
+      box-sizing border-box
+
+      .avatar
+        position absolute
+        top 0
+        left 0
+        width $avatarWidth
+        height $avatarWidth
+        padding 1px
+        box-sizing border-box
+        border 1px solid var(--border-color)
+        border-radius $redefine-border-radius-medium
+
+        img
+          border-radius: $redefine-border-radius-medium * 0.87
+          width 100%
+          height 100%
+          // background var(--avatar-background-color)
+
+      .info
+        padding 2px 0
+        margin-left 10px
+        box-sizing border-box
+        display flex
+        flex-direction column
+        justify-content space-between
+        width 100%
+        height 100%
+
+        .author
+          font-weight regular
+          font-size 1.18rem
+          display flex
+          align-items center
+
+          .name
+            color var(--default-text-color)
+
+          .author-label
+            margin-left 5px
+            font-size 0.8rem
+            font-weight 500
+            padding 2px 8px
+            border-radius $redefine-border-radius-small
+            color var(--third-text-color)
+            border 1px solid var(--shadow-color-1)
+
+    .article-header, .article-header-meta-info
+      margin-top 16px
+
+      +redefine-tablet()
+        transform scale(0.9)
+        transform-origin left top
+
+    .article-content
+      margin-top $spacing-unit
+      padding-bottom 10px
+      word-wrap break-word
+      border-bottom 1px solid var(--border-color)
+      color var(--default-text-color)
+
+      &>:first-child
+        margin-top 0 !important
+
+    .post-tags-box
+      display none
+      margin-top 1.6rem
+      justify-content center
+      font-size 1.1rem
+
+      +redefine-tablet()
+        display flex
+
+      +redefine-mobile()
+        margin-top 1.2rem
+        font-size 1rem
+
+      .tag-item
+        margin 0 0.25rem
+
+    .post-copyright-info
+      margin-top $spacing-unit
+      width 100%
+
+      +redefine-tablet()
+        margin-top ($spacing-unit * 0.8) !important
+
+    .article-nav
+      height 40px
+      margin-top $spacing-unit
+
+      .article-prev, .article-next
+        max-width $post-nav-max-width
+        height 100%
+        box-sizing border-box
+        border-radius $redefine-border-radius-medium !important
+        redefine-container(
+          true,
+          1.03,
+          1.03,
+          10px,
+          0
+        )
+
+        a
+          position relative
+          display block
+          width 100%
+          height 100%
+          box-sizing border-box
+
+          &.prev
+            padding-left $arrow-icon-width
+
+          &.next
+            padding-right $arrow-icon-width
+
+          .arrow-icon
+            position absolute
+            top 0
+            height 100%
+            width $arrow-icon-width
+
+            &.left
+              left 0
+
+            &.right
+              right 0
+
+          .title
+            width 100%
+            height 100%
+
+      .article-prev
+        float left
+
+      .article-next
+        float right
+
+      .post-nav-item
+        display none
+
+        +redefine-tablet()
+          display inline-block
+
+      .post-nav-title-item
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        +redefine-tablet()
+          display none
+
+    .recommended-article
+      overflow visible !important
+
+      .recommended-mobile
+        display none
+        +redefine-tablet()
+          display block
+
+      .recommended-desktop
+        display block
+        +redefine-tablet()
+          display none
+
+      .recommended-article-header
+        font-size 28px
+        font-weight 550
+        margin-top 2.8rem
+
+      .recommended-article-group
+        padding 10px 0
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+        overflow visible !important
+
+        @media screen and (max-width $device-tablet)
+          height 190px
+          overflow scroll
+
+          &::-webkit-scrollbar
+            width 0 !important
+
+          -ms-overflow-style none
+
+        .recommended-article-item
+          redefine-container(
+            false,
+            0,
+            0,
+            10px,
+            0
+          )
+          box-shadow var(--redefine-box-shadow-flat)
+          padding 12px !important
+          display flex
+          flex-wrap wrap
+          align-content center
+          justify-content center
+          align-items center
+          overflow hidden
+          width 32%
+          max-height 200px
+          margin-top: $gap * 0.5
+          margin-right 0
+
+          +redefine-tablet()
+            width 49%
+
+          img
+            display flex
+            width calc(100% + 24px)
+            height 150px
+            object-fit cover
+            border-radius $redefine-border-radius-medium-top
+            margin -12px -12px 0 -12px !important
+
+          span
+            margin-top 0.5rem
+            display block
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 1
+            overflow hidden
+
+  .toc-content-container
+    white-space nowrap
+    opacity 0
+    position sticky
+    top: $navbar-height + $spacing-unit
+    // border-radius $redefine-border-radius-large
+    border-radius $redefine-border-radius-none
+    // display none
+    // visibility hidden
+    // width $toc-container-width
+    width 0
+    height auto
+    max-height calc(100vh - 210px)
+    margin-left 30px
+    // z-index $z-index-6
+    overflow-y auto
+    overflow-x hidden
+    float right
+    padding 10px
+    box-sizing border-box
+    box-shadow none !important
+    transition opacity 0.3s ease-out 0.3s
+    hover-style(
+      false,
+      0,
+      0
+    )
+    transition-t('display', '0', '0.3', 'ease-out')
+
+    +redefine-tablet()
+      left 0 !important
+      display none !important
+
+  figure.image-caption
+    img
+      margin-bottom 0
+
+    figcaption
+      margin-top 5px
+      margin-bottom 10px
+      text-align center
+      font-size 0.9rem
+      color var(--third-text-color)
+
+@media (prefers-color-scheme dark)
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
+
+.dark-mode
+  .article-title img
+    filter brightness(0.7)
+    -webkit-filter brightness(0.7)
+    transition filter 0.3s ease
 
                 
 
