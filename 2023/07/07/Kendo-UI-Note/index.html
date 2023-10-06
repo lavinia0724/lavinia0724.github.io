@@ -315,428 +315,190 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
-
-$avatarWidth = 46px
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
-
-.post-page-container
-  display flex
-  position relative
-  justify-content space-between
-  box-sizing border-box
-  width 100%
-  height 100%
-
-  &.show-toc
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
-
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
-
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
-
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
-
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
-
-    .article-content-container
-      width calc(100% - 210px) !important
-
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
-
-    .article-content-container
-      width 100% !important
-
-    &.show-toc
-      .toc-content-container
-        display none
-
-      .article-content-container
-        width 100% !important
-
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      30px,
-      30px
-    )
-
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-
-    .article-title
-      position relative
-      width 100%
-
-      img
-        margin -30px -30px 0 -30px
-        width calc(100% + 60px)
-        height 350px
-        object-fit cover
-        border-radius $redefine-border-radius-large-top
-
-        +redefine-tablet()
-          height 300px
-          margin -24px -24px 0 -24px
-          width calc(100% + 60px * 0.8)
-
-        +redefine-mobile()
-          height 200px
-          border-radius 0px
-          margin -24px -24px 0 -24px
-          width calc(100% + 80px * 0.6)
-
-      .article-title-regular
-        font-size $article-title-font-size
-        font-weight 700
-        margin 0px 0 30px 0
-        line-height 1.4
-        color var(--second-text-color)
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-
-      .article-title-cover
-        display flex
-        padding 0.4rem 1.5rem 0.5rem 1.5rem
-        line-height 1.5
-        margin 0 auto
-        position absolute
-        bottom 36px
-        left 0
-        text-align center
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-        color var(--second-text-color)
-        font-size $article-title-font-size
-        font-weight 700
-        background-color var(--background-color-transparent)
-        backdrop-filter blur(10px)
-        -webkit-backdrop-filter blur(10px)
-        border 1.5px solid var(--home-banner-icons-container-border-color)
-        border-radius $redefine-border-radius-large
-
-        +redefine-tablet()
-          font-size: $article-title-font-size * 0.8
-          bottom 36px * 0.8
-
-        +redefine-mobile()
-          font-size: $article-title-font-size * 0.6
-          bottom 36px * 0.6
-          border-radius $redefine-border-radius-medium
-
-    .article-header
-      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
-      position relative
-      padding-left $avatarWidth
-      width 100%
-      height $avatarWidth
-      box-sizing border-box
-
-      .avatar
-        position absolute
-        top 0
-        left 0
-        width $avatarWidth
-        height $avatarWidth
-        padding 1px
-        box-sizing border-box
-        border 1px solid var(--border-color)
-        border-radius $redefine-border-radius-medium
-
-        img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-      .info
-        padding 2px 0
-        margin-left 10px
-        box-sizing border-box
-        display flex
-        flex-direction column
-        justify-content space-between
-        width 100%
-        height 100%
-
-        .author
-          font-weight regular
-          font-size 1.18rem
-          display flex
-          align-items center
-
-          .name
-            color var(--default-text-color)
-
-          .author-label
-            margin-left 5px
-            font-size 0.8rem
-            font-weight 500
-            padding 2px 8px
-            border-radius $redefine-border-radius-small
-            color var(--third-text-color)
-            border 1px solid var(--shadow-color-1)
-
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .post-tags-box
-      display none
-      margin-top 1.6rem
-      justify-content center
-      font-size 1.1rem
-
-      +redefine-tablet()
-        display flex
-
-      +redefine-mobile()
-        margin-top 1.2rem
-        font-size 1rem
-
-      .tag-item
-        margin 0 0.25rem
-
-    .post-copyright-info
-      margin-top $spacing-unit
-      width 100%
-
-      +redefine-tablet()
-        margin-top ($spacing-unit * 0.8) !important
-
-    .article-nav
-      height 40px
-      margin-top $spacing-unit
-
-      .article-prev, .article-next
-        max-width $post-nav-max-width
-        height 100%
-        box-sizing border-box
-        border-radius $redefine-border-radius-medium !important
-        redefine-container(
-          true,
-          1.03,
-          1.03,
-          10px,
-          0
-        )
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .article-prev
-        float left
-
-      .article-next
-        float right
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-header
-        font-size 28px
-        font-weight 550
-        margin-top 2.8rem
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
-
-@media (prefers-color-scheme dark)
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
-
-.dark-mode
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post6.jpg" alt="Kendo UI - Note" />
+                    <h1 class="article-title-cover">Kendo UI - Note</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-07-07</span>
+        <span class="mobile">2023-07-07</span>
+        <!-- <span class="desktop">2023-07-07 21:22:01</span>
+        <span class="mobile">2023-07-07 21:22</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-09-06</span>
+            <span class="mobile">2023-09-06</span>
+            <!-- <span class="desktop">2023-09-06 14:10:19</span>
+            <span class="mobile">2023-09-06 14:10</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Kendo-UI/">Kendo UI</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Kendo-UI-Note"><a href="#Kendo-UI-Note" class="headerlink" title="Kendo UI - Note"></a>Kendo UI - Note</h2><p>記錄了學習 Kendo UI 的筆記</p>
+<h3 id="head-Setting"><a href="#head-Setting" class="headerlink" title="head Setting"></a>head Setting</h3><p>引用 Kendo 外部檔案</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/kendo.common-material.min.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/kendo.material-main.min.css&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./js/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./js/kendo.all.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./js/project.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Add-Button"><a href="#Add-Button" class="headerlink" title="Add Button"></a>Add Button</h3><p>在 <code>&lt;body&gt;</code> 中新增 <code>&lt;button&gt;</code></p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;myButton&quot;</span> <span class="attr">class</span>=<span class="string">&quot;k-primary&quot;</span>&gt;</span>我的第一顆按鈕<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>若想替 <code>&lt;button&gt;</code> 增加一些外觀，可以在 <code>&lt;script&gt;</code> 中加入一些腳本</p>
+<p>利用 <code>&quot;#myButton&quot;</code> 讀取 <code>&lt;button&gt;</code> id 為 “myButton”，接著串接 <code>.kendoButton()</code></p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    $(<span class="string">&quot;#myButton&quot;</span>).<span class="title function_">kendoButton</span>();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Add-Grid"><a href="#Add-Grid" class="headerlink" title="Add Grid"></a>Add Grid</h3><p>參考 <a class="link"   target="_blank" rel="noopener" href="https://demos.telerik.com/kendo-ui/grid/local-data-binding" >Kendo UI</a> 文件撰寫</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;grid&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    $(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#grid&quot;</span>).<span class="title function_">kendoGrid</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">dataSource</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>: products,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">schema</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="attr">model</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="attr">fields</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                            <span class="title class_">ProductName</span>: &#123; <span class="attr">type</span>: <span class="string">&quot;string&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">                            <span class="title class_">UnitPrice</span>: &#123; <span class="attr">type</span>: <span class="string">&quot;number&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">                            <span class="title class_">UnitsInStock</span>: &#123; <span class="attr">type</span>: <span class="string">&quot;number&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">                            <span class="title class_">Discontinued</span>: &#123; <span class="attr">type</span>: <span class="string">&quot;boolean&quot;</span> &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">pageSize</span>: <span class="number">20</span></span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">height</span>: <span class="number">550</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">scrollable</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">sortable</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">filterable</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">pageable</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">input</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">numeric</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">columns</span>: [</span></span><br><span class="line"><span class="language-javascript">                <span class="string">&quot;ProductName&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                &#123; <span class="attr">field</span>: <span class="string">&quot;UnitPrice&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Unit Price&quot;</span>, <span class="attr">format</span>: <span class="string">&quot;&#123;0:c&#125;&quot;</span>, <span class="attr">width</span>: <span class="string">&quot;130px&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">                &#123; <span class="attr">field</span>: <span class="string">&quot;UnitsInStock&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Units In Stock&quot;</span>, <span class="attr">width</span>: <span class="string">&quot;130px&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">                &#123; <span class="attr">field</span>: <span class="string">&quot;Discontinued&quot;</span>, <span class="attr">width</span>: <span class="string">&quot;130px&quot;</span> &#125;</span></span><br><span class="line"><span class="language-javascript">            ]</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="DropDownList"><a href="#DropDownList" class="headerlink" title="DropDownList"></a>DropDownList</h3><p>定義這個下拉式選單做什麼</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function () &#123;</span><br><span class="line">    var data = [</span><br><span class="line">        &#123; text: &quot;Black&quot;, value: &quot;1&quot; &#125;,</span><br><span class="line">        &#123; text: &quot;Orange&quot;, value: &quot;2&quot; &#125;,</span><br><span class="line">        &#123; text: &quot;Grey&quot;, value: &quot;3&quot; &#125;</span><br><span class="line">    ];</span><br><span class="line">        </span><br></pre></td></tr></table></figure></div>
+
+<p>接著將這個下拉式選單實作出來</p>
+<p>dataTextField: “text”：為讀取顯示方才定義的 “text”<br>dataValueField: “value”：透過方才定義的 “value” 決定實際放置位置<br>dataSource: data：讀取資料來源</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#color&quot;).kendoDropDownList(&#123;</span><br><span class="line">        dataTextField: &quot;text&quot;,</span><br><span class="line">        dataValueField: &quot;value&quot;,</span><br><span class="line">        dataSource: data,</span><br><span class="line">        index: 0</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></div>
+
+<p>完整程式碼：</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;color&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    $(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> data = [</span></span><br><span class="line"><span class="language-javascript">            &#123; <span class="attr">text</span>: <span class="string">&quot;Black&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;1&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">            &#123; <span class="attr">text</span>: <span class="string">&quot;Orange&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;2&quot;</span> &#125;,</span></span><br><span class="line"><span class="language-javascript">            &#123; <span class="attr">text</span>: <span class="string">&quot;Grey&quot;</span>, <span class="attr">value</span>: <span class="string">&quot;3&quot;</span> &#125;</span></span><br><span class="line"><span class="language-javascript">        ];</span></span><br><span class="line"><span class="language-javascript">        </span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#color&quot;</span>).<span class="title function_">kendoDropDownList</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">dataTextField</span>: <span class="string">&quot;text&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">dataValueField</span>: <span class="string">&quot;value&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">dataSource</span>: data,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">index</span>: <span class="number">0</span></span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>因為使用 Kendo 套件就需要用官方指定的方式操作，所以要進入 <a class="link"   target="_blank" rel="noopener" href="https://demos.telerik.com/kendo-ui/dropdownlist/api" >Kendo DropDownList API</a> 來得知如何取值和設定值</p>
+<h3 id="DatePicker"><a href="#DatePicker" class="headerlink" title="DatePicker"></a>DatePicker</h3><p>先定義這個選日小工具做甚麼</p>
+<p><code>format</code>：定義了年月日的表達形式<br><code>dateInput: true</code>：當 dateInput 等於 true 的時候，定義了這個選日工具的年月日輸入不能寫不合法字元</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(<span class="keyword">function</span> () &#123;</span><br><span class="line">    $(&quot;#datepicker&quot;).kendoDatePicker(&#123;</span><br><span class="line">        format: &quot;yyyy/MM/dd&quot;,</span><br><span class="line">        dateInput: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+
+<p>完整程式碼：</p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&lt;</span>body<span class="operator">&gt;</span></span><br><span class="line">    <span class="operator">&lt;</span>input id<span class="operator">=</span>&quot;datepicker&quot; <span class="operator">/</span><span class="operator">&gt;</span></span><br><span class="line"><span class="operator">&lt;</span><span class="operator">/</span>body<span class="operator">&gt;</span></span><br><span class="line"><span class="operator">&lt;</span>script<span class="operator">&gt;</span></span><br><span class="line">    $(document).ready(<span class="keyword">function</span> () &#123;</span><br><span class="line">        $(&quot;#datepicker&quot;).kendoDatePicker(&#123;</span><br><span class="line">            format: &quot;yyyy/MM/dd&quot;,</span><br><span class="line">            dateInput: <span class="literal">true</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="operator">&lt;</span><span class="operator">/</span>script<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://demos.telerik.com/kendo-ui/button/index" >Kendo UI for jQuery Button Overview</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://demos.telerik.com/kendo-ui/grid/local-data-binding" >jQuery Grid Binding to Local Data</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Kendo-UI/">#Kendo UI</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/07/07/Web-Front-End-Basic-Introduction/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Web - Front End Basic Introduction</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/07/06/SQL-Transact-SQL/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">SQL - Transact-SQL</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Kendo UI - Note</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kendo-UI-Note"><span class="nav-text">Kendo UI - Note</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#head-Setting"><span class="nav-text">head Setting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Button"><span class="nav-text">Add Button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Grid"><span class="nav-text">Add Grid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DropDownList"><span class="nav-text">DropDownList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DatePicker"><span class="nav-text">DatePicker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
 
                 
 

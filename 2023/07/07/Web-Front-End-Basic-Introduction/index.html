@@ -315,428 +315,287 @@
             <div class="main-content">
 
                 
-                    @import '../common/variables'
-
-$avatarWidth = 46px
-$arrow-icon-width = 16px
-$post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
-$temp-toc-width = hexo-config('global.sidebar_width')
-$toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
-$without-toc-container-width = calc(100% - $temp-toc-width)
-$gap = 30px
-
-.post-page-container
-  display flex
-  position relative
-  justify-content space-between
-  box-sizing border-box
-  width 100%
-  height 100%
-
-  &.show-toc
-    .toc-content-container
-      display block
-      opacity 1
-      transition opacity 0.2s ease-in 0.2s
-      width $toc-container-width
-
-      &:hover::-webkit-scrollbar-thumb
-        border 3px solid rgba(183, 183, 183, 0.3)
-
-      &::-webkit-scrollbar
-        width 6px
-        height 6px
-        transition all 0.2s ease
-        display block
-
-      &::-webkit-scrollbar-track
-        background transparent
-        border none
-
-      &::-webkit-scrollbar-thumb
-        border-radius 20px
-        border 3px solid rgba(183, 183, 183, 0)
-        transition all 0.2s ease
-
-    .article-content-container
-      width calc(100% - 210px) !important
-
-  +redefine-tablet()
-    .toc-content-container
-      display none !important
-
-    .article-content-container
-      width 100% !important
-
-    &.show-toc
-      .toc-content-container
-        display none
-
-      .article-content-container
-        width 100% !important
-
-  .article-content-container
-    width 100%
-    transition width 0.2s ease
-    redefine-container(
-      false,
-      0,
-      0,
-      30px,
-      30px
-    )
-
-    +redefine-mobile()
-      padding 1.2rem 0.2rem
-      box-shadow none !important
-
-    .article-title
-      position relative
-      width 100%
-
-      img
-        margin -30px -30px 0 -30px
-        width calc(100% + 60px)
-        height 350px
-        object-fit cover
-        border-radius $redefine-border-radius-large-top
-
-        +redefine-tablet()
-          height 300px
-          margin -24px -24px 0 -24px
-          width calc(100% + 60px * 0.8)
-
-        +redefine-mobile()
-          height 200px
-          border-radius 0px
-          margin -24px -24px 0 -24px
-          width calc(100% + 80px * 0.6)
-
-      .article-title-regular
-        font-size $article-title-font-size
-        font-weight 700
-        margin 0px 0 30px 0
-        line-height 1.4
-        color var(--second-text-color)
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-
-      .article-title-cover
-        display flex
-        padding 0.4rem 1.5rem 0.5rem 1.5rem
-        line-height 1.5
-        margin 0 auto
-        position absolute
-        bottom 36px
-        left 0
-        text-align center
-        font-family $english-font-family, $chinese-font-family, 'Noto Sans SC', sans-serif
-        color var(--second-text-color)
-        font-size $article-title-font-size
-        font-weight 700
-        background-color var(--background-color-transparent)
-        backdrop-filter blur(10px)
-        -webkit-backdrop-filter blur(10px)
-        border 1.5px solid var(--home-banner-icons-container-border-color)
-        border-radius $redefine-border-radius-large
-
-        +redefine-tablet()
-          font-size: $article-title-font-size * 0.8
-          bottom 36px * 0.8
-
-        +redefine-mobile()
-          font-size: $article-title-font-size * 0.6
-          bottom 36px * 0.6
-          border-radius $redefine-border-radius-medium
-
-    .article-header
-      font-family $english-font-family, $chinese-font-family, 'Noto Sans', 'Noto Sans SC', sans-serif
-      position relative
-      padding-left $avatarWidth
-      width 100%
-      height $avatarWidth
-      box-sizing border-box
-
-      .avatar
-        position absolute
-        top 0
-        left 0
-        width $avatarWidth
-        height $avatarWidth
-        padding 1px
-        box-sizing border-box
-        border 1px solid var(--border-color)
-        border-radius $redefine-border-radius-medium
-
-        img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-      .info
-        padding 2px 0
-        margin-left 10px
-        box-sizing border-box
-        display flex
-        flex-direction column
-        justify-content space-between
-        width 100%
-        height 100%
-
-        .author
-          font-weight regular
-          font-size 1.18rem
-          display flex
-          align-items center
-
-          .name
-            color var(--default-text-color)
-
-          .author-label
-            margin-left 5px
-            font-size 0.8rem
-            font-weight 500
-            padding 2px 8px
-            border-radius $redefine-border-radius-small
-            color var(--third-text-color)
-            border 1px solid var(--shadow-color-1)
-
-    .article-header, .article-header-meta-info
-      margin-top 16px
-
-      +redefine-tablet()
-        transform scale(0.9)
-        transform-origin left top
-
-    .article-content
-      margin-top $spacing-unit
-      padding-bottom 10px
-      word-wrap break-word
-      border-bottom 1px solid var(--border-color)
-      color var(--default-text-color)
-
-      &>:first-child
-        margin-top 0 !important
-
-    .post-tags-box
-      display none
-      margin-top 1.6rem
-      justify-content center
-      font-size 1.1rem
-
-      +redefine-tablet()
-        display flex
-
-      +redefine-mobile()
-        margin-top 1.2rem
-        font-size 1rem
-
-      .tag-item
-        margin 0 0.25rem
-
-    .post-copyright-info
-      margin-top $spacing-unit
-      width 100%
-
-      +redefine-tablet()
-        margin-top ($spacing-unit * 0.8) !important
-
-    .article-nav
-      height 40px
-      margin-top $spacing-unit
-
-      .article-prev, .article-next
-        max-width $post-nav-max-width
-        height 100%
-        box-sizing border-box
-        border-radius $redefine-border-radius-medium !important
-        redefine-container(
-          true,
-          1.03,
-          1.03,
-          10px,
-          0
-        )
-
-        a
-          position relative
-          display block
-          width 100%
-          height 100%
-          box-sizing border-box
-
-          &.prev
-            padding-left $arrow-icon-width
-
-          &.next
-            padding-right $arrow-icon-width
-
-          .arrow-icon
-            position absolute
-            top 0
-            height 100%
-            width $arrow-icon-width
-
-            &.left
-              left 0
-
-            &.right
-              right 0
-
-          .title
-            width 100%
-            height 100%
-
-      .article-prev
-        float left
-
-      .article-next
-        float right
-
-      .post-nav-item
-        display none
-
-        +redefine-tablet()
-          display inline-block
-
-      .post-nav-title-item
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-
-        +redefine-tablet()
-          display none
-
-    .recommended-article
-      overflow visible !important
-
-      .recommended-mobile
-        display none
-        +redefine-tablet()
-          display block
-
-      .recommended-desktop
-        display block
-        +redefine-tablet()
-          display none
-
-      .recommended-article-header
-        font-size 28px
-        font-weight 550
-        margin-top 2.8rem
-
-      .recommended-article-group
-        padding 10px 0
-        display flex
-        justify-content space-between
-        flex-wrap wrap
-        overflow visible !important
-
-        @media screen and (max-width $device-tablet)
-          height 190px
-          overflow scroll
-
-          &::-webkit-scrollbar
-            width 0 !important
-
-          -ms-overflow-style none
-
-        .recommended-article-item
-          redefine-container(
-            false,
-            0,
-            0,
-            10px,
-            0
-          )
-          box-shadow var(--redefine-box-shadow-flat)
-          padding 12px !important
-          display flex
-          flex-wrap wrap
-          align-content center
-          justify-content center
-          align-items center
-          overflow hidden
-          width 32%
-          max-height 200px
-          margin-top: $gap * 0.5
-          margin-right 0
-
-          +redefine-tablet()
-            width 49%
-
-          img
-            display flex
-            width calc(100% + 24px)
-            height 150px
-            object-fit cover
-            border-radius $redefine-border-radius-medium-top
-            margin -12px -12px 0 -12px !important
-
-          span
-            margin-top 0.5rem
-            display block
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 1
-            overflow hidden
-
-  .toc-content-container
-    white-space nowrap
-    opacity 0
-    position sticky
-    top: $navbar-height + $spacing-unit
-    // border-radius $redefine-border-radius-large
-    border-radius $redefine-border-radius-none
-    // display none
-    // visibility hidden
-    // width $toc-container-width
-    width 0
-    height auto
-    max-height calc(100vh - 210px)
-    margin-left 30px
-    // z-index $z-index-6
-    overflow-y auto
-    overflow-x hidden
-    float right
-    padding 10px
-    box-sizing border-box
-    box-shadow none !important
-    transition opacity 0.3s ease-out 0.3s
-    hover-style(
-      false,
-      0,
-      0
-    )
-    transition-t('display', '0', '0.3', 'ease-out')
-
-    +redefine-tablet()
-      left 0 !important
-      display none !important
-
-  figure.image-caption
-    img
-      margin-bottom 0
-
-    figcaption
-      margin-top 5px
-      margin-bottom 10px
-      text-align center
-      font-size 0.9rem
-      color var(--third-text-color)
-
-@media (prefers-color-scheme dark)
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
-
-.dark-mode
-  .article-title img
-    filter brightness(0.7)
-    -webkit-filter brightness(0.7)
-    transition filter 0.3s ease
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post7.jpg" alt="Web - Front End Basic Introduction" />
+                    <h1 class="article-title-cover">Web - Front End Basic Introduction</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-07-07</span>
+        <span class="mobile">2023-07-07</span>
+        <!-- <span class="desktop">2023-07-07 22:06:27</span>
+        <span class="mobile">2023-07-07 22:06</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-07-18</span>
+            <span class="mobile">2023-07-18</span>
+            <!-- <span class="desktop">2023-07-18 22:50:55</span>
+            <span class="mobile">2023-07-18 22:50</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Web/Front-End-Basic/">Front End Basic</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Front-End-Back-End"><a href="#Front-End-Back-End" class="headerlink" title="Front End &amp; Back End"></a>Front End &amp; Back End</h2><p>關於什麼是前端與後端可以參考 Web Intro<br><a class="link"   target="_blank" rel="noopener" href="https://noootown.com/" >買早餐也能了解前端 vs 後端？ - 沒一村隨便說</a></p>
+<h3 id="Front-End"><a href="#Front-End" class="headerlink" title="Front End"></a>Front End</h3><ul>
+<li>跑在瀏覽器上的文件、檔案、資料、程式</li>
+<li>Chrome、HTML、CSS、JavaScript</li>
+</ul>
+<h3 id="Back-End"><a href="#Back-End" class="headerlink" title="Back End"></a>Back End</h3><ul>
+<li>跑在伺服器上的服務、資料、程式</li>
+<li>IIS、Tomcat、ASP.NET、JSP、Python、DataBase</li>
+</ul>
+<h3 id="UI-UX"><a href="#UI-UX" class="headerlink" title="UI &amp; UX"></a>UI &amp; UX</h3><ul>
+<li>UI (User Interface)：整體介面視覺呈現，包含顏色、元件的樣貌設計</li>
+<li>UX (User Experience)：以用戶習慣為基礎設計出合適或更好的體驗產品</li>
+</ul>
+<h2 id="Front-End-Introduction"><a href="#Front-End-Introduction" class="headerlink" title="Front End Introduction"></a>Front End Introduction</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
+<li>超文本標記語言 HyperText Markup Language</li>
+<li>網站的骨架</li>
+<li><code>&lt;div&gt;</code><ul>
+<li>文件區塊，以一整行為單位，結尾會自動換行</li>
+</ul>
+</li>
+<li><code>&lt;span&gt;</code><ul>
+<li>與 <code>&lt;div&gt;</code> 概念類似，但結尾不會自動換行</li>
+</ul>
+</li>
+<li><code>&lt;table&gt;</code><ul>
+<li>表格</li>
+<li><code>&lt;tr&gt;</code> 單位為行，包起來的範圍內為一行</li>
+<li><code>&lt;td&gt;</code> 單位為欄，包起來為此欄內容</li>
+</ul>
+</li>
+<li><code>&lt;form&gt;</code><ul>
+<li>表單</li>
+<li><code>&lt;label&gt;</code> 標籤顯示文字</li>
+<li><code>&lt;input&gt;</code> 輸入方塊，結尾不須關起來</li>
+<li><code>&lt;br&gt;</code> 換行</li>
+</ul>
+</li>
+<li><code>&lt;href&gt;</code><ul>
+<li>超連結</li>
+<li><code>&lt;a href=&quot;超連結&quot;&gt;超連結顯示文字&lt;/a&gt;</code></li>
+</ul>
+</li>
+<li><code>&lt;button&gt;</code><ul>
+<li>按鈕</li>
+</ul>
+</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li>階層樣式表：Cascading Style Sheets</li>
+<li>網站的衣服</li>
+<li><code>&lt;style&gt;</code><ul>
+<li><code>#ID</code><ul>
+<li>找出 id &#x3D; “ID” 加上 CSS 效果</li>
+</ul>
+</li>
+<li><code>.ID</code><ul>
+<li>找出 class &#x3D; “ID” 加上 CSS 效果</li>
+</ul>
+</li>
+<li><code>p.ID</code><ul>
+<li>找出 <code>&lt;p&gt;</code> 且 class &#x3D; “ID” 加上 CSS 效果</li>
+</ul>
+</li>
+<li><code>*</code><ul>
+<li>對所有 <code>&lt;&gt;</code> 加上 CSS 效果</li>
+</ul>
+</li>
+<li><code>p, div</code><ul>
+<li>對 <code>&lt;p&gt;</code> 和 <code>&lt;div&gt;</code> 加上 CSS 效果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>margin</code></li>
+<li><code>border</code></li>
+<li><code>padding</code></li>
+</ul>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>因為內容有點多，所以另外開了一篇文章撰寫，抵家：<a href="https://lavinia0724.github.io/2023/07/07/WEB-JavaScript/">WEB - JavaScript</a></p>
+<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><p>因為內容也比較多，所以另外開了一篇文章撰寫，抵家：<a href="https://lavinia0724.github.io/2023/07/07/WEB-jQuery/">WEB - jQuery</a></p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h4 id="HTTP-Method"><a href="#HTTP-Method" class="headerlink" title="HTTP Method"></a>HTTP Method</h4><p>HTTP 常見的請求方法</p>
+<h5 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h5><p>查詢書籍編號為 10 的書籍</p>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /Book/BookID=10</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h5><p>新增一本書名為哈利波特的書籍</p>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /Book Body: &#123;BookName: 哈利波特&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h5><p>修改書籍編號為 10 的書籍，將名稱改為哈哈波特</p>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUT /Book Body: &#123;BookID: 10, BookName: 哈哈波特&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h5><p>刪除書籍編號為 10 的書籍</p>
+<div class="highlight-container" data-rel="Http"><figure class="iseeu highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE /Book Body: &#123;BookID: 10&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="HTTP-Status-Code"><a href="#HTTP-Status-Code" class="headerlink" title="HTTP Status Code"></a>HTTP Status Code</h5><p>HTTP 常見回應代碼</p>
+<ul>
+<li>2xx 成功<ul>
+<li>200 請求正確完成</li>
+<li>201 新增請求完成</li>
+</ul>
+</li>
+<li>4xx<ul>
+<li>400 使用者輸入錯誤</li>
+<li>403 使用者沒有訪問權限</li>
+<li>404 頁面不存在</li>
+</ul>
+</li>
+<li>5xx<ul>
+<li>500 伺服器內部錯誤</li>
+<li>503 伺服器未提供服務</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://noootown.com/" >買早餐也能了解前端 vs 後端？ - 沒一村隨便說</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.w3schools.com/tags/tag_comment.asp" >HTML Intro</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.w3schools.com/tags/tag_comment.asp" >CSS Intro</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.w3schools.com/bootstrap/" >Bootstrap Intro</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.eztrust.com.tw/webdesign/B/90" >Chrome 開發人員工具介紹</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Web/">#Web</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/07/07/Web-JavaScript/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Web - JavaScript</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/07/07/Kendo-UI-Note/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Kendo UI - Note</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Web - Front End Basic Introduction</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Front-End-Back-End"><span class="nav-text">Front End &amp; Back End</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Front-End"><span class="nav-text">Front End</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Back-End"><span class="nav-text">Back End</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI-UX"><span class="nav-text">UI &amp; UX</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Front-End-Introduction"><span class="nav-text">Front End Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery"><span class="nav-text">jQuery</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
 
                 
 
