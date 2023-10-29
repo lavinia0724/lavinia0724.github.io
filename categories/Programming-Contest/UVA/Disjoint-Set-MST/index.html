@@ -13,22 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/07/06/sql-transaction/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/categories/programming-contest/uva/disjoint-set-mst/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Transaction Introduction">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SQL - Transaction">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/07/06/SQL-Transaction/index.html">
+        <meta name="description" content="LAVI">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LAVI">
+<meta property="og:url" content="https://lavinia0724.github.io/categories/Programming-Contest/UVA/Disjoint-Set-MST/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Transaction Introduction">
+<meta property="og:description" content="LAVI">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-07-06T14:52:49.000Z">
-<meta property="article:modified_time" content="2023-07-09T11:35:36.036Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="LAVI">
 <meta name="twitter:card" content="summary">
     
     
@@ -41,7 +39,7 @@
     
     <title>
         
-            SQL - Transaction -
+            分類: Disjoint Set - MST -
         
         INCLAVIC
     </title>
@@ -316,206 +314,39 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post4.jpg" alt="SQL - Transaction" />
-                    <h1 class="article-title-cover">SQL - Transaction</h1>
-                </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-06</span>
-        <span class="mobile">2023-07-06</span>
-        <!-- <span class="desktop">2023-07-06 22:52:49</span>
-        <span class="mobile">2023-07-06 22:52</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-09</span>
-            <span class="mobile">2023-07-09</span>
-            <!-- <span class="desktop">2023-07-09 19:35:36</span>
-            <span class="mobile">2023-07-09 19:35</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/SQL/">SQL</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/SQL/Transaction/">Transaction</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/SQL/">SQL</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content markdown-body">
-                <h2 id="Transaction-Intro"><a href="#Transaction-Intro" class="headerlink" title="Transaction Intro"></a>Transaction Intro</h2><p>每筆跟 SQL 的互動都算是交易</p>
-<div class="note-large orange"><div class="notel-title"><p>為何需要 Transaction：</p>
-</div><div class="notel-content"><p>假設今天轉帳到一半，銀行突然停電<br>對方還沒接收到你轉帳的錢，但你的帳戶已經扣錢下去了，你會不會氣炸 XD <br><br>所以必須要讓整個交易都完成，<br>你的帳戶扣錢了，對方的帳戶也收到錢了，才能算是交易成功<br>否則需要 ROLLBACK 回原本的狀態</p>
-</div></div>
-
-
-<h3 id="Isolation-Levels"><a href="#Isolation-Levels" class="headerlink" title="Isolation Levels"></a>Isolation Levels</h3><p>Transaction 有多個隔離層級</p>
-<ul>
-<li>Serializable 可序列化<ul>
-<li>系統會依照搜尋條件對查詢結果資料設定範圍，確保範圍內的資料不會被新增、修改、刪除</li>
-<li>一定要等前一個交易完成，後一筆交易才能去使用該筆交易用到的資料</li>
-<li>不會出現 Dirty 讀取，不可重複讀取</li>
-</ul>
-</li>
-<li>Repeatable reads 可重複讀取<ul>
-<li>不能讀取其他交易已經修改但尚未確認的資料，且在交易完成前，任何其他交易都不能修改目前交易已讀取的資料</li>
-</ul>
-</li>
-<li>Read committed 授權讀取 (SQL Server 預設)<ul>
-<li>不能讀取其他交易已經修改但尚未確認的資料</li>
-</ul>
-</li>
-<li>Read uncommitted 未授權讀取<ul>
-<li>可讀取其他交易已經修改但尚未確認的資料</li>
-</ul>
-</li>
-</ul>
-<h2 id="Implementing-Transaction"><a href="#Implementing-Transaction" class="headerlink" title="Implementing Transaction"></a>Implementing Transaction</h2><h3 id="Define-Transaction"><a href="#Define-Transaction" class="headerlink" title="Define Transaction"></a>Define Transaction</h3><p>利用 TRY…CATCH，可確保欲插入的 table 確實存在，否則會回傳錯誤</p>
-<p><code>ERROR_NUMBER()</code> 是 SQL 內建函數，用於檢測是否有 ERROR 產生</p>
-<p>BEGIN TRANSACTION：判斷交易開始<br>COMMIT TRANSACTION：如果過程中沒有錯誤沒有錯誤，便開始交易<br>ROLLBACK TRANSACTION：如果過程中有錯誤，則需 ROLLBACK 回原本狀態</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRY</span><br><span class="line">    <span class="keyword">BEGIN</span> TRANSACTION</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName1 VALUE...</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName2 VALUE...</span><br><span class="line">    <span class="keyword">COMMIT</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> TRY</span><br><span class="line"><span class="keyword">BEGIN</span> CATCH</span><br><span class="line">    <span class="keyword">SELECT</span> ERROR_NUMBER()</span><br><span class="line">    <span class="keyword">ROLLBACK</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> CATCH;</span><br></pre></td></tr></table></figure></div>
-
-<p>TRANSACTION 要包的很小心，以免若有其他需要讀取被包入的資料時，會被 lock 住讀不到</p>
-<h3 id="Using-XACT-ABORT"><a href="#Using-XACT-ABORT" class="headerlink" title="Using XACT_ABORT"></a>Using XACT_ABORT</h3><p>亦可以利用 XACT_ABORT，在錯誤產生時自動啟動 ROLLBACK<br>因為有時有些 ERROR 難以判斷或難以判斷如何包入 TRANSACTION 中</p>
-<p>XACT_ABORT 預設為 OFF，故將其 ON 起來</p>
-<blockquote>
-<p>但其實當你想到要 ON 起來，你就會想到要包 TRANSACTION ㄌ</p>
-</blockquote>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> XACT_ABORT <span class="keyword">ON</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>TRANSACTION 不一定都包在資料庫，也有可能會包在程式前端，但也要包得小心</p>
-
-            </div>
-
-            
-
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/SQL/">#SQL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/07/06/SQL-Transact-SQL/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Transact-SQL</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2023/07/05/SQL-Stored-Procedure/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Stored Procedure</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
+    <div class="category-container">
+        <div class="category-name">
+            <i class="fa-solid fa-folder"></i>&nbsp;Disjoint Set - MST
         </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">SQL - Transaction</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transaction-Intro"><span class="nav-text">Transaction Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Isolation-Levels"><span class="nav-text">Isolation Levels</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementing-Transaction"><span class="nav-text">Implementing Transaction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-Transaction"><span class="nav-text">Define Transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-XACT-ABORT"><span class="nav-text">Using XACT_ABORT</span></a></li></ol></li></ol>
-
-    </div>
-</div>
+        <div class="category-post-list">
+            
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <!-- <span class="archive-year-post-count">[1]</span> -->
             </div>
-        
+            <ul class="article-list">
+              
+              <li class="article-item" date-is='02-17'>
+                <a href="/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/">
+                  <span class="article-title">UVA 00908 - Re-connecting Computer Sites</span>
+                </a>
+              </li>
+              
+            </ul>
+        </section>
+    
+</div>
+
+        </div>
+    </div>
+    <div class="category-paginator">
+        <div class="paginator">
+    <span class="page-number current">1</span>
+</div>
+
     </div>
 </div>
 
@@ -571,23 +402,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-side-tools-container">
@@ -696,16 +510,6 @@
 
 
 <div class="post-scripts pjax">
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
-
     
 </div>
 

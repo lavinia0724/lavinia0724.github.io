@@ -13,22 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/07/06/sql-transaction/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/02/17/uva-10986-sending-email/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Transaction Introduction">
+        <meta name="description" content="UVA 10986 - Sending email">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL - Transaction">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/07/06/SQL-Transaction/index.html">
+<meta property="og:title" content="UVA 10986 - Sending email">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/02/17/UVA-10986-Sending-email/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Transaction Introduction">
+<meta property="og:description" content="UVA 10986 - Sending email">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-07-06T14:52:49.000Z">
-<meta property="article:modified_time" content="2023-07-09T11:35:36.036Z">
+<meta property="article:published_time" content="2023-02-17T10:38:55.000Z">
+<meta property="article:modified_time" content="2023-10-29T16:46:52.192Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="UVA">
 <meta name="twitter:card" content="summary">
     
     
@@ -41,7 +41,7 @@
     
     <title>
         
-            SQL - Transaction -
+            UVA 10986 - Sending email -
         
         INCLAVIC
     </title>
@@ -322,8 +322,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post4.jpg" alt="SQL - Transaction" />
-                    <h1 class="article-title-cover">SQL - Transaction</h1>
+                    <img src="/images/post53.jpg" alt="UVA 10986 - Sending email" />
+                    <h1 class="article-title-cover">UVA 10986 - Sending email</h1>
                 </div>
             
                 
@@ -343,19 +343,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-06</span>
-        <span class="mobile">2023-07-06</span>
-        <!-- <span class="desktop">2023-07-06 22:52:49</span>
-        <span class="mobile">2023-07-06 22:52</span> -->
+        <span class="desktop">2023-02-17</span>
+        <span class="mobile">2023-02-17</span>
+        <!-- <span class="desktop">2023-02-17 18:38:55</span>
+        <span class="mobile">2023-02-17 18:38</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-09</span>
-            <span class="mobile">2023-07-09</span>
-            <!-- <span class="desktop">2023-07-09 19:35:36</span>
-            <span class="mobile">2023-07-09 19:35</span> -->
+            <span class="desktop">2023-10-30</span>
+            <span class="mobile">2023-10-30</span>
+            <!-- <span class="desktop">2023-10-30 00:46:52</span>
+            <span class="mobile">2023-10-30 00:46</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -366,11 +366,15 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/SQL/">SQL</a>&nbsp;
+                        <a href="/categories/Programming-Contest/">Programming Contest</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/SQL/Transaction/">Transaction</a>&nbsp;
+                        &gt; <a href="/categories/Programming-Contest/UVA/">UVA</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Contest/UVA/Dijkstra/">Dijkstra</a>&nbsp;
                     </li>
                 
             </ul>
@@ -382,7 +386,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/SQL/">SQL</a>&nbsp;
+                        <a href="/tags/UVA/">UVA</a>&nbsp;
                     </li>
                 
             </ul>
@@ -405,48 +409,27 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Transaction-Intro"><a href="#Transaction-Intro" class="headerlink" title="Transaction Intro"></a>Transaction Intro</h2><p>每筆跟 SQL 的互動都算是交易</p>
-<div class="note-large orange"><div class="notel-title"><p>為何需要 Transaction：</p>
-</div><div class="notel-content"><p>假設今天轉帳到一半，銀行突然停電<br>對方還沒接收到你轉帳的錢，但你的帳戶已經扣錢下去了，你會不會氣炸 XD <br><br>所以必須要讓整個交易都完成，<br>你的帳戶扣錢了，對方的帳戶也收到錢了，才能算是交易成功<br>否則需要 ROLLBACK 回原本的狀態</p>
-</div></div>
+                <h2 id="解題觀念"><a href="#解題觀念" class="headerlink" title="解題觀念"></a>解題觀念</h2><p>Dijkstra</p>
+<p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QyVZFDUQpwxeTSVGGIEWtgwIGOAc207R/view" >MST &amp; Shortest Path</a></p>
+<h2 id="題目敘述"><a href="#題目敘述" class="headerlink" title="題目敘述"></a>題目敘述</h2><p>電腦線路最小延遲計算<br>有 N 台伺服器，以 M 條線路彼此連接<br>當一台伺服器向另一台伺服器傳送訊息時會因線路產生延遲<br>請找出能以最小延遲從起點伺服器 S 向終點伺服器 T 傳送訊息的線路走法</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>第一行為 t 代表有多少組測資</p>
+<p>每筆測資中<br>第一行有四個整數 分別為 N、M、S、T<br>N 代表有多少台伺服器<br>M 代表有多少條線路<br>S 代表起點伺服器<br>T 代表終點伺服器</p>
+<p>接下來 M 行有三個數 u、v、w 表示線段兩端連接的伺服器及線路延遲量</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2 1 0 1</span><br><span class="line">0 1 100</span><br><span class="line">3 3 2 0</span><br><span class="line">0 1 100</span><br><span class="line">0 2 200</span><br><span class="line">1 2 50</span><br><span class="line">2 0 0 1</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>輸出從伺服器 S 到伺服器 T 傳送訊息的最小延遲<br>如果無法送達,則輸出 unreachable</p>
+<p>輸出格式為:<br>”Case #&lt;當前為第幾筆測資&gt;:”<br>間隔一個空白後輸出最小延遲量&#x2F;unreachable</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Case #1: 100</span><br><span class="line">Case #2: 150</span><br><span class="line">Case #3: unreachable</span><br></pre></td></tr></table></figure></div>
+
+<!-- ## 解題觀念簡報參考
+### Disjoint Set
+關於 Disjoint Set 的基本觀念可以參考我的這篇文章：[Algorithm - Disjoint Set](https://lavinia0724.github.io/2023/02/14/Algorithm-Disjoint-Set/)
+
+### Minimum Spanning Tree Kruskal's Algorithm 
+關於 Minimum Spanning Tree Kruskal's Algorithm 的基本觀念可以參考我的這篇文章：[Algorithm - Minimum Spanning Tree Kruskal's Algorithm](https://lavinia0724.github.io/2023/02/14/Algorithm-Minimum-Spanning-Tree/) -->
 
 
-<h3 id="Isolation-Levels"><a href="#Isolation-Levels" class="headerlink" title="Isolation Levels"></a>Isolation Levels</h3><p>Transaction 有多個隔離層級</p>
-<ul>
-<li>Serializable 可序列化<ul>
-<li>系統會依照搜尋條件對查詢結果資料設定範圍，確保範圍內的資料不會被新增、修改、刪除</li>
-<li>一定要等前一個交易完成，後一筆交易才能去使用該筆交易用到的資料</li>
-<li>不會出現 Dirty 讀取，不可重複讀取</li>
-</ul>
-</li>
-<li>Repeatable reads 可重複讀取<ul>
-<li>不能讀取其他交易已經修改但尚未確認的資料，且在交易完成前，任何其他交易都不能修改目前交易已讀取的資料</li>
-</ul>
-</li>
-<li>Read committed 授權讀取 (SQL Server 預設)<ul>
-<li>不能讀取其他交易已經修改但尚未確認的資料</li>
-</ul>
-</li>
-<li>Read uncommitted 未授權讀取<ul>
-<li>可讀取其他交易已經修改但尚未確認的資料</li>
-</ul>
-</li>
-</ul>
-<h2 id="Implementing-Transaction"><a href="#Implementing-Transaction" class="headerlink" title="Implementing Transaction"></a>Implementing Transaction</h2><h3 id="Define-Transaction"><a href="#Define-Transaction" class="headerlink" title="Define Transaction"></a>Define Transaction</h3><p>利用 TRY…CATCH，可確保欲插入的 table 確實存在，否則會回傳錯誤</p>
-<p><code>ERROR_NUMBER()</code> 是 SQL 內建函數，用於檢測是否有 ERROR 產生</p>
-<p>BEGIN TRANSACTION：判斷交易開始<br>COMMIT TRANSACTION：如果過程中沒有錯誤沒有錯誤，便開始交易<br>ROLLBACK TRANSACTION：如果過程中有錯誤，則需 ROLLBACK 回原本狀態</p>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRY</span><br><span class="line">    <span class="keyword">BEGIN</span> TRANSACTION</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName1 VALUE...</span><br><span class="line">        <span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableName2 VALUE...</span><br><span class="line">    <span class="keyword">COMMIT</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> TRY</span><br><span class="line"><span class="keyword">BEGIN</span> CATCH</span><br><span class="line">    <span class="keyword">SELECT</span> ERROR_NUMBER()</span><br><span class="line">    <span class="keyword">ROLLBACK</span> TRANSACTION</span><br><span class="line"><span class="keyword">END</span> CATCH;</span><br></pre></td></tr></table></figure></div>
-
-<p>TRANSACTION 要包的很小心，以免若有其他需要讀取被包入的資料時，會被 lock 住讀不到</p>
-<h3 id="Using-XACT-ABORT"><a href="#Using-XACT-ABORT" class="headerlink" title="Using XACT_ABORT"></a>Using XACT_ABORT</h3><p>亦可以利用 XACT_ABORT，在錯誤產生時自動啟動 ROLLBACK<br>因為有時有些 ERROR 難以判斷或難以判斷如何包入 TRANSACTION 中</p>
-<p>XACT_ABORT 預設為 OFF，故將其 ON 起來</p>
-<blockquote>
-<p>但其實當你想到要 ON 起來，你就會想到要包 TRANSACTION ㄌ</p>
-</blockquote>
-<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> XACT_ABORT <span class="keyword">ON</span>;</span><br></pre></td></tr></table></figure></div>
-
-<p>TRANSACTION 不一定都包在資料庫，也有可能會包在程式前端，但也要包得小心</p>
-
+<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">50000</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> v, w;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Item</span>&#123;</span><br><span class="line">    <span class="type">int</span> u, dis;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 取路徑最短</span></span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> Item &amp;rhs) <span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dis &gt; rhs.dis;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;Edge&gt; G[maxn];</span><br><span class="line"><span class="type">int</span> dist[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="type">int</span> S)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, INF, <span class="built_in">sizeof</span>(dist));</span><br><span class="line">    dist[S] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    priority_queue&lt;Item&gt; pq;</span><br><span class="line">    pq.<span class="built_in">push</span>(&#123;S, <span class="number">0</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!pq.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        Item now = pq.<span class="built_in">top</span>();</span><br><span class="line">        pq.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果當前走到這個點的路徑比原本走到此點的路徑還長 就不再考慮</span></span><br><span class="line">        <span class="keyword">if</span>(now.dis &gt; dist[now.u]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 鬆弛更新</span></span><br><span class="line">        <span class="comment">// 如果有與當前的點相連之點可更新為更短路徑 則將他推入佇列 </span></span><br><span class="line">        <span class="comment">// 讓該點被取出時確認他是否能更新其他與該點相連的點的最短路徑</span></span><br><span class="line">        <span class="keyword">for</span>(Edge e : G[now.u])&#123;</span><br><span class="line">            <span class="keyword">if</span>(dist[e.v] &gt; dist[now.u] + e.w)&#123;</span><br><span class="line">                dist[e.v] = dist[now.u] + e.w;</span><br><span class="line">                pq.<span class="built_in">push</span>(&#123;e.v, dist[e.v]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> t, Case = <span class="number">1</span>;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="type">int</span> N, M, S, T;</span><br><span class="line">        cin &gt;&gt; N &gt;&gt; M &gt;&gt; S &gt;&gt; T;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= N; ++i) G[i].<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> u, v, w;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i)&#123;</span><br><span class="line">            cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 無向圖 所以兩個方向都要推</span></span><br><span class="line">            G[u].<span class="built_in">push_back</span>(&#123;v, w&#125;);</span><br><span class="line">            G[v].<span class="built_in">push_back</span>(&#123;u, w&#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Dijkstra</span>(S);</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Case #&quot;</span> &lt;&lt; Case++ &lt;&lt; <span class="string">&quot;: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(dist[T] == INF) cout &lt;&lt; <span class="string">&quot;unreachable&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; dist[T] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
             </div>
 
             
@@ -455,7 +438,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/SQL/">#SQL</a>&nbsp;
+                            <a href="/tags/UVA/">#UVA</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -469,13 +452,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2023/07/06/SQL-Transact-SQL/"
+                            href="/2023/03/06/APP-Google-sign-in-with-app-passwords/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Transact-SQL</span>
+                                    <span class="post-nav-title-item">Other - Google sign in with app passwords</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -485,10 +468,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/07/05/SQL-Stored-Procedure/"
+                            href="/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">SQL - Stored Procedure</span>
+                                    <span class="post-nav-title-item">UVA 00908 - Re-connecting Computer Sites</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -509,8 +492,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">SQL - Transaction</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transaction-Intro"><span class="nav-text">Transaction Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Isolation-Levels"><span class="nav-text">Isolation Levels</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementing-Transaction"><span class="nav-text">Implementing Transaction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-Transaction"><span class="nav-text">Define Transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-XACT-ABORT"><span class="nav-text">Using XACT_ABORT</span></a></li></ol></li></ol>
+        <div class="page-title">UVA 10986 - Sending email</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E8%A7%80%E5%BF%B5"><span class="nav-text">解題觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li></ol>
 
     </div>
 </div>
