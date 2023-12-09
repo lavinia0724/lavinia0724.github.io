@@ -20,21 +20,22 @@
     
         <meta name="description" content="使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問、使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenAI API - connect OpenAI API with MATLAB Program Side Project">
+<meta property="og:title" content="OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP">
 <meta property="og:url" content="https://lavinia0724.github.io/2023/03/07/OpenAI-API-connect-OpenAI-API-with-MATLAB-Program-Side-Project/index.html">
 <meta property="og:site_name" content="LAVI">
 <meta property="og:description" content="使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問、使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIArc.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIResponse.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABsendGmail.png">
 <meta property="article:published_time" content="2023-03-07T15:19:26.000Z">
-<meta property="article:modified_time" content="2023-10-13T11:25:52.535Z">
+<meta property="article:modified_time" content="2023-12-09T16:03:04.592Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="OpenAI API">
 <meta property="article:tag" content="Side Project">
 <meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIResponse.png">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIArc.png">
     
     
     <!--- Icon Part-->
@@ -46,7 +47,7 @@
     
     <title>
         
-            OpenAI API - connect OpenAI API with MATLAB Program Side Project -
+            OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP -
         
         INCLAVIC
     </title>
@@ -360,8 +361,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post21.jpg" alt="OpenAI API - connect OpenAI API with MATLAB Program Side Project" />
-                    <h1 class="article-title-cover">OpenAI API - connect OpenAI API with MATLAB Program Side Project</h1>
+                    <img src="/images/post21.jpg" alt="OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP" />
+                    <h1 class="article-title-cover">OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</h1>
                 </div>
             
                 
@@ -390,10 +391,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-10-13</span>
-            <span class="mobile">2023-10-13</span>
-            <!-- <span class="desktop">2023-10-13 19:25:52</span>
-            <span class="mobile">2023-10-13 19:25</span> -->
+            <span class="desktop">2023-12-10</span>
+            <span class="mobile">2023-12-10</span>
+            <!-- <span class="desktop">2023-12-10 00:03:04</span>
+            <span class="mobile">2023-12-10 00:03</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -451,7 +452,7 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Research-Motivation"><a href="#Research-Motivation" class="headerlink" title="Research Motivation"></a>Research Motivation</h2><p>因 OpenAI 及其旗下的 ChatGPT 目前為資訊界大勢熱門議題<br>故我嘗試透過 OpenAI 提供之 API 服務、使用 MATLAB 撰寫程式自動連線對 OpenAI 之 Davinci model 進行 prompt 詢問<br>並將其 Response 的結果撰寫 MATLAB 程式以 SMTP 協定自動寄信給課程助教</p>
+                <h2 id="Research-Motivation"><a href="#Research-Motivation" class="headerlink" title="Research Motivation"></a>Research Motivation</h2><p>因 OpenAI 及其旗下的 ChatGPT 目前為資訊界大勢熱門議題<br>嘗試透過 OpenAI 提供之 API 服務、結合 MATLAB 撰寫程式自動連線對 OpenAI 之 Davinci model 進行 prompt 詢問<br>並將其 Response 的結果撰寫 MATLAB 程式以 SMTP 協定自動寄信給指定收件人</p>
 <a class="button  center large" target="_blank" rel="noopener" href='https://github.com/lavinia0724/MATLAB-OpenAI-API' title='LAVI's connect OpenAI API with MATLAB Program Side Project'><i class='fa-brands fa-github'></i> LAVI's connect OpenAI API with MATLAB Program Side Project</a>
 
 <h2 id="Teaching-Steps-PPT"><a href="#Teaching-Steps-PPT" class="headerlink" title="Teaching Steps PPT"></a>Teaching Steps PPT</h2><p>剛好同個學期選修的進階生活美語課程有個人 Mini-Talk Presentation 演講<br>於是我就拿 OpenAI API with MATLAB Program 當作主題了 XD</p>
@@ -459,6 +460,13 @@
 <a class="button  center large" target="_blank" rel="noopener" href='https://drive.google.com/file/d/1aR0facxrC0Tgg9TTlim4lyyZxrkOACyi/view?usp=sharing' title='How to automatically connect OpenAI API with MATLAB Program'><i class='fa-solid fa-file-powerpoint'></i> How to automatically connect OpenAI API with MATLAB Program</a>
 
 <h2 id="What-is-API"><a href="#What-is-API" class="headerlink" title="What is API"></a>What is API</h2><p>本 side project 主要圍繞在如何應用 OpenAI 的 API 服務<br>那究竟什麼是 API 呢？<br><a href="https://lavinia0724.github.io/2023/03/06/Web-What-is-API/">可參考這篇文章：Web - What is API</a></p>
+<h2 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\MATLABOpenAIArc.png"
+                     
+                >
+
 <h2 id="Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問"><a href="#Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問" class="headerlink" title="Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問"></a>Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</h2><p>需先至 <a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/account/api-keys" >OpenAI API</a> 註冊帳號並生成自己的 API key<br><a href="https://lavinia0724.github.io/2023/03/07/OpenAI-API-How-to-generate-OpenAI-API-key/">如何生成 OpenAI API key 可以參考我的這篇文章</a></p>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><div class="highlight-container" data-rel="M"><figure class="iseeu highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import matlab.net.*</span><br><span class="line">import matlab.net.http.*</span><br><span class="line"></span><br><span class="line"><span class="comment">% Connect OpenAI API</span></span><br><span class="line">api_endpoint <span class="built_in">=</span> <span class="string">&quot;https://api.openai.com/v1/engines/davinci/completions&quot;</span>;</span><br><span class="line">api_key <span class="built_in">=</span> convertCharsToStrings(getenv(<span class="string">&quot;APIkey&quot;</span>)); <span class="comment">% 從環境變數裡提取 API key</span></span><br><span class="line"></span><br><span class="line">prompt <span class="built_in">=</span> <span class="string">&quot;Please introduce Cloud Computing&quot;</span> <span class="comment">% 向 Davinci model 詢問的 prompt 語句</span></span><br><span class="line">parameters <span class="built_in">=</span> struct(<span class="string">&#x27;prompt&#x27;</span>,prompt, <span class="string">&#x27;max_tokens&#x27;</span>,<span class="number">100</span>); <span class="comment">% 可接受 response 的最多 tocken 數</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% request 設定</span></span><br><span class="line">headers <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">headers(<span class="number">2</span>) <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Authorization&#x27;</span>, [<span class="string">&#x27;Bearer &#x27;</span> + api_key]);</span><br><span class="line">request <span class="built_in">=</span> matlab.net.http.RequestMessage(<span class="string">&#x27;post&#x27;</span>,headers,parameters);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 發送 request 並接收 response</span></span><br><span class="line">response <span class="built_in">=</span> send(request, URI(api_endpoint));</span><br><span class="line">response_text <span class="built_in">=</span> response.Body.Data; <span class="comment">% 從回傳的封包的 body 內容提取文字</span></span><br><span class="line">response_text <span class="built_in">=</span> response_text.choices(<span class="number">1</span>).text;</span><br><span class="line">disp(response_text);</span><br></pre></td></tr></table></figure></div>
 <p>幾個小小細節：<br><code>api_key = convertCharsToStrings(getenv(&quot;APIkey&quot;));</code>：</p>
@@ -588,8 +596,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">OpenAI API - connect OpenAI API with MATLAB Program Side Project</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Research-Motivation"><span class="nav-text">Research Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Teaching-Steps-PPT"><span class="nav-text">Teaching Steps PPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-API"><span class="nav-text">What is API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-1-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E9%80%A3%E7%B7%9A-OpenAI-API-%E9%80%B2%E8%A1%8C%E8%A9%A2%E5%95%8F"><span class="nav-text">Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-2-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%AF%84-Gmail-%E4%BF%A1%E4%BB%B6%E8%87%B3%E6%8C%87%E5%AE%9A%E6%94%B6%E4%BB%B6%E8%80%85%E7%9A%84%E4%BF%A1%E7%AE%B1"><span class="nav-text">Session 2. 使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-1"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C-1"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Research-Motivation"><span class="nav-text">Research Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Teaching-Steps-PPT"><span class="nav-text">Teaching Steps PPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-API"><span class="nav-text">What is API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%A7%8B"><span class="nav-text">架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-1-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E9%80%A3%E7%B7%9A-OpenAI-API-%E9%80%B2%E8%A1%8C%E8%A9%A2%E5%95%8F"><span class="nav-text">Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-2-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%AF%84-Gmail-%E4%BF%A1%E4%BB%B6%E8%87%B3%E6%8C%87%E5%AE%9A%E6%94%B6%E4%BB%B6%E8%80%85%E7%9A%84%E4%BF%A1%E7%AE%B1"><span class="nav-text">Session 2. 使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-1"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C-1"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
