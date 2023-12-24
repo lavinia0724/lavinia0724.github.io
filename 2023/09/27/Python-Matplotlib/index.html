@@ -13,25 +13,31 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2022/01/25/github-note/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/09/27/python-matplotlib/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Github - Note">
+        <meta name="description" content="Python - Matplotlib">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github - Note">
-<meta property="og:url" content="https://lavinia0724.github.io/2022/01/25/Github-Note/index.html">
+<meta property="og:title" content="Python - Matplotlib">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/09/27/Python-Matplotlib/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Github - Note">
+<meta property="og:description" content="Python - Matplotlib">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Github01.png">
-<meta property="article:published_time" content="2022-01-25T12:52:32.000Z">
-<meta property="article:modified_time" content="2023-12-21T15:33:43.695Z">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib03.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib04.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib05.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib06.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib07.png">
+<meta property="article:published_time" content="2023-09-27T15:58:57.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:36:35.840Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Github01.png">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Matplotlib01.png">
     
     
     <!--- Icon Part-->
@@ -43,7 +49,7 @@
     
     <title>
         
-            Github - Note -
+            Python - Matplotlib -
         
         INCLAVIC
     </title>
@@ -357,8 +363,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post39.jpg" alt="Github - Note" />
-                    <h1 class="article-title-cover">Github - Note</h1>
+                    <img src="/images/post41.jpg" alt="Python - Matplotlib" />
+                    <h1 class="article-title-cover">Python - Matplotlib</h1>
                 </div>
             
                 
@@ -378,23 +384,38 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-01-25</span>
-        <span class="mobile">2022-01-25</span>
-        <!-- <span class="desktop">2022-01-25 20:52:32</span>
-        <span class="mobile">2022-01-25 20:52</span> -->
+        <span class="desktop">2023-09-27</span>
+        <span class="mobile">2023-09-27</span>
+        <!-- <span class="desktop">2023-09-27 23:58:57</span>
+        <span class="mobile">2023-09-27 23:58</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-21</span>
-            <span class="mobile">2023-12-21</span>
-            <!-- <span class="desktop">2023-12-21 23:33:43</span>
-            <span class="mobile">2023-12-21 23:33</span> -->
+            <span class="desktop">2023-12-25</span>
+            <span class="mobile">2023-12-25</span>
+            <!-- <span class="desktop">2023-12-25 00:36:35</span>
+            <span class="mobile">2023-12-25 00:36</span> -->
             <span class="hover-info">更新</span>
         </span>
     
 
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Python/Matplotlib/">Matplotlib</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
     
         <span class="article-tags article-meta-item">
@@ -402,7 +423,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Github/">Github</a>&nbsp;
+                        <a href="/tags/Python/">Python</a>&nbsp;
                     </li>
                 
             </ul>
@@ -425,50 +446,77 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Instruction"><a href="#Instruction" class="headerlink" title="Instruction"></a>Instruction</h2><ol>
-<li><p>新建本地數據庫</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>將檔案加入索引中</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>查看檔案</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure></div></li>
-<li><p>將索引中的檔案提交到本地數據庫<br>commit 可以寫一些更新的內容，方便知道本次更新了什麼</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;upload&quot;</span></span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>新增分支</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -M main</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>新增遠端連線</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;ssh git@github.com:lavinia0724/test.git&gt;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>查看遠端連線</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>把本地數據庫檔案推上 github</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>把 github 上的檔案拉到本地數據庫</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<h3 id="引用外部檔案"><a href="#引用外部檔案" class="headerlink" title="引用外部檔案"></a>引用外部檔案</h3><p>如果推上 github 的檔案中有 clone 別人的檔案，在推上 github 後會顯上白色箭頭且無法打開<br>原因是在本機的資料夾中有 <code>.git</code> 隱藏資料夾</p>
-<p>解決辦法：</p>
-<ol>
-<li>刪除資料夾中的 <code>.git</code> 隱藏資料夾</li>
-</ol>
-<p>在有 <code>.git</code> 的資料夾路徑下，點擊上方的 <strong>三個點</strong>，然後選擇 <strong>檢視</strong>， 點選 <strong>顯示隱藏的檔案、資料夾及磁碟機</strong>，<br>按確定後就會出現隱藏的資料夾了<br><img  
+                <h2 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h2><p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://drive.google.com/file/d/11_lnlmuAbXS9CovXafy9JQ5gaMOF1NDk/view?usp=sharing" >Python Introduction</a></p>
+<h2 id="Matplotlib-繪製教學"><a href="#Matplotlib-繪製教學" class="headerlink" title="Matplotlib 繪製教學"></a>Matplotlib 繪製教學</h2><h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install matplotlib </span><br></pre></td></tr></table></figure></div>
+
+<h3 id="pyplot"><a href="#pyplot" class="headerlink" title="pyplot"></a>pyplot</h3><p>畫折線圖</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196</span>, <span class="number">197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">y = [<span class="number">200</span>, <span class="number">400</span>, <span class="number">450</span>, <span class="number">580</span>, <span class="number">665</span>, <span class="number">790</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\postImgs\Github01.png"
+                     data-src="\images\postImgs\Matplotlib01.png"
                      
-                ></p>
-<ol start="2">
-<li>在此資料夾的父資料夾路徑下，執行以下指令<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached &lt;資料夾名稱&gt;</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<p>刪除完 cache 後，就可以普通的回到推本機資料上 github 的指令環節了</p>
+                >
+
+<h3 id="setting-color"><a href="#setting-color" class="headerlink" title="setting color"></a>setting color</h3><p>設定線段顏色</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196</span>, <span class="number">197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">y = [<span class="number">200</span>, <span class="number">400</span>, <span class="number">450</span>, <span class="number">580</span>, <span class="number">665</span>, <span class="number">790</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">plt.plot(x, y, color = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib02.png"
+                     
+                >
+
+<h3 id="axis-label-title"><a href="#axis-label-title" class="headerlink" title="axis label &amp; title"></a>axis label &amp; title</h3><p>加上圖片標題、x 軸 y 軸名稱</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196</span>, <span class="number">197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">y = [<span class="number">200</span>, <span class="number">400</span>, <span class="number">450</span>, <span class="number">580</span>, <span class="number">665</span>, <span class="number">790</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">plt.plot(x, y, color = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;This is title&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;This is y label&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;This is x label&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib03.png"
+                     
+                >
+
+<h3 id="multiple-data"><a href="#multiple-data" class="headerlink" title="multiple data"></a>multiple data</h3><p>同時要畫多條線的時候</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">yl = [<span class="number">2000</span>, <span class="number">4000</span>, <span class="number">4500</span>, <span class="number">5800</span>, <span class="number">6650</span>, <span class="number">7900</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">5310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">y2 = [<span class="number">1000</span>, <span class="number">3000</span>, <span class="number">3500</span>, <span class="number">4500</span>, <span class="number">3650</span>, <span class="number">4900</span>, <span class="number">8000</span>, <span class="number">1032</span>, <span class="number">1525</span>, <span class="number">2010</span>, <span class="number">2682</span>, <span class="number">3061</span>, <span class="number">4310</span>, <span class="number">5520</span>]</span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, color = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>))</span><br><span class="line">plt.plot(x, y2, <span class="string">&#x27;--&#x27;</span>,color = (<span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">255</span>/<span class="number">255</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;This is title&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;This is y label&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;This is x label&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib04.png"
+                     
+                >
+
+<h3 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h3><p>可以在圖上加上網格</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">yl = [<span class="number">2000</span>, <span class="number">4000</span>, <span class="number">4500</span>, <span class="number">5800</span>, <span class="number">6650</span>, <span class="number">7900</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">5310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">y2 = [<span class="number">1000</span>, <span class="number">3000</span>, <span class="number">3500</span>, <span class="number">4500</span>, <span class="number">3650</span>, <span class="number">4900</span>, <span class="number">8000</span>, <span class="number">1032</span>, <span class="number">1525</span>, <span class="number">2010</span>, <span class="number">2682</span>, <span class="number">3061</span>, <span class="number">4310</span>, <span class="number">5520</span>]</span><br><span class="line"></span><br><span class="line">plt.plot(x, y1, color = (<span class="number">255</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>))</span><br><span class="line">plt.plot(x, y2, <span class="string">&#x27;--&#x27;</span>,color = (<span class="number">100</span>/<span class="number">255</span>, <span class="number">100</span>/<span class="number">255</span>, <span class="number">255</span>/<span class="number">255</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;This is title&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;This is y label&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;This is x label&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib05.png"
+                     
+                >
+
+<h3 id="setp"><a href="#setp" class="headerlink" title="setp"></a>setp</h3><p>可以在線段上加點原點，方便標示</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">yl = [<span class="number">2000</span>, <span class="number">4000</span>, <span class="number">4500</span>, <span class="number">5800</span>, <span class="number">6650</span>, <span class="number">7900</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">5310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">y2 = [<span class="number">1000</span>, <span class="number">3000</span>, <span class="number">3500</span>, <span class="number">4500</span>, <span class="number">3650</span>, <span class="number">4900</span>, <span class="number">8000</span>, <span class="number">1032</span>, <span class="number">1525</span>, <span class="number">2010</span>, <span class="number">2682</span>, <span class="number">3061</span>, <span class="number">4310</span>, <span class="number">5520</span>]</span><br><span class="line"></span><br><span class="line">lines = plt.plot(x, y1, x, y2)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;This is title&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;This is y label&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;This is x label&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.setp(lines, marker = <span class="string">&quot;o&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib06.png"
+                     
+                >
+
+<h3 id="legend"><a href="#legend" class="headerlink" title="legend"></a>legend</h3><p>小標籤，可以標示線段、顏色之類的涵義</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">X = [<span class="number">100</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">175</span>, <span class="number">180</span>, <span class="number">185</span>, <span class="number">190</span>, <span class="number">195</span>, <span class="number">196197</span>, <span class="number">198</span>, <span class="number">201</span>, <span class="number">205</span>]</span><br><span class="line">yl = [<span class="number">2000</span>, <span class="number">4000</span>, <span class="number">4500</span>, <span class="number">5800</span>, <span class="number">6650</span>, <span class="number">7900</span>, <span class="number">1000</span>, <span class="number">1262</span>, <span class="number">2525</span>, <span class="number">3018</span>, <span class="number">3682</span>, <span class="number">4061</span>, <span class="number">5310</span>, <span class="number">6520</span>]</span><br><span class="line"></span><br><span class="line">y2 = [<span class="number">1000</span>, <span class="number">3000</span>, <span class="number">3500</span>, <span class="number">4500</span>, <span class="number">3650</span>, <span class="number">4900</span>, <span class="number">8000</span>, <span class="number">1032</span>, <span class="number">1525</span>, <span class="number">2010</span>, <span class="number">2682</span>, <span class="number">3061</span>, <span class="number">4310</span>, <span class="number">5520</span>]</span><br><span class="line"></span><br><span class="line">lines = plt.plot(x, y1, x, y2)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;This is title&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;This is y label&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;This is x label&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.setp(lines, marker = <span class="string">&quot;o&quot;</span>)</span><br><span class="line">plt.legend([<span class="string">&quot;blue&quot;</span>, <span class="string">&quot;orange&quot;</span>], loc = <span class="string">&quot;lower right&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Matplotlib07.png"
+                     
+                >
+
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/xiebaochun/article/details/114143346" >引用外部檔案</a></li>
+<li>瀚丰學長的深度學習課程簡報<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://hank891008.github.io/" >學長的 Blog，推推！</a></li>
+</ul>
+</li>
 </ul>
 
             </div>
@@ -479,7 +527,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Github/">#Github</a>&nbsp;
+                            <a href="/tags/Python/">#Python</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -493,13 +541,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2022/02/09/UVA-11321-Sort-Sort-and-Sort/"
+                            href="/2023/10/26/Other-Microsoft-PowerPoint-Note/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">UVA 11321 - Sort Sort and Sort</span>
+                                    <span class="post-nav-title-item">Other - Microsoft PowerPoint Note</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -509,10 +557,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2021/12/13/UVA-11988-Broken-Keyboard/"
+                            href="/2023/09/27/Python-Syntax/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">UVA 11988 - Broken Keyboard</span>
+                                    <span class="post-nav-title-item">Python - Syntax</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -533,8 +581,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Github - Note</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instruction"><span class="nav-text">Instruction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%A4%96%E9%83%A8%E6%AA%94%E6%A1%88"><span class="nav-text">引用外部檔案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Python - Matplotlib</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Course"><span class="nav-text">Course</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matplotlib-%E7%B9%AA%E8%A3%BD%E6%95%99%E5%AD%B8"><span class="nav-text">Matplotlib 繪製教學</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install"><span class="nav-text">Install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyplot"><span class="nav-text">pyplot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setting-color"><span class="nav-text">setting color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axis-label-title"><span class="nav-text">axis label &amp; title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multiple-data"><span class="nav-text">multiple data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grid"><span class="nav-text">grid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setp"><span class="nav-text">setp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#legend"><span class="nav-text">legend</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
