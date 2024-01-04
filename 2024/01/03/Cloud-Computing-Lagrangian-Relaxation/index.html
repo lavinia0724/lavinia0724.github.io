@@ -18,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance">
+        <meta name="description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance">
+<meta property="og:title" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
 <meta property="og:url" content="https://lavinia0724.github.io/2024/01/03/Cloud-Computing-Lagrangian-Relaxation/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance">
+<meta property="og:description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation01.png">
 <meta property="article:published_time" content="2024-01-03T09:15:43.000Z">
-<meta property="article:modified_time" content="2024-01-04T15:52:05.194Z">
+<meta property="article:modified_time" content="2024-01-04T16:42:06.947Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Cloud Computing">
 <meta name="twitter:card" content="summary">
@@ -43,7 +43,7 @@
     
     <title>
         
-            Cloud Computing - Lagrangian Relaxation &amp; Load Balance -
+            Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms -
         
         INCLAVIC
     </title>
@@ -357,8 +357,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post62.JPG" alt="Cloud Computing - Lagrangian Relaxation &amp; Load Balance" />
-                    <h1 class="article-title-cover">Cloud Computing - Lagrangian Relaxation &amp; Load Balance</h1>
+                    <img src="/images/post62.JPG" alt="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms" />
+                    <h1 class="article-title-cover">Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</h1>
                 </div>
             
                 
@@ -387,10 +387,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-04</span>
-            <span class="mobile">2024-01-04</span>
-            <!-- <span class="desktop">2024-01-04 23:52:05</span>
-            <span class="mobile">2024-01-04 23:52</span> -->
+            <span class="desktop">2024-01-05</span>
+            <span class="mobile">2024-01-05</span>
+            <!-- <span class="desktop">2024-01-05 00:42:06</span>
+            <span class="mobile">2024-01-05 00:42</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -405,7 +405,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Cloud-Computing/Lagrangian-Relaxation/">Lagrangian Relaxation</a>&nbsp;
+                        &gt; <a href="/categories/Cloud-Computing/Lagrangian-Relaxation-Load-Balance-Dynamic-Scheduling-Algorithms/">Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</a>&nbsp;
                     </li>
                 
             </ul>
@@ -440,9 +440,9 @@
             
 
             <div class="article-content markdown-body">
-                <p>紀錄我在國科會大專學生研究計畫中，針對雲端群集伺服器的負載平衡優化實驗中應用到的 Lagrangian Relaxation 拉格朗日鬆弛演算法和 Load Balance 負載平衡的學習筆記</p>
-<h2 id="Lagrangian-Relaxation-Intro"><a href="#Lagrangian-Relaxation-Intro" class="headerlink" title="Lagrangian Relaxation Intro"></a>Lagrangian Relaxation Intro</h2><p>Lagrangian Relaxation(拉格朗日鬆弛)是一種優化問題的方法，通常用於處理具有約束條件的問題<br>基本概念是透過將原始問題的約束條件放入目標函數中，並引入拉格朗日鬆弛乘子來進行鬆弛<br>讓原問題轉化為無約束的優化問題</p>
-<p>作法為透過在原目標函數中引入的拉格朗日項讓原目標函數的最小值問題更小、讓原目標函數的最大值問題更大<br>例如對於最小值問題，在由拉格朗日乘子構造的拉格朗日函數中去最大值，將下界(lower bound)提高，以此獲得最佳下界</p>
+                <p>紀錄我在國科會大專學生研究計畫中，針對雲端群集伺服器的負載平衡優化實驗中應用到的 Lagrangian Relaxation 拉格朗日鬆弛演算法、Load Balance 負載平衡和 Dynamic Scheduling Algorithms 動態排程演算法的學習筆記</p>
+<h2 id="Lagrangian-Relaxation-Intro"><a href="#Lagrangian-Relaxation-Intro" class="headerlink" title="Lagrangian Relaxation Intro"></a>Lagrangian Relaxation Intro</h2><p>Lagrangian Relaxation (拉格朗日鬆弛) 是一種優化問題的方法，通常用於處理具有約束條件的問題<br>基本概念是透過將原始問題的約束條件放入目標函數中，並引入拉格朗日鬆弛乘子來進行鬆弛<br>讓原問題轉化為無約束的優化問題</p>
+<p>作法為透過在原目標函數中引入的拉格朗日項讓原目標函數的最小值問題更小、讓原目標函數的最大值問題更大<br>例如對於最小值問題，在由拉格朗日乘子構造的拉格朗日函數中去最大值，將下界 (lower bound) 提高，以此獲得最佳下界</p>
 <h2 id="Lagrangian-Relaxation-的基本運算式"><a href="#Lagrangian-Relaxation-的基本運算式" class="headerlink" title="Lagrangian Relaxation 的基本運算式"></a>Lagrangian Relaxation 的基本運算式</h2><p>Lagrangian Relaxation 的基本運算式為：<br><img  
                      lazyload
                      src="/images/loading.svg"
@@ -452,14 +452,32 @@
 <ul>
 <li>λ<sub>i</sub> 為非負的拉格朗日乘子</li>
 <li>μ<sub>j</sub> 為拉格朗日乘子</li>
-<li>L(x,λ,μ) 便是我們想要的 Lagrangian 函數</li>
-<li>min<sub>x</sub>L(x,λ,μ)即為我們要的 Lagrangian Relaxation，將原始問題轉化為 Lagrangian 函數的最小化問題</li>
+<li>L (x,λ,μ) 便是我們想要的 Lagrangian 函數</li>
+<li>min<sub>x</sub>L (x,λ,μ) 即為我們要的 Lagrangian Relaxation，將原始問題轉化為 Lagrangian 函數的最小化問題</li>
 </ul>
-<h2 id="Load-Balance-Intro"><a href="#Load-Balance-Intro" class="headerlink" title="Load Balance Intro"></a>Load Balance Intro</h2><p>Load balancing(負載平衡)是在電腦中，合理的分配工作到不同的資源上，以確保資源能夠最有效的被利用<br>其目標是確保每個資源都能盡可能地平均處理工作</p>
-<p>針對伺服器的負載失衡問題：<br>在分散式伺服器中，不同的伺服器可能處於不同負載狀態</p>
+<h2 id="Load-Balance-Intro"><a href="#Load-Balance-Intro" class="headerlink" title="Load Balance Intro"></a>Load Balance Intro</h2><p>Load balancing (負載平衡) 是在電腦中，合理的分配工作到不同的資源上，以確保資源能夠最有效的被利用<br>其目標是確保每個資源都能盡可能地平均處理工作</p>
+<h3 id="針對伺服器的負載失衡問題："><a href="#針對伺服器的負載失衡問題：" class="headerlink" title="針對伺服器的負載失衡問題："></a>針對伺服器的負載失衡問題：</h3><p>在分散式伺服器中，不同的伺服器可能處於不同負載狀態<br>當某些伺服器過度忙碌，其他伺服器處於閒置狀態，就是負載失衡</p>
+<div class="note danger"><p><i style="color:#F9727D" class="red fa-solid fa-circle-exclamation"> </i> <del>當有人忙得要死但同事啥事都不用幹，會讓員工不爽</del><br>且使公司效率降低，損失整體效益，所以好的主管<del>要學會負載平衡</del>分配好工作！</p>
+</div>
+
+<h3 id="伺服器負載平衡方法"><a href="#伺服器負載平衡方法" class="headerlink" title="伺服器負載平衡方法"></a>伺服器負載平衡方法</h3><h4 id="Load-Balancer"><a href="#Load-Balancer" class="headerlink" title="Load Balancer"></a>Load Balancer</h4><p>Load Balancer (負載平衡器) 是在伺服器群集前一步的裝置，用來將請求分配到不同的伺服器，根據不同的負載平衡演算法</p>
+<h4 id="Dynamic-Scheduling-Algorithms"><a href="#Dynamic-Scheduling-Algorithms" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h4><p>Load Balancer 分配請求使用的負載平衡演算法，我以下述 Dynamic Scheduling Algorithms (動態排程演算法) 中的五種演算法做主要分析</p>
+<ol>
+<li>輪詢法 (Round Robin) </li>
+<li>加權輪詢演算法 (Weighted Round Robin) </li>
+<li>平滑加權輪詢演算法 (Smoothing Weighted Round Robin) </li>
+<li>最少連接法 (Least Connections) </li>
+<li>隨機法 (Random)</li>
+</ol>
+<h2 id="Dynamic-Scheduling-Algorithms-1"><a href="#Dynamic-Scheduling-Algorithms-1" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h2><h3 id="1-輪詢法-Round-Robin"><a href="#1-輪詢法-Round-Robin" class="headerlink" title="1. 輪詢法 (Round Robin)"></a>1. 輪詢法 (Round Robin)</h3><p>將請求按照輪詢方式分配給伺服器，每個伺服器一次接收一個請求</p>
+<h3 id="2-加權輪詢演算法-Weighted-Round-Robin"><a href="#2-加權輪詢演算法-Weighted-Round-Robin" class="headerlink" title="2. 加權輪詢演算法 (Weighted Round Robin)"></a>2. 加權輪詢演算法 (Weighted Round Robin)</h3><p>為不同的伺服器分配不同的權重，用以反映它們的性能，性能較好的伺服器分配更多請求</p>
+<h3 id="3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin"><a href="#3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin" class="headerlink" title="3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)"></a>3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</h3><p>在分配任務給不同的伺服器時，每個伺服器有一個權重的平滑計分值，每完成一項任務，計分會增加，每次分配會考慮伺服器的當前權重指標計分多少</p>
+<p>實作：<br>每個伺服器維護一個權重和一個當前的權重指標<br>在每次請求分配過程中，先將所有伺服器的當前權重指標加上其原始權重，然後將請求分配給具有最大當前權重指標的伺服器<br>分配後，該伺服器的當前權重指標減去所有伺服器的原始權重總和，以此實現平滑過渡</p>
+<h3 id="4-最少連接法-Least-Connections"><a href="#4-最少連接法-Least-Connections" class="headerlink" title="4. 最少連接法 (Least Connections)"></a>4. 最少連接法 (Least Connections)</h3><p>將請求分配給目前連接數最少的伺服器，讓較閒的伺服器來處理請求</p>
+<h3 id="5-隨機法-Random"><a href="#5-隨機法-Random" class="headerlink" title="5. 隨機法 (Random)"></a>5. 隨機法 (Random)</h3><p>透過隨機選擇來分配伺服器處理請求，但可能導致資源分配不均勻</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41348401/article/details/130903442" >拉格朗日鬆弛與拉格朗日分解 lagrangian relaxation</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/CloudInSky1/article/details/122297915" >拉格朗日鬆弛（一）——理論及算法</a></li>
+<li>[拉格朗日鬆弛與拉格朗日分解 lagrangian relaxation] (<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41348401/article/details/130903442" >https://blog.csdn.net/sinat_41348401/article/details/130903442</a>) </li>
+<li>[拉格朗日鬆弛（一）——理論及算法] (<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/CloudInSky1/article/details/122297915" >https://blog.csdn.net/CloudInSky1/article/details/122297915</a>)</li>
 </ul>
 
             </div>
@@ -509,8 +527,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Cloud Computing - Lagrangian Relaxation &amp; Load Balance</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrangian-Relaxation-Intro"><span class="nav-text">Lagrangian Relaxation Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrangian-Relaxation-%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%81%8B%E7%AE%97%E5%BC%8F"><span class="nav-text">Lagrangian Relaxation 的基本運算式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Balance-Intro"><span class="nav-text">Load Balance Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrangian-Relaxation-Intro"><span class="nav-text">Lagrangian Relaxation Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrangian-Relaxation-%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%81%8B%E7%AE%97%E5%BC%8F"><span class="nav-text">Lagrangian Relaxation 的基本運算式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Balance-Intro"><span class="nav-text">Load Balance Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%9D%E5%B0%8D%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E8%B2%A0%E8%BC%89%E5%A4%B1%E8%A1%A1%E5%95%8F%E9%A1%8C%EF%BC%9A"><span class="nav-text">針對伺服器的負載失衡問題：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1%E6%96%B9%E6%B3%95"><span class="nav-text">伺服器負載平衡方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Scheduling-Algorithms-1"><span class="nav-text">Dynamic Scheduling Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BC%AA%E8%A9%A2%E6%B3%95-Round-Robin"><span class="nav-text">1. 輪詢法 (Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8A%A0%E6%AC%8A%E8%BC%AA%E8%A9%A2%E6%BC%94%E7%AE%97%E6%B3%95-Weighted-Round-Robin"><span class="nav-text">2. 加權輪詢演算法 (Weighted Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B9%B3%E6%BB%91%E5%8A%A0%E6%AC%8A%E8%BC%AA%E8%A9%A2%E6%BC%94%E7%AE%97%E6%B3%95-Smoothing-Weighted-Round-Robin"><span class="nav-text">3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9C%80%E5%B0%91%E9%80%A3%E6%8E%A5%E6%B3%95-Least-Connections"><span class="nav-text">4. 最少連接法 (Least Connections)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%9A%A8%E6%A9%9F%E6%B3%95-Random"><span class="nav-text">5. 隨機法 (Random)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
