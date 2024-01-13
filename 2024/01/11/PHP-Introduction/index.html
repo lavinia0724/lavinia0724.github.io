@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://blog.tarswork.com/upload/filemanager/post/2023/12_type_system.svg">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:720/format:webp/1*vx6NiLMmVMv2jahLWxgCMA.png">
 <meta property="article:published_time" content="2024-01-11T15:15:14.000Z">
-<meta property="article:modified_time" content="2024-01-12T16:28:06.450Z">
+<meta property="article:modified_time" content="2024-01-13T15:48:43.924Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
@@ -391,8 +391,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-01-13</span>
             <span class="mobile">2024-01-13</span>
-            <!-- <span class="desktop">2024-01-13 00:28:06</span>
-            <span class="mobile">2024-01-13 00:28</span> -->
+            <!-- <span class="desktop">2024-01-13 23:48:43</span>
+            <span class="mobile">2024-01-13 23:48</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -558,7 +558,10 @@
 <p><code>===</code> 是除了本來值相同的等於外，參數型態也要相同，多了一個這樣的條件<br>function name 是 not case-sensitive，大小寫都可以 call 這個 function</p>
 <div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">NISRA</span>(<span class="params"><span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$arg</span> === <span class="string">&quot;name&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Network and Information Security Research Association\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">elseif</span>(<span class="variable">$arg</span> === <span class="string">&quot;year&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;since 2007\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">nisra</span>(<span class="string">&quot;name&quot;</span>); </span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">NISRA</span>(<span class="string">&quot;year&quot;</span>);</span><br><span class="line"><span class="comment">// Network and Information Security Research Association</span></span><br><span class="line"><span class="comment">// since 2007</span></span><br></pre></td></tr></table></figure></div>
 
-<h4 id="function-sum"><a href="#function-sum" class="headerlink" title="function sum"></a>function sum</h4><p>未完待續..</p>
+<h4 id="function-sum"><a href="#function-sum" class="headerlink" title="function sum"></a>function sum</h4><p>假設我們今天寫一個 function sum，他有傳入兩個參數 x 和 y，我們可以對這兩個參數都寫入初始賦值<br>他有點像 constructor，今天如果你 call 了他但內部沒有放入任何參數的話<br>他就會用你原本賦的值，否則，如果你有放入參數的話，他就會用你放的參數的值<br>如果你放入的參數的值的量不是你全部要求的傳入參數的量的話，沒被傳入的參數，他也會用你初始賦的值</p>
+<p>我們正常的傳入 <code>sum(2, 3)</code>，那他輸出的結果會是 5，也就是他用的是我們傳入的 2 3，不是 function 上賦值的 1 2</p>
+<p>如果我們只傳入 <code>sum(4)</code>，一個參數，那他輸出的結果是 6，也就是他 <code>x = 4</code>，是你傳入的參數，但 <code>y = 2</code>，是他初始賦的值</p>
+<p>你傳入一個甚麼參數都沒有的 sum()，最後輸出結果是 3，就是你初始賦的值 x &#x3D; 1 和 y &#x3D; 2</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/news/344408" >程序員的世紀之戰：誰才是最好的計算機語言！</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://hugh-program-learning-diary-js.medium.com/%E5%BE%8C%E7%AB%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-8643ca1f5315" >後端基礎概念：php 與 資料庫基本知識</a></li>
