@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLAB02.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLAB03.png">
 <meta property="article:published_time" content="2024-01-17T13:56:04.000Z">
-<meta property="article:modified_time" content="2024-01-17T14:08:48.381Z">
+<meta property="article:modified_time" content="2024-01-17T14:17:00.195Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
@@ -391,8 +391,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-01-17</span>
             <span class="mobile">2024-01-17</span>
-            <!-- <span class="desktop">2024-01-17 22:08:48</span>
-            <span class="mobile">2024-01-17 22:08</span> -->
+            <!-- <span class="desktop">2024-01-17 22:17</span>
+            <span class="mobile">2024-01-17 22:17</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -427,7 +427,10 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Args"><a href="#Args" class="headerlink" title="Args"></a>Args</h2><h3 id="MATLAB-運算符和特殊字符"><a href="#MATLAB-運算符和特殊字符" class="headerlink" title="MATLAB 運算符和特殊字符"></a>MATLAB 運算符和特殊字符</h3><img  
+                <h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><h3 id="getenv"><a href="#getenv" class="headerlink" title="getenv"></a>getenv</h3><p>獲得環境變數</p>
+<div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getenv(<span class="string">&quot;envName&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Args"><a href="#Args" class="headerlink" title="Args"></a>Args</h2><h3 id="MATLAB-運算符和特殊字符"><a href="#MATLAB-運算符和特殊字符" class="headerlink" title="MATLAB 運算符和特殊字符"></a>MATLAB 運算符和特殊字符</h3><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="\images\postImgs\MATLAB01.png"
@@ -443,7 +446,10 @@
 <p><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/matlab_prog/matlab-operators-and-special-characters_zh_CN.html" >圖片來源</a></p>
 <div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% @(x, c) 是匿名函數，min(x ./ c) 代表取所有 x 除以 c 的商中的最小值，./ 是依序除</span></span><br><span class="line">objective_max = @(x, c) <span class="built_in">min</span>(x ./ c);</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h3 id="fminunc-求無約束多變量函數的最小值"><a href="#fminunc-求無約束多變量函數的最小值" class="headerlink" title="fminunc 求無約束多變量函數的最小值"></a>fminunc 求無約束多變量函數的最小值</h3><img  
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h3 id="convertCharsToStrings"><a href="#convertCharsToStrings" class="headerlink" title="convertCharsToStrings"></a>convertCharsToStrings</h3><p>把字元轉換成字串</p>
+<div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = convertCharsToStrings(chr)</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="fminunc-求無約束多變量函數的最小值"><a href="#fminunc-求無約束多變量函數的最小值" class="headerlink" title="fminunc 求無約束多變量函數的最小值"></a>fminunc 求無約束多變量函數的最小值</h3><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="\images\postImgs\MATLAB03.png"
@@ -453,10 +459,15 @@
 <p><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/optim/ug/fminunc.html" >圖片來源</a></p>
 <div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x0 = [<span class="number">1</span>,<span class="number">1</span>];</span><br><span class="line">[x,fval] = fminunc(fun,x0)</span><br></pre></td></tr></table></figure></div>
 
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><h3 id="發送電子郵件"><a href="#發送電子郵件" class="headerlink" title="發送電子郵件"></a>發送電子郵件</h3><div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 使用 SMTP 協定寄信</span></span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;E_mail&#x27;</span>, mail);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Server&#x27;</span>, <span class="string">&#x27;smtp.gmail.com&#x27;</span>);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Username&#x27;</span>, username);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Password&#x27;</span>, password);</span><br><span class="line"></span><br><span class="line"><span class="comment">% port 號用 465</span></span><br><span class="line">myprops = java.lang.System.getProperties;</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.auth&#x27;</span>, <span class="string">&#x27;true&#x27;</span>);</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.socketFactory.class&#x27;</span>, <span class="string">&#x27;javax.net.ssl.SSLSocketFactory&#x27;</span>);</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.socketFactory.port&#x27;</span>, <span class="string">&#x27;465&#x27;</span>);</span><br></pre></td></tr></table></figure></div>
+
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=oQ1yDriu4o0" >安裝 Optimization Toolbox</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/matlab_prog/matlab-operators-and-special-characters_zh_CN.html" >MATLAB 運算符和特殊字符</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/optim/ug/fminunc.html" >求無約束多變量函數的最小值</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/import_export/sending-email.html" >Math Works - Send Email</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/getenv.html" >Math Works - getenv</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/convertcharstostrings.html" >Math Works - convertCharsToStrings</a></li>
 </ul>
 
             </div>
@@ -507,7 +518,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">MATLAB - Note</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Args"><span class="nav-text">Args</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MATLAB-%E9%81%8B%E7%AE%97%E7%AC%A6%E5%92%8C%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="nav-text">MATLAB 運算符和特殊字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fminunc-%E6%B1%82%E7%84%A1%E7%B4%84%E6%9D%9F%E5%A4%9A%E8%AE%8A%E9%87%8F%E5%87%BD%E6%95%B8%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text">fminunc 求無約束多變量函數的最小值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OS"><span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getenv"><span class="nav-text">getenv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Args"><span class="nav-text">Args</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MATLAB-%E9%81%8B%E7%AE%97%E7%AC%A6%E5%92%8C%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="nav-text">MATLAB 運算符和特殊字符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convertCharsToStrings"><span class="nav-text">convertCharsToStrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fminunc-%E6%B1%82%E7%84%A1%E7%B4%84%E6%9D%9F%E5%A4%9A%E8%AE%8A%E9%87%8F%E5%87%BD%E6%95%B8%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text">fminunc 求無約束多變量函數的最小值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BC%E9%80%81%E9%9B%BB%E5%AD%90%E9%83%B5%E4%BB%B6"><span class="nav-text">發送電子郵件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
