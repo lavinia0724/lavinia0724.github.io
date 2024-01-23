@@ -26,8 +26,11 @@
 <meta property="og:description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation03.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation04.png">
 <meta property="article:published_time" content="2024-01-03T09:15:43.000Z">
-<meta property="article:modified_time" content="2024-01-10T14:04:14.251Z">
+<meta property="article:modified_time" content="2024-01-23T15:26:27.848Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Cloud Computing">
 <meta name="twitter:card" content="summary">
@@ -387,10 +390,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-10</span>
-            <span class="mobile">2024-01-10</span>
-            <!-- <span class="desktop">2024-01-10 22:04:14</span>
-            <span class="mobile">2024-01-10 22:04</span> -->
+            <span class="desktop">2024-01-23</span>
+            <span class="mobile">2024-01-23</span>
+            <!-- <span class="desktop">2024-01-23 23:26:27</span>
+            <span class="mobile">2024-01-23 23:26</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -469,9 +472,24 @@
 <li>最少連接法 (Least Connections) </li>
 <li>隨機法 (Random)</li>
 </ol>
-<h2 id="Dynamic-Scheduling-Algorithms-1"><a href="#Dynamic-Scheduling-Algorithms-1" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h2><h3 id="1-輪詢法-Round-Robin"><a href="#1-輪詢法-Round-Robin" class="headerlink" title="1. 輪詢法 (Round Robin)"></a>1. 輪詢法 (Round Robin)</h3><p>將請求按照輪詢方式分配給伺服器，每個伺服器一次接收一個請求</p>
-<h3 id="2-加權輪詢演算法-Weighted-Round-Robin"><a href="#2-加權輪詢演算法-Weighted-Round-Robin" class="headerlink" title="2. 加權輪詢演算法 (Weighted Round Robin)"></a>2. 加權輪詢演算法 (Weighted Round Robin)</h3><p>為不同的伺服器分配不同的權重，用以反映它們的性能，性能較好的伺服器分配更多請求</p>
-<h3 id="3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin"><a href="#3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin" class="headerlink" title="3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)"></a>3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</h3><p>在分配任務給不同的伺服器時，每個伺服器有一個權重的平滑計分值，每完成一項任務，計分會增加，每次分配會考慮伺服器的當前權重指標計分多少</p>
+<h2 id="Dynamic-Scheduling-Algorithms-1"><a href="#Dynamic-Scheduling-Algorithms-1" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h2><h3 id="1-輪詢法-Round-Robin"><a href="#1-輪詢法-Round-Robin" class="headerlink" title="1. 輪詢法 (Round Robin)"></a>1. 輪詢法 (Round Robin)</h3><p>將請求按照輪詢方式分配給伺服器，每個伺服器一次接收一個請求<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation02.png"
+                     
+                ></p>
+<h3 id="2-加權輪詢演算法-Weighted-Round-Robin"><a href="#2-加權輪詢演算法-Weighted-Round-Robin" class="headerlink" title="2. 加權輪詢演算法 (Weighted Round Robin)"></a>2. 加權輪詢演算法 (Weighted Round Robin)</h3><p>為不同的伺服器分配不同的權重，用以反映它們的性能，性能較好的伺服器分配更多請求<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation03.png"
+                     
+                ></p>
+<h3 id="3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin"><a href="#3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin" class="headerlink" title="3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)"></a>3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</h3><p>在分配任務給不同的伺服器時，每個伺服器有一個權重的平滑計分值，每完成一項任務，計分會增加，每次分配會考慮伺服器的當前權重指標計分多少<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation04.png"
+                     
+                ></p>
 <p>實作：<br>每個伺服器維護一個權重和一個當前的權重指標<br>在每次請求分配過程中，先將所有伺服器的當前權重指標加上其原始權重，然後將請求分配給具有最大當前權重指標的伺服器<br>分配後，該伺服器的當前權重指標減去所有伺服器的原始權重總和，以此實現平滑過渡</p>
 <h3 id="4-最少連接法-Least-Connections"><a href="#4-最少連接法-Least-Connections" class="headerlink" title="4. 最少連接法 (Least Connections)"></a>4. 最少連接法 (Least Connections)</h3><p>將請求分配給目前連接數最少的伺服器，讓較閒的伺服器來處理請求</p>
 <h3 id="5-隨機法-Random"><a href="#5-隨機法-Random" class="headerlink" title="5. 隨機法 (Random)"></a>5. 隨機法 (Random)</h3><p>透過隨機選擇來分配伺服器處理請求，但可能導致資源分配不均勻</p>
