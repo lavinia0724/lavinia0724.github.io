@@ -18,15 +18,17 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="article">
-<meta property="og:title" content="Cyber-Security-XSS">
+        <meta name="description" content="Basic Cyber Security - XSS Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber Security - XSS">
 <meta property="og:url" content="https://lavinia0724.github.io/2024/02/24/Cyber-Security-XSS/index.html">
 <meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Basic Cyber Security - XSS Introduction">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2024-02-24T08:27:41.000Z">
-<meta property="article:modified_time" content="2024-02-24T08:27:41.223Z">
+<meta property="article:modified_time" content="2024-02-24T15:15:16.422Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="LAVI">
+<meta property="article:tag" content="Cyber Security">
 <meta name="twitter:card" content="summary">
     
     
@@ -39,7 +41,7 @@
     
     <title>
         
-            Cyber-Security-XSS -
+            Cyber Security - XSS -
         
         INCLAVIC
     </title>
@@ -351,9 +353,10 @@
         <div class="article-content-container">
 
             
-            
+                      
                 <div class="article-title">
-                    <h1 class="article-title-regular">Cyber-Security-XSS</h1>
+                    <img src="/images/post68.JPG" alt="Cyber Security - XSS" />
+                    <h1 class="article-title-cover">Cyber Security - XSS</h1>
                 </div>
             
                 
@@ -384,13 +387,43 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-02-24</span>
             <span class="mobile">2024-02-24</span>
-            <!-- <span class="desktop">2024-02-24 16:27:41</span>
-            <span class="mobile">2024-02-24 16:27</span> -->
+            <!-- <span class="desktop">2024-02-24 23:15:16</span>
+            <span class="mobile">2024-02-24 23:15</span> -->
             <span class="hover-info">更新</span>
         </span>
     
 
     
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/XSS/">XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -409,11 +442,45 @@
             
 
             <div class="article-content markdown-body">
-                
+                <h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>XSS 全名為 <strong>Cross-site Scripting</strong> 跨網站腳本攻擊</p>
+<blockquote>
+<p>之所以不叫 CSS 是因為 CSS 已經用來表示網頁前端的 CSS 了，所以這邊改用 X 來表示 cross</p>
+</blockquote>
+<p>XSS 是列入 OWASP 網頁安全漏洞前十大排名、跟前端有關的安全問題<br>手段為攻擊者透過在網路上注入惡意程式碼，並且讓其他使用者觸發執行該程式碼來進行攻擊</p>
+<ul>
+<li>通常這些惡意程式碼指的是 JavaScript 或 HTML</li>
+<li>漏洞的成因，是因為網站後端未過濾或沒有驗證使用者輸入，導致惡意輸入惡意程式碼不會被抓到，前端網頁就傻傻的直接執行了</li>
+<li>而漏洞的影響可能會導致使用者資訊 (例如 cookie) 被傳送給攻擊者，從而獲得使用者的隱私訊息，或駭客進一步冒用使用者身分、冒充受害的使用者執行動作等</li>
+</ul>
+<p>簡單來說就是 : 「當網站沒有做好的驗證，就可以讓駭客輕易輸入惡意程式碼在網站上，就像埋下一個地雷，讓點擊到該網站的其他使用者受到攻擊」</p>
+<p>而防止 XSS 的心態是 : 「Don’t trust user input&#x2F;request 」<br>任何輸入都有可能是危險的，輸入框包含網址列、input、任何可以讓使用者更動網頁內容的地方</p>
+<p>XSS 的常見類型有</p>
+<ol>
+<li>Reflected (反射型)</li>
+<li>Stored (儲存型)</li>
+<li>DOM based</li>
+</ol>
+<h3 id="Reflected-反射型"><a href="#Reflected-反射型" class="headerlink" title="Reflected (反射型)"></a>Reflected (反射型)</h3><p>反射型 Reflected XSS 是一種非持久性的攻擊，攻擊者透過在網頁中插入惡意程式碼，讓你在瀏覽網頁時執行，從而達到攻擊的目的</p>
+<p>但是反射型需要利用社交工程，你必須要用騙的，去誘騙使用者點擊你傳給他的惡意連結，才能達到入侵的目的</p>
+<p>反射型特別的地方在於他插入的惡意程式並不會被儲存在網頁當中，且需要引誘使用者透過連結的方式才能發動攻擊</p>
+<p>通常會透過觸發 <code>alert()</code> 的方式來檢查網頁中是否有 Reflected XSS 漏洞</p>
+<p>反射型的攻擊流程是先構造出帶有惡意程式的 url，接著引誘使用者觸發連結(例如透過釣魚信件)，連結被觸發後，伺服器會將惡意程式碼拼接到 HTML，並回傳給使用者<br>最後使用者端的瀏覽器解析回傳結果，惡意程式碼被執行，你的電腦被駭</p>
+<h3 id="Stored-儲存型"><a href="#Stored-儲存型" class="headerlink" title="Stored (儲存型)"></a>Stored (儲存型)</h3><p>儲存型 Stored XSS 和反射型 Reflected XSS 的攻擊手段類似，不同的是惡意程式碼會被<strong>儲存在伺服器</strong>當中</p>
+<p>當使用者瀏覽該網站就會毫無防備的被攻擊，並不需要被引誘點擊連結才會被打，這種攻擊可能會對伺服器造成永久性的傷害，造成的危害很大</p>
+<p>儲存型的攻擊流程是構造惡意程式碼並上傳至該網站的資料庫，當使用者瀏覽該網站時，伺服器端就會將包含惡意程式碼的內容從資料庫取出，並回傳給使用者<br>當使用者的瀏覽器接收到回結果並分析，惡意程式碼被執行，你的電腦又被駭ㄌ</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Cyber-Security/">#Cyber Security</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -449,8 +516,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Cyber-Security-XSS</div>
-        
+        <div class="page-title">Cyber Security - XSS</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS"><span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflected-%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="nav-text">Reflected (反射型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stored-%E5%84%B2%E5%AD%98%E5%9E%8B"><span class="nav-text">Stored (儲存型)</span></a></li></ol></li></ol>
 
     </div>
 </div>
