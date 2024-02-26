@@ -13,23 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2024/02/16/cyber-security-web-cache-deception/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/02/26/cyber-security-xss-game/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Basic Cyber Security - Web Cache Deception">
+        <meta name="description" content="Basic Cyber Security - XSS  Game Introduction">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cyber Security - Web Cache Deception">
-<meta property="og:url" content="https://lavinia0724.github.io/2024/02/16/Cyber-Security-Web-Cache-Deception/index.html">
+<meta property="og:title" content="Cyber Security - XSS Game">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/02/26/Cyber-Security-XSS-Game/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Basic Cyber Security - Web Cache Deception">
+<meta property="og:description" content="Basic Cyber Security - XSS  Game Introduction">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-02-16T15:38:09.000Z">
-<meta property="article:modified_time" content="2024-02-26T02:18:37.427Z">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame01.png">
+<meta property="article:published_time" content="2024-02-26T06:21:14.000Z">
+<meta property="article:modified_time" content="2024-02-26T07:01:03.217Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Cyber Security">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame01.png">
     
     
     <!--- Icon Part-->
@@ -41,7 +43,7 @@
     
     <title>
         
-            Cyber Security - Web Cache Deception -
+            Cyber Security - XSS Game -
         
         INCLAVIC
     </title>
@@ -355,8 +357,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post67.JPG" alt="Cyber Security - Web Cache Deception" />
-                    <h1 class="article-title-cover">Cyber Security - Web Cache Deception</h1>
+                    <img src="/images/post69.JPG" alt="Cyber Security - XSS Game" />
+                    <h1 class="article-title-cover">Cyber Security - XSS Game</h1>
                 </div>
             
                 
@@ -376,10 +378,10 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-02-16</span>
-        <span class="mobile">2024-02-16</span>
-        <!-- <span class="desktop">2024-02-16 23:38:09</span>
-        <span class="mobile">2024-02-16 23:38</span> -->
+        <span class="desktop">2024-02-26</span>
+        <span class="mobile">2024-02-26</span>
+        <!-- <span class="desktop">2024-02-26 14:21:14</span>
+        <span class="mobile">2024-02-26 14:21</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
@@ -387,8 +389,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-02-26</span>
             <span class="mobile">2024-02-26</span>
-            <!-- <span class="desktop">2024-02-26 10:18:37</span>
-            <span class="mobile">2024-02-26 10:18</span> -->
+            <!-- <span class="desktop">2024-02-26 15:01:03</span>
+            <span class="mobile">2024-02-26 15:01</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -407,7 +409,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Cyber-Security/Web/Web-Cache-Deception/">Web Cache Deception</a>&nbsp;
+                        &gt; <a href="/categories/Cyber-Security/Web/XSS/">XSS</a>&nbsp;
                     </li>
                 
             </ul>
@@ -442,13 +444,177 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Web-Cache"><a href="#Web-Cache" class="headerlink" title="Web Cache"></a>Web Cache</h2><p>許多網站為了加快對靜態網頁頁面的存取速度，會透過網頁快取（Web Cache）來儲存使用者曾經拜訪過的資料&#x2F;頁面，以減少使用者等待網頁的時間，<del>免得你在那邊等圈圈等老半天</del><br>而 Web Cache 暫存資料的地方，多是位在 CDN 上</p>
-<h2 id="Web-Cache-Deception"><a href="#Web-Cache-Deception" class="headerlink" title="Web Cache Deception"></a>Web Cache Deception</h2><p>Web Cache Deception 簡單來說，就是駭客透過從 Web Cache 的資料中獲得使用者的機敏資料</p>
-<h3 id="How-Web-Cache-Deception-Attack-Implement"><a href="#How-Web-Cache-Deception-Attack-Implement" class="headerlink" title="How Web Cache Deception Attack Implement"></a>How Web Cache Deception Attack Implement</h3><p>Web Cache 通常是靜態頁面，靜態頁面大多不會有使用者的機敏資訊<br>當這個網站存在 Web Cache Deception 漏洞時，當駭客輸入一個原本不存在的網頁，因為無法回傳該不存在頁面的資料，會回傳該網站上一層的資料給使用者</p>
-<p>駭客的攻擊手法如下：<br>透過在該網站輸入原先不存在的網頁網址，該網站因為無法回傳不存在的網頁資料，只好回傳上一層存在網頁的資料給查詢者，因此駭客就可能竊取到使用者的機敏資訊</p>
-<p>目前常見解法：<br>有些雲端服務業者會設定 Cache 儲存時間為 0 秒<br>網頁設定 Cache 機制時，要符合 Web Cache 的 Header 允許的頁面，不存在的頁面不主動回應上一層的頁面資訊<br>所有 Cache 存放的靜態檔案都要在原本規定的目錄中，也只允許在原本的目錄頁面呈現 Cache 的靜態檔案資料<br>不存在的網頁頁面，直接回應 404 就好了</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.twcert.org.tw/newepaper/cp-65-671-81fa4-3.html" >網頁快取詐欺出沒！快取權限控管要更嚴</a></li>
+                <h2 id="XSS-Game"><a href="#XSS-Game" class="headerlink" title="XSS Game"></a>XSS Game</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame01.png"
+                     
+                >
+網址：https://xss-game.appspot.com/
+<div class="note-large red"><div class="notel-title"><p>WARNING</p>
+</div><div class="notel-content"><p>本篇文章有大量暴雷內容，若想自己體驗解題樂趣，請不要往下看！！！</p>
+</div></div>
+
+<h3 id="XSS-Game-Intro"><a href="#XSS-Game-Intro" class="headerlink" title="XSS Game Intro"></a>XSS Game Intro</h3><ul>
+<li>XSS Game 的規則就是要噴出 alert() 就算通關了</li>
+<li>一般來說，如果我們今天實際在打一個網站，或是其他 CTF 的時候，</li>
+<li>我們會藉由看 source code，來看看這個網站有沒有過濾甚麼字元 </li>
+<li>而噴 alert 的話，通常會用 alert(1)，因為最快也最方便，一但有跳出警告視窗就代表這裡可以被 XSS</li>
+<li>有些關會有 Target code 和 Hints 可以做參考</li>
+</ul>
+<h3 id="Level-1-Hello-world-of-XSS"><a href="#Level-1-Hello-world-of-XSS" class="headerlink" title="Level - 1 Hello, world of XSS"></a>Level - 1 Hello, world of XSS</h3><h4 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>題目敘述講到，這個 level 演示了跨站點腳本的常見原因，其中用戶輸入直接包含在頁面中但沒有經過適當的轉義</li>
+<li>那大家可以試試利用下面這個感覺很容易受攻擊的輸入框，並找到一種方法使其執行 JavaScript<blockquote>
+<p>你今天要在 html 裡面執行 js 你會怎麼寫？</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>這個網站提供的 Hint 裡有提到，你可以去偷看他的 Target code</li>
+<li>你寫 tag 會發生甚麼</li>
+<li>那最後一個就是直接提示你要寫 <code>&lt;script&gt;</code> 去包 alert</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure></div><ul><li>那我們這邊這題的 payload 很簡單，就是這樣的一個 <code>alert(1)</code> 而已</li><li>那我們外層用 <code>&lt;script&gt;</code> 的標籤把他包起來，那這樣他就會噴出 alert，這題就解決了</li></ul>
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-2-Persistence-is-key"><a href="#Level-2-Persistence-is-key" class="headerlink" title="Level - 2 Persistence is key"></a>Level - 2 Persistence is key</h3><h4 id="Intro-1"><a href="#Intro-1" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>onerror、onclick<ul>
+<li>onerror 是無法載入連結時會執行的 JS 指令，他可以用來判斷圖片是否存在，也可以是代表當你圖片不存時，判斷使用預設圖</li>
+<li>onclick，是當你點擊你所指定的元素時判斷 event</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hint-1"><a href="#Hint-1" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>那這個網站他所提供的 Hint 有提到，我們的這些 post 內可以包含 html 的模板</li>
+<li>我們這次不能再用 <code>&lt;script&gt;</code> tag 了，但是我們可以用其他 JavaScript 的元素屬性取代</li>
+<li>然後第三點幾乎說出來了，我們這層跟 i、m、g 有關，而且也會跟 onerror 的屬性有關</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>我們可以發現這邊最下面是個網頁留言板</li><li>那我們這邊直觀的想到 html 是有標籤是可以加入圖片的，但我們這邊又沒有要讓圖片正常顯示的意思</li><li>所以我們可以在 src 的地方隨便寫，後面再寫個我們剛剛教的 onerror，而 onerror 的執行動作再寫個網站所要求的 alert(1)</li><li>那他的原理是今天你的圖片因為 src 是亂給的，那你就不會跑出圖片，那就會接著執行你的 onerror，然後 alert 就會隨之被噴出來了<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&#x27;NOPE&#x27;</span> onerror=<span class="string">&#x27;alert(1)&#x27;</span>&gt;</span><br></pre></td></tr></table></figure></div></li><li>這題也有另解，可以利用剛 onclick 來寫</li><li>那他的 payload 也跟 onerror 差不多<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;xxx&quot;</span> onclick=<span class="string">&quot;alert(1)&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>原理跟 onerror 差不多，也是因為前面 src 死掉，後面 onclick 點下去以後也是直接噴 alert</li></ul>
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-3-That-sinking-feeling…"><a href="#Level-3-That-sinking-feeling…" class="headerlink" title="Level - 3 That sinking feeling…"></a>Level - 3 That sinking feeling…</h3><h4 id="Intro-2"><a href="#Intro-2" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>一些常見的 JavaScript function 是執行接收器，這代表著它們將導致瀏覽器執行出現在其輸入中的任何腳本</li>
+<li>這一事實被更高級別的 API 隱藏，也就是在後台使用的功能之一</li>
+</ul>
+<h4 id="Hint-2"><a href="#Hint-2" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>那我們再來看看 Hint，要定位錯誤的原因，可以看 JavaScript 然後依看它在哪裡去處理用戶所提供的輸入</li>
+<li>window.location 的對像數據可能會受到攻擊者的影響</li>
+<li>你現在確定了注入點，可以想想你需要做什麼才能弄入一個新的 HTML 元素</li>
+<li>最後這裡提到，和以前一樣，使用 <code>&lt;script&gt;</code> 不會起作用，因為瀏覽器不會執行頁面加載後添加的腳本</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>可以觀察到網址後方 &#96;frame# 後面數字 (1 ~ 3) 決定的是頁面顯示圖片</li><li>那我們這裡一樣建議搭配 <code>&lt;img onerror = &#39;&#39;&gt;</code>，讓他讀取一個不存在的圖片並加入 onerror 屬性</li><li>直接在後面加上 onerror 的屬性判別式就好</li><li>我直接示範一下 payload<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">https</span>:<span class="comment">//xss-game.appspot.com/level3/frame#4.jpg&#x27; onerror = &#x27;alert()&#x27;&gt;//</span></span><br></pre></td></tr></table></figure></div></li><li>那這邊解釋一下<ul><li><code>4.jpg</code> : 指向不存在的東西</li><li><code>onerror = &#39;alert()&#39;&gt;</code> : 加入 onerror 彈出 alert() 並關閉 <code>&lt;img&gt;</code> 標籤</li><li>這邊需要注意一下這裡在 4.jpg 後面有個 <code>&#39;</code> 他是代表我們現在要把前面的語句關掉，那這個很重要</li><li>最後的 &#x2F;&#x2F; : 把剩下不完整、關不起來的 JavaScript 整個註解掉</li></ul></li></ul>
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-4-Context-matters"><a href="#Level-4-Context-matters" class="headerlink" title="Level - 4 Context matters"></a>Level - 4 Context matters</h3><h4 id="Intro-3"><a href="#Intro-3" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>用戶提供的每一位數據都必須針對將出現的頁面的上下文進行正確轉義</li>
+<li>那因為這一題需要的觀念比較多，我直接先講解一點點的觀念</li>
+</ul>
+<h4 id="Hint-3"><a href="#Hint-3" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>看一下 startTimer 函數是怎麼調用的</li>
+<li>當瀏覽器解析標籤屬性時，它們首先對它們的值進行 HTML 解碼</li>
+<li>嘗試輸入單引號 <code>&#39;</code> 並觀察</li>
+</ol>
+<h4 id="講解"><a href="#講解" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>首先我們來看他的 target code，我們可以看出他這裡有一個 form 的表單，然後 method 是 GET</li>
+<li>他有一個 buttom 跟他有一個設定的值，而且他的 default 是 3</li>
+<li>當你點下他的表單之後，他就會跳到 timer.html 這個頁面</li>
+<li>這邊有個大括號，他也是在 python 裡面會有一個 template 的模板，你可以把參數丟到這個大括號裡面</li>
+<li>當使用者去對這個 timer 的參數去做更動的時候，他就去看到這個大括號的 template，然後去把值做更改</li>
+<li>然後去根據使用者的輸入去做更新，看使用者輸入甚麼就去把它填在裡面</li>
+<li>那這邊的 img 也是一樣，他會 onload 這個叫做 startTimer 的 function，如果你輸入 3 的話他就會把 3 帶進這個單引號裡面</li>
+<li>那他就會把 3 當作字串傳進這個 function 裡面，那他就會去 startTimer 裡面等個 3 秒</li>
+<li>等 3 秒回來可以看到這邊有個 message 是說你的 timer 會執行 3 秒</li>
+<li>那我們現在回到我們的重點，我們要怎麼去 XSS</li>
+<li>這邊的重點是這個 onload</li>
+<li>我們可以發現我們的 Timer 沒有做任何過濾，所以我們也一樣有可能可以對程式碼做一樣關起來的行為</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>在 target code 上的<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;/static/loading.gif&quot;</span> onload=<span class="string">&quot;startTimer(&#x27;&#123;&#123; timer &#125;&#125;&#x27;);&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>加上目標 payload<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span><span class="string">&#x27;); alert(1)//&#x27;</span>);</span><br></pre></td></tr></table></figure></div></li><li>完整會變成<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;/static/loading.gif&quot;</span> onload=<span class="string">&quot;startTimer(&#x27;3&#x27;);alert(1)//&#x27;);&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>我們前面是說把 Timer 丟進來，會丟到這邊的大括號裡面</li><li>因此我們就可以 onload</li><li>那我們這邊可以利用 payload，像這樣寫的結果可以禮節成</li><li>我們先輸入 3，分號是這個 function 的結尾，分號會截斷這個 function</li><li>截斷完之後我們再來 alert，因此他就會去執行 alert 的指令，就可以完成我們這一關想要做的事情</li><li>那這邊要注意</li><li>後面要再把他註解掉，因為我們可以看到這邊的 Timer 後面還有東西</li><li>要記得把我們輸入的字串關起來，因為有可能會有一些垃圾的字串，所以這邊要再做單引號括號分號把他關起來做截斷</li><li>那我們這邊做到以後，我們輸入 payload，alert 噴出來，這一關順利結束</li></ul>
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-5-Breaking-protocol"><a href="#Level-5-Breaking-protocol" class="headerlink" title="Level - 5 Breaking protocol"></a>Level - 5 Breaking protocol</h3><h4 id="Intro-4"><a href="#Intro-4" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>這關考的是跨站點腳本不僅僅是正確地轉義數據</li>
+<li>有時，即使沒有向 DOM 注入新元素，攻擊者也可以做壞事</li>
+<li>那因為這題一樣蠻難的，所以也先戴一下講解</li>
+</ul>
+<h4 id="Hint-4"><a href="#Hint-4" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>這個級別的標題是一個提示，這關的 Title 如各位所見，叫做 Breaking protocol</li>
+<li>查看註冊框架的來源並了解如何使用 URL 參數很有用</li>
+<li>如果你想讓點擊一個鏈接執行 Javascript（不使用 onclick 處理程序的話），你會怎麼做？</li>
+<li>如果你真的卡住了，可以看看這個 IETF 草案</li>
+</ol>
+<h4 id="講解-1"><a href="#講解-1" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>我們現在一樣來看 target code</li>
+<li>一開始我們先看這份 confirm.html</li>
+<li>我們可以看到他這邊如果按 signup 以後就會來到 signup.html 這個頁面</li>
+<li>我們會發現這個 next 會去 confirm</li>
+<li>那如果我們隨便輸入，他就會跟我們說謝謝我們的輸入</li>
+<li>那很明顯這裡就可以動手腳</li>
+<li>那這個 href 一般來說都是放連結，看你要連去哪裡，或是連到 local 的資源或文字檔</li>
+<li>那我們這邊也可以插 JavaScript，所以我們現在的問題是要怎麼把 JavaScript 的參數塞到 next 裡面</li>
+<li>我們原本 next 是要執行 confirm 裡的 function，但我們現在不想要他執行 confirm 裡的 function，我想要他執行 alert</li>
+<li>那我們要怎麼在 href 裡面執行 JavaScript?</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>這題的關鍵在於要怎麼在 href 裡面執行 JavaScript<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">javascript</span>:<span class="title function_">alert</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div></li><li>他就是把 <code>:</code> 後面的東西用 javascript 執行，</li><li>那我們要先送出第一次的 request，這樣他在第一次的送出之後才會去渲染你的前端頁面</li><li>而在那之後你的 default 也才會有這個 script 在裡面</li><li>像我們這邊可以在網址列裡的 next 後面寫上 <code>javascript:alert(1)</code> 並且按下 go 一次</li><li>然後其實這個 next 的 href 後面就會被換成 javascript : alert(1)，在那個頁面裡面</li><li>那接下來你就可以隨便輸入了</li><li>隨便輸入以後按 next，他就會去執行這個 href 裡面的 javascript</li><li>alert 就會噴出來了</li><li>這提到此結束，那解法很多，只要能夠達到正確的結果的都是好解法</li></ul>
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-6-Follow-the-Rabbit"><a href="#Level-6-Follow-the-Rabbit" class="headerlink" title="Level - 6 Follow the Rabbit"></a>Level - 6 Follow the Rabbit</h3><h4 id="Intro-5"><a href="#Intro-5" class="headerlink" title="Intro"></a>Intro</h4><ul>
+<li>複雜的 Web 應用程序有時能夠動態的 load JavaScript libraries，是根據其 URL 參數的值或 location.hash 的一部分</li>
+<li>要正確處理這一點非常棘手，因為在加載腳本或其他潛在危險類型的數據（如 XMLHttpRequest）時，允許用戶輸入影響 URL 通常會導致嚴重的漏洞</li>
+<li>這題也蠻難的，所以我們這邊一樣先帶一點講解</li>
+</ul>
+<h4 id="Hint-5"><a href="#Hint-5" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>我們可以查看位置片段的值（# 之後）如何影響加載腳本的 URL</li>
+<li>那麼對於小工具，URL 的安全檢查真的萬無一失嗎？</li>
+<li>有時候，當我感到沮喪時，我想尖叫… 這個好真實</li>
+<li>如果您不能輕鬆地託管自己的惡意 JavaScript 文件，我們可以查看 google.com&#x2F;jsapi?callback&#x3D;foo 是否有所幫助</li>
+</ol>
+<h4 id="講解-2"><a href="#講解-2" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>那我們現在來看一下 code，我們可以看到 URL 後面有個井號，那這代表說他會去引入井號之後的 JS</li>
+<li>接著他引入完這個 JS 之後就會在這個頁面做執行</li>
+<li>那我們發現了這個洞，就會想要去引入外部的 JS 進來</li>
+<li>但我們在第 21 行會發現，他有去比對我們的 http、https</li>
+<li>所以如果我們去引入了一個外部連結，那這邊說他會去擋 http、https，所以我們可能要用其他的手法繞過</li>
+<li>那我們現在有幾個思路</li>
+</ul>
+<ol>
+<li>在井號後面的 JS 會被 include</li>
+<li>所以我們要想辦法生一個 alert 的 JS，讓他從外部引入</li>
+</ol>
+<ul>
+<li>那這邊要注意的就是前面說的，他會擋 http 和 https</li>
+<li>但其實我們可以用大小寫去繞過他</li>
+<li>那另外，因為有提到說我們要從外部去引入寫 JS 的連結，那要用甚麼工具，根據提示我們可以發現 google 就有這樣的文件</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>我們從最後的井號之後開始去編寫我們要引入的外部 JS</li><li>那我們這邊可以利用剛剛 Hint 提到的 google JS 的 API</li><li>那他的用法其實就是改提示的東西，提示長這樣<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google.<span class="property">com</span>/jsapi?callback=foo</span><br></pre></td></tr></table></figure></div></li><li>那我們把他魔改成這樣，後面加上 alert，因為我們的目的是要噴 alert</li><li>但是這樣還不夠，前面也要補上 https，但不只要補上 https，還要改他的大小寫</li><li>因為我們剛剛有發現，target code 有說他會檔小寫的 http 和 https</li><li>所以我們這邊就故意用大寫去繞過他，像是寫 hTTp，h 大踢大踢 p 之類的去繞過他<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hTTps</span>:<span class="comment">//www.google.com/jsapi?callback=alert</span></span><br></pre></td></tr></table></figure></div></li><li>完整的 code<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">https</span>:<span class="comment">//xss-game.appspot.com/level6/frame#hTTps://www.google.com/jsapi?callback=alert</span></span><br></pre></td></tr></table></figure></div></li><li>那最後會看到 alert 噴出來，這題也順利結束！</li></ul>
+              </div>
+            </details>
+
+<h4 id="Congratulations"><a href="#Congratulations" class="headerlink" title="Congratulations"></a>Congratulations</h4><ul>
+<li>那我們成功順利地打完 XSS Game 的六關了！</li>
+<li>並且收穫了一個大蛋糕，<del>其實我第一眼看他以為他是在對我比中指</del></li>
+<li>那下面有你可以回應他說你覺得喜不喜歡、難度如何的小按鈕，給作者一點回饋</li>
 </ul>
 
             </div>
@@ -470,29 +636,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2024/02/26/Cyber-Security-XSS-Game/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Cyber Security - XSS Game</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2024/01/25/Machine-Learning-Note/"
+                            href="/2024/02/16/Cyber-Security-Web-Cache-Deception/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Machine Learning - Conspectus</span>
+                                    <span class="post-nav-title-item">Cyber Security - Web Cache Deception</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -513,8 +664,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Cyber Security - Web Cache Deception</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Cache"><span class="nav-text">Web Cache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Cache-Deception"><span class="nav-text">Web Cache Deception</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-Web-Cache-Deception-Attack-Implement"><span class="nav-text">How Web Cache Deception Attack Implement</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Cyber Security - XSS Game</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-Game"><span class="nav-text">XSS Game</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS-Game-Intro"><span class="nav-text">XSS Game Intro</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-1-Hello-world-of-XSS"><span class="nav-text">Level - 1 Hello, world of XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-2-Persistence-is-key"><span class="nav-text">Level - 2 Persistence is key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-3-That-sinking-feeling%E2%80%A6"><span class="nav-text">Level - 3 That sinking feeling…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-4-Context-matters"><span class="nav-text">Level - 4 Context matters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-5-Breaking-protocol"><span class="nav-text">Level - 5 Breaking protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-6-Follow-the-Rabbit"><span class="nav-text">Level - 6 Follow the Rabbit</span></a></li></ol></li></ol>
 
     </div>
 </div>
