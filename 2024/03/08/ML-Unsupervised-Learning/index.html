@@ -26,8 +26,9 @@
 <meta property="og:description" content="Artificial Intelligence - Conspectus">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AI01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AI02.png">
 <meta property="article:published_time" content="2024-03-08T14:08:24.000Z">
-<meta property="article:modified_time" content="2024-03-11T06:25:48.817Z">
+<meta property="article:modified_time" content="2024-03-11T06:40:24.021Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -389,8 +390,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-03-11</span>
             <span class="mobile">2024-03-11</span>
-            <!-- <span class="desktop">2024-03-11 14:25:48</span>
-            <span class="mobile">2024-03-11 14:25</span> -->
+            <!-- <span class="desktop">2024-03-11 14:40:24</span>
+            <span class="mobile">2024-03-11 14:40</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -469,7 +470,16 @@
 <p>大致分為兩類：</p>
 <div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">Classification</a></li><li class="tab"><a class="#芝士，與你分享-2">Regression</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>分類，輸出是類別<br>例如：利用 MNIST 數據集對手寫數字辨識進行多分類</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>回歸，輸出是數值</p></div></div></div>
 
+<h3 id="Support-Vector-Machine-SVM-支撐向量機"><a href="#Support-Vector-Machine-SVM-支撐向量機" class="headerlink" title="Support Vector Machine, SVM 支撐向量機"></a>Support Vector Machine, SVM 支撐向量機</h3><p>用統計分類最小化的原則來估計一個分類的 hyperplane 超平面<br>透過找到一個 Decision Boundary 決策邊界來讓兩類之間的邊界最大化，使其可以完美區隔開</p>
+<p>不一定是直線，有可能是曲線，不同的演算法都是在不同的假設或是條件下去找那條分類的線<br>SVM 是去假設有一個 hyperplane (wTx + b &#x3D; 0) 可以完美分割兩組資料，所以 SVM 就是在找參數 (w 和 b)  讓兩組之間的距離最大化</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\AI02.png"
+                     
+                >
 
+<p>圖片來源：Hundred-Page Machine learning Book by A. Burkov online book</p>
 <h2 id="Semi-supervised-Learning"><a href="#Semi-supervised-Learning" class="headerlink" title="Semi-supervised Learning"></a>Semi-supervised Learning</h2><p>資料有 label 和 unlabel 的，而 unlabel 比例遠大於 label 的數量<br>有時候會不算這個，稱其他三類為機器學習三大分類，但因 Hundred-Page Machine learning Book by A. Burkov 將其分為一大類，故以此為準<br>有時因標記資料不夠多，因此也透過 unlabel 資料去 tune supervised model</p>
 <h2 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h2><p>所有資料都 unlabel<br>目標是創建一個模型，將特徵向量 x 輸入後，將其轉化為另一個向量或轉化為一個可用於解決實際問題的值</p>
 <p>Clustering 分群即為一種 Unsupervised Learning，其目標為把相向的集合成一群，但並沒有標準，由機器自己判斷如何分類</p>
@@ -483,9 +493,14 @@
 <li>控制棒球員根據不同來速，判斷該以何種速動，到達何處，才能接到投手的球</li>
 </ol>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>黃貞瑛老師的機器學習課程</li>
-<li>許見章老師的人工智慧課程</li>
-<li>Hundred-Page Machine learning Book by A. Burkov</li>
+<li><p>Hundred-Page Machine learning Book by A. Burkov</p>
+</li>
+<li><p>黃貞瑛老師的機器學習課程</p>
+</li>
+<li><p>許見章老師的人工智慧課程</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E6%94%AF%E6%92%90%E5%90%91%E9%87%8F%E6%A9%9F-support-vector-machine-svm-%E8%A9%B3%E7%B4%B0%E6%8E%A8%E5%B0%8E-c320098a3d2e" >機器學習-支撐向量機(support vector machine, SVM)詳細推導</a></p>
+</li>
 </ul>
 
             </div>
@@ -536,7 +551,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Artificial Intelligence - Conspectus</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conspectus"><span class="nav-text">Conspectus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervised-Learning"><span class="nav-text">Supervised Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semi-supervised-Learning"><span class="nav-text">Semi-supervised Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reinforcemend-Learning"><span class="nav-text">Reinforcemend Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conspectus"><span class="nav-text">Conspectus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervised-Learning"><span class="nav-text">Supervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Support-Vector-Machine-SVM-%E6%94%AF%E6%92%90%E5%90%91%E9%87%8F%E6%A9%9F"><span class="nav-text">Support Vector Machine, SVM 支撐向量機</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semi-supervised-Learning"><span class="nav-text">Semi-supervised Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reinforcemend-Learning"><span class="nav-text">Reinforcemend Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
