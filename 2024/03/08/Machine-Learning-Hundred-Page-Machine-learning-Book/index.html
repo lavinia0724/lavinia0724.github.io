@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AI01.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AI02.png">
 <meta property="article:published_time" content="2024-03-08T14:08:24.000Z">
-<meta property="article:modified_time" content="2024-03-11T07:06:31.276Z">
+<meta property="article:modified_time" content="2024-03-11T08:32:11.306Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -390,8 +390,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-03-11</span>
             <span class="mobile">2024-03-11</span>
-            <!-- <span class="desktop">2024-03-11 15:06:31</span>
-            <span class="mobile">2024-03-11 15:06</span> -->
+            <!-- <span class="desktop">2024-03-11 16:32:11</span>
+            <span class="mobile">2024-03-11 16:32</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -470,6 +470,7 @@
 <p>大致分為兩類：</p>
 <div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">Classification</a></li><li class="tab"><a class="#芝士，與你分享-2">Regression</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>分類，輸出是類別<br>例如：利用 MNIST 數據集對手寫數字辨識進行多分類</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>回歸，輸出是數值</p></div></div></div>
 
+<p>Data: (x, y)，x is data, y is label<br>Goal: learning func to map x &rarr; y</p>
 <h3 id="Support-Vector-Machine-SVM-支撐向量機"><a href="#Support-Vector-Machine-SVM-支撐向量機" class="headerlink" title="Support Vector Machine, SVM 支撐向量機"></a>Support Vector Machine, SVM 支撐向量機</h3><p>用統計分類最小化的原則來估計一個分類的 hyperplane 超平面<br>透過找到一個 Decision Boundary 決策邊界來讓兩類之間的邊界最大化，使其可以完美區隔開</p>
 <p>不一定是直線，有可能是曲線，不同的演算法都是在不同的假設或是條件下去找那條分類的線<br>SVM 是去假設有一個 hyperplane (wTx + b &#x3D; 0) 可以完美分割兩組資料，所以 SVM 就是在找參數 (w 和 b)  讓兩組之間的距離最大化</p>
 <img  
@@ -488,6 +489,7 @@
 <p>Clustering 分群即為一種 Unsupervised Learning，其目標為把相向的集合成一群，但並沒有標準，由機器自己判斷如何分類</p>
 <div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">分類</a></li><li class="tab"><a class="#芝士，與你分享-2">降維</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>模型會傳回 dataset 中每個特徵向量的聚類 id</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>模型的輸出是一個比輸入 x 特徵更少的特徵向量<br>高維降至低維度，減少輸注的 x 的特徵 feature </p></div></div></div>
 
+<p>Data: x，x is data, no label<br>Goal: learning underlying sturcture</p>
 <h2 id="Reinforcemend-Learning"><a href="#Reinforcemend-Learning" class="headerlink" title="Reinforcemend Learning"></a>Reinforcemend Learning</h2><p>模型會根據<strong>環境</strong>自己學習，透過將環境狀態感知為一個特徵向量<br>機器可以在每種狀態下執行動作，不同的行動會帶來不同的回報，亦讓機器進入環境的另一種狀態</p>
 <p>Reinforcemend Learning 的目標是學習策略，透過將狀態的特徵向量作為輸入，輸出在該狀態下的最佳行動，使預期的平均 reward 最大化</p>
 <p>例如：</p>
@@ -495,6 +497,7 @@
 <li>令在移動的物件上的木根保持平衡，需控制物件移動，使木根不倒，如何控制物件速度即為 Reinforcemend Learning</li>
 <li>控制棒球員根據不同來速，判斷該以何種速動，到達何處，才能接到投手的球</li>
 </ol>
+<p>Data: state-action pairs<br>Goal: maximize future rewards over many time steps</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><p>Hundred-Page Machine learning Book by A. Burkov</p>
 </li>
@@ -526,6 +529,21 @@
 
             
                 <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/03/11/Machine-Learning-Professor-Jen-ing-Hwang/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Professor Jen-ing Hwang&#39;s lecture</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
                     
                     
                         <div class="article-next">
