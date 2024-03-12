@@ -25,13 +25,15 @@
 <meta property="og:site_name" content="LAVI">
 <meta property="og:description" content="Machine Learning - Professor Jen-ing Hwang&#39;s lecture 跟課筆記">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*F8xLapWs4stL93NEO5NPeQ.png">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k6Hhx9PUNXlalqwixJDjbQ.png">
 <meta property="article:published_time" content="2024-03-11T08:11:22.000Z">
-<meta property="article:modified_time" content="2024-03-11T08:50:00.112Z">
+<meta property="article:modified_time" content="2024-03-12T07:32:27.768Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*F8xLapWs4stL93NEO5NPeQ.png">
+<meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
     
     
     <!--- Icon Part-->
@@ -387,10 +389,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-03-11</span>
-            <span class="mobile">2024-03-11</span>
-            <!-- <span class="desktop">2024-03-11 16:50</span>
-            <span class="mobile">2024-03-11 16:50</span> -->
+            <span class="desktop">2024-03-12</span>
+            <span class="mobile">2024-03-12</span>
+            <!-- <span class="desktop">2024-03-12 15:32:27</span>
+            <span class="mobile">2024-03-12 15:32</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -440,14 +442,19 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Gradient-梯度法"><a href="#Gradient-梯度法" class="headerlink" title="Gradient 梯度法"></a>Gradient 梯度法</h2><ol>
-<li>Linear Regression</li>
-<li>Logistic Regression</li>
-</ol>
-<blockquote>
+                <h2 id="Derivative-Gradient"><a href="#Derivative-Gradient" class="headerlink" title="Derivative &amp; Gradient"></a>Derivative &amp; Gradient</h2><h3 id="Derivative-導數"><a href="#Derivative-導數" class="headerlink" title="Derivative 導數"></a>Derivative 導數</h3><p>Derivative f’ 是 f 增長&#x2F;減少之速度的函數或數值</p>
+<h3 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h3><p>Gradient 是偏導數的向量</p>
+<h4 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png" >圖片來源</a></p>
+<h3 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h3><blockquote>
 <p>Regression 必回傳數值</p>
 </blockquote>
-<h3 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h3><p><img  
+<h4 id="1-Linear-Regression"><a href="#1-Linear-Regression" class="headerlink" title="1. Linear Regression"></a>1. Linear Regression</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*F8xLapWs4stL93NEO5NPeQ.png"
@@ -458,6 +465,13 @@
 <p>ŷ<sub>i</sub>: 為預估出的值，和真實資料會有誤差 (error)，因此可得下式:</p>
 <p>εi &#x3D; y<sub>i</sub> — ŷ<sub>i</sub></p>
 <p>其中一種常見方法為最小平方法，希望誤差的平方越小越好，稱為 S</p>
+<h4 id="2-Logistic-Regression"><a href="#2-Logistic-Regression" class="headerlink" title="2. Logistic Regression"></a>2. Logistic Regression</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k6Hhx9PUNXlalqwixJDjbQ.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC3-3%E8%AC%9B-%E7%B7%9A%E6%80%A7%E5%88%86%E9%A1%9E-%E9%82%8F%E8%BC%AF%E6%96%AF%E5%9B%9E%E6%AD%B8-logistic-regression-%E4%BB%8B%E7%B4%B9-a1a5f47017e5" >圖片來源</a></p>
+<p>不是使用 squared loss 最小化損失函數，而是根據模型最大化訓練集的可能性</p>
 <h3 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h3><p>屬性，指標的的特徵<br>在 input 中稱為 label<br>在 output 中稱為 target</p>
 <p>attribute &#x3D; feature &#x3D; variable &#x3D; characteristic &#x3D; field</p>
 <p>有兩種型別：</p>
@@ -469,10 +483,18 @@
 <p>Hypothesis: a set of linear func<br>Learning Algorithm: PLA</p>
 <h3 id="Rule-Based-model"><a href="#Rule-Based-model" class="headerlink" title="Rule-Based model"></a>Rule-Based model</h3><p>Hypothesis: a set of rules<br>Learning Algorithm: Decision Tree</p>
 <h3 id="Instance-Based-model"><a href="#Instance-Based-model" class="headerlink" title="Instance-Based model"></a>Instance-Based model</h3><p>基於案例</p>
-<p>Hypothesis: an implicit hypothesis set<br>Learning Algorithm: k-nearest neighbor（kNN），找距離目標最近的 k 個物件</p>
+<p>Hypothesis: an implicit hypothesis set<br>Learning Algorithm: k-nearest neighbor（kNN），找在特徵向量空間中距離目標最近的 k 個 label</p>
+<h3 id="Loss-function-or-Squared-error-loss"><a href="#Loss-function-or-Squared-error-loss" class="headerlink" title="Loss function or Squared error loss"></a>Loss function or Squared error loss</h3><p>進行錯誤分類的懲罰度量</p>
+<p>ex:<br>(f(x<sub>i</sub>) - y<sub>i</sub>)<sup>2</sup></p>
+<p>用在 linear regression</p>
+<h3 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h3><p>過度擬合，模型能很好的預測訓練期間所用的 label，但實際應用在不同資料集時卻經常出錯<br>代表這個模型過度學習訓練資料集的資訊，以至於只會這個訓練資料集的 label</p>
 <h2 id="Decision-Tree-決策樹"><a href="#Decision-Tree-決策樹" class="headerlink" title="Decision Tree 決策樹"></a>Decision Tree 決策樹</h2><h2 id="Bayesian-Learning"><a href="#Bayesian-Learning" class="headerlink" title="Bayesian Learning"></a>Bayesian Learning</h2><p>基於貝式理論，條件機率，根據前提猜測結果</p>
 <h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p>分群方法，屬於 Unsupervised Learning<br>不知道要分幾群，和分類不同，沒有標準答案，用很多種演算法實作</p>
 <h2 id="Data-Mining"><a href="#Data-Mining" class="headerlink" title="Data Mining"></a>Data Mining</h2><p>從資料中找尋可用資訊</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>黃貞瑛老師的機器學習課程</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
+</ul>
 
             </div>
 
@@ -522,7 +544,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Machine Learning - Professor Jen-ing Hwang&#39;s lecture</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="nav-text">Gradient 梯度法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-%E6%B1%BA%E7%AD%96%E6%A8%B9"><span class="nav-text">Decision Tree 決策樹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Learning"><span class="nav-text">Bayesian Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Mining"><span class="nav-text">Data Mining</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-Gradient"><span class="nav-text">Derivative &amp; Gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overfitting"><span class="nav-text">Overfitting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tree-%E6%B1%BA%E7%AD%96%E6%A8%B9"><span class="nav-text">Decision Tree 決策樹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Learning"><span class="nav-text">Bayesian Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Mining"><span class="nav-text">Data Mining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
