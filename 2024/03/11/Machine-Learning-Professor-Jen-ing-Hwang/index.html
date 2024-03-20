@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*F8xLapWs4stL93NEO5NPeQ.png">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k6Hhx9PUNXlalqwixJDjbQ.png">
 <meta property="article:published_time" content="2024-03-11T08:11:22.000Z">
-<meta property="article:modified_time" content="2024-03-14T14:51:03.686Z">
+<meta property="article:modified_time" content="2024-03-20T13:23:24.426Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -391,10 +391,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-03-14</span>
-            <span class="mobile">2024-03-14</span>
-            <!-- <span class="desktop">2024-03-14 22:51:03</span>
-            <span class="mobile">2024-03-14 22:51</span> -->
+            <span class="desktop">2024-03-20</span>
+            <span class="mobile">2024-03-20</span>
+            <!-- <span class="desktop">2024-03-20 21:23:24</span>
+            <span class="mobile">2024-03-20 21:23</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -470,11 +470,22 @@
 <li>Most Specific Hypotheses<br>與觀察到的訓練結果一致，如果再將範圍縮小，則會變得不一致</li>
 <li>Most General Hypotheses<br>與觀察到的訓練結果一致，如果再將範圍擴大，則會變得不一致</li>
 </ol>
+<blockquote>
+<p>General Boundary：最寬鬆的 version space，只要不包含 negative example 的空間都屬於<br>Specific Boundary：最嚴謹的 version space，只有剛好包含所有 positive example 的空間屬於</p>
+</blockquote>
 <h4 id="Version-Space"><a href="#Version-Space" class="headerlink" title="Version Space"></a>Version Space</h4><p>假設有一 H 和給定的訓練資料集，version space 是所有與該資料集一致的所有 H 的子集合，也就是上圖中長方形的區域</p>
 <h3 id="X-The-Input-Instance-Space"><a href="#X-The-Input-Instance-Space" class="headerlink" title="X: The Input Instance Space"></a>X: The Input Instance Space</h3><p>Target function  C: X &rarr; {𝑁𝑜,𝑌𝑒𝑠}<br>Six input attributes:<br>Price: {Low, Medium, High}			3<br>Engine Power: {Powerful, Moderate}  2<br>Maintenance: {Low, High}			2<br>Doors: {2, 4&amp;more}					2<br>Trunk Size: {Small, Big}			2<br>Safety: {Low, High}					2</p>
 <p>Input attributes there in the data set is 6<br>Size of the Input instance space X &#x3D; 3*2*2*2*2*2 &#x3D; 96<br>Syntactically distinct number H &#x3D; (5*4*4*4*4*4) &#x3D; 5120（每個 attribute 都加上兩個值：“?” and “∅”.）<br>Semantically distinct number H &#x3D; 1 + (4*3*3*3*3*3) &#x3D; 973（每個 attribute 都加上一個值：“∅”，並額外加上一個 1，表示所有值都不選擇的狀況）</p>
+<blockquote>
+<p>Don’t care value: ?<br>No value allowed: ∅</p>
+</blockquote>
 <h3 id="General-to-Specific-Ordering-over-H"><a href="#General-to-Specific-Ordering-over-H" class="headerlink" title="General-to-Specific Ordering over H"></a>General-to-Specific Ordering over H</h3><p>Let h1 &#x3D; &lt;?, ?, ?, 4&amp;more, ?, High&gt;<br>h2 &#x3D; &lt;?, Moderate, ?, 4&amp;more, ?, High&gt;</p>
 <p>then any example that satisfies h2 also satisfies h1<br>&rArr; h1 is more_general_than_or_equal_to h2, denoted by h1 &gt;&#x3D; h2<br>&rArr; h2 is more_specific_than_or_equal_to h1</p>
+<h3 id="Candidate-Elimination-Algorithm"><a href="#Candidate-Elimination-Algorithm" class="headerlink" title="Candidate-Elimination Algorithm"></a>Candidate-Elimination Algorithm</h3><p>幫助 version space 的 boundary more specific 和 more general</p>
+<ul>
+<li>找到 Positive example 時會讓 specific boundary more general</li>
+<li>找到 Negative example 時會讓 general boundary more specific</li>
+</ul>
 <h2 id="Derivative-Gradient"><a href="#Derivative-Gradient" class="headerlink" title="Derivative &amp; Gradient"></a>Derivative &amp; Gradient</h2><h3 id="Derivative-導數"><a href="#Derivative-導數" class="headerlink" title="Derivative 導數"></a>Derivative 導數</h3><p>Derivative f’ 是 f 增長或減少之速度的函數或數值</p>
 <h3 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h3><p>Gradient 是偏導數的向量</p>
 <h4 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
@@ -572,7 +583,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Machine Learning - Professor Jen-ing Hwang&#39;s lecture</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hypothesis"><span class="nav-text">Hypothesis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hypothesis-h"><span class="nav-text">Hypothesis h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hypothesis-space-H"><span class="nav-text">Hypothesis space H</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X-The-Input-Instance-Space"><span class="nav-text">X: The Input Instance Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-to-Specific-Ordering-over-H"><span class="nav-text">General-to-Specific Ordering over H</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-Gradient"><span class="nav-text">Derivative &amp; Gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overfitting"><span class="nav-text">Overfitting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Learning"><span class="nav-text">Bayesian Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Mining"><span class="nav-text">Data Mining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hypothesis"><span class="nav-text">Hypothesis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hypothesis-h"><span class="nav-text">Hypothesis h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hypothesis-space-H"><span class="nav-text">Hypothesis space H</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X-The-Input-Instance-Space"><span class="nav-text">X: The Input Instance Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-to-Specific-Ordering-over-H"><span class="nav-text">General-to-Specific Ordering over H</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Candidate-Elimination-Algorithm"><span class="nav-text">Candidate-Elimination Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-Gradient"><span class="nav-text">Derivative &amp; Gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overfitting"><span class="nav-text">Overfitting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-Learning"><span class="nav-text">Bayesian Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Mining"><span class="nav-text">Data Mining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a>
 
     </div>
 </div>
