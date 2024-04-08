@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIng03.png">
 <meta property="og:image" content="https://imgur.com/a87j5yW">
 <meta property="og:image" content="https://imgur.com/S2PzfKC">
+<meta property="og:image" content="https://imgur.com/itrPILc">
 <meta property="article:published_time" content="2024-03-11T08:11:22.000Z">
-<meta property="article:modified_time" content="2024-04-08T06:54:40.275Z">
+<meta property="article:modified_time" content="2024-04-08T07:29:25.072Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -394,8 +395,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-08</span>
             <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 14:54:40</span>
-            <span class="mobile">2024-04-08 14:54</span> -->
+            <!-- <span class="desktop">2024-04-08 15:29:25</span>
+            <span class="mobile">2024-04-08 15:29</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -533,7 +534,18 @@
                      
                 ><br><a class="link"   target="_blank" rel="noopener" href="https://dysonma.github.io/2021/01/27/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E6%AD%A3%E8%A6%8F%E5%8C%96-Regularization/" >圖片來源</a></p>
 <p>L1 正規化是把模型裡所有的參數都取絕對值<br>因為絕對值無法微分，所以把 &gt;0 微分成 1，&lt;0 微分成 -1，以 sign 函數表示</p>
-<h3 id="L2"><a href="#L2" class="headerlink" title="L2"></a>L2</h3><h2 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h2><p>可參考我的另一篇筆記 <a href="https://lavinia0724.github.io/2024/03/27/Machine-Learning-Decision-Tree-Learning/">Machine Learning - Decision Tree Learning</a></p>
+<p>L1 正規化讓沒有用的權重設為 0，留下模型認為重要的權重</p>
+<p>有可能導致 0 權重，因刪除許多特徵而使模型稀疏</p>
+<h3 id="L2"><a href="#L2" class="headerlink" title="L2"></a>L2</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://imgur.com/itrPILc"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://dysonma.github.io/2021/01/27/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E6%AD%A3%E8%A6%8F%E5%8C%96-Regularization/" >圖片來源</a></p>
+<p>L2 正規化把模型裡所有的參數都取平方求和<br>把此 term 加入至新的 loss function 去對每個參數 w<sub>i</sub> 做偏微分後，會發現每次更新參數 w<sub>i</sub> 時，其實就是在 w<sub>i</sub> 前乘上一個很接近 1 的值<br>當更新參數 w<sub>i</sub> 次數越多，w<sub>i</sub> 會越接近 0 (但不會等於 0) </p>
+<p>L2 正規化會讓 w 每次都變小一點，這被稱為權重衰減 weight decay<br>讓模型簡化，但不會只留下某個權重，而是削弱所有權重</p>
+<p>會對越大的權重造成更大的影響，將使權種值保持較小</p>
+<h2 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h2><p>可參考我的另一篇筆記 <a href="https://lavinia0724.github.io/2024/03/27/Machine-Learning-Decision-Tree-Learning/">Machine Learning - Decision Tree Learning</a></p>
 <!-- ## Bayesian Learning
 基於貝式理論，條件機率，根據前提猜測結果
 
@@ -547,6 +559,7 @@
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>黃貞瑛老師的機器學習課程</li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://dysonma.github.io/2021/01/27/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E6%AD%A3%E8%A6%8F%E5%8C%96-Regularization/" >機器學習-正規化(Regularization)</a></li>
 </ul>
 
             </div>
