@@ -25,11 +25,13 @@
 <meta property="og:site_name" content="LAVI">
 <meta property="og:description" content="Machine Learning 概論">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page01.png">
 <meta property="article:published_time" content="2024-03-11T08:11:22.000Z">
-<meta property="article:modified_time" content="2024-04-08T08:05:09.904Z">
+<meta property="article:modified_time" content="2024-04-08T08:20:33.825Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page01.png">
     
     
     <!--- Icon Part-->
@@ -387,8 +389,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-08</span>
             <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 16:05:09</span>
-            <span class="mobile">2024-04-08 16:05</span> -->
+            <!-- <span class="desktop">2024-04-08 16:20:33</span>
+            <span class="mobile">2024-04-08 16:20</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -438,7 +440,51 @@
             
 
             <div class="article-content markdown-body">
-                <h3 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h3><p>屬性，指標的的特徵<br>在 input 中稱為 label<br>在 output 中稱為 target</p>
+                <h2 id="Conspectus"><a href="#Conspectus" class="headerlink" title="Conspectus"></a>Conspectus</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Hundred-Page01.png"
+                     
+                >
+
+<p>深度學習 <strong>D</strong>eep <strong>L</strong>earning 是機器學習 <strong>M</strong>achine <strong>L</strong>earning 的分支<br>機器學習 <strong>M</strong>achine <strong>L</strong>earning 是人工智慧 <strong>A</strong>rtificial <strong>I</strong>ntelligence 的分支</p>
+<p>機器學習四大分類：</p>
+<ol>
+<li>Supervised Learning</li>
+<li>Semi-supervised Learning</li>
+<li>Unsupervised Learning</li>
+<li>Reinforcemend Learning</li>
+</ol>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">資料集</a></li><li class="tab"><a class="#芝士，與你分享-2">資料預處理方式</a></li><li class="tab"><a class="#芝士，與你分享-3">Note</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>機器學習只要旋轉資料&#x2F;轉換顏色就截然不同，可用來增加 Training Data</p></div><div class="tab-pane" id="芝士，與你分享-2"><ol>
+<li>降躁</li>
+<li>提升解析度</li>
+<li>降雜訊</li>
+</ol></div><div class="tab-pane" id="芝士，與你分享-3"><ol>
+<li>做多分類類別不用分太多，二分類就好，會讓研究目標較明顯也更重點投注</li>
+<li>論文一定要有真實資料，所以如何獲得獨家的資料集是關鍵之一（例如與醫院合作獲得病例照），不然 Open Data 幾百年前就被做光了 By 許老師</li>
+<li>先有資料集再設計模型</li>
+</ol></div></div></div>
+
+<h3 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h3><p>所有資料都有 label<br>希望透過大量標註資料來幫助學習算法找到最好的模型</p>
+<p>大致分為兩類：</p>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">Classification</a></li><li class="tab"><a class="#芝士，與你分享-2">Regression</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>分類，輸出是類別<br>例如：利用 MNIST 數據集對手寫數字辨識進行多分類</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>回歸，輸出是數值</p></div></div></div>
+
+<p>Data: (x, y)，x is data, y is label<br>Goal: learning func to map x &rarr; y</p>
+<h3 id="Semi-supervised-Learning"><a href="#Semi-supervised-Learning" class="headerlink" title="Semi-supervised Learning"></a>Semi-supervised Learning</h3><p>資料有 label 和 unlabel 的，而 unlabel 比例遠大於 label 的數量<br>有時候會不算這個，稱其他三類為機器學習三大分類，但因 Hundred-Page Machine learning Book by A. Burkov 將其分為一大類，故以此為準<br>有時因標記資料不夠多，因此也透過 unlabel 資料去 tune supervised model</p>
+<h3 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h3><p>所有資料都 unlabel<br>目標是創建一個模型，將特徵向量 x 輸入後，將其轉化為另一個向量或轉化為一個可用於解決實際問題的值</p>
+<p>Clustering 分群即為一種 Unsupervised Learning，其目標為把相向的集合成一群，但並沒有標準，由機器自己判斷如何分類</p>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">分類</a></li><li class="tab"><a class="#芝士，與你分享-2">降維</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>模型會傳回 dataset 中每個特徵向量的聚類 id</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>模型的輸出是一個比輸入 x 特徵更少的特徵向量<br>高維降至低維度，減少輸注的 x 的特徵 feature </p></div></div></div>
+
+<p>Data: x，x is data, no label<br>Goal: learning underlying sturcture</p>
+<h3 id="Reinforcemend-Learning"><a href="#Reinforcemend-Learning" class="headerlink" title="Reinforcemend Learning"></a>Reinforcemend Learning</h3><p>模型會根據<strong>環境</strong>自己學習，透過將環境狀態感知為一個特徵向量<br>機器可以在每種狀態下執行動作，不同的行動會帶來不同的回報，亦讓機器進入環境的另一種狀態</p>
+<p>Reinforcemend Learning 的目標是學習策略，透過將狀態的特徵向量作為輸入，輸出在該狀態下的最佳行動，使預期的平均 reward 最大化</p>
+<p>例如：</p>
+<ol>
+<li>令在移動的物件上的木根保持平衡，需控制物件移動，使木根不倒，如何控制物件速度即為 Reinforcemend Learning</li>
+<li>控制棒球員根據不同來速，判斷該以何種速動，到達何處，才能接到投手的球</li>
+</ol>
+<p>Data: state-action pairs<br>Goal: maximize future rewards over many time steps</p>
+<h2 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h2><p>屬性，指標的的特徵<br>在 input 中稱為 label<br>在 output 中稱為 target</p>
 <p>attribute &#x3D; feature &#x3D; variable &#x3D; characteristic &#x3D; field</p>
 <p>有兩種型別：</p>
 <ol>
@@ -451,6 +497,20 @@
 <h3 id="Instance-Based-model"><a href="#Instance-Based-model" class="headerlink" title="Instance-Based model"></a>Instance-Based model</h3><p>基於案例</p>
 <p>Hypothesis: an implicit hypothesis set<br>Learning Algorithm: k-nearest neighbor（kNN），找在特徵向量空間中距離目標最近的 k 個 label</p>
 <h3 id="Loss-function-or-Squared-error-loss"><a href="#Loss-function-or-Squared-error-loss" class="headerlink" title="Loss function or Squared error loss"></a>Loss function or Squared error loss</h3><p>進行錯誤分類的懲罰度量</p>
+<h3 id="Model-Based-vs-Instance-Based-Learning"><a href="#Model-Based-vs-Instance-Based-Learning" class="headerlink" title="Model-Based vs. Instance-Based Learning"></a>Model-Based vs. Instance-Based Learning</h3><p>Model-Based：透過 training data 學習參數而來創造模型</p>
+<p>Instance-Based Learning：使用整個 dataset 作為模型，例如 k-Nearest Neighbors (kNN)</p>
+<h3 id="Shallow-vs-Deep-Learning"><a href="#Shallow-vs-Deep-Learning" class="headerlink" title="Shallow vs. Deep Learning"></a>Shallow vs. Deep Learning</h3><p>Shallow Learning：從訓練實例的特徵中學習模型參數</p>
+<ul>
+<li>Examples of the shallow architectures:<ul>
+<li>Support vector machines (SVMs) </li>
+<li>Logistic regression</li>
+<li>Kernel regression </li>
+<li>Multilayer perceptrons (MLPs) with a single hidden layer including extreme learning machines (ELMs)</li>
+</ul>
+</li>
+</ul>
+<p>Deep Learning：譬如 neural network 神經網路，尤其是輸入與輸出之間有一層以上的演算法，大多數深度神經網路學習中模型的參數都樹從前幾層的輸出中學習的</p>
+<h3 id="Linear-vs-Non-linear-model"><a href="#Linear-vs-Non-linear-model" class="headerlink" title="Linear vs Non-linear model"></a>Linear vs Non-linear model</h3><p>Linear model：A straight line (or a plane, or a hyperplane)<br>很難完美的分類，因為可能會有噪音 noise in the data、錯誤標記 errors of labeling、異常值 outliers</p>
 <p>ex:<br>(f(x<sub>i</sub>) - y<sub>i</sub>)<sup>2</sup></p>
 <p>用在 linear regression</p>
 <!-- ## Bayesian Learning
@@ -464,6 +524,7 @@
 從資料中找尋可用資訊 -->
 
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
 </ul>
@@ -506,10 +567,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2024/03/08/Machine-Learning-Hundred-Page-Machine-learning-Book/"
+                            href="/2024/03/08/Machine-Learning-Support-Vector-Machine/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Machine Learning - Hundred-Page Machine learning Book by A. Burkov</span>
+                                    <span class="post-nav-title-item">Machine Learning - Support Vector Machine</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -531,7 +592,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Machine Learning - Concept</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Type"><span class="nav-text">Model Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conspectus"><span class="nav-text">Conspectus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Supervised-Learning"><span class="nav-text">Supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semi-supervised-Learning"><span class="nav-text">Semi-supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reinforcemend-Learning"><span class="nav-text">Reinforcemend Learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Type"><span class="nav-text">Model Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Based-vs-Instance-Based-Learning"><span class="nav-text">Model-Based vs. Instance-Based Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shallow-vs-Deep-Learning"><span class="nav-text">Shallow vs. Deep Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-vs-Non-linear-model"><span class="nav-text">Linear vs Non-linear model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
