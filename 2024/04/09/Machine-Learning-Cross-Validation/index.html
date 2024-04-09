@@ -25,11 +25,13 @@
 <meta property="og:site_name" content="LAVI">
 <meta property="og:description" content="Machine Learning - Cross-Validation">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png">
 <meta property="article:published_time" content="2024-04-09T06:38:30.000Z">
-<meta property="article:modified_time" content="2024-04-09T06:48:26.738Z">
+<meta property="article:modified_time" content="2024-04-09T07:16:05.264Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png">
     
     
     <!--- Icon Part-->
@@ -387,8 +389,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-09</span>
             <span class="mobile">2024-04-09</span>
-            <!-- <span class="desktop">2024-04-09 14:48:26</span>
-            <span class="mobile">2024-04-09 14:48</span> -->
+            <!-- <span class="desktop">2024-04-09 15:16:05</span>
+            <span class="mobile">2024-04-09 15:16</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -442,7 +444,25 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+                <h2 id="Cross-Validation-交叉驗證"><a href="#Cross-Validation-交叉驗證" class="headerlink" title="Cross-Validation 交叉驗證"></a>Cross-Validation 交叉驗證</h2><p>機器學習模型的資料集，通常會切割成 80% 訓練集(Training Dataset)與 20% 驗證集(Validation Dataset)<br>Training Dataset 用來訓練整個機器學習模型，Validation Dataset 用來驗證這個模型訓練得好不好</p>
+<p>因為在小資料集取一小部份當驗證資料，很難具有代表性，可能會剛好抽到一部份符合模型的訓練，又可能一部份無法符合模型</p>
+<p>因此使用 Cross-Validation 交叉驗證是一個比較有效的評估模型的指標</p>
+<h3 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross-Validation"></a>K-fold Cross-Validation</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://jason-chen-1992.weebly.com/home/-cross-validation" >圖片來源</a></p>
+<p>K-fold 和 KNN 的 K 一樣，代表不指定的數字<br>K-fold 的意思是把資料集 “折”、拆分成幾個部份</p>
+<p>K-fold Cross-Validation 就是將資料集拆成 K 份互相做交叉驗證</p>
+<p>方法:</p>
+<ol>
+<li>把其中 K-1 份當作訓練集，剩下的那 1 份當作驗證集，算出一個 Validation Error</li>
+<li>把從沒當過驗證集的資料中挑出一份當作驗證集，剛剛當過驗證集的資料加回訓練集，維持 K-1 份作訓練，1 份作驗證</li>
+<li>如此反覆直到每份資料都當過驗證集，這樣會執行 K 次，算出 K 個 Validation Error</li>
+<li>把這 K 個 Validation Error 做平均，用他們的平均分數來判斷模型好壞</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://jason-chen-1992.weebly.com/home/-cross-validation#google_vignette" >【機器學習】交叉驗證 Cross-Validation</a></li>
@@ -496,7 +516,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Machine Learning - Cross-Validation</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cross-Validation-%E4%BA%A4%E5%8F%89%E9%A9%97%E8%AD%89"><span class="nav-text">Cross-Validation 交叉驗證</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-fold-Cross-Validation"><span class="nav-text">K-fold Cross-Validation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
