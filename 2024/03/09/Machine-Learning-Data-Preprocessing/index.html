@@ -13,21 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/categories/machine-learning/deep-learning/lecture/by-professor-jen-ing-hwang/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/03/09/machine-learning-data-preprocessing/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="LAVI">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LAVI">
-<meta property="og:url" content="https://lavinia0724.github.io/categories/Machine-Learning/Deep-Learning/Lecture/by-Professor-Jen-ing-Hwang/index.html">
+        <meta name="description" content="Machine Learning - Data Preprocessing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning - Data Preprocessing">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/03/09/Machine-Learning-Data-Preprocessing/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="LAVI">
+<meta property="og:description" content="Machine Learning - Data Preprocessing">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page10.png">
+<meta property="article:published_time" content="2024-03-09T14:08:24.000Z">
+<meta property="article:modified_time" content="2024-04-09T05:49:23.344Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="LAVI">
+<meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page10.png">
     
     
     <!--- Icon Part-->
@@ -39,7 +43,7 @@
     
     <title>
         
-            分類: by Professor Jen-ing Hwang -
+            Machine Learning - Data Preprocessing -
         
         INCLAVIC
     </title>
@@ -347,39 +351,198 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fa-solid fa-folder"></i>&nbsp;by Professor Jen-ing Hwang
-        </div>
-        <div class="category-post-list">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
             
-<div class="archive-list-container">
+                      
+                <div class="article-title">
+                    <img src="/images/post65.JPG" alt="Machine Learning - Data Preprocessing" />
+                    <h1 class="article-title-cover">Machine Learning - Data Preprocessing</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-03-09</span>
+        <span class="mobile">2024-03-09</span>
+        <!-- <span class="desktop">2024-03-09 22:08:24</span>
+        <span class="mobile">2024-03-09 22:08</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 1</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='09-08'>
-                <a href="/2022/09/08/Deep-Learning-Professor-Jen-ing-Hwang/">
-                  <span class="article-title">Deep Learning - Professor Jen-ing Hwang&#39;s lecture</span>
-                </a>
-              </li>
-              
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-04-09</span>
+            <span class="mobile">2024-04-09</span>
+            <!-- <span class="desktop">2024-04-09 13:49:23</span>
+            <span class="mobile">2024-04-09 13:49</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Machine-Learning/Data-Preprocessing/">Data Preprocessing</a>&nbsp;
+                    </li>
+                
             </ul>
-        </section>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
-    </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span>
-</div>
+                        </div>
+                    </div>
+                </div>
+            
 
+            <div class="article-content markdown-body">
+                <h2 id="Dealing-with-Noise"><a href="#Dealing-with-Noise" class="headerlink" title="Dealing with Noise"></a>Dealing with Noise</h2><p>降噪</p>
+<ul>
+<li>Hinge loss function<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(0, 1-y(wx - b))</span><br></pre></td></tr></table></figure></div></li>
+<li>Hinge loss function 為 0，當 wx 在正確的 decision boundary</li>
+<li>Hinge loss function 值與距離 decision boundary 成正比，當其不在 desision boundary 時</li>
+</ul>
+<h2 id="Dealing-with-Inherent-Non-Linearity"><a href="#Dealing-with-Inherent-Non-Linearity" class="headerlink" title="Dealing with Inherent Non-Linearity"></a>Dealing with Inherent Non-Linearity</h2><ul>
+<li>kernel trick<br>透過將二維轉成三維，使原本的 figure 變成 linearly separable<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Hundred-Page10.png"
+                     
+                ></li>
+</ul>
+<h2 id="Missing-Features"><a href="#Missing-Features" class="headerlink" title="Missing Features"></a>Missing Features</h2><p>在資料集夠大的前提下，使用可以處理刪除 dataset 缺失特徵例子的演算法</p>
+<h3 id="Data-Imputation"><a href="#Data-Imputation" class="headerlink" title="Data Imputation"></a>Data Imputation</h3><ul>
+<li>用平均值替換特徵缺失的值</li>
+<li>用非常態分佈區間的值替換特徵缺失的值</li>
+<li>用中間值替換特徵缺失的值</li>
+<li>提升維度</li>
+<li>透過 regression model 預測特徵缺失的值</li>
+<li>用已經訓練好的模型預測替換特徵缺失的值</li>
+</ul>
+<h2 id="Normalization-Standardization"><a href="#Normalization-Standardization" class="headerlink" title="Normalization &amp; Standardization"></a>Normalization &amp; Standardization</h2><h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>轉換數字特徵至 standard range，通常是 <code>[-1, 1]</code> 或 <code>[0, 1]</code><br>提高學習速度，確保輸入大致處於相對較小範圍內，避免產生 overflow 數字溢位問題</p>
+<h3 id="Standardization"><a href="#Standardization" class="headerlink" title="Standardization"></a>Standardization</h3><p>μ 是所有 dataset 中 feature value 的平均值<br>σ 是與均值的標準差<br>當 μ &#x3D; 0, σ &#x3D; 1 時具有常態分佈的特性</p>
+<blockquote>
+<p>unsupervised learning 通常偏好 standardization<br>因為如果某些特徵有離群值，Normalization 會擠壓到一個很小的範圍內，因此不好</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Hundred-Page Machine learning Book by A. Burkov</li>
+<li>黃貞瑛老師的機器學習課程</li>
+<li>許見章老師的人工智慧課程</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/03/11/Machine-Learning-Regression/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Regression</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/03/08/Machine-Learning-Support-Vector-Machine/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Support Vector Machine</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Machine Learning - Data Preprocessing</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Noise"><span class="nav-text">Dealing with Noise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Inherent-Non-Linearity"><span class="nav-text">Dealing with Inherent Non-Linearity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Missing-Features"><span class="nav-text">Missing Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Imputation"><span class="nav-text">Data Imputation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Normalization-Standardization"><span class="nav-text">Normalization &amp; Standardization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization"><span class="nav-text">Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standardization"><span class="nav-text">Standardization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
     </div>
 </div>
 
@@ -435,6 +598,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
@@ -543,6 +723,16 @@
 
 
 <div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
     
 </div>
 

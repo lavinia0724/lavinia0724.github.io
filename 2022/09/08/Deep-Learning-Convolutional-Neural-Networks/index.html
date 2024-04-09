@@ -13,25 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2024/04/08/machine-learning-data-preprocessing/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/09/08/deep-learning-convolutional-neural-networks/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Machine Learning - Data Preprocessing">
+        <meta name="description" content="Deep Learning - Convolutional Neural Networks, CNN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning - Data Preprocessing">
-<meta property="og:url" content="https://lavinia0724.github.io/2024/04/08/Machine-Learning-Data-Preprocessing/index.html">
+<meta property="og:title" content="Deep Learning - Convolutional Neural Networks">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/09/08/Deep-Learning-Convolutional-Neural-Networks/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Machine Learning - Data Preprocessing">
+<meta property="og:description" content="Deep Learning - Convolutional Neural Networks, CNN">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page10.png">
-<meta property="article:published_time" content="2024-04-08T14:08:24.000Z">
-<meta property="article:modified_time" content="2024-04-08T08:24:51.571Z">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL03.png">
+<meta property="article:published_time" content="2022-09-08T08:11:22.000Z">
+<meta property="article:modified_time" content="2024-04-09T05:49:23.344Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page10.png">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL01.png">
     
     
     <!--- Icon Part-->
@@ -43,7 +45,7 @@
     
     <title>
         
-            Machine Learning - Data Preprocessing -
+            Deep Learning - Convolutional Neural Networks -
         
         INCLAVIC
     </title>
@@ -357,8 +359,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post65.JPG" alt="Machine Learning - Data Preprocessing" />
-                    <h1 class="article-title-cover">Machine Learning - Data Preprocessing</h1>
+                    <img src="/images/post72.jpg" alt="Deep Learning - Convolutional Neural Networks" />
+                    <h1 class="article-title-cover">Deep Learning - Convolutional Neural Networks</h1>
                 </div>
             
                 
@@ -378,19 +380,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-04-08</span>
-        <span class="mobile">2024-04-08</span>
-        <!-- <span class="desktop">2024-04-08 22:08:24</span>
-        <span class="mobile">2024-04-08 22:08</span> -->
+        <span class="desktop">2022-09-08</span>
+        <span class="mobile">2022-09-08</span>
+        <!-- <span class="desktop">2022-09-08 16:11:22</span>
+        <span class="mobile">2022-09-08 16:11</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-08</span>
-            <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 16:24:51</span>
-            <span class="mobile">2024-04-08 16:24</span> -->
+            <span class="desktop">2024-04-09</span>
+            <span class="mobile">2024-04-09</span>
+            <!-- <span class="desktop">2024-04-09 13:49:23</span>
+            <span class="mobile">2024-04-09 13:49</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -405,7 +407,11 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Machine-Learning/Data-Preprocessing/">Data Preprocessing</a>&nbsp;
+                        &gt; <a href="/categories/Machine-Learning/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Machine-Learning/Deep-Learning/CNN/">CNN</a>&nbsp;
                     </li>
                 
             </ul>
@@ -417,7 +423,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                        <a href="/tags/Deep-Learning/">Deep Learning</a>&nbsp;
                     </li>
                 
             </ul>
@@ -440,38 +446,39 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Dealing-with-Noise"><a href="#Dealing-with-Noise" class="headerlink" title="Dealing with Noise"></a>Dealing with Noise</h2><p>降噪</p>
-<ul>
-<li>Hinge loss function<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(0, 1-y(wx - b))</span><br></pre></td></tr></table></figure></div></li>
-<li>Hinge loss function 為 0，當 wx 在正確的 decision boundary</li>
-<li>Hinge loss function 值與距離 decision boundary 成正比，當其不在 desision boundary 時</li>
-</ul>
-<h2 id="Dealing-with-Inherent-Non-Linearity"><a href="#Dealing-with-Inherent-Non-Linearity" class="headerlink" title="Dealing with Inherent Non-Linearity"></a>Dealing with Inherent Non-Linearity</h2><ul>
-<li>kernel trick<br>透過將二維轉成三維，使原本的 figure 變成 linearly separable<img  
+                <h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>Convolutional Neural Networks (CNNs)</p>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\postImgs\Hundred-Page10.png"
+                     data-src="\images\postImgs\JenIngDL01.png"
                      
-                ></li>
+                >
+
+<h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><p>Generative Adversarial Networks (GANs)</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\JenIngDL02.png"
+                     
+                >
+
+<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><p>Recurrent Neural Networks (RNNs)</p>
+<ul>
+<li>Feeds the results back into the network</li>
 </ul>
-<h2 id="Missing-Features"><a href="#Missing-Features" class="headerlink" title="Missing Features"></a>Missing Features</h2><p>在資料集夠大的前提下，使用可以處理刪除 dataset 缺失特徵例子的演算法</p>
-<h3 id="Data-Imputation"><a href="#Data-Imputation" class="headerlink" title="Data Imputation"></a>Data Imputation</h3><ul>
-<li>用平均值替換特徵缺失的值</li>
-<li>用非常態分佈區間的值替換特徵缺失的值</li>
-<li>用中間值替換特徵缺失的值</li>
-<li>提升維度</li>
-<li>透過 regression model 預測特徵缺失的值</li>
-<li>用已經訓練好的模型預測替換特徵缺失的值</li>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\JenIngDL03.png"
+                     
+                >
+
+<h2 id="Transformer-Model"><a href="#Transformer-Model" class="headerlink" title="Transformer Model"></a>Transformer Model</h2><ul>
+<li>encoder-decoder structure</li>
+<li>self-attention without relying on recurrence and convolutions to generate an output</li>
 </ul>
-<h2 id="Normalization-Standardization"><a href="#Normalization-Standardization" class="headerlink" title="Normalization &amp; Standardization"></a>Normalization &amp; Standardization</h2><h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>轉換數字特徵至 standard range，通常是 <code>[-1, 1]</code> 或 <code>[0, 1]</code><br>提高學習速度，確保輸入大致處於相對較小範圍內，避免產生 overflow 數字溢位問題</p>
-<h3 id="Standardization"><a href="#Standardization" class="headerlink" title="Standardization"></a>Standardization</h3><p>μ 是所有 dataset 中 feature value 的平均值<br>σ 是與均值的標準差<br>當 μ &#x3D; 0, σ &#x3D; 1 時具有常態分佈的特性</p>
-<blockquote>
-<p>unsupervised learning 通常偏好 standardization<br>因為如果某些特徵有離群值，Normalization 會擠壓到一個很小的範圍內，因此不好</p>
-</blockquote>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>Hundred-Page Machine learning Book by A. Burkov</li>
-<li>黃貞瑛老師的機器學習課程</li>
-<li>許見章老師的人工智慧課程</li>
+<li>黃貞瑛老師的深度學習課程</li>
 </ul>
 
             </div>
@@ -482,7 +489,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                            <a href="/tags/Deep-Learning/">#Deep Learning</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -493,14 +500,29 @@
             
                 <div class="article-nav">
                     
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/09/15/Deep-Learning-Derivative-Gradient/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Deep Learning - Derivative &amp; Gradient</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2024/04/08/Machine-Learning-Confusion-Matrix/"
+                            href="/2022/05/11/CSIE-Operating-System/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Machine Learning - Confusion Matrix</span>
+                                    <span class="post-nav-title-item">CSIE - Operating System</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -521,8 +543,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Machine Learning - Data Preprocessing</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Noise"><span class="nav-text">Dealing with Noise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Inherent-Non-Linearity"><span class="nav-text">Dealing with Inherent Non-Linearity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Missing-Features"><span class="nav-text">Missing Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Imputation"><span class="nav-text">Data Imputation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Normalization-Standardization"><span class="nav-text">Normalization &amp; Standardization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization"><span class="nav-text">Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standardization"><span class="nav-text">Standardization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Deep Learning - Convolutional Neural Networks</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN"><span class="nav-text">CNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GAN"><span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-text">RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-Model"><span class="nav-text">Transformer Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>

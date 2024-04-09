@@ -25,11 +25,17 @@
 <meta property="og:site_name" content="LAVI">
 <meta property="og:description" content="Machine Learning - Confusion Matrix">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://d1dwq032kyr03c.cloudfront.net/upload/images/20201211/20130601JOK5kbf2UW.png">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5fkbTBQ7qhKl-BF0jUjVCQ.png">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5fkbTBQ7qhKl-BF0jUjVCQ.png">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*g0wFDQ-ES6C6ypHXAqPa8A.png">
+<meta property="og:image" content="https://taweihuang.hpd.io/wp-content/uploads/2018/12/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2018-12-28-%E4%B8%8B%E5%8D%888.12.37-560x557.png">
 <meta property="article:published_time" content="2024-04-08T08:38:17.000Z">
-<meta property="article:modified_time" content="2024-04-08T08:40:35.373Z">
+<meta property="article:modified_time" content="2024-04-09T06:24:54.448Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://d1dwq032kyr03c.cloudfront.net/upload/images/20201211/20130601JOK5kbf2UW.png">
     
     
     <!--- Icon Part-->
@@ -385,10 +391,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-08</span>
-            <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 16:40:35</span>
-            <span class="mobile">2024-04-08 16:40</span> -->
+            <span class="desktop">2024-04-09</span>
+            <span class="mobile">2024-04-09</span>
+            <!-- <span class="desktop">2024-04-09 14:24:54</span>
+            <span class="mobile">2024-04-09 14:24</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -404,6 +410,10 @@
                 
                     <li>
                         &gt; <a href="/categories/Machine-Learning/Model-Performance-Assessment/">Model Performance Assessment</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Machine-Learning/Model-Performance-Assessment/Confusion-Matrix/">Confusion Matrix</a>&nbsp;
                     </li>
                 
             </ul>
@@ -438,9 +448,56 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+                <h2 id="Confusion-Matrix-混淆矩陣"><a href="#Confusion-Matrix-混淆矩陣" class="headerlink" title="Confusion Matrix 混淆矩陣"></a>Confusion Matrix 混淆矩陣</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://d1dwq032kyr03c.cloudfront.net/upload/images/20201211/20130601JOK5kbf2UW.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10254593" >圖片來源</a></p>
+<ul>
+<li>TP(True Positive): 實際為 True，預測為 Positive，預測的結果與實際情況相同</li>
+<li>TN(True Negative): 實際為 True，預測為 Negative，預測的結果與實際情況不同</li>
+<li>FP(False Positive): 實際為 False，預測為 Negative，預測的結果與實際情況相同，<strong>Type I Error</strong></li>
+<li>FN(False Negative): 實際為 False，預測亦為 Positive，預測的結果與實際情況相同，<strong>Type II Error</strong></li>
+</ul>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3><p>因為實際為 False，無論預測為 Positive 還是 Negative，都會希望他不要出現，因此兩種狀況被稱為 Error，又分別分為 Type I Error 和 Type II E，尤其 Type I Error 又更嚴重</p>
+<h2 id="模型評估指標"><a href="#模型評估指標" class="headerlink" title="模型評估指標"></a>模型評估指標</h2><h3 id="Accuracy準確率"><a href="#Accuracy準確率" class="headerlink" title="Accuracy準確率"></a>Accuracy準確率</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5fkbTBQ7qhKl-BF0jUjVCQ.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@s716419/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8B%E8%A9%95%E4%BC%B0%E6%8C%87%E6%A8%99-confusion-matrix-precision-and-recall-e9d64ff14d81" >圖片來源</a></p>
+<p>Accuracy &#x3D; (TP + TN)&#x2F;全部資料總數</p>
+<p>在所有<strong>資料總數</strong>中，較在意<strong>實際資料為 True</strong> 的數量</p>
+<h3 id="Precision-精確率"><a href="#Precision-精確率" class="headerlink" title="Precision 精確率"></a>Precision 精確率</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*5fkbTBQ7qhKl-BF0jUjVCQ.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@s716419/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8B%E8%A9%95%E4%BC%B0%E6%8C%87%E6%A8%99-confusion-matrix-precision-and-recall-e9d64ff14d81" >圖片來源</a></p>
+<p>Precision &#x3D; TP&#x2F;(TP + FP)</p>
+<p>在所有<strong>Positive</strong>的狀況中，較在意 True Positive 的數量</p>
+<h3 id="Recall-召回率"><a href="#Recall-召回率" class="headerlink" title="Recall 召回率"></a>Recall 召回率</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*g0wFDQ-ES6C6ypHXAqPa8A.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@s716419/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8B%E8%A9%95%E4%BC%B0%E6%8C%87%E6%A8%99-confusion-matrix-precision-and-recall-e9d64ff14d81" >圖片來源</a></p>
+<p>Recall &#x3D; TP&#x2F;(TP+FN)</p>
+<p>在所有<strong>預測的結果與實際情況相同</strong>中，較在意 True Positive 的數量</p>
+<h3 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a>ROC Curve</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://taweihuang.hpd.io/wp-content/uploads/2018/12/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2018-12-28-%E4%B8%8B%E5%8D%888.12.37-560x557.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://taweihuang.hpd.io/2018/12/28/imbalanced-data-performance-metrics/" >圖片來源</a></p>
+<p>ROC 曲線越靠近左上角，也就是 ROC 曲線下的面積 AUC 越大，代表模型的分類能力越好</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@s716419/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8B%E8%A9%95%E4%BC%B0%E6%8C%87%E6%A8%99-confusion-matrix-precision-and-recall-e9d64ff14d81" >機器學習模型評估指標-confusion matrix, precision, recall, and ,F1-score</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10254593" >Day 11 - Confusion Matrix 混淆矩陣-模型的好壞 (1)</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://taweihuang.hpd.io/2018/12/28/imbalanced-data-performance-metrics/" >不平衡資料的二元分類 1：選擇正確的衡量指標</a></li>
 </ul>
 
             </div>
@@ -461,21 +518,6 @@
 
             
                 <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2024/04/08/Machine-Learning-Data-Preprocessing/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Machine Learning - Data Preprocessing</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
                     
                     
                         <div class="article-next">
@@ -506,7 +548,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Machine Learning - Confusion Matrix</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Confusion-Matrix-%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%99%A3"><span class="nav-text">Confusion Matrix 混淆矩陣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-text">Error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%A9%95%E4%BC%B0%E6%8C%87%E6%A8%99"><span class="nav-text">模型評估指標</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Accuracy%E6%BA%96%E7%A2%BA%E7%8E%87"><span class="nav-text">Accuracy準確率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Precision-%E7%B2%BE%E7%A2%BA%E7%8E%87"><span class="nav-text">Precision 精確率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recall-%E5%8F%AC%E5%9B%9E%E7%8E%87"><span class="nav-text">Recall 召回率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-Curve"><span class="nav-text">ROC Curve</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
