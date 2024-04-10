@@ -27,9 +27,9 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
 <meta property="article:published_time" content="2022-09-15T08:03:43.000Z">
-<meta property="article:modified_time" content="2024-04-08T08:40:58.905Z">
+<meta property="article:modified_time" content="2024-04-10T02:14:24.271Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
     
@@ -387,10 +387,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-08</span>
-            <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 16:40:58</span>
-            <span class="mobile">2024-04-08 16:40</span> -->
+            <span class="desktop">2024-04-10</span>
+            <span class="mobile">2024-04-10</span>
+            <!-- <span class="desktop">2024-04-10 10:14:24</span>
+            <span class="mobile">2024-04-10 10:14</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -401,15 +401,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                        <a href="/categories/Deep-Learning/">Deep Learning</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Machine-Learning/Deep-Learning/">Deep Learning</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/Machine-Learning/Deep-Learning/Derivative-Gradient/">Derivative &amp; Gradient</a>&nbsp;
+                        &gt; <a href="/categories/Deep-Learning/Derivative-Gradient/">Derivative &amp; Gradient</a>&nbsp;
                     </li>
                 
             </ul>
@@ -421,7 +417,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                        <a href="/tags/Deep-Learning/">Deep Learning</a>&nbsp;
                     </li>
                 
             </ul>
@@ -445,14 +441,20 @@
 
             <div class="article-content markdown-body">
                 <h2 id="Derivative-Gradient"><a href="#Derivative-Gradient" class="headerlink" title="Derivative &amp; Gradient"></a>Derivative &amp; Gradient</h2><h3 id="Derivative-導數"><a href="#Derivative-導數" class="headerlink" title="Derivative 導數"></a>Derivative 導數</h3><p>Derivative f’ 是 f 增長或減少之速度的函數或數值</p>
-<h3 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h3><p>Gradient 是偏導數的向量</p>
-<h4 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
+<h3 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h3><p>Gradient 是偏導數的向量<br>一個多變量函數的偏倒數向量<br>對於單變數函數，梯度就是斜率</p>
+<h4 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h4><p>沿著 gradient 往下找，找到局部最小值</p>
+<p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png"
                      
                 ><br><a class="link"   target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png" >圖片來源</a></p>
+<h3 id="Gradient-ascent"><a href="#Gradient-ascent" class="headerlink" title="Gradient ascent"></a>Gradient ascent</h3><p>比較不常用<br>沿著 gradient 往上找，找到局部最大值</p>
+<h2 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h2><p>用來衡量給定 dataset 的 hypothesis function h(x) 的準確性<br>也稱為 Error function&#x2F;Cost function</p>
+<p>透過 Loss function 來評量 hypothesis function 的準確性是否足夠接近 target function T(x)</p>
+<p>常見的方法有</p>
+<h3 id="Squared-Error"><a href="#Squared-Error" class="headerlink" title="Squared Error"></a>Squared Error</h3><p>平方誤差<br>(h(x) - T(x))<sup>2</sup></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>黃貞瑛老師的深度學習課程</li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
@@ -466,7 +468,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                            <a href="/tags/Deep-Learning/">#Deep Learning</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -521,7 +523,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Deep Learning - Derivative &amp; Gradient</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-Gradient"><span class="nav-text">Derivative &amp; Gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-Gradient"><span class="nav-text">Derivative &amp; Gradient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-ascent"><span class="nav-text">Gradient ascent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Squared-Error"><span class="nav-text">Squared Error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
