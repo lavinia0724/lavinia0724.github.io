@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL02.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL03.png">
 <meta property="article:published_time" content="2022-09-08T08:11:22.000Z">
-<meta property="article:modified_time" content="2024-04-13T06:10:43.514Z">
+<meta property="article:modified_time" content="2024-04-13T16:58:24.399Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
@@ -390,10 +390,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-13</span>
-            <span class="mobile">2024-04-13</span>
-            <!-- <span class="desktop">2024-04-13 14:10:43</span>
-            <span class="mobile">2024-04-13 14:10</span> -->
+            <span class="desktop">2024-04-14</span>
+            <span class="mobile">2024-04-14</span>
+            <!-- <span class="desktop">2024-04-14 00:58:24</span>
+            <span class="mobile">2024-04-14 00:58</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -451,9 +451,11 @@
                      
                 >
 
-<h3 id="Convolution-layer"><a href="#Convolution-layer" class="headerlink" title="Convolution layer"></a>Convolution layer</h3><p>是將輸入圖片與特定的 Feature filter 做卷積運算<br>將下圖 input image 每 3x3 個矩陣相乘後再相加，依序做完整張表</p>
+<h3 id="Convolution-layer"><a href="#Convolution-layer" class="headerlink" title="Convolution layer"></a>Convolution layer</h3><h4 id="1-Filter-Kernel"><a href="#1-Filter-Kernel" class="headerlink" title="1. Filter (Kernel)"></a>1. Filter (Kernel)</h4><p>是將輸入圖片與特定的 Feature filter 做卷積運算<br>將下圖 input image 每 3x3 個矩陣相乘後再相加，依序做完整張表</p>
 <p>5d4f)</p>
-<p>原本的 input image 為 6x6，filter 為 3x3，產生的 feature map 會是 4x4，(input image - filter + 1)</p>
+<p>原本的 input image 為 6x6，filter 為 3x3，產生的 feature map 會是 4x4，</p>
+<p>設 input image size 為 n<br>filter size 為 f</p>
+<p>output image size 為 (n - f + 1) x (n - f + 1)<br>(input image size - filter size + 1)</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -461,11 +463,24 @@
                      
                 ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC5-1%E8%AC%9B-%E5%8D%B7%E7%A9%8D%E7%A5%9E%E7%B6%93%E7%B6%B2%E7%B5%A1%E4%BB%8B%E7%B4%B9-convolutional-neural-network-4f8249d65d4f" >圖片來源</a></p>
 <p>filter 的目的是萃取出圖片當中的一些特徵</p>
-<ol>
-<li>Filter (Kernel)</li>
-<li>Padding</li>
-<li>Stride</li>
-<li>Convolutions Over Volumes</li>
+<h4 id="2-Padding"><a href="#2-Padding" class="headerlink" title="2. Padding"></a>2. Padding</h4><p>因為做捲積會導致圖片邊緣的特徵被丟掉<br>並且會壓縮原有 input image</p>
+<p>因此在圖片邊緣外層 padding 一圈 0，可以解決以上問題，讓輸出圖的大小和輸入圖一樣</p>
+<p>設 padding layer 有多少層為 p</p>
+<p>p &#x3D; (f-1) &#x2F; 2</p>
+<p>ex: 如果 filter 是 5x5，就會有 2 layers of zero 被加在圖片邊緣外</p>
+<div class="note danger"><p><i style="color:#F9727D" class="red fa-solid fa-circle-exclamation"> </i><br>Same convolution<br>讓輸出圖和輸入圖大小相同，做以上 padding 方法</p>
+<p>Valid convolution<br>不做 padding</p>
+</div>
+
+<h4 id="3-Stride"><a href="#3-Stride" class="headerlink" title="3. Stride"></a>3. Stride</h4><p>stride 控制 filter 做捲積運算的時候每次移動多少格</p>
+<p>output size 為 (((n + 2p - f) &#x2F; s) + 1) x (((n + 2p - f) &#x2F; s) + 1)</p>
+<p>ex: filter 為 3x3，做 valid convolution 在 7x7 的 input image，stride 為 2<br>則輸出圖片大小為 (((7 + 2 * 0 - 3) &#x2F; 2) + 1) &#x3D; 3x3</p>
+<h3 id="Convolutions-Over-Volumes"><a href="#Convolutions-Over-Volumes" class="headerlink" title="Convolutions Over Volumes"></a>Convolutions Over Volumes</h3><p>立體的捲積運算</p>
+<p>imput size &#x3D; nxn<br>filter size &#x3D; fxf<br>stride &#x3D; s<br>padding &#x3D; p</p>
+<p>n<sub>c</sub>: number of channels in the input and filters<br>n<sub>c</sub>‘: number of filters<br>output image size &#x3D; (n * n * n<sub>c</sub>) * (f * f * n<sub>c</sub>) &#x3D; (((n + 2p - f) &#x2F; s) + 1) * (((n + 2p - f) &#x2F; s) + 1) &#x2F;* n<sub>c</sub>‘</p>
+<p>ex:<br>imput size &#x3D; 6x6x3<br>filter size &#x3D; 3x3x3<br>stride &#x3D; 1<br>padding &#x3D; 0<br>n<sub>c</sub>‘ &#x3D; 2</p>
+<p>output size &#x3D; 4 x 4 x 2 </p>
+<ol start="5">
 <li>One Layer of a Convolutional Network</li>
 <li>Why Convolutions?</li>
 </ol>
@@ -559,7 +574,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Deep Learning - Convolutional Neural Networks</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN"><span class="nav-text">CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution-layer"><span class="nav-text">Convolution layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-layer"><span class="nav-text">Pooling layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fully-connected-layer"><span class="nav-text">Fully connected layer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GAN"><span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-text">RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-Model"><span class="nav-text">Transformer Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN"><span class="nav-text">CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution-layer"><span class="nav-text">Convolution layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutions-Over-Volumes"><span class="nav-text">Convolutions Over Volumes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-layer"><span class="nav-text">Pooling layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fully-connected-layer"><span class="nav-text">Fully connected layer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GAN"><span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-text">RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-Model"><span class="nav-text">Transformer Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
