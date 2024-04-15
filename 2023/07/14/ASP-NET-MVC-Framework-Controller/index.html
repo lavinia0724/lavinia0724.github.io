@@ -476,17 +476,9 @@
                 >
 
 <p>在新增 Controller 需取名，預設為 DefaultController</p>
-
-  <div class="note-large orange">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <p>注意！！</p>
-
-    </div>
-    <div class="notel-content">
-      <p>Controller 取名時僅可更動前綴名稱，勿改動 Controller 結尾！！！千萬不可以拿掉<br>ex 可將 DefaultController 更名為 TestController<br><br><br>因為 MVC Routing 規則預設為 <code>url: &quot;{controller}/{action}/{id}&quot;</code><br>所以 MVC 會自動判斷 controller 名稱導入 routing 路徑</p>
-
-    </div>
-  </div>
+<div class="note-large orange"><div class="notel-title"><p>注意！！</p>
+</div><div class="notel-content"><p>Controller 取名時僅可更動前綴名稱，勿改動 Controller 結尾！！！千萬不可以拿掉<br>ex 可將 DefaultController 更名為 TestController<br><br><br>因為 MVC Routing 規則預設為 <code>url: &quot;{controller}/{action}/{id}&quot;</code><br>所以 MVC 會自動判斷 controller 名稱導入 routing 路徑</p>
+</div></div>
 
 <h2 id="ActionResult"><a href="#ActionResult" class="headerlink" title="ActionResult"></a>ActionResult</h2><p>一個 Controller 裡可以有多個 Action<br>例如：OrderController 裡可能有 Index Action、InsertOrder Action、UperdateOrder Action、DeleteOrder Action..</p>
 <p>也就是一個 Controller 下會有多個 ActionResult，控制不同 function 的回傳，最常見為 return View()</p>

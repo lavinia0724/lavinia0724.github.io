@@ -439,17 +439,9 @@
 
             <div class="article-content markdown-body">
                 <h2 id="Transaction-Intro"><a href="#Transaction-Intro" class="headerlink" title="Transaction Intro"></a>Transaction Intro</h2><p>每筆跟 SQL 的互動都算是交易</p>
-
-  <div class="note-large orange">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <p>為何需要 Transaction：</p>
-
-    </div>
-    <div class="notel-content">
-      <p>假設今天轉帳到一半，銀行突然停電<br>對方還沒接收到你轉帳的錢，但你的帳戶已經扣錢下去了，你會不會氣炸 XD <br><br>所以必須要讓整個交易都完成，<br>你的帳戶扣錢了，對方的帳戶也收到錢了，才能算是交易成功<br>否則需要 ROLLBACK 回原本的狀態</p>
-
-    </div>
-  </div>
+<div class="note-large orange"><div class="notel-title"><p>為何需要 Transaction：</p>
+</div><div class="notel-content"><p>假設今天轉帳到一半，銀行突然停電<br>對方還沒接收到你轉帳的錢，但你的帳戶已經扣錢下去了，你會不會氣炸 XD <br><br>所以必須要讓整個交易都完成，<br>你的帳戶扣錢了，對方的帳戶也收到錢了，才能算是交易成功<br>否則需要 ROLLBACK 回原本的狀態</p>
+</div></div>
 
 
 <h3 id="Isolation-Levels"><a href="#Isolation-Levels" class="headerlink" title="Isolation Levels"></a>Isolation Levels</h3><p>Transaction 有多個隔離層級</p>

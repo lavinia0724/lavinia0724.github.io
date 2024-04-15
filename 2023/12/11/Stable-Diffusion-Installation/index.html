@@ -489,29 +489,18 @@
                      
                 ></li>
 </ol>
-
-  <div class="note-large red">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <p>stable diffusion model failed to load</p>
-
-    </div>
-    <div class="notel-content">
-      <p>如果在安裝的過程中，出現了 <code>stable diffusion model failed to load</code> Error<br>原因是你的顯卡不夠… 1650 之類的都會不夠</p>
+<div class="note-large red"><div class="notel-title"><p>stable diffusion model failed to load</p>
+</div><div class="notel-content"><p>如果在安裝的過程中，出現了 <code>stable diffusion model failed to load</code> Error<br>原因是你的顯卡不夠… 1650 之類的都會不夠</p>
 <div class="tabs" id="tab-页面内不重复的id"><ul class="nav-tabs"><li class="tab active"><a class="#页面内不重复的id-1">解決方法：</a></li><li class="tab"><a class="#页面内不重复的id-2">尊絕不凡解法：</a></li></ul><div class="tab-content"><div class="tab-pane active" id="页面内不重复的id-1"><p>回去 <code>webui-user.bat</code> 右鍵點編輯，<br>在 <code>set COMMANDLINE_ARGS=</code> 加上 <code>--lowvram --no-half --no-half-vae --precision full --opt-split-attention-v1 --xformers</code></p>
 <p>大致用意是犧牲精確度換取快速產圖，但仍舊有機率會產出黑圖</p>
-<p><code>--xformers</code>：減少顯卡記憶體的占用</p></div><div class="tab-pane" id="页面内不重复的id-2"><p><del>買一張 4090</del></p></div></div></div>
-    </div>
-  </div>
+<p><code>--xformers</code>：減少顯卡記憶體的占用</p></div><div class="tab-pane" id="页面内不重复的id-2"><p><del>買一張 4090</del></p></div></div></div></div></div>
 
 
 <ol start="3">
 <li>完成時 CMD 會顯示 <code>http://127.0.0.1:7860</code>，用瀏覽器打開，就可以看到 Automatic1111 的介面了</li>
 </ol>
-
-  <div class="note p-4 mb-4 rounded-small danger">
-    <p><i style="color:#F9727D" class="red fa-solid fa-circle-exclamation"> </i> 在安裝 Automatic1111 時，如果系統發現你的電腦沒有任何 AI 繪圖的模型，它會自動幫你下載 Stable Diffusion 1.5 版本</p>
-
-  </div>
+<div class="note danger"><p><i style="color:#F9727D" class="red fa-solid fa-circle-exclamation"> </i> 在安裝 Automatic1111 時，如果系統發現你的電腦沒有任何 AI 繪圖的模型，它會自動幫你下載 Stable Diffusion 1.5 版本</p>
+</div>
 
 <h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><ol>
 <li><p>從左上角的選單，將 Stable Diffusion 1.5 版本模型載入</p>
@@ -550,9 +539,9 @@
 <li>CMD 路徑在 Stable Diffusion 的資料夾下<div class="highlight-container" data-rel="Cmd"><figure class="iseeu highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" >stable-diffusion-webui <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=d2Xj0fKKaJ4" >Stable Diffusion 零基礎新手入門！Part 1 - 安裝與基本設置 (Windows &#x2F; Mac) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=622383" >stable diffusion model failed to load Error Solution <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" >stable-diffusion-webui</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=d2Xj0fKKaJ4" >Stable Diffusion 零基礎新手入門！Part 1 - 安裝與基本設置 (Windows &#x2F; Mac)</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=622383" >stable diffusion model failed to load Error Solution</a></li>
 </ul>
 
             </div>
