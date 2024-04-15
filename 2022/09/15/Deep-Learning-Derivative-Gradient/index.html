@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient01.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient03.png">
 <meta property="article:published_time" content="2022-09-15T08:03:43.000Z">
-<meta property="article:modified_time" content="2024-04-13T06:10:43.529Z">
+<meta property="article:modified_time" content="2024-04-15T13:25:16.999Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
@@ -390,10 +390,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-13</span>
-            <span class="mobile">2024-04-13</span>
-            <!-- <span class="desktop">2024-04-13 14:10:43</span>
-            <span class="mobile">2024-04-13 14:10</span> -->
+            <span class="desktop">2024-04-15</span>
+            <span class="mobile">2024-04-15</span>
+            <!-- <span class="desktop">2024-04-15 21:25:16</span>
+            <span class="mobile">2024-04-15 21:25</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -453,7 +453,8 @@
                      data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png"
                      
                 ><br><a class="link"   target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png" >圖片來源</a></p>
-<h3 id="Training-Rule-for-gradient-descent"><a href="#Training-Rule-for-gradient-descent" class="headerlink" title="Training Rule for gradient descent"></a>Training Rule for gradient descent</h3><p>w &larr; w + η(- dE(w)&#x2F;dw)<br>透過 learning rate η 來更新 w </p>
+<h3 id="Training-Rule-for-gradient-descent"><a href="#Training-Rule-for-gradient-descent" class="headerlink" title="Training Rule for gradient descent"></a>Training Rule for gradient descent</h3><!-- w &larr; w + η(- dE(w)/dw) -->
+<p>透過 learning rate η 來更新 w </p>
 <p>(- E(w)&#x2F;dw) 是 Error Fuction E(w) 最陡的 descent </p>
 <h4 id="Case1"><a href="#Case1" class="headerlink" title="Case1"></a>Case1</h4><img  
                      lazyload
@@ -494,7 +495,12 @@
 <h2 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h2><p>用來衡量給定 dataset 的 hypothesis function h(x) 的準確性<br>也稱為 Error function&#x2F;Cost function</p>
 <p>透過 Loss function 來評量 hypothesis function 的準確性是否足夠接近 target function T(x)</p>
 <p>常見的方法有</p>
-<h3 id="Squared-Error"><a href="#Squared-Error" class="headerlink" title="Squared Error"></a>Squared Error</h3><p>平方誤差<br>(h(x) - T(x))<sup>2</sup></p>
+<h4 id="Squared-Error"><a href="#Squared-Error" class="headerlink" title="Squared Error"></a>Squared Error</h4><p>平方誤差<br>(h(x) - T(x))<sup>2</sup></p>
+<h3 id="Minimizing-Error-Function"><a href="#Minimizing-Error-Function" class="headerlink" title="Minimizing Error Function"></a>Minimizing Error Function</h3><p>h(x) &#x3D; w<sub>1</sub>x + b<br>min E(h) &#x3D; 1&#x2F;2 1&#x2F;N sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
+<h3 id="Loss-fuction-one-weight-without-bias"><a href="#Loss-fuction-one-weight-without-bias" class="headerlink" title="Loss fuction - one weight without bias"></a>Loss fuction - one weight without bias</h3><p>設 b &#x3D; 0，預測的直線會經過原點<br>h(x) &#x3D; w<sub>1</sub>x + 0 &#x3D; wx</p>
+<p>Training example:<br>(x1, y1) &#x3D; (1, 1); (x2, y2) &#x3D; (2, 3); (x3, y3) &#x3D; (4, 4)<br>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
+<p>if w &#x3D; 1&#x2F;2 then<br>h1(x1) &#x3D; wx1 &#x3D; 1&#x2F;2 * 1 &#x3D; 1&#x2F;2<br>h1(x2) &#x3D; wx2 &#x3D; 1&#x2F;2 * 2 &#x3D; 1<br>h1(x3) &#x3D; wx3 &#x3D; 1&#x2F;2 * 4 &#x3D; 2</p>
+<p>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup><br>&#x3D; 1&#x2F;2 1&#x2F;3 (1&#x2F;2 - 1)<sup>2</sup> + (1 - 3)<sup>2</sup> + (2 - 4)<sup>2</sup><br>&#x3D; 33&#x2F;24</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>黃貞瑛老師的深度學習課程</li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
@@ -563,7 +569,7 @@
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Deep Learning - Derivative, Gradient &amp; Loss function</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent"><span class="nav-text">Gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent"><span class="nav-text">Training Rule for gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight without Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight with Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias"><span class="nav-text">Training Rule for gradient descent (M Weights with Bias)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-ascent"><span class="nav-text">Gradient ascent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Squared-Error"><span class="nav-text">Squared Error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent"><span class="nav-text">Gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent"><span class="nav-text">Training Rule for gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight without Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight with Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias"><span class="nav-text">Training Rule for gradient descent (M Weights with Bias)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-ascent"><span class="nav-text">Gradient ascent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimizing-Error-Function"><span class="nav-text">Minimizing Error Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-fuction-one-weight-without-bias"><span class="nav-text">Loss fuction - one weight without bias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
