@@ -26,8 +26,9 @@
 <meta property="og:description" content="Machine Learning - Data Preprocessing">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page10.png">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:600/format:webp/0*LbDcPbu--mWEfMkf">
 <meta property="article:published_time" content="2024-03-09T14:08:24.000Z">
-<meta property="article:modified_time" content="2024-04-08T14:49:39.892Z">
+<meta property="article:modified_time" content="2024-04-16T02:32:17.251Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -387,10 +388,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-08</span>
-            <span class="mobile">2024-04-08</span>
-            <!-- <span class="desktop">2024-04-08 22:49:39</span>
-            <span class="mobile">2024-04-08 22:49</span> -->
+            <span class="desktop">2024-04-16</span>
+            <span class="mobile">2024-04-16</span>
+            <!-- <span class="desktop">2024-04-16 10:32:17</span>
+            <span class="mobile">2024-04-16 10:32</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -464,7 +465,14 @@
 <li>用已經訓練好的模型預測替換特徵缺失的值</li>
 </ul>
 <h2 id="Normalization-Standardization"><a href="#Normalization-Standardization" class="headerlink" title="Normalization &amp; Standardization"></a>Normalization &amp; Standardization</h2><h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>轉換數字特徵至 standard range，通常是 <code>[-1, 1]</code> 或 <code>[0, 1]</code><br>提高學習速度，確保輸入大致處於相對較小範圍內，避免產生 overflow 數字溢位問題</p>
-<h3 id="Standardization"><a href="#Standardization" class="headerlink" title="Standardization"></a>Standardization</h3><p>μ 是所有 dataset 中 feature value 的平均值<br>σ 是與均值的標準差<br>當 μ &#x3D; 0, σ &#x3D; 1 時具有常態分佈的特性</p>
+<h3 id="Standardization"><a href="#Standardization" class="headerlink" title="Standardization"></a>Standardization</h3><p>資料的均值變為 0，結果分布具有單位標準差</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:600/format:webp/0*LbDcPbu--mWEfMkf"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/data-science-navigator/%E8%B3%87%E6%96%99%E5%89%8D%E8%99%95%E7%90%86-%E6%A8%99%E6%BA%96%E5%8C%96-%E5%81%8F%E6%85%8B-c9e9545bbf40#f1a3" >圖片來源</a></p>
+<p>μ 是所有 dataset 中 feature value 的平均值<br>σ 是與均值的標準差<br>當 μ &#x3D; 0, σ &#x3D; 1 時具有常態分佈的特性</p>
 <blockquote>
 <p>unsupervised learning 通常偏好 standardization<br>因為如果某些特徵有離群值，Normalization 會擠壓到一個很小的範圍內，因此不好</p>
 </blockquote>
@@ -472,6 +480,7 @@
 <li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
 <li>許見章老師的人工智慧課程</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://medium.com/data-science-navigator/%E8%B3%87%E6%96%99%E5%89%8D%E8%99%95%E7%90%86-%E6%A8%99%E6%BA%96%E5%8C%96-%E5%81%8F%E6%85%8B-c9e9545bbf40#f1a3" >資料前處理 — 標準化、偏態</a></li>
 </ul>
 
             </div>
