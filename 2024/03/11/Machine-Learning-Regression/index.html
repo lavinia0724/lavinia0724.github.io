@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Machine Learning - Regression">
+        <meta name="description" content="Machine Learning - Linear Regression &amp; Logistic Regression">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning - Regression">
+<meta property="og:title" content="Machine Learning - Linear Regression &amp; Logistic Regression">
 <meta property="og:url" content="https://lavinia0724.github.io/2024/03/11/Machine-Learning-Regression/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Machine Learning - Regression">
+<meta property="og:description" content="Machine Learning - Linear Regression &amp; Logistic Regression">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Regression01.png">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*wb6AGT3v51CHhG31">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*F8xLapWs4stL93NEO5NPeQ.png">
 <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k6Hhx9PUNXlalqwixJDjbQ.png">
 <meta property="article:published_time" content="2024-03-11T03:31:37.000Z">
-<meta property="article:modified_time" content="2024-04-15T13:25:17.009Z">
+<meta property="article:modified_time" content="2024-04-16T02:42:19.797Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -47,7 +47,7 @@
     
     <title>
         
-            Machine Learning - Regression -
+            Machine Learning - Linear Regression &amp; Logistic Regression -
         
         INCLAVIC
     </title>
@@ -361,8 +361,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post77.jpg" alt="Machine Learning - Regression" />
-                    <h1 class="article-title-cover">Machine Learning - Regression</h1>
+                    <img src="/images/post77.jpg" alt="Machine Learning - Linear Regression &amp; Logistic Regression" />
+                    <h1 class="article-title-cover">Machine Learning - Linear Regression &amp; Logistic Regression</h1>
                 </div>
             
                 
@@ -391,10 +391,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-15</span>
-            <span class="mobile">2024-04-15</span>
-            <!-- <span class="desktop">2024-04-15 21:25:17</span>
-            <span class="mobile">2024-04-15 21:25</span> -->
+            <span class="desktop">2024-04-16</span>
+            <span class="mobile">2024-04-16</span>
+            <!-- <span class="desktop">2024-04-16 10:42:19</span>
+            <span class="mobile">2024-04-16 10:42</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -409,7 +409,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Machine-Learning/Regression/">Regression</a>&nbsp;
+                        &gt; <a href="/categories/Machine-Learning/Linear-Regression-Logistic-Regression/">Linear Regression &amp; Logistic Regression</a>&nbsp;
                     </li>
                 
             </ul>
@@ -471,7 +471,7 @@
 <h2 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h2><blockquote>
 <p>Regression 必回傳數值</p>
 </blockquote>
-<h4 id="1-Linear-Regression"><a href="#1-Linear-Regression" class="headerlink" title="1. Linear Regression"></a>1. Linear Regression</h4><p>屬於 Supervised Learning<br>透過建立輸出是一個數值，輸入是多個數值這樣的關係的模型的線性方法</p>
+<h3 id="1-Linear-Regression"><a href="#1-Linear-Regression" class="headerlink" title="1. Linear Regression"></a>1. Linear Regression</h3><p>屬於 Supervised Learning<br>透過建立輸出是一個數值，輸入是多個數值這樣的關係的模型的線性方法</p>
 <p>若輸入只有一個 x，找到的就是一條直線 ŷ &#x3D; b + wx<br>若輸入有許多個 x，找到的就是一個超平面 hyperplane ŷ &#x3D; b + w1x1+ w2x2+ w3x3+ w4x</p>
 <p><img  
                      lazyload
@@ -483,7 +483,7 @@
 <p>帶入資料 (x<sub>i</sub>, y<sub>i</sub>), i &#x3D; 1, …, n，會產生<br>ŷ<sub>i</sub> &#x3D; β0 + β1x<sub>i</sub>，i &#x3D; 1, …, n</p>
 <p>ŷ<sub>i</sub>: 為預估出的值，和真實資料會有誤差 (error)，因此可得下式:</p>
 <p>εi &#x3D; y<sub>i</sub> — ŷ<sub>i</sub></p>
-<h4 id="2-Logistic-Regression"><a href="#2-Logistic-Regression" class="headerlink" title="2. Logistic Regression"></a>2. Logistic Regression</h4><p><img  
+<h3 id="2-Logistic-Regression"><a href="#2-Logistic-Regression" class="headerlink" title="2. Logistic Regression"></a>2. Logistic Regression</h3><p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k6Hhx9PUNXlalqwixJDjbQ.png"
@@ -491,6 +491,25 @@
                 ><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/jameslearningnote/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E7%AC%AC3-3%E8%AC%9B-%E7%B7%9A%E6%80%A7%E5%88%86%E9%A1%9E-%E9%82%8F%E8%BC%AF%E6%96%AF%E5%9B%9E%E6%AD%B8-logistic-regression-%E4%BB%8B%E7%B4%B9-a1a5f47017e5" >圖片來源</a></p>
 <p>不是使用 squared loss 最小化損失函數，而是根據模型最大化訓練集的可能性</p>
 <p>n &#x3D; w<sup>T</sup>x + b &#x3D; w∙x + b (內積)&#x3D; w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>1</sub> + b</p>
+<h4 id="Linear-Regresson-VS-Logistic-Regression"><a href="#Linear-Regresson-VS-Logistic-Regression" class="headerlink" title="Linear Regresson VS Logistic Regression"></a>Linear Regresson VS Logistic Regression</h4><table>
+<thead>
+<tr>
+<th></th>
+<th align="left">Linear Regresson</th>
+<th align="left">Logistic Regression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>輸出</td>
+<td align="left">連續的數值</td>
+<td align="left">機率，表示某個類別的機率</td>
+</tr>
+<tr>
+<td>用途</td>
+<td align="left">預測連續型變量的值</td>
+<td align="left">處理二元分類問題</td>
+</tr>
+</tbody></table>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
@@ -560,8 +579,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Machine Learning - Regression</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-vs-Regression"><span class="nav-text">Classification vs. Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Machine Learning - Linear Regression &amp; Logistic Regression</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classification-vs-Regression"><span class="nav-text">Classification vs. Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regression"><span class="nav-text">Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Linear-Regression"><span class="nav-text">1. Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Logistic-Regression"><span class="nav-text">2. Logistic Regression</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
