@@ -13,26 +13,28 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2022/09/15/deep-learning-activation-function/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/09/22/deep-learning-derivative-gradient/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Deep Learning - Activation Function">
+        <meta name="description" content="Deep Learning - Derivative, Gradient &amp; Loss function">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deep Learning - Activation Function">
-<meta property="og:url" content="https://lavinia0724.github.io/2022/09/15/Deep-Learning-Activation-Function/index.html">
+<meta property="og:title" content="Deep Learning - Derivative, Gradient &amp; Loss function">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/09/22/Deep-Learning-Derivative-Gradient/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Deep Learning - Activation Function">
+<meta property="og:description" content="Deep Learning - Derivative, Gradient &amp; Loss function">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/ActivationFunction01.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/ActivationFunction02.png">
-<meta property="article:published_time" content="2022-09-15T06:03:44.000Z">
-<meta property="article:modified_time" content="2024-04-21T16:34:14.441Z">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient03.png">
+<meta property="article:published_time" content="2022-09-22T08:03:43.000Z">
+<meta property="article:modified_time" content="2024-04-21T17:07:13.180Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/ActivationFunction01.png">
+<meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
     
     
     <!--- Icon Part-->
@@ -44,7 +46,7 @@
     
     <title>
         
-            Deep Learning - Activation Function -
+            Deep Learning - Derivative, Gradient &amp; Loss function -
         
         INCLAVIC
     </title>
@@ -358,8 +360,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post82.JPG" alt="Deep Learning - Activation Function" />
-                    <h1 class="article-title-cover">Deep Learning - Activation Function</h1>
+                    <img src="/images/post85.JPG" alt="Deep Learning - Derivative, Gradient &amp; Loss function" />
+                    <h1 class="article-title-cover">Deep Learning - Derivative, Gradient &amp; Loss function</h1>
                 </div>
             
                 
@@ -379,10 +381,10 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-09-15</span>
-        <span class="mobile">2022-09-15</span>
-        <!-- <span class="desktop">2022-09-15 14:03:44</span>
-        <span class="mobile">2022-09-15 14:03</span> -->
+        <span class="desktop">2022-09-22</span>
+        <span class="mobile">2022-09-22</span>
+        <!-- <span class="desktop">2022-09-22 16:03:43</span>
+        <span class="mobile">2022-09-22 16:03</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
@@ -390,8 +392,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-22</span>
             <span class="mobile">2024-04-22</span>
-            <!-- <span class="desktop">2024-04-22 00:34:14</span>
-            <span class="mobile">2024-04-22 00:34</span> -->
+            <!-- <span class="desktop">2024-04-22 01:07:13</span>
+            <span class="mobile">2024-04-22 01:07</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -406,7 +408,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Deep-Learning/Activation-Function/">Activation Function</a>&nbsp;
+                        &gt; <a href="/categories/Deep-Learning/Derivative-Gradient-Loss-function/">Derivative, Gradient &amp; Loss function</a>&nbsp;
                     </li>
                 
             </ul>
@@ -441,23 +443,66 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Activation-Function"><a href="#Activation-Function" class="headerlink" title="Activation Function"></a>Activation Function</h2><p>神經元的輸出可以透過激活函數激發輸入而得</p>
-<p>激活函數可能是線性或非線性的</p>
-<img  
+                <h2 id="Derivative-導數"><a href="#Derivative-導數" class="headerlink" title="Derivative 導數"></a>Derivative 導數</h2><p>Derivative f’ 是 f 增長或減少之速度的函數或數值</p>
+<h2 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h2><p>Gradient 是偏導數的向量<br>一個多變量函數的偏倒數向量<br>對於單變數函數，梯度就是斜率</p>
+<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>沿著 gradient 往下找，找到局部最小值</p>
+<p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\postImgs\ActivationFunction01.png"
+                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png"
                      
-                >
-<img  
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png" >圖片來源</a></p>
+<h3 id="Training-Rule-for-gradient-descent"><a href="#Training-Rule-for-gradient-descent" class="headerlink" title="Training Rule for gradient descent"></a>Training Rule for gradient descent</h3><p>w &larr; w + η(- dE(w)&#x2F;dw)<br>透過 learning rate η 來更新 w </p>
+<p>(- dE(w)&#x2F;dw) 是 Error Fuction E(w) 最陡的 descent </p>
+<h4 id="Case1"><a href="#Case1" class="headerlink" title="Case1"></a>Case1</h4><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\postImgs\ActivationFunction02.png"
+                     data-src="\images\postImgs\Gradient02.png"
                      
                 >
 
+<p>slope &gt;&#x3D; 0、(dE(w)&#x2F;dw &gt;&#x3D; 0)</p>
+<p>w &larr; w + η(- dE(w)&#x2F;dw)</p>
+<p>因為 (- dE(w)&#x2F;dw) 會 &lt;0，所以 w 會越更新越小<br>透過 decrease w 去 minimize error E(w)，因此會找到線段往左下的局部最小值</p>
+<h4 id="Case2"><a href="#Case2" class="headerlink" title="Case2"></a>Case2</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Gradient01.png"
+                     
+                >
+
+<p>slope &lt;&#x3D; 0、(dE(w)&#x2F;dw &lt;&#x3D; 0)</p>
+<p>w &larr; w + η(- dE(w)&#x2F;dw)</p>
+<p>因為 (- dE(w)&#x2F;dw) 會 &gt;0，所以 w 會越更新越大<br>透過 increase w 去 minimize error E(w)，因此會找到線段往右下的局部最小值</p>
+<h3 id="Training-Rule-for-gradient-descent-One-Weight-without-Bias"><a href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias" class="headerlink" title="Training Rule for gradient descent (One Weight without Bias)"></a>Training Rule for gradient descent (One Weight without Bias)</h3><p>One weight without bias:<br>h(x) &#x3D; wx </p>
+<p>w &larr; w + η(- dE(w)&#x2F;dw)<br>&#x3D; w &larr; w + η(-(wx - y)x)<br>&#x3D; w &larr; w + η(y - ŷ)x</p>
+<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
+<h3 id="Training-Rule-for-gradient-descent-One-Weight-with-Bias"><a href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias" class="headerlink" title="Training Rule for gradient descent (One Weight with Bias)"></a>Training Rule for gradient descent (One Weight with Bias)</h3><p>if b !&#x3D; 0 且只有一組 training example (x,y)</p>
+<p>h(x) &#x3D; b + wx<br>E(h) &#x3D; E(w, b) &#x3D; 1&#x2F;2(h(x) - y)<sup>2</sup> &#x3D; 1&#x2F;2(b + wx - y)<sup>2</sup></p>
+<p>The gradient of E<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Gradient03.png"
+                     
+                ></p>
+<h4 id="Formula"><a href="#Formula" class="headerlink" title="Formula"></a>Formula</h4><p>w &larr; w + η(y - ŷ)x<br>b &larr; b + η(y - ŷ)</p>
+<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
+<h3 id="Training-Rule-for-gradient-descent-M-Weights-with-Bias"><a href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias" class="headerlink" title="Training Rule for gradient descent (M Weights with Bias)"></a>Training Rule for gradient descent (M Weights with Bias)</h3><p>w<sub>i</sub> &larr; w<sub>i</sub> + η(y - ŷ)x<sub>i</sub>, i &#x3D; 1, 2, 3….M<br>b &larr; b + η(y - ŷ)</p>
+<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
+<h2 id="Gradient-ascent"><a href="#Gradient-ascent" class="headerlink" title="Gradient ascent"></a>Gradient ascent</h2><p>比較不常用<br>沿著 gradient 往上找，找到局部最大值</p>
+<h2 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h2><p>用來衡量給定 dataset 的 hypothesis function h(x) 的準確性<br>也稱為 Error function&#x2F;Cost function</p>
+<p>透過 Loss function 來評量 hypothesis function 的準確性是否足夠接近 target function T(x)</p>
+<p>常見的方法有</p>
+<h4 id="Squared-Error"><a href="#Squared-Error" class="headerlink" title="Squared Error"></a>Squared Error</h4><p>平方誤差<br>(h(x) - T(x))<sup>2</sup></p>
+<h3 id="Minimizing-Error-Function"><a href="#Minimizing-Error-Function" class="headerlink" title="Minimizing Error Function"></a>Minimizing Error Function</h3><p>h(x) &#x3D; w<sub>1</sub>x + b<br>min E(h) &#x3D; 1&#x2F;2 1&#x2F;N sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
+<h3 id="Loss-fuction-one-weight-without-bias"><a href="#Loss-fuction-one-weight-without-bias" class="headerlink" title="Loss fuction - one weight without bias"></a>Loss fuction - one weight without bias</h3><p>設 b &#x3D; 0，預測的直線會經過原點<br>h(x) &#x3D; w<sub>1</sub>x + 0 &#x3D; wx</p>
+<p>Training example:<br>(x1, y1) &#x3D; (1, 1); (x2, y2) &#x3D; (2, 3); (x3, y3) &#x3D; (4, 4)<br>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
+<p>if w &#x3D; 1&#x2F;2 then<br>h1(x1) &#x3D; wx1 &#x3D; 1&#x2F;2 * 1 &#x3D; 1&#x2F;2<br>h1(x2) &#x3D; wx2 &#x3D; 1&#x2F;2 * 2 &#x3D; 1<br>h1(x3) &#x3D; wx3 &#x3D; 1&#x2F;2 * 4 &#x3D; 2</p>
+<p>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup><br>&#x3D; 1&#x2F;2 1&#x2F;3 (1&#x2F;2 - 1)<sup>2</sup> + (1 - 3)<sup>2</sup> + (2 - 4)<sup>2</sup><br>&#x3D; 33&#x2F;24</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>黃貞瑛老師的機器學習課程</li>
+<li>黃貞瑛老師的深度學習課程</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
 </ul>
 
             </div>
@@ -482,13 +527,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2022/09/23/Deep-Learning-Derivative-Gradient/"
+                            href="/2022/10/06/CSIE-Database/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Deep Learning - Derivative, Gradient &amp; Loss function</span>
+                                    <span class="post-nav-title-item">CSIE - Database</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -498,10 +543,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2022/09/15/Deep-Learning-Perceptron-Learning-Algorithm/"
+                            href="/2022/09/16/Deep-Learning-Activation-Function/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Deep Learning - Perceptron Learning Algorithm</span>
+                                    <span class="post-nav-title-item">Deep Learning - Activation Function</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -522,8 +567,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Deep Learning - Activation Function</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activation-Function"><span class="nav-text">Activation Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Deep Learning - Derivative, Gradient &amp; Loss function</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent"><span class="nav-text">Gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent"><span class="nav-text">Training Rule for gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight without Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight with Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias"><span class="nav-text">Training Rule for gradient descent (M Weights with Bias)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-ascent"><span class="nav-text">Gradient ascent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimizing-Error-Function"><span class="nav-text">Minimizing Error Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-fuction-one-weight-without-bias"><span class="nav-text">Loss fuction - one weight without bias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
