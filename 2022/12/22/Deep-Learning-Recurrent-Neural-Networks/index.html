@@ -13,28 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2022/09/15/deep-learning-derivative-gradient/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/12/22/deep-learning-recurrent-neural-networks/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Deep Learning - Derivative, Gradient &amp; Loss function">
+        <meta name="description" content="Deep Learning - Recurrent Neural Networks, RNN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deep Learning - Derivative, Gradient &amp; Loss function">
-<meta property="og:url" content="https://lavinia0724.github.io/2022/09/15/Deep-Learning-Derivative-Gradient/index.html">
+<meta property="og:title" content="Deep Learning - Recurrent Neural Networks">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/12/22/Deep-Learning-Recurrent-Neural-Networks/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Deep Learning - Derivative, Gradient &amp; Loss function">
+<meta property="og:description" content="Deep Learning - Recurrent Neural Networks, RNN">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient02.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient01.png">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Gradient03.png">
-<meta property="article:published_time" content="2022-09-15T08:03:43.000Z">
-<meta property="article:modified_time" content="2024-04-17T11:14:32.840Z">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL03.png">
+<meta property="article:published_time" content="2022-12-22T08:11:22.000Z">
+<meta property="article:modified_time" content="2024-04-22T02:47:52.603Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/JenIngDL03.png">
     
     
     <!--- Icon Part-->
@@ -46,7 +43,7 @@
     
     <title>
         
-            Deep Learning - Derivative, Gradient &amp; Loss function -
+            Deep Learning - Recurrent Neural Networks -
         
         INCLAVIC
     </title>
@@ -95,7 +92,119 @@
     
     
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -360,8 +469,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post78.jpg" alt="Deep Learning - Derivative, Gradient &amp; Loss function" />
-                    <h1 class="article-title-cover">Deep Learning - Derivative, Gradient &amp; Loss function</h1>
+                    <img src="/images/post86.JPG" alt="Deep Learning - Recurrent Neural Networks" />
+                    <h1 class="article-title-cover">Deep Learning - Recurrent Neural Networks</h1>
                 </div>
             
                 
@@ -381,19 +490,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2022-09-15</span>
-        <span class="mobile">2022-09-15</span>
-        <!-- <span class="desktop">2022-09-15 16:03:43</span>
-        <span class="mobile">2022-09-15 16:03</span> -->
+        <span class="desktop">2022-12-22</span>
+        <span class="mobile">2022-12-22</span>
+        <!-- <span class="desktop">2022-12-22 16:11:22</span>
+        <span class="mobile">2022-12-22 16:11</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-17</span>
-            <span class="mobile">2024-04-17</span>
-            <!-- <span class="desktop">2024-04-17 19:14:32</span>
-            <span class="mobile">2024-04-17 19:14</span> -->
+            <span class="desktop">2024-04-22</span>
+            <span class="mobile">2024-04-22</span>
+            <!-- <span class="desktop">2024-04-22 10:47:52</span>
+            <span class="mobile">2024-04-22 10:47</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -408,7 +517,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Deep-Learning/Derivative-Gradient-Loss-function/">Derivative, Gradient &amp; Loss function</a>&nbsp;
+                        &gt; <a href="/categories/Deep-Learning/RNN/">RNN</a>&nbsp;
                     </li>
                 
             </ul>
@@ -443,67 +552,14 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Derivative-導數"><a href="#Derivative-導數" class="headerlink" title="Derivative 導數"></a>Derivative 導數</h2><p>Derivative f’ 是 f 增長或減少之速度的函數或數值</p>
-<h2 id="Gradient-梯度"><a href="#Gradient-梯度" class="headerlink" title="Gradient 梯度"></a>Gradient 梯度</h2><p>Gradient 是偏導數的向量<br>一個多變量函數的偏倒數向量<br>對於單變數函數，梯度就是斜率</p>
-<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>沿著 gradient 往下找，找到局部最小值</p>
-<p>梯度下降法是一種不斷去更新參數找解的方法<br>先隨機產生一組初始參數的解，然後根據這組隨機產生的解開始算此解的梯度方向大小，然後將這個解去減去梯度方向</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png"
-                     
-                ><br><a class="link"   target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:640/format:webp/1*cGNuS-tDLAdY_P9fcia7qQ.png" >圖片來源</a></p>
-<h3 id="Training-Rule-for-gradient-descent"><a href="#Training-Rule-for-gradient-descent" class="headerlink" title="Training Rule for gradient descent"></a>Training Rule for gradient descent</h3><p>w &larr; w + η(- dE(w)&#x2F;dw)<br>透過 learning rate η 來更新 w </p>
-<p>(- E(w)&#x2F;dw) 是 Error Fuction E(w) 最陡的 descent </p>
-<h4 id="Case1"><a href="#Case1" class="headerlink" title="Case1"></a>Case1</h4><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\Gradient02.png"
-                     
-                >
-
-<p>slope &gt;&#x3D; 0、(dE(w)&#x2F;dw &gt;&#x3D; 0)</p>
-<p>w &larr; w + η(- dE(w)&#x2F;dw)</p>
-<p>因為 (- dE(w)&#x2F;dw) 會 &lt;0，所以 w 會越更新越小<br>透過 decrease w 去 minimize error E(w)，因此會找到線段往左下的局部最小值</p>
-<h4 id="Case2"><a href="#Case2" class="headerlink" title="Case2"></a>Case2</h4><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\Gradient01.png"
-                     
-                >
-
-<p>slope &lt;&#x3D; 0、(dE(w)&#x2F;dw &lt;&#x3D; 0)</p>
-<p>w &larr; w + η(- dE(w)&#x2F;dw)</p>
-<p>因為 (- dE(w)&#x2F;dw) 會 &gt;0，所以 w 會越更新越大<br>透過 increase w 去 minimize error E(w)，因此會找到線段往右下的局部最小值</p>
-<h3 id="Training-Rule-for-gradient-descent-One-Weight-without-Bias"><a href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias" class="headerlink" title="Training Rule for gradient descent (One Weight without Bias)"></a>Training Rule for gradient descent (One Weight without Bias)</h3><p>One weight without bias:<br>h(x) &#x3D; wx </p>
-<p>w &larr; w + η(- dE(w)&#x2F;dw)<br>&#x3D; w &larr; w + η(-(wx - y)x)<br>&#x3D; w &larr; w + η(y - ŷ)x</p>
-<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
-<h3 id="Training-Rule-for-gradient-descent-One-Weight-with-Bias"><a href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias" class="headerlink" title="Training Rule for gradient descent (One Weight with Bias)"></a>Training Rule for gradient descent (One Weight with Bias)</h3><p>if b !&#x3D; 0 且只有一組 training example (x,y)</p>
-<p>h(x) &#x3D; b + wx<br>E(h) &#x3D; E(w, b) &#x3D; 1&#x2F;2(h(x) - y)<sup>2</sup> &#x3D; 1&#x2F;2(b + wx - y)<sup>2</sup></p>
-<p>The gradient of E<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\Gradient03.png"
-                     
-                ></p>
-<h4 id="Formula"><a href="#Formula" class="headerlink" title="Formula"></a>Formula</h4><p>w &larr; w + η(y - ŷ)x<br>b &larr; b + η(y - ŷ)</p>
-<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
-<h3 id="Training-Rule-for-gradient-descent-M-Weights-with-Bias"><a href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias" class="headerlink" title="Training Rule for gradient descent (M Weights with Bias)"></a>Training Rule for gradient descent (M Weights with Bias)</h3><p>w<sub>i</sub> &larr; w<sub>i</sub> + η(y - ŷ)x<sub>i</sub>, i &#x3D; 1, 2, 3….M<br>b &larr; b + η(y - ŷ)</p>
-<p>y &#x3D; 輸出值<br>ŷ &#x3D; h(x) &#x3D; wx 預測值</p>
-<h2 id="Gradient-ascent"><a href="#Gradient-ascent" class="headerlink" title="Gradient ascent"></a>Gradient ascent</h2><p>比較不常用<br>沿著 gradient 往上找，找到局部最大值</p>
-<h2 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h2><p>用來衡量給定 dataset 的 hypothesis function h(x) 的準確性<br>也稱為 Error function&#x2F;Cost function</p>
-<p>透過 Loss function 來評量 hypothesis function 的準確性是否足夠接近 target function T(x)</p>
-<p>常見的方法有</p>
-<h4 id="Squared-Error"><a href="#Squared-Error" class="headerlink" title="Squared Error"></a>Squared Error</h4><p>平方誤差<br>(h(x) - T(x))<sup>2</sup></p>
-<h3 id="Minimizing-Error-Function"><a href="#Minimizing-Error-Function" class="headerlink" title="Minimizing Error Function"></a>Minimizing Error Function</h3><p>h(x) &#x3D; w<sub>1</sub>x + b<br>min E(h) &#x3D; 1&#x2F;2 1&#x2F;N sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
-<h3 id="Loss-fuction-one-weight-without-bias"><a href="#Loss-fuction-one-weight-without-bias" class="headerlink" title="Loss fuction - one weight without bias"></a>Loss fuction - one weight without bias</h3><p>設 b &#x3D; 0，預測的直線會經過原點<br>h(x) &#x3D; w<sub>1</sub>x + 0 &#x3D; wx</p>
-<p>Training example:<br>(x1, y1) &#x3D; (1, 1); (x2, y2) &#x3D; (2, 3); (x3, y3) &#x3D; (4, 4)<br>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup></p>
-<p>if w &#x3D; 1&#x2F;2 then<br>h1(x1) &#x3D; wx1 &#x3D; 1&#x2F;2 * 1 &#x3D; 1&#x2F;2<br>h1(x2) &#x3D; wx2 &#x3D; 1&#x2F;2 * 2 &#x3D; 1<br>h1(x3) &#x3D; wx3 &#x3D; 1&#x2F;2 * 4 &#x3D; 2</p>
-<p>E(h) &#x3D; E(w)&#x3D; 1&#x2F;2 1&#x2F;3 sigma (h(x<sub>k</sub>) - y<sub>k</sub>)<sup>2</sup><br>&#x3D; 1&#x2F;2 1&#x2F;3 (1&#x2F;2 - 1)<sup>2</sup> + (1 - 3)<sup>2</sup> + (2 - 4)<sup>2</sup><br>&#x3D; 33&#x2F;24</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>黃貞瑛老師的深度學習課程</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://chih-sheng-huang821.medium.com/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E6%95%B8%E5%AD%B8-%E4%BA%8C-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95-gradient-descent-406e1fd001f" >機器&#x2F;深度學習-基礎數學(二):梯度下降法(gradient descent)</a></li>
+                <h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><p>Recurrent Neural Networks (RNNs)</p>
+<ul>
+<li>Feeds the results back into the network</li>
 </ul>
+<img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\JenIngDL03.png">
+
+<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.602ex;" xmlns="http://www.w3.org/2000/svg" width="25.832ex" height="5.018ex" role="img" focusable="false" viewBox="0 -1509.9 11417.6 2217.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(345,0)"><path data-c="210F" d="M182 599Q182 611 174 615T133 619Q118 619 114 621T109 630Q109 636 114 656T122 681Q125 685 202 688Q272 695 286 695Q304 695 304 684Q304 682 295 644T282 597Q282 592 360 592H399Q430 592 445 587T460 563Q460 552 451 541L442 535H266L251 468Q247 453 243 436T236 409T233 399Q233 395 244 404Q295 441 357 441Q405 441 445 417T485 333Q485 284 449 178T412 58T426 44Q447 44 466 68Q485 87 500 130L509 152H531H543Q562 152 562 144Q562 128 546 93T494 23T415 -13Q385 -13 359 3T322 44Q318 52 318 77Q318 99 352 196T386 337Q386 386 346 386Q318 386 286 370Q267 361 245 338T211 292Q207 287 193 235T162 113T138 21Q128 7 122 4Q105 -12 83 -12Q66 -12 54 -2T42 26L166 530Q166 534 161 534T129 535Q127 535 122 535T112 534Q74 534 74 562Q74 570 77 576T84 585T96 589T109 591T124 592T138 592L182 595V599Z"></path></g><g data-mml-node="mfrac" transform="translate(907,0)"><g data-mml-node="mi" transform="translate(400.5,676)"><path data-c="1D715" d="M202 508Q179 508 169 520T158 547Q158 557 164 577T185 624T230 675T301 710L333 715H345Q378 715 384 714Q447 703 489 661T549 568T566 457Q566 362 519 240T402 53Q321 -22 223 -22Q123 -22 73 56Q42 102 42 148V159Q42 276 129 370T322 465Q383 465 414 434T455 367L458 378Q478 461 478 515Q478 603 437 639T344 676Q266 676 223 612Q264 606 264 572Q264 547 246 528T202 508ZM430 306Q430 372 401 400T333 428Q270 428 222 382Q197 354 183 323T150 221Q132 149 132 116Q132 21 232 21Q244 21 250 22Q327 35 374 112Q389 137 409 196T430 306Z"></path></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mi"><path data-c="1D715" d="M202 508Q179 508 169 520T158 547Q158 557 164 577T185 624T230 675T301 710L333 715H345Q378 715 384 714Q447 703 489 661T549 568T566 457Q566 362 519 240T402 53Q321 -22 223 -22Q123 -22 73 56Q42 102 42 148V159Q42 276 129 370T322 465Q383 465 414 434T455 367L458 378Q478 461 478 515Q478 603 437 639T344 676Q266 676 223 612Q264 606 264 572Q264 547 246 528T202 508ZM430 306Q430 372 401 400T333 428Q270 428 222 382Q197 354 183 323T150 221Q132 149 132 116Q132 21 232 21Q244 21 250 22Q327 35 374 112Q389 137 409 196T430 306Z"></path></g><g data-mml-node="mi" transform="translate(566,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g><rect width="1127" height="60" x="120" y="220"></rect></g><g data-mml-node="mi" transform="translate(2274,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g><g data-mml-node="mo" transform="translate(3202.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(4258.6,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mfrac" transform="translate(5036.6,0)"><g data-mml-node="msup" transform="translate(384.2,676)"><g data-mml-node="mi"><path data-c="210F" d="M182 599Q182 611 174 615T133 619Q118 619 114 621T109 630Q109 636 114 656T122 681Q125 685 202 688Q272 695 286 695Q304 695 304 684Q304 682 295 644T282 597Q282 592 360 592H399Q430 592 445 587T460 563Q460 552 451 541L442 535H266L251 468Q247 453 243 436T236 409T233 399Q233 395 244 404Q295 441 357 441Q405 441 445 417T485 333Q485 284 449 178T412 58T426 44Q447 44 466 68Q485 87 500 130L509 152H531H543Q562 152 562 144Q562 128 546 93T494 23T415 -13Q385 -13 359 3T322 44Q318 52 318 77Q318 99 352 196T386 337Q386 386 346 386Q318 386 286 370Q267 361 245 338T211 292Q207 287 193 235T162 113T138 21Q128 7 122 4Q105 -12 83 -12Q66 -12 54 -2T42 26L166 530Q166 534 161 534T129 535Q127 535 122 535T112 534Q74 534 74 562Q74 570 77 576T84 585T96 589T109 591T124 592T138 592L182 595V599Z"></path></g><g data-mml-node="mn" transform="translate(646.1,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><rect width="1578" height="60" x="120" y="220"></rect></g><g data-mml-node="msup" transform="translate(6854.6,0)"><g data-mml-node="mi"><path data-c="2207" d="M46 676Q46 679 51 683H781Q786 679 786 676Q786 674 617 326T444 -26Q439 -33 416 -33T388 -26Q385 -22 216 326T46 676ZM697 596Q697 597 445 597T193 596Q195 591 319 336T445 80L697 596Z"></path></g><g data-mml-node="mn" transform="translate(866,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mi" transform="translate(8124.1,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g><g data-mml-node="mo" transform="translate(8997.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(9997.6,0)"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="mi" transform="translate(10766.6,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g></g></g></svg></mjx-container><a class="link" target="_blank" rel="noopener" href="http://localhost:4000/2022/09/15/Deep-Learning-Neural-Network/">http://localhost:4000/2022/09/15/Deep-Learning-Neural-Network/</a></p>
+<p>test</p>
 
             </div>
 
@@ -527,13 +583,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2022/09/27/Deep-Learning-Neural-Network/"
+                            href="/2023/02/14/Algorithm-Disjoint-Set/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Deep Learning - Neural Network</span>
+                                    <span class="post-nav-title-item">Algorithm - Disjoint Set</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -543,10 +599,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2022/09/08/Deep-Learning-Convolutional-Neural-Networks/"
+                            href="/2022/12/14/Database-STIX/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Deep Learning - Convolutional Neural Networks</span>
+                                    <span class="post-nav-title-item">Database Project - Stix</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -567,8 +623,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Deep Learning - Derivative, Gradient &amp; Loss function</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Derivative-%E5%B0%8E%E6%95%B8"><span class="nav-text">Derivative 導數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-text">Gradient 梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent"><span class="nav-text">Gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent"><span class="nav-text">Training Rule for gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-without-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight without Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-One-Weight-with-Bias"><span class="nav-text">Training Rule for gradient descent (One Weight with Bias)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Rule-for-gradient-descent-M-Weights-with-Bias"><span class="nav-text">Training Rule for gradient descent (M Weights with Bias)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-ascent"><span class="nav-text">Gradient ascent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimizing-Error-Function"><span class="nav-text">Minimizing Error Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-fuction-one-weight-without-bias"><span class="nav-text">Loss fuction - one weight without bias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Deep Learning - Recurrent Neural Networks</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-text">RNN</span></a></li></ol>
 
     </div>
 </div>
