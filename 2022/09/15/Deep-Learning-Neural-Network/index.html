@@ -18,18 +18,20 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient">
+        <meta name="description" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient">
+<meta property="og:title" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture">
 <meta property="og:url" content="https://lavinia0724.github.io/2022/09/15/Deep-Learning-Neural-Network/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient">
+<meta property="og:description" content="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://case.ntu.edu.tw/blog/wp-content/uploads/2016/12/Fig1.png">
 <meta property="article:published_time" content="2022-09-15T02:20:33.000Z">
-<meta property="article:modified_time" content="2024-04-22T06:18:39.494Z">
+<meta property="article:modified_time" content="2024-04-22T07:56:07.941Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://case.ntu.edu.tw/blog/wp-content/uploads/2016/12/Fig1.png">
     
     
     <!--- Icon Part-->
@@ -41,7 +43,7 @@
     
     <title>
         
-            Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient -
+            Deep Learning - Neural Network, Feed-Forward Neural Network Architecture -
         
         INCLAVIC
     </title>
@@ -355,8 +357,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post72.JPG" alt="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient" />
-                    <h1 class="article-title-cover">Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient</h1>
+                    <img src="/images/post72.JPG" alt="Deep Learning - Neural Network, Feed-Forward Neural Network Architecture" />
+                    <h1 class="article-title-cover">Deep Learning - Neural Network, Feed-Forward Neural Network Architecture</h1>
                 </div>
             
                 
@@ -387,8 +389,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-22</span>
             <span class="mobile">2024-04-22</span>
-            <!-- <span class="desktop">2024-04-22 14:18:39</span>
-            <span class="mobile">2024-04-22 14:18</span> -->
+            <!-- <span class="desktop">2024-04-22 15:56:07</span>
+            <span class="mobile">2024-04-22 15:56</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -438,10 +440,13 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h2><div class="note danger"><p><i style="color:#F9727D" class="fa-solid fa-calculator"> </i><br>y &#x3D; f<sub>NN</sub>(x)<br>y &#x3D; f<sub>NN</sub>(x) &#x3D; f<sub>3</sub>(f<sub>2</sub>(f<sub>1</sub>(x)))<br>f<sub>l</sub>(z) &#x3D; <sub>def</sub>g<sub>l</sub>(W<sub>l</sub>z + b<sub>l</sub>)</p>
-</div>
-
-<p>l 是 layer<br>g 是 activation function<br>W<sub>i</sub> (matrix) 和 b<sub>i</sub> (vector) 透過學習<br>gradient descent 以優化特定的 Lost function</p>
+                <h2 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://case.ntu.edu.tw/blog/wp-content/uploads/2016/12/Fig1.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://case.ntu.edu.tw/blog/wp-content/uploads/2016/12/Fig1.png" >圖片來源</a></p>
+<p>多層神經網路<br>接收輸入的 layer 稱為輸入層<br>最後的輸出 layer 稱為輸出層<br>輸入層和輸出層之間任何一層都稱為隱藏層（輸出層也是隱藏層）</p>
 <h2 id="Feed-Forward-Neural-Network-Architecture"><a href="#Feed-Forward-Neural-Network-Architecture" class="headerlink" title="Feed-Forward Neural Network Architecture"></a>Feed-Forward Neural Network Architecture</h2><p>神經網路的最後一層通常只有一個 unit</p>
 <p>若此 unit 的 activation function 如果是 <strong>liner function</strong>，那此神經網路就是一個 <strong>regression model</strong><br>若此 unit 的 activation function 如果是 <strong>logistic function</strong>，那此神經網路就是一個 <strong>binary classification model</strong></p>
 <p>簡單來說</p>
@@ -469,17 +474,9 @@
 <td align="left">不連續的</td>
 </tr>
 </tbody></table>
-<h2 id="Exploding-Gradient-梯度爆炸"><a href="#Exploding-Gradient-梯度爆炸" class="headerlink" title="Exploding Gradient 梯度爆炸"></a>Exploding Gradient 梯度爆炸</h2><p>梯度爆炸原因:<br>模型更新使用反向傳播法，每傳遞一層會乘上一大堆東西，當某一層的參數特別大，一路傳下去就會越瘋狂放大，這個往上遞增趨勢非常快速，導致梯度爆炸</p>
-<p>會導致越靠近輸入的那幾層更新速度非常快，使模型輸出結果瘋狂震盪</p>
-<p>透過正規化 L1 regularization、L2 regularization 可以很好的處理梯度爆炸</p>
-<h2 id="Vanishing-gradient-梯度消失"><a href="#Vanishing-gradient-梯度消失" class="headerlink" title="Vanishing gradient 梯度消失"></a>Vanishing gradient 梯度消失</h2><p>梯度消失原因:<br>模型更新使用反向傳播法，每傳遞一層會乘上一大堆東西，當某一層的參數特別小，一路傳下去就會越乘越小，這個往下遞減趨勢非常快速，導致梯度消失</p>
-<p>當誤差資訊因此而消失時，無法有效更新所有模型參數</p>
-<p>ReLU activation function 遇到梯度消失的影響會比較小</p>
-<p>long short-term memory (LSTM) 網路，因其 residual neural network 的 skip connection 特性，使其可以訓練更深的神經網路</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>Hundred-Page Machine learning Book by A. Burkov</li>
 <li>黃貞瑛老師的機器學習課程</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/m/articles/10330557" >番外篇–AI學習的大麻煩–激勵函數(Activation Function)與梯度爆炸&#x2F;梯度消失</a></li>
 </ul>
 
             </div>
@@ -544,8 +541,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Deep Learning - Neural Network, Feed-Forward Neural Network Architecture and Exploding Gradient</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network"><span class="nav-text">Neural Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feed-Forward-Neural-Network-Architecture"><span class="nav-text">Feed-Forward Neural Network Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploding-Gradient-%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="nav-text">Exploding Gradient 梯度爆炸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanishing-gradient-%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1"><span class="nav-text">Vanishing gradient 梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Deep Learning - Neural Network, Feed-Forward Neural Network Architecture</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Network"><span class="nav-text">Neural Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feed-Forward-Neural-Network-Architecture"><span class="nav-text">Feed-Forward Neural Network Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
