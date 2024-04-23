@@ -30,9 +30,10 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLAB03.png">
 <meta property="og:image" content="https://ww2.mathworks.cn/help/examples/graphics/win64/CreateLinePlotExample_01.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLAB04.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLAB05.png">
 <meta property="og:image" content="https://ww2.mathworks.cn/help/matlab/ref/scattercolorpaletteexample_01_zh_CN.png">
 <meta property="article:published_time" content="2024-01-17T13:56:04.000Z">
-<meta property="article:modified_time" content="2024-04-23T07:26:42.787Z">
+<meta property="article:modified_time" content="2024-04-23T07:31:04.479Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
@@ -394,8 +395,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-04-23</span>
             <span class="mobile">2024-04-23</span>
-            <!-- <span class="desktop">2024-04-23 15:26:42</span>
-            <span class="mobile">2024-04-23 15:26</span> -->
+            <!-- <span class="desktop">2024-04-23 15:31:04</span>
+            <span class="mobile">2024-04-23 15:31</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -612,8 +613,7 @@
 <td>菱形</td>
 </tr>
 </tbody></table>
-<p>二維繪圖</p>
-<div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">100</span>:<span class="number">2</span>*<span class="built_in">pi</span>;</span><br><span class="line">y = <span class="built_in">sin</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x,y)</span><br></pre></td></tr></table></figure></div>
+<h4 id="二維繪圖"><a href="#二維繪圖" class="headerlink" title="二維繪圖"></a>二維繪圖</h4><div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="built_in">pi</span>/<span class="number">100</span>:<span class="number">2</span>*<span class="built_in">pi</span>;</span><br><span class="line">y = <span class="built_in">sin</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x,y)</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -626,6 +626,14 @@
                      lazyload
                      src="/images/loading.svg"
                      data-src="\images\postImgs\MATLAB04.png"
+                     
+                >
+
+<h4 id="同時畫四張圖於一個視窗中"><a href="#同時畫四張圖於一個視窗中" class="headerlink" title="同時畫四張圖於一個視窗中"></a>同時畫四張圖於一個視窗中</h4><div class="highlight-container" data-rel="Matlab"><figure class="iseeu highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="number">0.1</span>:<span class="number">4</span>*<span class="built_in">pi</span>;</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>); <span class="built_in">plot</span>(x, <span class="built_in">sin</span>(x));				<span class="comment">% 左上角</span></span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>); <span class="built_in">plot</span>(x, <span class="built_in">cos</span>(x));				<span class="comment">% 右上角</span></span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="built_in">plot</span>(x, <span class="built_in">sin</span>(x).*<span class="built_in">exp</span>(-x/<span class="number">5</span>));	<span class="comment">% 左下角</span></span><br><span class="line">subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>); <span class="built_in">plot</span>(x, x.^<span class="number">2</span>);				<span class="comment">% 右下角</span></span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\MATLAB05.png"
                      
                 >
 
