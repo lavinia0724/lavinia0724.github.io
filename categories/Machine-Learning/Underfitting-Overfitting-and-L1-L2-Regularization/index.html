@@ -13,25 +13,21 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2024/04/09/machine-learning-cross-validation/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/categories/machine-learning/underfitting-overfitting-and-l1-l2-regularization/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Machine Learning - Cross-Validation">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning - Cross-Validation">
-<meta property="og:url" content="https://lavinia0724.github.io/2024/04/09/Machine-Learning-Cross-Validation/index.html">
+        <meta name="description" content="LAVI">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LAVI">
+<meta property="og:url" content="https://lavinia0724.github.io/categories/Machine-Learning/Underfitting-Overfitting-and-L1-L2-Regularization/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Machine Learning - Cross-Validation">
+<meta property="og:description" content="LAVI">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png">
-<meta property="article:published_time" content="2024-04-09T06:38:30.000Z">
-<meta property="article:modified_time" content="2024-04-09T16:03:56.959Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="LAVI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png">
     
     
     <!--- Icon Part-->
@@ -43,7 +39,7 @@
     
     <title>
         
-            Machine Learning - Cross-Validation -
+            分類: Underfitting, Overfitting and L1 L2 Regularization -
         
         INCLAVIC
     </title>
@@ -351,192 +347,39 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            
-                      
-                <div class="article-title">
-                    <img src="/images/post81.jpg" alt="Machine Learning - Cross-Validation" />
-                    <h1 class="article-title-cover">Machine Learning - Cross-Validation</h1>
-                </div>
-            
-                
-            
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/logo_momian.jpg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">LAVI</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-04-09</span>
-        <span class="mobile">2024-04-09</span>
-        <!-- <span class="desktop">2024-04-09 14:38:30</span>
-        <span class="mobile">2024-04-09 14:38</span> -->
-        <span class="hover-info">撰寫</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-04-10</span>
-            <span class="mobile">2024-04-10</span>
-            <!-- <span class="desktop">2024-04-10 00:03:56</span>
-            <span class="mobile">2024-04-10 00:03</span> -->
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-        <span class="article-categories article-meta-item">
-            <i class="fa-regular fa-folders"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/Machine-Learning/Model-Performance-Assessment/">Model Performance Assessment</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/Machine-Learning/Model-Performance-Assessment/Cross-Validation/">Cross-Validation</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content markdown-body">
-                <h2 id="Cross-Validation-交叉驗證"><a href="#Cross-Validation-交叉驗證" class="headerlink" title="Cross-Validation 交叉驗證"></a>Cross-Validation 交叉驗證</h2><p>機器學習模型的資料集，通常會切割成 80% 訓練集(Training Dataset)與 20% 驗證集(Validation Dataset)<br>Training Dataset 用來訓練整個機器學習模型，Validation Dataset 用來驗證這個模型訓練得好不好</p>
-<p>因為在小資料集取一小部份當驗證資料，很難具有代表性，可能會剛好抽到一部份符合模型的訓練，又可能一部份無法符合模型</p>
-<p>因此使用 Cross-Validation 交叉驗證是一個比較有效的評估模型的指標</p>
-<h3 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross-Validation"></a>K-fold Cross-Validation</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://jason-chen-1992.weebly.com/uploads/1/0/8/5/108557741/cover-forcrossv_orig.png"
-                     
-                ><br><a class="link"   target="_blank" rel="noopener" href="https://jason-chen-1992.weebly.com/home/-cross-validation" >圖片來源</a></p>
-<p>K-fold 和 KNN 的 K 一樣，代表不指定的數字<br>K-fold 的意思是把資料集 “折”、拆分成幾個部份</p>
-<p>K-fold Cross-Validation 就是將資料集拆成 K 份互相做交叉驗證</p>
-<p>方法:</p>
-<ol>
-<li>把其中 K-1 份當作訓練集，剩下的那 1 份當作驗證集，算出一個 Validation Error</li>
-<li>把從沒當過驗證集的資料中挑出一份當作驗證集，剛剛當過驗證集的資料加回訓練集，維持 K-1 份作訓練，1 份作驗證</li>
-<li>如此反覆直到每份資料都當過驗證集，這樣會執行 K 次，算出 K 個 Validation Error</li>
-<li>把這 K 個 Validation Error 做平均，用他們的平均分數來判斷模型好壞</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>Hundred-Page Machine learning Book by A. Burkov</li>
-<li>黃貞瑛老師的機器學習課程</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://jason-chen-1992.weebly.com/home/-cross-validation#google_vignette" >【機器學習】交叉驗證 Cross-Validation</a></li>
-</ul>
-
-            </div>
-
-            
-
-            
-                <ul class="post-tags-box">
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            
-
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2024/04/13/VMware-Workstation-Windows-Installation/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">VMware Workstation - Windows Installation</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                            rel="next"
-                            href="/2024/04/08/Machine-Learning-Confusion-Matrix/"
-                            >
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Machine Learning - Confusion Matrix</span>
-                                    <span class="post-nav-item">下一篇</span>
-                                </span>
-                                <span class="right arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-
-            
+    <div class="category-container">
+        <div class="category-name">
+            <i class="fa-solid fa-folder"></i>&nbsp;Underfitting, Overfitting and L1 L2 Regularization
         </div>
-
-        
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">Machine Learning - Cross-Validation</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cross-Validation-%E4%BA%A4%E5%8F%89%E9%A9%97%E8%AD%89"><span class="nav-text">Cross-Validation 交叉驗證</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-fold-Cross-Validation"><span class="nav-text">K-fold Cross-Validation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
-
-    </div>
-</div>
+        <div class="category-post-list">
+            
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2024</span>
+                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 1</span>
             </div>
-        
+            <ul class="article-list">
+              
+              <li class="article-item" date-is='04-08'>
+                <a href="/2024/04/08/Machine-Learning-Regularization/">
+                  <span class="article-title">Machine Learning - Underfitting, Overfitting and L1 L2 Regularization</span>
+                </a>
+              </li>
+              
+            </ul>
+        </section>
+    
+</div>
+
+        </div>
+    </div>
+    <div class="category-paginator">
+        <div class="paginator">
+    <span class="page-number current">1</span>
+</div>
+
     </div>
 </div>
 
@@ -592,23 +435,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-side-tools-container">
@@ -717,16 +543,6 @@
 
 
 <div class="post-scripts pjax">
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
-
     
 </div>
 
