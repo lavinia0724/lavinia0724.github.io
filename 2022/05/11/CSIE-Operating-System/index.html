@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://i.imgur.com/flgT3xv.png">
 <meta property="og:image" content="https://i.imgur.com/f5FCRRa.png">
 <meta property="article:published_time" content="2022-05-11T12:44:56.000Z">
-<meta property="article:modified_time" content="2024-01-03T06:13:32.862Z">
+<meta property="article:modified_time" content="2024-05-29T03:04:31.496Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="CSIE">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,119 @@
     
     
     
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -408,10 +520,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-03</span>
-            <span class="mobile">2024-01-03</span>
-            <!-- <span class="desktop">2024-01-03 14:13:32</span>
-            <span class="mobile">2024-01-03 14:13</span> -->
+            <span class="desktop">2024-05-29</span>
+            <span class="mobile">2024-05-29</span>
+            <!-- <span class="desktop">2024-05-29 11:04:31</span>
+            <span class="mobile">2024-05-29 11:04</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -481,25 +593,15 @@
 <li>Rate-Monotonic Scheduling<ul>
 <li>優先權是週期的倒數</li>
 <li>ex: <ul>
-<li>p1 &#x3D; 50, p2 &#x3D; 100</li>
-<li>t1 &#x3D; 20, t2 &#x3D; 35</li>
-<li>CPU utilization &#x3D; time&#x2F;period &#x3D; 20&#x2F;50 + 35&#x2F;100 &#x3D; 75%<blockquote>
+<li>p1 = 50, p2 = 100</li>
+<li>t1 = 20, t2 = 35</li>
+<li>CPU utilization = time/period = 20/50 + 35/100 = 75%<blockquote>
 <p>不合，因為 p1 過了 deadline</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/06SZkrc.png"
-                     
-                ><blockquote>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/06SZkrc.png"><blockquote>
 <p>符合，使用 Rate-Monotonic Scheduling，看優先權</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/GKWE0Gk.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/GKWE0Gk.png"></li>
 </ul>
 </li>
 <li>Rate-Monotonic Scheduling 被視為最佳，不能用它做的別人也做不了</li>
@@ -507,40 +609,35 @@
 </li>
 <li>Earliest-Deadline-First (EDF) Scheduling<ul>
 <li>優先權看 deadline，越早越高<ul>
-<li>deadline，一開始 d&#x3D;p，完成 t 後 d +&#x3D; p</li>
+<li>deadline，一開始 d=p，完成 t 後 d += p</li>
 </ul>
 </li>
 <li>ex: <ul>
-<li>p1 &#x3D; 50, p2 &#x3D; 100</li>
-<li>t1 &#x3D; 20, t2 &#x3D; 35</li>
-<li>CPU utilization &#x3D; time&#x2F;period &#x3D; 25&#x2F;50 + 35&#x2F;100 &#x3D; 75%<blockquote>
-<p>第二輪週期時，d1 &#x3D; 100, d2 &#x3D; 160<br>所以 p2 在 t&#x3D;100 時被 p1 搶先，因為 p1 優先權高</p>
+<li>p1 = 50, p2 = 100</li>
+<li>t1 = 20, t2 = 35</li>
+<li>CPU utilization = time/period = 25/50 + 35/100 = 75%<blockquote>
+<p>第二輪週期時，d1 = 100, d2 = 160<br>所以 p2 在 t=100 時被 p1 搶先，因為 p1 優先權高</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/1IpnOaJ.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/1IpnOaJ.png"></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Proportional Share Scheduling<ul>
-<li>配置 T 個分享，單位時間能接收 N 次分享，每個 process 收到 N&#x2F;T 的處理時間</li>
+<li>配置 T 個分享，單位時間能接收 N 次分享，每個 process 收到 N/T 的處理時間</li>
 <li>ex:<ul>
-<li>T &#x3D; 100</li>
-<li>N: A &#x3D; 50，B &#x3D; 15，C &#x3D; 20</li>
-<li>A 有總處理器時間的 50&#x2F;100 &#x3D; 50%，B 有 15%，C 有 20%</li>
+<li>T = 100</li>
+<li>N: A = 50，B = 15，C = 20</li>
+<li>A 有總處理器時間的 50/100 = 50%，B 有 15%，C 有 20%</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Little’s Formula<ul>
-<li>n &#x3D; average queue length</li>
-<li>W &#x3D; average waiting time in queue</li>
-<li>λ &#x3D; average arrival rate into queue<ul>
-<li>n &#x3D; λ x W</li>
+<li>n = average queue length</li>
+<li>W = average waiting time in queue</li>
+<li>λ = average arrival rate into queue<ul>
+<li>n = λ x W</li>
 <li>ex:</li>
 <li>已知每秒平均有 7 個 process 到達(λ)，並且通常有 14 個 process 在佇列中(n)，就可以求出每個 process 的平均等待時間為 2 秒鐘(W)</li>
 </ul>
@@ -558,14 +655,14 @@
 <h2 id="Chapter-6"><a href="#Chapter-6" class="headerlink" title="Chapter 6"></a>Chapter 6</h2><ul>
 <li>Race Condition<ul>
 <li>數個行程同時存取和處理相同資料的情況，執行的結果取決於存取時的特定順序</li>
-<li>ex: count &#x3D; 5<ul>
-<li>T0: producer execute register1 &#x3D; counter {register1 &#x3D; 5}</li>
-<li>T1: producer execute register1 &#x3D; register1 + 1 {register1 &#x3D; 6}</li>
-<li>T2: consumer execute register2 &#x3D; counter {register2 &#x3D; 5}</li>
-<li>T3: consumer execute register2 &#x3D; register2 – 1 {register2 &#x3D; 4}</li>
-<li>T4: producer execute counter &#x3D; register1 {counter &#x3D; 6 }</li>
-<li>T5: consumer execute counter &#x3D; register2 {counter &#x3D; 4}<blockquote>
-<p>不正常的狀態，count &#x3D;&#x3D; 4，紀錄有 4 個緩衝區，但實際上有 5 個</p>
+<li>ex: count = 5<ul>
+<li>T0: producer execute register1 = counter {register1 = 5}</li>
+<li>T1: producer execute register1 = register1 + 1 {register1 = 6}</li>
+<li>T2: consumer execute register2 = counter {register2 = 5}</li>
+<li>T3: consumer execute register2 = register2 – 1 {register2 = 4}</li>
+<li>T4: producer execute counter = register1 {counter = 6 }</li>
+<li>T5: consumer execute counter = register2 {counter = 4}<blockquote>
+<p>不正常的狀態，count == 4，紀錄有 4 個緩衝區，但實際上有 5 個</p>
 </blockquote>
 </li>
 </ul>
@@ -620,7 +717,7 @@
 </li>
 <li>為了證明解答是對的，需要證明:<ol>
 <li>mutual exclusion 存在<ul>
-<li>flag[j] &#x3D; false or turn &#x3D; i</li>
+<li>flag[j] = false or turn = i</li>
 </ul>
 </li>
 <li>progress 要求都能被滿足</li>
@@ -638,14 +735,14 @@
 <li>修改 memory 位址時，不會立即可知</li>
 </ul>
 </li>
-<li>memory barriers&#x2F;memory fences<ul>
+<li>memory barriers/memory fences<ul>
 <li>可以強制將 memory 的任何修改傳遞給其他 processor 的指令</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Hardware Instructions<ul>
-<li>Atomic &#x3D; non-interruptible</li>
+<li>Atomic = non-interruptible</li>
 <li><code>test_and_set()</code><ul>
 <li>test memory word and set value</li>
 </ul>
@@ -661,7 +758,7 @@
 <ol>
 <li>不可中斷的執行</li>
 <li>Returns the original value of passed parameter “value”</li>
-<li>只有當 if(value &#x3D;&#x3D; expected) &#x3D;&#x3D; true 時，value 才會設置成 new_value</li>
+<li>只有當 if(value == expected) == true 時，value 才會設置成 new_value</li>
 </ol>
 </li>
 <li>只有第一個行程可以進入 critical section </li>
@@ -779,12 +876,12 @@
 </ul>
 </li>
 <li>problem<ul>
-<li>有 writer 和其他 reader&#x2F;writer 同時存取共用資料</li>
+<li>有 writer 和其他 reader/writer 同時存取共用資料</li>
 </ul>
 </li>
 <li>解決:<ul>
 <li>Semaphore <strong>rw_mutex</strong> initialized to 1<ul>
-<li>確保 writer&#x2F;第一個 reader&#x2F;最後一個 reader 是 mutual exclusion</li>
+<li>確保 writer/第一個 reader/最後一個 reader 是 mutual exclusion</li>
 </ul>
 </li>
 <li>Semaphore <strong>mutex</strong> initialized to 1<ul>
@@ -820,7 +917,7 @@
 <li>可能產生 deadlock，解決方法:<ol>
 <li>最多允許 4 個哲學家同時坐在桌旁</li>
 <li>允許一個哲學家只有當左右兩側的筷子都可用時才拿筷子</li>
-<li>讓奇數&#x2F;偶數位子的哲學家先拿左邊的筷子，再拿右邊的筷子</li>
+<li>讓奇數/偶數位子的哲學家先拿左邊的筷子，再拿右邊的筷子</li>
 </ol>
 </li>
 <li>解決 deadlock 但還是可能會 starvation</li>
@@ -829,7 +926,7 @@
 <li>monitor<ul>
 <li>哲學家只有當左右兩側的筷子都可用時才拿筷子</li>
 <li>哲學家只有當左右兩側的鄰居都不在吃飯時才可以吃飯<ul>
-<li><code>enum &#123;THINKING, HUNGRY, EATING&#125; state[5];</code></li>
+<li><code>enum {THINKING, HUNGRY, EATING} state[5];</code></li>
 <li><code> state[(i+4) % 5] != EATING and state[(i+1) % 5] != EATING</code></li>
 </ul>
 </li>
@@ -846,7 +943,7 @@
 </ul>
 </li>
 <li>Transactional Memory<ul>
-<li>不可中斷的一連串 read&#x2F;writer 操作</li>
+<li>不可中斷的一連串 read/writer 操作</li>
 <li>當 transaction 都被執行完畢，交付 memory transaction；否則，操作將被終止並撤回<ul>
 <li>確保不可中斷性</li>
 <li>辨識哪些 block 可以一次被完成，哪些可以平行被執行</li>
@@ -884,12 +981,7 @@
 <li>process 狀態:<ul>
 <li>T1 占用 R2 的一個 instance，並正在等待 R1 的一個 instance</li>
 <li>T2 占用 R1 和 R2 的各一個 instance，並正在等待 R3 的一個 instance</li>
-<li>T3 占用 R3 的一個 instance<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/kLdF6Rc.png"
-                     
-                ></li>
+<li>T3 占用 R3 的一個 instance<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/kLdF6Rc.png"></li>
 </ul>
 </li>
 </ul>
@@ -938,12 +1030,7 @@
 <li>如果系統能以某種順序將其資源分配給各 thread，而且能避免死結，就稱為 safe state<blockquote>
 <p>safe state: T1、T0、T2</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/6hzrlzS.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/6hzrlzS.png"></li>
 </ul>
 </li>
 </ul>
@@ -958,16 +1045,11 @@
 </ul>
 </li>
 <li>Banker’s Algorithm<ul>
-<li>Multiple instances<br>  - 𝑁𝑒𝑒𝑑[𝑖][𝑗] &#x3D; 𝑀𝑎𝑥[𝑖][𝑗] − 𝐴𝑙𝑙𝑜𝑐𝑎𝑡𝑖𝑜𝑛[𝑖][𝑗]</li>
+<li>Multiple instances<br>  - 𝑁𝑒𝑒𝑑[𝑖][𝑗] = 𝑀𝑎𝑥[𝑖][𝑗] − 𝐴𝑙𝑙𝑜𝑐𝑎𝑡𝑖𝑜𝑛[𝑖][𝑗]</li>
 <li>safety algorithm<blockquote>
 <p>整張都是重點</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/R41FO0p.png"
-                     
-                >  <!-- 	- Resource-Request Algorithm
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/R41FO0p.png">  <!-- 	- Resource-Request Algorithm
       ![](https://i.imgur.com/6qQ7Ewp.png) --></li>
 <li>ex:<ul>
 <li>5 thread T0 到 T4</li>
@@ -975,27 +1057,12 @@
 <li>設定在時間 t0 時，狀態如下<blockquote>
 <p>safety state: T1、T3、T0、T2、T4</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/yr4xWNs.png"
-                     
-                ><br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/clsXGSg.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/yr4xWNs.png"><br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/clsXGSg.png"></li>
 <li>T1 再要求 (1, 0, 2)<ul>
-<li>先確認 (1, 0, 2) 是否 &lt;&#x3D; available (3, 3, 2)<ul>
-<li>available &#x3D; available - request</li>
-<li>allocation &#x3D; allocation + request</li>
-<li>need &#x3D; need - request<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/jDss78L.png"
-                     
-                ></li>
+<li>先確認 (1, 0, 2) 是否 &lt;= available (3, 3, 2)<ul>
+<li>available = available - request</li>
+<li>allocation = allocation + request</li>
+<li>need = need - request<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/jDss78L.png"></li>
 </ul>
 </li>
 </ul>
@@ -1018,32 +1085,17 @@
 <li>Several Instances of a Resource Type<blockquote>
 <p>似乎和 safety algorithm 只差在第四步檢查的東西不同<br>還有第二步，是 request 和 work 做比較，不用 need</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/kKhHSr3.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/kKhHSr3.png"></li>
 </ul>
 </li>
 <li>ex:<ul>
 <li>5 threads T0 到 T4</li>
 <li>Three resource types: A (7 instances), B (2 instances), and C (6 instances)</li>
 <li>在 t0 時有下列資源分配狀態:<blockquote>
-<p>sequence: T0、T2、T3、T1、T4，使 all finish[i] &#x3D; ture</p>
+<p>sequence: T0、T2、T3、T1、T4，使 all finish[i] = ture</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/0CRmxzT.png"
-                     
-                ></li>
-<li>if T2 requests an additional instance of type C<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/n90qNo1.png"
-                     
-                ><ul>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/0CRmxzT.png"></li>
+<li>if T2 requests an additional instance of type C<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/n90qNo1.png"><ul>
 <li>會 deadlock</li>
 </ul>
 </li>
@@ -1204,7 +1256,7 @@
 </ul>
 </li>
 <li>50-percent rule<ul>
-<li>first-fit 分析顯示，給予 N 個配置區間，由於斷裂現象所以將遺失其 0.5 N，則 1&#x2F;3 的記憶體可能沒有使用到</li>
+<li>first-fit 分析顯示，給予 N 個配置區間，由於斷裂現象所以將遺失其 0.5 N，則 1/3 的記憶體可能沒有使用到</li>
 </ul>
 </li>
 </ul>
@@ -1242,10 +1294,10 @@
 </ol>
 </li>
 <li>計算內部斷裂<ul>
-<li>如果 Page size &#x3D; 2,048 bytes</li>
-<li>Process size &#x3D; 72,766 bytes</li>
+<li>如果 Page size = 2,048 bytes</li>
+<li>Process size = 72,766 bytes</li>
 <li>需要 35 pages + 1,086 bytes</li>
-<li>造成 Internal fragmentation of 2,048 - 1,086 &#x3D; 962 bytes 位元組的內部斷裂</li>
+<li>造成 Internal fragmentation of 2,048 - 1,086 = 962 bytes 位元組的內部斷裂</li>
 </ul>
 </li>
 </ul>
@@ -1280,7 +1332,7 @@
 <li>ex: Consider the following setting<ul>
 <li>Hit ratio 80%</li>
 <li>Memory access time: 10ns</li>
-<li>EAT: <strong>0.80 × 10</strong> (hit ratio * 10 所花的時間) <strong>+ 0.20 × 20</strong> (沒找到 page number 的比例 * 要花兩倍時間重找) <strong>&#x3D; 12 ns</strong></li>
+<li>EAT: <strong>0.80 × 10</strong> (hit ratio * 10 所花的時間) <strong>+ 0.20 × 20</strong> (沒找到 page number 的比例 * 要花兩倍時間重找) <strong>= 12 ns</strong></li>
 </ul>
 </li>
 </ul>
@@ -1298,24 +1350,9 @@
 <li>forward-mapped page table<blockquote>
 <p>p1 是指向外層 page table 的索引值<br>p2 是內層 page table 所指的 page table 之 page offset</p>
 </blockquote>
-  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/us9sHuV.png"
-                     
-                ></li>
-<li>two-level paging<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/gODFgqG.png"
-                     
-                ><ul>
-<li>避免一個如此巨大的表格的解法是，將外層分頁表分為兩個較小的片段<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/nLIiaYl.png"
-                     
-                ></li>
+  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/us9sHuV.png"></li>
+<li>two-level paging<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/gODFgqG.png"><ul>
+<li>避免一個如此巨大的表格的解法是，將外層分頁表分為兩個較小的片段<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/nLIiaYl.png"></li>
 </ul>
 </li>
 </ul>
@@ -1379,7 +1416,7 @@
 <li>檢查行程的內部表格，決定是屬於有效還是無效的記憶體存取，如果是無效的 -&gt; 中止，如果是有效的，那就是我們還沒將該頁載入，現在載入</li>
 <li>find free frame</li>
 <li>排定 disk 去將那 page swap into 新找到的 frame </li>
-<li>修改 tables，指出該頁目前已在記憶體中，Set validation bit &#x3D; v</li>
+<li>修改 tables，指出該頁目前已在記憶體中，Set validation bit = v</li>
 <li>重新啟動因 page fault 而被中斷的指令</li>
 </ol>
 </li>
@@ -1387,7 +1424,7 @@
 </li>
 <li>Performance of Demand Paging<ul>
 <li>Based on the effective access time (EAT)<ul>
-<li>EAT &#x3D; (1−p) × ma + p × pf</li>
+<li>EAT = (1−p) × ma + p × pf</li>
 <li>p: 分頁錯誤出現的機率 (0 ≤ p ≤ 1)</li>
 <li>ma: memory-access time</li>
 <li>pf: page fault time</li>
@@ -1398,9 +1435,9 @@
 <li>保存 user register 與行程的狀態</li>
 <li>認定該 interrupt 是 page fault</li>
 <li>核對其對某頁參考是合規定的，並且決定該頁在 disk 上的位置</li>
-<li>產生一次由 disk 讀取可用 free frame 的讀取動作<br> a. 在 queue 等待，直到讀出的要求被完成<br> b. 等待該裝置的搜尋及&#x2F;或潛伏時間<br> c. 開始將該頁轉移至一個 free frame 內</li>
+<li>產生一次由 disk 讀取可用 free frame 的讀取動作<br> a. 在 queue 等待，直到讀出的要求被完成<br> b. 等待該裝置的搜尋及/或潛伏時間<br> c. 開始將該頁轉移至一個 free frame 內</li>
 <li>在等待的時候，可以把 CPU 分配給其他的使用者 (CPU 排班)</li>
-<li>接收從儲存 I&#x2F;O 子系統來的中斷信號 (I&#x2F;O 做完了)</li>
+<li>接收從儲存 I/O 子系統來的中斷信號 (I/O 做完了)</li>
 <li>將 process stage 與 user register 保存起來</li>
 <li>確認 interrupt 來自 disk</li>
 <li>更正 page table 與 tables，以表示所要的某頁已在記憶體中</li>
@@ -1409,9 +1446,9 @@
 </ol>
 </li>
 <li>ex:<ul>
-<li>Memory access time &#x3D; 200 nanoseconds</li>
-<li>Average page-fault service time &#x3D; 8 milliseconds</li>
-<li>EAT &#x3D; (1 – p) x 200 + p (8 milliseconds)<br>  &#x3D; 1 – p x 200 + p x 8,000,000<br>  &#x3D; 200 + p x 7,999,800</li>
+<li>Memory access time = 200 nanoseconds</li>
+<li>Average page-fault service time = 8 milliseconds</li>
+<li>EAT = (1 – p) x 200 + p (8 milliseconds)<br>  = 1 – p x 200 + p x 8,000,000<br>  = 200 + p x 7,999,800</li>
 </ul>
 </li>
 </ul>
@@ -1421,20 +1458,10 @@
 <li>當需要替換一頁時，去找最老的一頁</li>
 <li>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</li>
 <li>3 frames (3 pages can be in memory at a time per process)</li>
-<li>15 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/ua5fr2E.png"
-                     
-                ></li>
+<li>15 次 page fault<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/ua5fr2E.png"></li>
 <li>畢雷地異常 Belady’s Anomaly:<ul>
 <li>增加更多的欄可能會造成更多的分頁錯誤</li>
-<li>ex 四個欄(10) 比三個欄(9) 多<br>   <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/XqoCC0A.png"
-                     
-                ></li>
+<li>ex 四個欄(10) 比三個欄(9) 多<br>   <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/XqoCC0A.png"></li>
 </ul>
 </li>
 </ul>
@@ -1443,24 +1470,14 @@
 </li>
 <li>Optimal page-replacement algorithm OPT<ul>
 <li>replace 往未來看，最久沒被用的 page<ul>
-<li>9 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/z5sD3GP.png"
-                     
-                ></li>
+<li>9 次 page fault<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/z5sD3GP.png"></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Least Recently Used (LRU) Algorithm<ul>
 <li>replace 往過去看，最久未被使用的那一頁<ul>
-<li>12 次 page fault<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/LykWDzf.png"
-                     
-                ></li>
+<li>12 次 page fault<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/LykWDzf.png"></li>
 </ul>
 </li>
 <li>Counter implementation:<ul>
@@ -1468,12 +1485,7 @@
 <li>如果當需要替換分頁時，就尋找 counter 中最小的值</li>
 </ul>
 </li>
-<li>堆疊 Stack implementation<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/A2z4mc1.png"
-                     
-                ><ul>
+<li>堆疊 Stack implementation<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/A2z4mc1.png"><ul>
 <li>保存一個由 page number 組成的堆疊來執行</li>
 <li>當某一頁被參考後:<ul>
 <li>將他從 stack 中移出並放在頂端</li>
@@ -1488,21 +1500,16 @@
 <li>Second-chance algorithm<ul>
 <li>是一種 FIFO + 會檢視 Reference bit<ul>
 <li>reference bit<ul>
-<li>initially &#x3D; 0；set to 1，代表被使用過</li>
+<li>initially = 0；set to 1，代表被使用過</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Clock replacement，環狀的去取代，以一個指標標示著下一個被替換掉的頁<ul>
-<li>Reference bit &#x3D; 0 -&gt; replace it</li>
-<li>reference bit &#x3D; 1 then:<ul>
+<li>Reference bit = 0 -&gt; replace it</li>
+<li>reference bit = 1 then:<ul>
 <li>set reference bit 0, leave page in memory</li>
-<li>找下一個被置換的頁，用相同方法<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/flgT3xv.png"
-                     
-                ></li>
+<li>找下一個被置換的頁，用相同方法<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/flgT3xv.png"></li>
 </ul>
 </li>
 </ul>
@@ -1526,14 +1533,9 @@
 <li>比例分配 Proportional allocation<ul>
 <li>可用記憶體根據每個行程的大小分配<ul>
 <li>行程 pi 的大小: si</li>
-<li>定義 s &#x3D; sigma si</li>
+<li>定義 s = sigma si</li>
 <li>可用的總欄數是 m，分配 ai 個欄給 pi<ul>
-<li>ai &#x3D; si&#x2F;s * m<br>  <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.imgur.com/f5FCRRa.png"
-                     
-                ></li>
+<li>ai = si/s * m<br>  <img lazyload="" src="/images/loading.svg" data-src="https://i.imgur.com/f5FCRRa.png"></li>
 </ul>
 </li>
 </ul>
