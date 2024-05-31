@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg04.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg05.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg06.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg07.png">
 <meta property="article:published_time" content="2024-05-30T07:33:54.000Z">
-<meta property="article:modified_time" content="2024-05-31T02:47:32.993Z">
+<meta property="article:modified_time" content="2024-05-31T03:04:12.889Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="LAVI">
 <meta name="twitter:card" content="summary">
@@ -506,8 +507,8 @@ mjx-container[display="true"] + br {
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-05-31</span>
             <span class="mobile">2024-05-31</span>
-            <!-- <span class="desktop">2024-05-31 10:47:32</span>
-            <span class="mobile">2024-05-31 10:47</span> -->
+            <!-- <span class="desktop">2024-05-31 11:04:12</span>
+            <span class="mobile">2024-05-31 11:04</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -526,7 +527,7 @@ mjx-container[display="true"] + br {
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Machine-Learning/Pattern-Recognition/An-improved-handwritten-Chinese-character-recognition-system-using-support-vector-machine/">An improved handwritten Chinese character recognition system using support vector machine</a>&nbsp;
+                        &gt; <a href="/categories/Machine-Learning/Pattern-Recognition/paper-An-improved-handwritten-Chinese-character-recognition-system-using-support-vector-machine/">$[paper] An improved handwritten Chinese character recognition system using support vector machine</a>&nbsp;
                     </li>
                 
             </ul>
@@ -550,7 +551,7 @@ mjx-container[display="true"] + br {
             
 
             <div class="article-content markdown-body">
-                <p>雖然是 2005 年的論文，但因為上課需要報告所以還是瞭解了一下</p>
+                <p>雖然是 2005 年的論文，但因為上課需要報告所以還是學習了一下</p>
 <a class="button  center large" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1DXMrCfGzBmNFwl_tLdT5_7yBLtxp15Na/view?usp=sharing" title="An improved handwritten Chinese character recognition system using support vector machine"><i class="fa-solid fa-file-powerpoint"></i> An improved handwritten Chinese character recognition system using support vector machine</a>
 
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>本文描述了幾種改進中文文字識別系統的技術。透過增強非線性正規化、特徵提取，在具有數千個類別的大資料集上調整 support vector machine 的參數，來提高整個系統的性能。</p>
@@ -603,6 +604,26 @@ mjx-container[display="true"] + br {
 <img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg06.png" width="200" height="150">
 
 <p>(A) 原始圖像<br>(B) 未改進 nonlinear normalization 前的圖像，在外圍區域的筆畫會變形<br>(C) 使用改進 nonlinear normalization 的圖像</p>
+<h2 id="Feature-extraction"><a href="#Feature-extraction" class="headerlink" title="Feature extraction"></a>Feature extraction</h2><p>大多數中文字由筆劃組成，所以可以將手寫中文字分解為多個方向的子圖像，並進行各方向分析，</p>
+<p>本論文的正規化方法會生成灰階圖，基於圖像梯度計算特徵提取的過程如下：</p>
+<ol>
+<li>將灰階正規化圖像標準化，使其均值和最大值分別為 <code>0</code> 和 <code>1.0</code></li>
+<li>將 <code>64×64</code> 的正規化圖像置於 <code>80×80</code> 的框內，有效利用四個邊緣區域的<br> 資訊</li>
+<li>應用邊緣運算符計算圖像梯度的強度和方向</li>
+<li>將圖像劃分為 <code>9×9</code> 個大小為 <code>16×16</code> 的子區域，每個子區域與相鄰子區<br> 域重疊 <code>8</code> 個 pixel。</li>
+</ol>
+<ul>
+<li>每個子區域分為四部分：A、B、C 和 D。<br>A 是中心的 4×4 區域。<br>B 是除去 A 區域的 8×8 區域。<br>C 是除去 B 區域的 12×12 區域。<br>D 是除去 C 區域的 16×16 區域。</li>
+</ul>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg07.png" width="200" height="200">
+
+<ol start="5">
+<li>累積每個區域 A、B、C、D 中 <code>32</code> 個向量化方向的梯度強度。為了減少位置變化的副作用，使用一維掩碼<code>（4, 3, 2, 1）</code>對每個方向的累積梯度強度進行降採樣，結果會得到一個大小 <code>32</code> 的特徵向量，也就是 <code>[32 x 4] x [4 x 1] = [32 x 1]</code>。</li>
+<li>接著再使用一維掩碼<code>（1, 4, 6, 4, 1）</code>進行降採樣，將方向分辨率從 <code>32</code> 降至 <code>16</code>，作法為把 <code>32</code> 分成五個掩碼窗口，窗口一有 <code>1</code> 個元素、窗口二有 <code>4</code> 個元素 … 窗口五有 <code>1</code> 個元素，總共大小 <code>1 + 6 + 4 + 4 + 1 = 16</code> 的向量。</li>
+<li>最後生成一個大小為 <code>1296</code>（<code>9</code> 個水平，<code>9</code> 個垂直和 <code>16</code> 個方向分辨率, <code>9x9x16 = 1296</code> ）的特徵向量。</li>
+<li>對特徵向量的每個分量應用變量變換 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="3.526ex" height="1.929ex" role="img" focusable="false" viewBox="0 -841.7 1558.7 852.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="TeXAtom" transform="translate(605,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(778,0)"></path></g></g></g></g></g></svg></mjx-container>，使每個分量的分佈接近常態分佈。</li>
+<li>將特徵向量按一個常數因子進行縮放，使特徵分量的值範圍在 <code>0</code> 到 <code>1.0</code>之間。</li>
+</ol>
 
             </div>
 
@@ -659,7 +680,7 @@ mjx-container[display="true"] + br {
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nonlinear-normalization"><span class="nav-text">Nonlinear normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVQ-MQDF"><span class="nav-text">LVQ &amp; MQDF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improved-nonlinear-normalization"><span class="nav-text">Improved nonlinear normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-function"><span class="nav-text">Forward function</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nonlinear-normalization"><span class="nav-text">Nonlinear normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVQ-MQDF"><span class="nav-text">LVQ &amp; MQDF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improved-nonlinear-normalization"><span class="nav-text">Improved nonlinear normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-function"><span class="nav-text">Forward function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-extraction"><span class="nav-text">Feature extraction</span></a></li></ol>
 
     </div>
 </div>
