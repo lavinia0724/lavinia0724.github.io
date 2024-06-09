@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Rule-based-expert-system02.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Rule-based-expert-system01.png">
 <meta property="article:published_time" content="2024-05-21T11:53:02.000Z">
-<meta property="article:modified_time" content="2024-06-02T12:32:36.602Z">
+<meta property="article:modified_time" content="2024-06-09T17:16:38.200Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Artificial Intelligence">
 <meta name="twitter:card" content="summary">
@@ -387,10 +387,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-02</span>
-            <span class="mobile">2024-06-02</span>
-            <!-- <span class="desktop">2024-06-02 20:32:36</span>
-            <span class="mobile">2024-06-02 20:32</span> -->
+            <span class="desktop">2024-06-10</span>
+            <span class="mobile">2024-06-10</span>
+            <!-- <span class="desktop">2024-06-10 01:16:38</span>
+            <span class="mobile">2024-06-10 01:16</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -482,8 +482,15 @@ Rule 可以表示 relation、heuristics、...
 <p>expert system 採用符號推理來解決問題，符號用來表示不同類型的 knowledge、fact、rule</p>
 </div></div>
 
-<h3 id="Forward-chaining-and-backward-chaining"><a href="#Forward-chaining-and-backward-chaining" class="headerlink" title="Forward chaining and backward chaining"></a>Forward chaining and backward chaining</h3><h4 id="Fowrward-chaining"><a href="#Fowrward-chaining" class="headerlink" title="Fowrward chaining"></a>Fowrward chaining</h4><p>Fowrward chaining 是 data-driven 推理，從已知數據開始，根據這些數據向前推理，每次只執行最頂層的 rule，觸發時，rule 會在 database 增加新的 fact<br>任何 rule 都只能執行一次，當沒有其他 rule 可以觸發時，match-fire (匹配-觸發) 循環就會停止<br>但是在 forward 的過程中，會執行許多 rule 與目標無關，所以如果目標只是推測一個特定的 fact，就不能用 forward chaining</p>
-<h4 id="Backward-chaining"><a href="#Backward-chaining" class="headerlink" title="Backward chaining"></a>Backward chaining</h4><p>Backward chaining 是 goal-driven 推理，在</p>
+<h3 id="Forward-chaining-and-backward-chaining"><a href="#Forward-chaining-and-backward-chaining" class="headerlink" title="Forward chaining and backward chaining"></a>Forward chaining and backward chaining</h3><p>如果 expert system 需要收集訊息，並從中推理出可以推斷的訊息，就使用 forward chaining<br>如果需要從假設的解決方法開始，試著找事實來證明他，就使用 backward chaining</p>
+<h4 id="Fowrward-chaining"><a href="#Fowrward-chaining" class="headerlink" title="Fowrward chaining"></a>Fowrward chaining</h4><p>Fowrward chaining 是 data-driven 推理，從已知數據開始，根據這些數據向前推理，每次只執行最頂層的 rule，觸發時，rule 會在 database 增加新的 fact<br>任何 rule 都只能執行一次，當沒有其他 rule 可以觸發時，match-fire (匹配-觸發) 循環就會停止<br>但是在 forward 的過程中，會執行許多 rule 與目標無關，所以如果目標只是推測一個特定的 fact，就不能用 forward chaining</p>
+<h4 id="Backward-chaining"><a href="#Backward-chaining" class="headerlink" title="Backward chaining"></a>Backward chaining</h4><p>Backward chaining 是 goal-driven 推理，在 backward chaining 中 expert system 有目標和試圖找到證據證明目標的推理引擎，<br>一開始會先搜尋整個 knowledge base 已找到可能解決方案的 rule，這些 rule 需有  goal 在他們的 THEN(action) apart<br>如果有這樣的 rule，且其 IF 與 database 中的 data 匹配，rule 就會被觸發，goal 就會被證明</p>
+<h3 id="conflict-resolution"><a href="#conflict-resolution" class="headerlink" title="conflict resolution"></a>conflict resolution</h3><p>解衝突的方法</p>
+<ul>
+<li>啟動優先級最高的 rule</li>
+<li>啟動最 specific 的 rule，又稱為 longest matching strategy</li>
+<li>啟動使用了最近輸入的資料的 rule，這種方法依賴 time tag</li>
+</ul>
 
             </div>
 
@@ -548,7 +555,7 @@ Rule 可以表示 relation、heuristics、...
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Artificial Intelligence - Rule-based expert systems</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Artificial-Intelligence"><span class="nav-text">Artificial Intelligence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Knowledge-Representation"><span class="nav-text">Knowledge Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Order-Predicate-Calculus"><span class="nav-text">First-Order Predicate Calculus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-Rules-for-Predicate-Calculus"><span class="nav-text">Inference Rules for Predicate Calculus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rule-based-expert-systems"><span class="nav-text">Rule-based expert systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-a-rule-based-expert-system"><span class="nav-text">structure of a rule-based expert system</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-chaining-and-backward-chaining"><span class="nav-text">Forward chaining and backward chaining</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Artificial-Intelligence"><span class="nav-text">Artificial Intelligence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Knowledge-Representation"><span class="nav-text">Knowledge Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Order-Predicate-Calculus"><span class="nav-text">First-Order Predicate Calculus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-Rules-for-Predicate-Calculus"><span class="nav-text">Inference Rules for Predicate Calculus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rule-based-expert-systems"><span class="nav-text">Rule-based expert systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-a-rule-based-expert-system"><span class="nav-text">structure of a rule-based expert system</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-chaining-and-backward-chaining"><span class="nav-text">Forward chaining and backward chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conflict-resolution"><span class="nav-text">conflict resolution</span></a></li></ol></li></ol>
 
     </div>
 </div>
