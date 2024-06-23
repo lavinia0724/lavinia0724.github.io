@@ -13,26 +13,24 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/12/21/cut-contrastive-learning-for-unpaired-image-to-image-translation/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2021/12/14/uva-11988-broken-keyboard/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="CUT - Contrastive Learning for Unpaired Image-to-Image Translation">
+        <meta name="description" content="UVA 11988 Broken Keyboard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CUT - Contrastive Learning for Unpaired Image-to-Image Translation">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/12/21/CUT-Contrastive-Learning-for-Unpaired-Image-to-Image-Translation/index.html">
+<meta property="og:title" content="UVA 11988 - Broken Keyboard">
+<meta property="og:url" content="https://lavinia0724.github.io/2021/12/14/UVA-11988-Broken-Keyboard/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="CUT - Contrastive Learning for Unpaired Image-to-Image Translation">
+<meta property="og:description" content="UVA 11988 Broken Keyboard">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/CUT01.png">
-<meta property="article:published_time" content="2023-12-21T16:36:27.000Z">
-<meta property="article:modified_time" content="2024-06-23T12:24:07.989Z">
+<meta property="article:published_time" content="2021-12-13T16:42:37.000Z">
+<meta property="article:modified_time" content="2024-06-23T16:14:30.015Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="Machine Learning">
-<meta property="article:tag" content="Paper Reading">
+<meta property="article:tag" content="UVA">
+<meta property="article:tag" content="Implementation">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/CUT01.png">
     
     
     <!--- Icon Part-->
@@ -44,7 +42,7 @@
     
     <title>
         
-            CUT - Contrastive Learning for Unpaired Image-to-Image Translation -
+            UVA 11988 - Broken Keyboard -
         
         INCLAVIC
     </title>
@@ -358,8 +356,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post69.JPG" alt="CUT - Contrastive Learning for Unpaired Image-to-Image Translation" />
-                    <h1 class="article-title-cover">CUT - Contrastive Learning for Unpaired Image-to-Image Translation</h1>
+                    <img src="/images/post25.jpg" alt="UVA 11988 - Broken Keyboard" />
+                    <h1 class="article-title-cover">UVA 11988 - Broken Keyboard</h1>
                 </div>
             
                 
@@ -379,19 +377,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-12-21</span>
-        <span class="mobile">2023-12-21</span>
-        <!-- <span class="desktop">2023-12-21 23:36:27</span>
-        <span class="mobile">2023-12-21 23:36</span> -->
+        <span class="desktop">2021-12-14</span>
+        <span class="mobile">2021-12-14</span>
+        <!-- <span class="desktop">2021-12-14 00:42:37</span>
+        <span class="mobile">2021-12-14 00:42</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-23</span>
-            <span class="mobile">2024-06-23</span>
-            <!-- <span class="desktop">2024-06-23 19:24:07</span>
-            <span class="mobile">2024-06-23 19:24</span> -->
+            <span class="desktop">2024-06-24</span>
+            <span class="mobile">2024-06-24</span>
+            <!-- <span class="desktop">2024-06-24 00:14:30</span>
+            <span class="mobile">2024-06-24 00:14</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -402,15 +400,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
+                        <a href="/categories/Programming-Contest/">Programming Contest</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Paper-Reading/Machine-Learning/">Machine Learning</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/Paper-Reading/Machine-Learning/CUT/">CUT</a>&nbsp;
+                        &gt; <a href="/categories/Programming-Contest/UVA/">UVA</a>&nbsp;
                     </li>
                 
             </ul>
@@ -422,11 +416,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                        <a href="/tags/UVA/">UVA</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Paper-Reading/">Paper Reading</a>&nbsp;
+                        | <a href="/tags/Implementation/">Implementation</a>&nbsp;
                     </li>
                 
             </ul>
@@ -449,60 +443,16 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Contrastive Learning for Unpaired Image-to-Image Translation，以下簡稱 CUT 模型，是一種 Unsupervised img to img translation 模型，也就是非監督式的圖像轉換模型</p>
-<p>目標是將被學習特徵風格的輸入圖（以下簡稱圖 x）的特徵遷移到指定圖（以下簡稱圖 y） 的結構、輪廓上，也就是 style transfer 風格遷移</p>
-<p>而風格遷移模型<br>特徵獲得的方式，是透過 adversarial learning（對抗式機器學習）<br>遷移風格至指定內容則是透過 cycle-consistency</p>
-<p>而 CUT 在 cycle-consistency 上多了使用 Contrastive Learning （對比學習）來幫助模型處理圖像的輸入與輸出之間的互相訊息最大化，簡單來說就是讓輸入圖與輸出圖的 cycle-consistency 是在內容上保持一致，而非外觀上保持一致</p>
-<h3 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h3><p>非監督學習是一種不需標記數據的學習方式，模型通過發現數據中的內在結構和模式來進行訓練</p>
-<p>你可以想像自己在學習新事物，但老師沒有給你任何例子或提示，也沒有告訴你正確答案。你只能根據資料本身的規律來找出規律</p>
-<p>舉個例子，想像你有一堆不同形狀和顏色的糖果，但你不知道它們的名字。無監督學習就像是你試著把它們分成一些類別，可能是把相似的放在一起，而不知道每個類別代表什麼。你只是根據它們的相似性自己找出一些規則，比如說形狀相似的可能是一類，顏色相似的可能是另一類。</p>
-<p>簡而言之，無監督學習就是在沒有老師指導的情況下，從資料中找出規律和模式</p>
-<h3 id="Adversarial-Learning"><a href="#Adversarial-Learning" class="headerlink" title="Adversarial Learning"></a>Adversarial Learning</h3><p>剛才提到，CUT 的特徵獲得的方式，是透過 adversarial learning<br>風格遷移模型通常使用對抗式機器學習（Adversarial Learning）的方法</p>
-<p>由 Generator 和 Discriminator 兩個主要部分組成，<br>Generator 負責生成與風格轉換任務相關的圖像，<br>Discriminator 則試圖區分 Generator 生成的圖像和原本的輸入們之間的區別</p>
-<p>因為這樣的相互對況關系，所以稱為對抗式機器學習（Adversarial Learning）<br>其中使用了 adversarial loss，目的是提升 Generator 的輸出圖與我們的輸入圖的各個部分特徵越加相似</p>
-<h3 id="Adversarial-Loss"><a href="#Adversarial-Loss" class="headerlink" title="Adversarial Loss"></a>Adversarial Loss</h3><p>使用 adversarial loss 的目的是提升輸出圖與我們的輸入圖的各個部分越加相似<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="\images\postImgs\CUT01.png"
-                     
-                ></p>
-<h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>Generator 中的 Encoder 是用於將輸入圖像轉換為潛在特徵表示，就像把輸入圖像轉化為抽象的、低維的表示方式，</p>
-<p>打個比方說，Encoder 像是相機，它看到一張圖片，會把這張圖片中重要的資訊，比如形狀、紋理之類的，提取出來</p>
-<p>接著，Encoder 把這些提取出來的重要特徵變成數據，這樣就可以更方便地傳遞和處理</p>
-<p>最後，Encoder 把這些數據傳遞給 Generator，就像是將拍攝的照片的特徵交給一位畫家，這位畫家（Generator）根據這些特徵開始創作，畫出一幅新的畫（風格轉換後的圖像）</p>
-<h3 id="Cycle-consistency"><a href="#Cycle-consistency" class="headerlink" title="Cycle-consistency"></a>Cycle-consistency</h3><p>而在 CUT 中，遷移風格至指定內容則是透過 cycle-consistency</p>
-<p>Cycle consistency（循環一致性）是一種生成模型的約束條件，應用於生成對抗網絡（GANs）以及　CycleGAN（循環一致性生成對抗網絡），看得出來跟 Cycle consistency 很有關吧 XD</p>
-<p>在生成模型中，Cycle consistency 的目標是確保模型生成的結果在經過轉換後，還是能 reconstruct 重構回到原始的輸入，也就是限制生成的範圍（reduce the space of possible mapping functions，減少其他非預期的可能性），通常應用於將一種領域的圖像轉換到另一種領域，也就是 style transfer 風格轉換</p>
-<p>在 CUT 中，我們有圖 x 和圖 y，分別是欲學習的風格圖和欲套用於的結構字形圖，Cycle consistency 的目標就是學習兩個轉換：將圖 x 的風格遷移至圖 y 上，生成出一張擬似圖 z，再從圖 z 推回圖 x</p>
-<p>這樣的約束有助於生成模型學習更加有意義和一致的轉換，避免不自然的轉換和圖像文字內容的損失</p>
-<h3 id="Contrastive-Learning"><a href="#Contrastive-Learning" class="headerlink" title="Contrastive Learning"></a>Contrastive Learning</h3><p>為了使模型有效學習特定特徵，CUT 透過正樣本（Positive）與負樣本（Negative）進行對比學習，<br>模型透過正樣本獲得有用的特徵，也透過與負樣本的對比，使模型能更好地理解我們的目標特徵</p>
-<p>透過 Contrastive Learning，模型學習如何在我們給定的特徵中區分正樣本和負樣本，使其可以強化模型對於目標特徵的辨識，同時提高對不同特徵的區分能力</p>
-<p>於 CUT 模型中，正樣本是提取圖片 x 中與圖 y 有相同筆畫的相同位置的區塊特徵為正樣本，其他部分的特徵為負樣本，也透過依據不同大小的區塊圖像進行學習，令Encoder 內不同 Layer 輸出的特徵圖片大小不一，而以這些不同大小的特徵進行對比學習讓 CUT 模型學得更好</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>為了達成這樣的風格遷移流程，模型中使用了 contrastive loss，讓他可以學習在解除 patches 的關聯後，再推回去將他們關聯在一起，也就是如何達成 Cycle consistency </p>
-<p>讓我先從 Feature extraction 開始說明</p>
-<p>CUT 特別之處是剛才提到的 adversarial loss 中 Generator 的 encoder ，在這裡 encoder 會在截取的局部中找尋共通點（commonality），而非隨意的學習特徵</p>
-<p>譬如在我們專題中，截取這個文字的哪些部分，譬如這一撇、那一劃，兩邊的 encoder 都會這樣找，去尋找共通點</p>
-<p>因此可以將相同之處中，圖 x 這一撇的特徵，學習後提交給 generator，讓他可以學習怎麼畫出這樣的一撇在圖 y 的這個字形結構中的這一撇</p>
-<p>因此最終可以達到一個生成出的圖片 Z 可以被肉眼可見的看出有著與輸入圖 x 相似的風格</p>
-<h3 id="Multilayer-perceptron-MLP"><a href="#Multilayer-perceptron-MLP" class="headerlink" title="Multilayer perceptron MLP"></a>Multilayer perceptron MLP</h3><p>這裡的 MLP 像是一個學習機器，可以用來處理各種不同的事情，比如分辨圖片裡的東西，MLP 裡面有很多小單元，我們可以把這些單元想像成小小的大腦細胞</p>
-<p>它們接收一些資訊，然後思考一下，最後告訴我們一個結果，每個大腦細胞都有一些特殊的能力，可以學習不同的事情</p>
-<p>MLP 好像是一個學生，一開始可能不太懂事情，但它可以通過練習不斷改進。它會看到一些例子，然後嘗試去理解和預測新的例子</p>
-<p>最後他就學會了我們剛才告訴他的這些好多事情</p>
-<h3 id="Contrastive-loss"><a href="#Contrastive-loss" class="headerlink" title="Contrastive loss"></a>Contrastive loss</h3><p>這邊的 contrastive loss 是我們對比學習中運用的函數</p>
-<p>透過利用 contrastive loss<br>原因是因為 generator 會不停生出擬似圖，讓他去跟 discriminator 比較，<br>所以這裡透過 contrastive loss，讓 generator 生出的擬似圖去和我們原始的輸入圖中被學習的相同位址去做比較</p>
-<p>使正樣本在特徵空間中更加接近，同時使負樣本更遠離。<br>有助於我們的模型學習到有意義的特徵表示</p>
-<h3 id="Softmax-Cross-Entropy"><a href="#Softmax-Cross-Entropy" class="headerlink" title="Softmax Cross-Entropy"></a>Softmax Cross-Entropy</h3><p>如剛才說的，我們從單一輸入的圖像中取多個不同位址的 patches 去進行多分類，用 softmax cross-entropy，是一種多分類方法</p>
-<p>Softmax<br>運算方式是，透過猜測每張 patches 是正樣本的機率，Softmax 讓模型為每張 patches 分配一個“機率分數”<br>這些分數代表每張圖就是我們要的的部份的可能性，所有的機率分數加起來等於 1</p>
-<p>Cross-Entropy 損失<br>如果我們的預測和實際正確的 patches 不一樣，Cross-Entropy 就是度量這種錯誤的方式<br>Cross-Entropy 告訴你你的預測有多差。當預測完美準確的時候，Cross-Entropy 就是 0</p>
-<p>我們這裡利用的 Softmax Cross-Entropy<br>就是同時結合試圖預測哪張 patches 是正樣本，然後通過比較預測和真正的結果，看看我們預測有多準確<br>也透過不斷得出損失函數，不斷修正，讓我們學習特徵、遷移特徵越來越準確</p>
-<p>以此不停地做對抗式訓練，讓 discriminator 漸漸辨識不出 generator 生出的擬似圖與原本的輸入圖的差異</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://xiaosean5408.medium.com/cut%E7%B0%A1%E4%BB%8B-contrastive-learning-for-unpaired-image-to-image-translation-bc8869bfc1d3" >Contrastive Learning for Unpaired Image-to-Image Translation</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/2007.15651" >Contrastive Learning for Unpaired Image-to-Image Translation, Arxiv 2020</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ycts.github.io/weeklypapers/cycleGAN/" >Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://xiaosean5408.medium.com/cut%E7%B0%A1%E4%BB%8B-contrastive-learning-for-unpaired-image-to-image-translation-bc8869bfc1d3" >CUT簡介 — Contrastive Learning for Unpaired Image-to-Image Translation</a></li>
-</ul>
+                <h2 id="解題觀念"><a href="#解題觀念" class="headerlink" title="解題觀念"></a>解題觀念</h2><p>Struct &amp; Linked List</p>
+<p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://slides.com/lavi_0724/struct-linked-list/fullscreen" >Struct &amp; Linked List</a></p>
+<h2 id="題目敘述"><a href="#題目敘述" class="headerlink" title="題目敘述"></a>題目敘述</h2><p>你有一個破損的鍵盤，鍵盤上的所有鍵都可以正常工作<br>但有時 Home 鍵 ‘ [ ‘ 或者 End 鍵 ‘ ] ‘ 會自動按下<br>然而你並不知道鍵盤存在這一問題就繼續專心打稿子<br>當你開啟顯示器之後，展現在你面前的是一段悲劇的文字<br>現在你的任務是在開啟顯示器之前計算出這段悲劇文字</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>每組資料佔一行，包含不超過 100000 個字元<br>輸入結束標誌為檔案結束符 EOF</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// Sample Input</span><br><span class="line">This_is_a_[Beiju]_text</span><br><span class="line">[[]][][]Happy_Birthday_to_Tsinghua_University</span><br></pre></td></tr></table></figure></div>
 
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>對於每組資料，輸出一行，即螢幕上的悲劇文字</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// Sample Output</span><br><span class="line">BeijuThis_is_a__text</span><br><span class="line">Happy_Birthday_to_Tsinghua_University</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">list_node</span> *<span class="title">list_pointer</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">list_node</span>&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> data;</span><br><span class="line">    list_pointer link;</span><br><span class="line">    </span><br><span class="line">&#125;ListNode;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">100000</span>+<span class="number">5</span>];</span><br><span class="line">    ListNode *head, *tail, *now;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, str) != EOF)&#123;</span><br><span class="line">        <span class="type">int</span> begin;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(begin = <span class="number">0</span>; str[begin] != <span class="string">&#x27;\0&#x27;</span>; begin++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((str[begin] != <span class="string">&#x27;[&#x27;</span>) &amp;&amp; str[begin] != <span class="string">&#x27;]&#x27;</span>)&#123;</span><br><span class="line">                ListNode *new = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ListNode));</span><br><span class="line">                new-&gt;data = str[begin];</span><br><span class="line">                new-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">                head = tail = now = new;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = begin+<span class="number">1</span>; str[i] != <span class="string">&#x27;\0&#x27;</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[i] == <span class="string">&#x27;[&#x27;</span>)&#123;</span><br><span class="line">                now = <span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(str[i] == <span class="string">&#x27;]&#x27;</span>)&#123;</span><br><span class="line">                now = tail;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ListNode *new = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ListNode));</span><br><span class="line">                new-&gt;data = str[i];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(now == <span class="literal">NULL</span>)&#123;</span><br><span class="line">                    new-&gt;link = head;</span><br><span class="line">                    head = now = new;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(now == tail)&#123;</span><br><span class="line">                    new-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">                    now-&gt;link = new;</span><br><span class="line">                    tail = now = new;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    new-&gt;link = now-&gt;link;</span><br><span class="line">                    now-&gt;link = new;</span><br><span class="line">                    now = new;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode *j;</span><br><span class="line">        <span class="keyword">for</span>(j = head; j != <span class="literal">NULL</span>; j = j-&gt;link)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, j-&gt;data);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
             </div>
 
             
@@ -511,11 +461,11 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                            <a href="/tags/UVA/">#UVA</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/Paper-Reading/">#Paper Reading</a>&nbsp;
+                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -529,13 +479,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2024/01/03/Cloud-Computing-Lagrangian-Relaxation/"
+                            href="/2022/01/25/Github-Note/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</span>
+                                    <span class="post-nav-title-item">Github - Note</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -545,10 +495,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/12/16/Gemini-Introduction/"
+                            href="/2021/12/13/Algorithm-Struct-Linked-List/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Gemini - Introduction</span>
+                                    <span class="post-nav-title-item">Algorithm - Struct &amp; Linked List</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -569,8 +519,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">CUT - Contrastive Learning for Unpaired Image-to-Image Translation</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adversarial-Learning"><span class="nav-text">Adversarial Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adversarial-Loss"><span class="nav-text">Adversarial Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoder"><span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cycle-consistency"><span class="nav-text">Cycle-consistency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contrastive-Learning"><span class="nav-text">Contrastive Learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multilayer-perceptron-MLP"><span class="nav-text">Multilayer perceptron MLP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contrastive-loss"><span class="nav-text">Contrastive loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-Cross-Entropy"><span class="nav-text">Softmax Cross-Entropy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">UVA 11988 - Broken Keyboard</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E8%A7%80%E5%BF%B5"><span class="nav-text">解題觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E6%95%98%E8%BF%B0"><span class="nav-text">題目敘述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-text">Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li></ol>
 
     </div>
 </div>
