@@ -28,8 +28,13 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer14.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer15.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer16.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer17.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer18.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer19.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer20.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Transformer21.png">
 <meta property="article:published_time" content="2024-06-24T08:02:24.000Z">
-<meta property="article:modified_time" content="2024-06-24T08:15:57.511Z">
+<meta property="article:modified_time" content="2024-06-24T09:33:29.969Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
@@ -503,8 +508,8 @@ mjx-container[display="true"] + br {
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2024-06-24</span>
             <span class="mobile">2024-06-24</span>
-            <!-- <span class="desktop">2024-06-24 16:15:57</span>
-            <span class="mobile">2024-06-24 16:15</span> -->
+            <!-- <span class="desktop">2024-06-24 17:33:29</span>
+            <span class="mobile">2024-06-24 17:33</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -570,6 +575,18 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>global token 就像里長伯<br>每個人彼此之間不一定認識彼此，不會交流資訊，但都會認識里長伯，跟里長伯交流資訊</p>
 </blockquote>
+<h2 id="Can-we-only-focus-on-Critical-Parts"><a href="#Can-we-only-focus-on-Critical-Parts" class="headerlink" title="Can we only focus on Critical Parts ?"></a>Can we only focus on Critical Parts ?</h2><p>把 small value 直接設成 0，讓其影響較小<br><img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Transformer17.png"></p>
+<p>方法如下:</p>
+<h3 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h3><p>把 query 和 key 拉出來，透過 clustering 把相近的分類在一起<br><img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Transformer18.png"></p>
+<p>只計算同類，其他都設成 0<br><img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Transformer19.png"></p>
+<h4 id="Sinkhorn-Sorting-Network"><a href="#Sinkhorn-Sorting-Network" class="headerlink" title="Sinkhorn Sorting Network"></a>Sinkhorn Sorting Network</h4><p>把 input sequence 的每一個 position 通過一個 neural network 產生一個 vector（這個 vector 的長度要和 input sequence 的長度相同）<br><a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.11296">詳細作法</a><br><img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Transformer20.png"></p>
+<h4 id="Linformer"><a href="#Linformer" class="headerlink" title="Linformer"></a>Linformer</h4><p><a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.04768">詳細作法</a><br>不需要計算所有 matrix，只計算重要的</p>
+<p>把 N 個 key 挑出代表性的 K 個 key，縮小 matrix</p>
+<blockquote>
+<p>為甚麼只選有代表性的 key，而非有代表性的 query ?<br>也可以，但 output sequence length 會減少，對某些問題可能會有影響</p>
+</blockquote>
+<p>如何選出有代表性的 key ?<br><a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.10198">Compressed Attention 詳細作法</a><br>概而化之：用 CNN</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.04768">Linformer 詳細作法</a><br>概而化之：將原 d x N 的 matrix 乘上 N x K，使其變成 d x K<br><img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Transformer21.png"></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>學習內容與截圖來源</p>
 <ul>
 <li><a class="link" target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10294494">NLP的首選模型Transformer介紹</a></li>
@@ -623,7 +640,7 @@ mjx-container[display="true"] + br {
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
         <div class="page-title">Deep Learning - Self-Attention</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention-%E7%9A%84%E5%90%84%E7%A8%AE%E8%AE%8A%E5%9E%8B"><span class="nav-text">Self-Attention 的各種變型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Attention-Truncated-Attention"><span class="nav-text">Local Attention&#x2F;Truncated Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stride-Attention"><span class="nav-text">Stride Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-Attention"><span class="nav-text">Global Attention</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention-%E7%9A%84%E5%90%84%E7%A8%AE%E8%AE%8A%E5%9E%8B"><span class="nav-text">Self-Attention 的各種變型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Attention-Truncated-Attention"><span class="nav-text">Local Attention&#x2F;Truncated Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stride-Attention"><span class="nav-text">Stride Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-Attention"><span class="nav-text">Global Attention</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Can-we-only-focus-on-Critical-Parts"><span class="nav-text">Can we only focus on Critical Parts ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clustering"><span class="nav-text">Clustering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
 
     </div>
 </div>
