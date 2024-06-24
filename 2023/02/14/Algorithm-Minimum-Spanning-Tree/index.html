@@ -28,8 +28,8 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Kruskal01.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Kruskal02.gif">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Prim01.gif">
-<meta property="article:published_time" content="2023-02-14T14:32:35.000Z">
-<meta property="article:modified_time" content="2024-03-11T14:23:47.811Z">
+<meta property="article:published_time" content="2023-02-14T15:32:35.000Z">
+<meta property="article:modified_time" content="2024-06-24T16:20:06.219Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -382,17 +382,17 @@
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2023-02-14</span>
         <span class="mobile">2023-02-14</span>
-        <!-- <span class="desktop">2023-02-14 21:32:35</span>
-        <span class="mobile">2023-02-14 21:32</span> -->
+        <!-- <span class="desktop">2023-02-14 22:32:35</span>
+        <span class="mobile">2023-02-14 22:32</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-03-11</span>
-            <span class="mobile">2024-03-11</span>
-            <!-- <span class="desktop">2024-03-11 21:23:47</span>
-            <span class="mobile">2024-03-11 21:23</span> -->
+            <span class="desktop">2024-06-24</span>
+            <span class="mobile">2024-06-24</span>
+            <!-- <span class="desktop">2024-06-24 23:20:06</span>
+            <span class="mobile">2024-06-24 23:20</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -446,7 +446,9 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h2><p>可以參考我的課程簡報：<a class="link"   target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QyVZFDUQpwxeTSVGGIEWtgwIGOAc207R/view" >MST &amp; Shortest Path</a></p>
+                <h2 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h2><p>可以參考我做的課程簡報：</p>
+<a class="button  center large" target="_blank" rel="noopener" href='https://drive.google.com/file/d/1QyVZFDUQpwxeTSVGGIEWtgwIGOAc207R/view' title='MST & Shortest Path'><i class='fa-solid fa-file-powerpoint'></i> MST & Shortest Path</a>
+
 <h2 id="Minimum-Spanning-Tree-最小生成樹"><a href="#Minimum-Spanning-Tree-最小生成樹" class="headerlink" title="Minimum Spanning Tree 最小生成樹"></a>Minimum Spanning Tree 最小生成樹</h2><p>最小生成樹<br>求出無向圖的其中一棵最小生成樹<br>若是圖不連通，則是求出其中一叢最小生成森林</p>
 <img  
                      lazyload
@@ -467,7 +469,9 @@
 <li>若此邊上的兩端點已處於同棵樹，則捨棄此邊</li>
 <li>若此邊上的兩端點未處於同棵樹，則利用此邊連結兩棵生成森林</li>
 </ol>
-<h3 id="Disjoint-Set"><a href="#Disjoint-Set" class="headerlink" title="Disjoint Set"></a>Disjoint Set</h3><p>關於 Disjoint Set 的基本觀念可以參考我的這篇文章：<a href="https://lavinia0724.github.io/2023/02/14/Algorithm-Disjoint-Set/">Algorithm - Disjoint Set</a></p>
+<h3 id="Disjoint-Set"><a href="#Disjoint-Set" class="headerlink" title="Disjoint Set"></a>Disjoint Set</h3><p>關於 Disjoint Set 的基本觀念可以參考我的這篇文章：</p>
+<a class="button  center large" href='https://lavinia0724.github.io/2023/02/14/Algorithm-Disjoint-Set/' title='Algorithm - Disjoint Set'><i class='fa-solid fa-paper-plane'></i> Algorithm - Disjoint Set</a>
+
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(parent[x] &lt; <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">return</span> parent[x] = <span class="built_in">find</span>(parent[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Union</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	a = <span class="built_in">find</span>(a);</span><br><span class="line">	b = <span class="built_in">find</span>(b);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(a != b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(parent[a] &lt; parent[b])&#123;</span><br><span class="line">			parent[a] += parent[b];</span><br><span class="line">			parent[b] = a;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			parent[b] += parent[a];</span><br><span class="line">			parent[a] = b;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">kruskal</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 先讓所有人父節點都是 -1 (沒有父親)</span></span><br><span class="line">    <span class="built_in">memset</span>(parent, <span class="number">-1</span>, <span class="built_in">sizeof</span>(parent));</span><br><span class="line">    <span class="built_in">sort</span>(edge.<span class="built_in">begin</span>(), edge.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    total = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// i &lt; N-1 因為一顆樹最多只會有 N (點的數量) -1 條邊</span></span><br><span class="line">    <span class="comment">// j &lt; M (M 是目前測資給予的邊的總數量 可能會有重邊 所以可能不只 N-1 條邊)</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; N<span class="number">-1</span> &amp;&amp; j &lt; M; ++i)&#123;</span><br><span class="line">        <span class="comment">// 如果 u 和 v 的祖先相同 則 ++j (祖先相同會產生環 所以不要建立邊)</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">find</span>(edge[j].u) == <span class="built_in">find</span>(edge[j].v)) ++j;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 若不會產生環 則讓兩點之間產生橋 (連接兩顆子生成樹)</span></span><br><span class="line">        <span class="built_in">Union</span>(edge[j].u, edge[j].v);</span><br><span class="line">        total += edge[j].w;</span><br><span class="line">        ++j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="Prim’s-Algorithm"><a href="#Prim’s-Algorithm" class="headerlink" title="Prim’s Algorithm"></a>Prim’s Algorithm</h2><h3 id="生成步驟-1"><a href="#生成步驟-1" class="headerlink" title="生成步驟"></a>生成步驟</h3><p>選擇任意一點作為根</p>
@@ -479,7 +483,7 @@
                      
                 >
 
-<h2 id="UVA-Problem"><a href="#UVA-Problem" class="headerlink" title="UVA Problem"></a>UVA Problem</h2><p><a href="https://lavinia0724.github.io/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/">UVA 00908 - Re-connecting Computer Sites</a></p>
+<h2 id="UVA-Problem"><a href="#UVA-Problem" class="headerlink" title="UVA Problem"></a>UVA Problem</h2><a class="button  center large" href='https://lavinia0724.github.io/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/' title='UVA 00908 - Re-connecting Computer Sites'><i class='fa-regular fa-window'></i> UVA 00908 - Re-connecting Computer Sites</a>
 
             </div>
 
@@ -503,13 +507,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2023/02/14/Algorithm-Dijkstra/"
+                            href="/2023/02/14/Algorithm-SPFA/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Algorithm - Dijkstra</span>
+                                    <span class="post-nav-title-item">Algorithm - SPFA</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -519,10 +523,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/02/14/Algorithm-Disjoint-Set/"
+                            href="/2023/02/14/Algorithm-Floyd-Warshall/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Algorithm - Disjoint Set</span>
+                                    <span class="post-nav-title-item">Algorithm - Floyd-Warshall</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
