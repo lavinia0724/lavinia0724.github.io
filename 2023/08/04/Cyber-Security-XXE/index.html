@@ -13,24 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://lavinia0724.github.io/2023/04/25/ocr-pytesseract/"/>
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/08/04/cyber-security-xxe/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="OCR - pytesseract &amp; jieba">
+        <meta name="description" content="Basic Cyber Security - XXE Introduction">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OCR - pytesseract &amp; jieba">
-<meta property="og:url" content="https://lavinia0724.github.io/2023/04/25/OCR-pytesseract/index.html">
+<meta property="og:title" content="Cyber Security - XXE">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/08/04/Cyber-Security-XXE/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="OCR - pytesseract &amp; jieba">
+<meta property="og:description" content="Basic Cyber Security - XXE Introduction">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-04-25T16:46:09.000Z">
-<meta property="article:modified_time" content="2024-06-24T07:28:02.381Z">
+<meta property="article:published_time" content="2023-08-03T16:38:47.000Z">
+<meta property="article:modified_time" content="2023-12-11T17:20:45.668Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="OCR">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Implementation">
+<meta property="article:tag" content="Cyber Security">
 <meta name="twitter:card" content="summary">
     
     
@@ -43,7 +41,7 @@
     
     <title>
         
-            OCR - pytesseract &amp; jieba -
+            Cyber Security - XXE -
         
         INCLAVIC
     </title>
@@ -357,8 +355,8 @@
             
                       
                 <div class="article-title">
-                    <img src="/images/post41.jpg" alt="OCR - pytesseract &amp; jieba" />
-                    <h1 class="article-title-cover">OCR - pytesseract &amp; jieba</h1>
+                    <img src="/images/post18.jpg" alt="Cyber Security - XXE" />
+                    <h1 class="article-title-cover">Cyber Security - XXE</h1>
                 </div>
             
                 
@@ -378,19 +376,19 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-04-25</span>
-        <span class="mobile">2023-04-25</span>
-        <!-- <span class="desktop">2023-04-25 23:46:09</span>
-        <span class="mobile">2023-04-25 23:46</span> -->
+        <span class="desktop">2023-08-04</span>
+        <span class="mobile">2023-08-04</span>
+        <!-- <span class="desktop">2023-08-04 00:38:47</span>
+        <span class="mobile">2023-08-04 00:38</span> -->
         <span class="hover-info">撰寫</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-06-24</span>
-            <span class="mobile">2024-06-24</span>
-            <!-- <span class="desktop">2024-06-24 14:28:02</span>
-            <span class="mobile">2024-06-24 14:28</span> -->
+            <span class="desktop">2023-12-12</span>
+            <span class="mobile">2023-12-12</span>
+            <!-- <span class="desktop">2023-12-12 01:20:45</span>
+            <span class="mobile">2023-12-12 01:20</span> -->
             <span class="hover-info">更新</span>
         </span>
     
@@ -401,15 +399,15 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Programming-Languages/">Programming Languages</a>&nbsp;
+                        <a href="/categories/Cyber-Security/">Cyber Security</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Programming-Languages/Python/">Python</a>&nbsp;
+                        &gt; <a href="/categories/Cyber-Security/Web/">Web</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Programming-Languages/Python/OCR/">OCR</a>&nbsp;
+                        &gt; <a href="/categories/Cyber-Security/Web/XXE/">XXE</a>&nbsp;
                     </li>
                 
             </ul>
@@ -421,15 +419,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/OCR/">OCR</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Python/">Python</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Implementation/">Implementation</a>&nbsp;
+                        <a href="/tags/Cyber-Security/">Cyber Security</a>&nbsp;
                     </li>
                 
             </ul>
@@ -452,24 +442,18 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="pytesseract-jieba"><a href="#pytesseract-jieba" class="headerlink" title="pytesseract &amp; jieba"></a>pytesseract &amp; jieba</h2><ul>
-<li>光學文字識別（Optical Character Recognition，OCR）<ul>
-<li>簡單來說，就是能夠將「圖片」上文字資訊翻譯出來成文字</li>
-</ul>
-</li>
-<li>利用 Python 模組 pytesseract 套件<ul>
-<li>可透過簡單程式碼快速分辨圖片中的文字</li>
-</ul>
-</li>
-<li>目前模組由 Google 團隊開發以及維護</li>
-<li>jieba 是 python 套件的中文斷詞器</li>
-</ul>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> pytesseract</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">pytesseract.pytesseract.tesseract_cmd = <span class="string">r&#x27;C:\\Program Files\\Tesseract-OCR\\tesseract.exe&#x27;</span></span><br><span class="line"></span><br><span class="line">pathlist = Path(<span class="string">&quot;&lt;User pytesseract Path&gt;&quot;</span>).glob(<span class="string">&#x27;**/*.jpg&#x27;</span>)</span><br><span class="line"><span class="comment"># config = r&#x27;-c tessedit_char_blacklist= --psm 6&#x27;</span></span><br><span class="line"></span><br><span class="line">prevPrompt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">prevAns = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame()  </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> fontPath <span class="keyword">in</span> pathlist:</span><br><span class="line">  <span class="comment"># print(fontPath)</span></span><br><span class="line">  </span><br><span class="line">  basename = os.path.splitext(os.path.basename(fontPath))[<span class="number">0</span>]</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;basename: &#x27;</span> + basename)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># if not os.path.isdir(basename):</span></span><br><span class="line">  <span class="comment">#   os.mkdir(basename)  </span></span><br><span class="line"></span><br><span class="line">  img = Image.<span class="built_in">open</span>(<span class="string">f&#x27;<span class="subst">&#123;basename&#125;</span>.jpg&#x27;</span>)</span><br><span class="line">  text = pytesseract.image_to_string(img, lang=<span class="string">&#x27;chi_tra&#x27;</span>)</span><br><span class="line">  text = text.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  text = text.split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">  <span class="comment"># print(text)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> text[<span class="number">5</span>:<span class="number">15</span>]:</span><br><span class="line">    <span class="keyword">if</span> item == <span class="string">&#x27;&#x27;</span> :</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line"></span><br><span class="line">    sentence = jieba.cut(item)</span><br><span class="line">    sentence = (<span class="string">&#x27; &#x27;</span>.join(sentence))</span><br><span class="line">    <span class="built_in">print</span>(sentence)</span><br></pre></td></tr></table></figure></div>
-
+                <h1 id="Cyber-Security-XXE"><a href="#Cyber-Security-XXE" class="headerlink" title="Cyber Security - XXE"></a>Cyber Security - XXE</h1><p>XXE：XML external entity injection<br>XML 外部實體注入攻擊</p>
+<h2 id="XXE-Introduction"><a href="#XXE-Introduction" class="headerlink" title="XXE Introduction"></a>XXE Introduction</h2><p>XXE 注入可用於解析 XML 注入的 Web 應用程式<br>攻擊者能夠提交 XML，從而利用對外部實體的引用，攻擊便發生在伺服器處理 XML 時</p>
+<p>當 XML 解析器使用預設或弱配置、設定未妥善處理過濾輸入時，即有可能發生 XXE 注入</p>
+<h3 id="XXE-Example"><a href="#XXE-Example" class="headerlink" title="XXE Example"></a>XXE Example</h3><p>假設一個網站使用 XML 為其重設密碼功能提交資料，攻擊者截獲 XML 請求，並對請求做出變更，存取伺服器上的任意檔案<br>使 Web 伺服器解析 XML 並回傳 <code>/etc/password</code> 檔案，即是一種 XXE 攻擊</p>
+<h2 id="XXE-Impact"><a href="#XXE-Impact" class="headerlink" title="XXE Impact"></a>XXE Impact</h2><p>XXE 可能讓攻擊者進行內部埠掃描，並映射被攻擊者的整個網路<br>攻擊者可以從 Web 伺服器檢索文件，從而導致資料洩漏、系統無法被使用，以致被攻擊者收入或聲譽損失</p>
+<h2 id="XXE-Prevent"><a href="#XXE-Prevent" class="headerlink" title="XXE Prevent"></a>XXE Prevent</h2><ol>
+<li>開發人員應對所有使用者提供的輸入套用應用程式範圍的篩選條件或過濾，考慮 GET、POST 參數、cookies 和其他 HTTP headers</li>
+<li>一律套用允許清單輸入驗證</li>
+<li>XML 解析應該完全停用對外部實體或 DTD 的支援，檢查特定框架的設定，才執行操作</li>
+</ol>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10227263" >Day26-聽過 OCR 嗎? 實作看看吧 – pytesseract</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://yanwei-liu.medium.com/python%E8%87%AA%E7%84%B6%E8%AA%9E%E8%A8%80%E8%99%95%E7%90%86-%E4%BA%8C-%E4%BD%BF%E7%94%A8jieba%E9%80%B2%E8%A1%8C%E4%B8%AD%E6%96%87%E6%96%B7%E8%A9%9E-faf7828141a4" >使用jieba進行中文斷詞</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://blog.kennycoder.io/2020/02/12/Python-%E7%9F%A5%E5%90%8DJieba%E4%B8%AD%E6%96%87%E6%96%B7%E8%A9%9E%E5%B7%A5%E5%85%B7%E6%95%99%E5%AD%B8/" >知名 Jieba 中文斷詞工具教學</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.gss.com.tw/scw" >Secure Code Warrior 安全學習平台</a></li>
 </ul>
 
             </div>
@@ -480,15 +464,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/OCR/">#OCR</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Python/">#Python</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
+                            <a href="/tags/Cyber-Security/">#Cyber Security</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -502,13 +478,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2023/05/16/OpenAI-API-EasyOCR-with-OpenAI-API/"
+                            href="/2023/08/08/Cyber-Security-Insecure-Deserialization/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">OpenAI API - EasyOCR with OpenAI API and Unsplash API Side Project</span>
+                                    <span class="post-nav-title-item">Cyber Security - Insecure Deserialization</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>
@@ -518,10 +494,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/04/07/OpenAI-API-Fine-Tune-OpenAI-Model/"
+                            href="/2023/08/02/ASP-NET-MVC-Framework-Sync-Async/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">OpenAI API - Fine-Tune OpenAI Model Side Project</span>
+                                    <span class="post-nav-title-item">ASP.NET MVC Framework - Sync &amp; Async</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -542,8 +518,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">INCLAVIC</div>
-        <div class="page-title">OCR - pytesseract &amp; jieba</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pytesseract-jieba"><span class="nav-text">pytesseract &amp; jieba</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+        <div class="page-title">Cyber Security - XXE</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cyber-Security-XXE"><span class="nav-text">Cyber Security - XXE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XXE-Introduction"><span class="nav-text">XXE Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XXE-Example"><span class="nav-text">XXE Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XXE-Impact"><span class="nav-text">XXE Impact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XXE-Prevent"><span class="nav-text">XXE Prevent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol></li></ol>
 
     </div>
 </div>
