@@ -346,106 +346,36 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fa-solid fa-folder"></i>&nbsp;UVA
-        </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 6</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='02-17'>
-                <a href="/2023/02/17/UVA-10099-The-Tourist-Guide/">
-                  <span class="article-title">UVA 10099 - The Tourist Guide</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='02-17'>
-                <a href="/2023/02/17/UVA-10986-Sending-email/">
-                  <span class="article-title">UVA 10986 - Sending email</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='02-17'>
-                <a href="/2023/02/17/UVA-00558-Wormholes/">
-                  <span class="article-title">UVA 00558 - Wormholes</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='02-17'>
-                <a href="/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/">
-                  <span class="article-title">UVA 00908 - Re-connecting Computer Sites</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='02-15'>
-                <a href="/2023/02/15/UVA-10020-Minimal-Coverage/">
-                  <span class="article-title">UVA 10020 - Minimal Coverage</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='02-15'>
-                <a href="/2023/02/15/UVA-00757-Gone-Fishing/">
-                  <span class="article-title">UVA 00757 - Gone Fishing</span>
-                </a>
-              </li>
-              
-            </ul>
-        </section>
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 4</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='05-02'>
-                <a href="/2022/05/02/UVA-00216-Getting-in-Line/">
-                  <span class="article-title">UVA 00216 - Getting in Line</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-02'>
-                <a href="/2022/05/02/UVA-00167-The-Sultans-Successors/">
-                  <span class="article-title">UVA 00167 - The Sultans Successors</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-02'>
-                <a href="/2022/05/02/UVA-00441-Lotto/">
-                  <span class="article-title">UVA 00441 - Lotto</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-02'>
-                <a href="/2022/05/02/UVA-10189-Minesweeper/">
-                  <span class="article-title">UVA 10189 - Minesweeper</span>
-                </a>
-              </li>
-              
-            </ul>
-        </section>
-    
-</div>
+                    @import '../common/variables'
 
-        </div>
-    </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/Programming-Contest/UVA/page/2/">2</a><a class="extend next" rel="next" href="/categories/Programming-Contest/UVA/page/2/"><i class="fa-regular fa-angle-right"></i></a>
-</div>
+$category-name-font-size = 2.8rem
 
-    </div>
-</div>
+.category-container
+  redefine-container(
+    false,
+    0,
+    0,
+    30px,
+    30px
+  )
+
+  .category-name
+    color var(--second-text-color)
+    font-size $category-name-font-size
+
+    i
+      color var(--second-text-color)
+
+    +redefine-tablet()
+      font-size: $category-name-font-size * 0.9
+
+    +redefine-mobile()
+      font-size: $category-name-font-size * 0.8
+
+    font-weight 600
+    padding-bottom 20px
+    margin-bottom $spacing-unit
+    border-bottom 1px solid var(--shadow-color-1)
 
 
                 

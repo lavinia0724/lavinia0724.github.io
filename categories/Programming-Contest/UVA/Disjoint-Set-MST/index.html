@@ -346,42 +346,36 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fa-solid fa-folder"></i>&nbsp;Disjoint Set - MST
-        </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 1</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='02-17'>
-                <a href="/2023/02/17/UVA-00908-Re-connecting-Computer-Sites/">
-                  <span class="article-title">UVA 00908 - Re-connecting Computer Sites</span>
-                </a>
-              </li>
-              
-            </ul>
-        </section>
-    
-</div>
+                    @import '../common/variables'
 
-        </div>
-    </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span>
-</div>
+$category-name-font-size = 2.8rem
 
-    </div>
-</div>
+.category-container
+  redefine-container(
+    false,
+    0,
+    0,
+    30px,
+    30px
+  )
+
+  .category-name
+    color var(--second-text-color)
+    font-size $category-name-font-size
+
+    i
+      color var(--second-text-color)
+
+    +redefine-tablet()
+      font-size: $category-name-font-size * 0.9
+
+    +redefine-mobile()
+      font-size: $category-name-font-size * 0.8
+
+    font-weight 600
+    padding-bottom 20px
+    margin-bottom $spacing-unit
+    border-bottom 1px solid var(--shadow-color-1)
 
 
                 

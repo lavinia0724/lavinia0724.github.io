@@ -346,106 +346,36 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fa-solid fa-folder"></i>&nbsp;Deep Learning
-        </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2024</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 5</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='06-24'>
-                <a href="/2024/06/24/Deep-Learning-Self-Attention/">
-                  <span class="article-title">Deep Learning - Self-Attention</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-24'>
-                <a href="/2024/05/24/Deep-Learning-CNN-to-Classify-FashionMNIST/">
-                  <span class="article-title">Deep Learning - CNN to Classify FashionMNIST</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-15'>
-                <a href="/2024/05/15/Deep-Learning-Transformer/">
-                  <span class="article-title">Deep Learning - Transformer</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-10'>
-                <a href="/2024/05/10/Deep-Learning-Backpropagation-Algorithm-to-Classify-MNIST/">
-                  <span class="article-title">Deep Learning - Backpropagation Algorithm to Classify MNIST</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='05-08'>
-                <a href="/2024/05/08/Deep-Learning-Simple-Stochastic-Gradient-Descent-Implementation/">
-                  <span class="article-title">Deep Learning - Simple Stochastic Gradient Descent Implementation</span>
-                </a>
-              </li>
-              
-            </ul>
-        </section>
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count"><i class="fa-solid fa-feather"></i> 5</span>
-            </div>
-            <ul class="article-list">
-              
-              <li class="article-item" date-is='11-17'>
-                <a href="/2022/11/17/Deep-Learning-Convolutional-Neural-Networks/">
-                  <span class="article-title">Deep Learning - Convolutional Neural Networks</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='09-28'>
-                <a href="/2022/09/28/Deep-Learning-Directional-Derivative/">
-                  <span class="article-title">Deep Learning - Gradient and Directional Derivative</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='09-22'>
-                <a href="/2022/09/22/Deep-Learning-Derivative-Gradient/">
-                  <span class="article-title">Deep Learning - Gradient and Exploding Gradient</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='09-15'>
-                <a href="/2022/09/15/Deep-Learning-Activation-Function/">
-                  <span class="article-title">Deep Learning - Activation Function and Loss Function</span>
-                </a>
-              </li>
-              
-              <li class="article-item" date-is='09-15'>
-                <a href="/2022/09/15/Deep-Learning-Perceptron-Learning-Algorithm/">
-                  <span class="article-title">Deep Learning - Perceptron Learning Algorithm</span>
-                </a>
-              </li>
-              
-            </ul>
-        </section>
-    
-</div>
+                    @import '../common/variables'
 
-        </div>
-    </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/Deep-Learning/page/2/">2</a><a class="extend next" rel="next" href="/categories/Deep-Learning/page/2/"><i class="fa-regular fa-angle-right"></i></a>
-</div>
+$category-name-font-size = 2.8rem
 
-    </div>
-</div>
+.category-container
+  redefine-container(
+    false,
+    0,
+    0,
+    30px,
+    30px
+  )
+
+  .category-name
+    color var(--second-text-color)
+    font-size $category-name-font-size
+
+    i
+      color var(--second-text-color)
+
+    +redefine-tablet()
+      font-size: $category-name-font-size * 0.9
+
+    +redefine-mobile()
+      font-size: $category-name-font-size * 0.8
+
+    font-weight 600
+    padding-bottom 20px
+    margin-bottom $spacing-unit
+    border-bottom 1px solid var(--shadow-color-1)
 
 
                 
