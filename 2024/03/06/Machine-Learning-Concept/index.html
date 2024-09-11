@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/03/06/machine-learning-concept/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Machine Learning 概論">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning - Concept">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/03/06/Machine-Learning-Concept/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Machine Learning 概論">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page01.png">
+<meta property="article:published_time" content="2024-03-06T08:11:22.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.912Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Hundred-Page01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Machine Learning - Concept -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post70.JPG" alt="Machine Learning - Concept" />
+                    <h1 class="article-title-cover">Machine Learning - Concept</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-03-06</span>
+        <span class="mobile">2024-03-06</span>
+        <!-- <span class="desktop">2024-03-06 16:11:22</span>
+        <span class="mobile">2024-03-06 16:11</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Machine-Learning/Concept/">Concept</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Conspectus"><a href="#Conspectus" class="headerlink" title="Conspectus"></a>Conspectus</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Hundred-Page01.png"
+                     
+                >
+
+<p>深度學習 <strong>D</strong>eep <strong>L</strong>earning 是機器學習 <strong>M</strong>achine <strong>L</strong>earning 的分支<br>機器學習 <strong>M</strong>achine <strong>L</strong>earning 是人工智慧 <strong>A</strong>rtificial <strong>I</strong>ntelligence 的分支</p>
+<p>機器學習四大分類：</p>
+<ol>
+<li>Supervised Learning</li>
+<li>Semi-supervised Learning</li>
+<li>Unsupervised Learning</li>
+<li>Reinforcemend Learning</li>
+</ol>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">資料集</a></li><li class="tab"><a class="#芝士，與你分享-2">資料預處理方式</a></li><li class="tab"><a class="#芝士，與你分享-3">Note</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>機器學習只要旋轉資料&#x2F;轉換顏色就截然不同，可用來增加 Training Data</p></div><div class="tab-pane" id="芝士，與你分享-2"><ol>
+<li>降躁</li>
+<li>提升解析度</li>
+<li>降雜訊</li>
+</ol></div><div class="tab-pane" id="芝士，與你分享-3"><ol>
+<li>做多分類類別不用分太多，二分類就好，會讓研究目標較明顯也更重點投注</li>
+<li>論文一定要有真實資料，所以如何獲得獨家的資料集是關鍵之一（例如與醫院合作獲得病例照），不然 Open Data 幾百年前就被做光了 By 許老師</li>
+<li>先有資料集再設計模型</li>
+</ol></div></div></div>
+
+<h2 id="Machine-Learning-Conspectus"><a href="#Machine-Learning-Conspectus" class="headerlink" title="Machine Learning Conspectus"></a>Machine Learning Conspectus</h2><div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">Self-supervised Learning</a></li><li class="tab"><a class="#芝士，與你分享-2">Generative Adversarial Network</a></li><li class="tab"><a class="#芝士，與你分享-3">Reinforcement Learning</a></li><li class="tab"><a class="#芝士，與你分享-4">Anomaly Detection</a></li><li class="tab"><a class="#芝士，與你分享-5">Explainable AI</a></li><li class="tab"><a class="#芝士，與你分享-6">Model Attack</a></li><li class="tab"><a class="#芝士，與你分享-7">Life-long Learning</a></li><li class="tab"><a class="#芝士，與你分享-8">Meta Learning</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>在訓練之前先 pre-train 過，當模型完全學會 pre-train 的資料集時，就可以藉由 fine-tune 模型去學會其他任務的資料</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>有別於 Supervised Learning 需要成對的輸入 x 與輸出 y，生成式對抗網路只要有大量的輸入 x 和大量的輸出 y 的資料集，就有辦法自動將兩者之間關聯起來</p></div><div class="tab-pane" id="芝士，與你分享-3"><p>不知道如何標註資料，就連人類也不確定如何才是最好（例如：下圍棋），但人類可以判斷好壞（例如：下贏就是好，下輸就是不好）</p></div><div class="tab-pane" id="芝士，與你分享-4"><p>異常檢測，讓機器具備無法判斷時輸出不知道的指令</p></div><div class="tab-pane" id="芝士，與你分享-5"><p>不僅可以分類正確的輸入，同時會說明為何如此分類的原因</p></div><div class="tab-pane" id="芝士，與你分享-6"><p>透過在圖片內加入雜訊，即可對模型造成攻擊（其中一種手法）</p></div><div class="tab-pane" id="芝士，與你分享-7"><p>讓一個模型透過不斷學習，在大量的時間下，未來會成為極為聰明的模型</p></div><div class="tab-pane" id="芝士，與你分享-8"><p>Few-shot Learning （用非常少量的資料學習）是基於 Meta Learning，要讓模型學會自己研發演算法，因此才能在極少的資料下學習的一樣好 </p></div></div></div>
+
+<h3 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h3><p>所有資料都有 label<br>希望透過大量標註資料來幫助學習算法找到最好的模型</p>
+<p>大致分為兩類：</p>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">Classification</a></li><li class="tab"><a class="#芝士，與你分享-2">Regression</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>分類，輸出是類別<br>例如：利用 MNIST 數據集對手寫數字辨識進行多分類</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>回歸，輸出是數值</p></div></div></div>
+
+<p>Data: (x, y)，x is data, y is label<br>Goal: learning func to map x &rarr; y</p>
+<h3 id="Semi-supervised-Learning"><a href="#Semi-supervised-Learning" class="headerlink" title="Semi-supervised Learning"></a>Semi-supervised Learning</h3><p>資料有 label 和 unlabel 的，而 unlabel 比例遠大於 label 的數量<br>有時候會不算這個，稱其他三類為機器學習三大分類，但因 Hundred-Page Machine learning Book by A. Burkov 將其分為一大類，故以此為準<br>有時因標記資料不夠多，因此也透過 unlabel 資料去 tune supervised model</p>
+<h3 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h3><p>所有資料都 unlabel<br>目標是創建一個模型，將特徵向量 x 輸入後，將其轉化為另一個向量或轉化為一個可用於解決實際問題的值</p>
+<p>Clustering 分群即為一種 Unsupervised Learning，其目標為把相向的集合成一群，但並沒有標準，由機器自己判斷如何分類</p>
+<div class="tabs" id="tab-芝士，與你分享"><ul class="nav-tabs"><li class="tab active"><a class="#芝士，與你分享-1">分類</a></li><li class="tab"><a class="#芝士，與你分享-2">降維</a></li></ul><div class="tab-content"><div class="tab-pane active" id="芝士，與你分享-1"><p>模型會傳回 dataset 中每個特徵向量的聚類 id</p></div><div class="tab-pane" id="芝士，與你分享-2"><p>模型的輸出是一個比輸入 x 特徵更少的特徵向量<br>高維降至低維度，減少輸注的 x 的特徵 feature </p></div></div></div>
+
+<p>Data: x，x is data, no label<br>Goal: learning underlying sturcture</p>
+<blockquote>
+<p>Unsupervised Learning 與 Supervised Learning 最大不同，沒有 label</p>
+</blockquote>
+<h3 id="Reinforcemend-Learning"><a href="#Reinforcemend-Learning" class="headerlink" title="Reinforcemend Learning"></a>Reinforcemend Learning</h3><p>模型會根據<strong>環境</strong>自己學習，透過將環境狀態感知為一個特徵向量<br>機器可以在每種狀態下執行動作，不同的行動會帶來不同的回報，亦讓機器進入環境的另一種狀態</p>
+<p>Reinforcemend Learning 的目標是學習策略，透過將狀態的特徵向量作為輸入，輸出在該狀態下的最佳行動，使預期的平均 reward 最大化</p>
+<p>例如：</p>
+<ol>
+<li>令在移動的物件上的木根保持平衡，需控制物件移動，使木根不倒，如何控制物件速度即為 Reinforcemend Learning</li>
+<li>控制棒球員根據不同來速，判斷該以何種速動，到達何處，才能接到投手的球</li>
+</ol>
+<p>Data: state-action pairs<br>Goal: maximize future rewards over many time steps</p>
+<h2 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h2><p>屬性，指標的的特徵<br>在 input 中稱為 label<br>在 output 中稱為 target</p>
+<p>attribute &#x3D; feature &#x3D; variable &#x3D; characteristic &#x3D; field</p>
+<p>有兩種型別：</p>
+<ol>
+<li>categorical 分類</li>
+<li>numeric 數值</li>
+</ol>
+<h2 id="Model-Type"><a href="#Model-Type" class="headerlink" title="Model Type"></a>Model Type</h2><h3 id="Linear-model"><a href="#Linear-model" class="headerlink" title="Linear model"></a>Linear model</h3><p>w1x1 + w2x2 + b &#x3D; 0</p>
+<p>Hypothesis: a set of linear func<br>Learning Algorithm: PLA</p>
+<h3 id="Rule-Based-model"><a href="#Rule-Based-model" class="headerlink" title="Rule-Based model"></a>Rule-Based model</h3><p>Hypothesis: a set of rules<br>Learning Algorithm: Decision Tree</p>
+<h3 id="Instance-Based-model"><a href="#Instance-Based-model" class="headerlink" title="Instance-Based model"></a>Instance-Based model</h3><p>基於案例</p>
+<p>Hypothesis: an implicit hypothesis set<br>Learning Algorithm: k-nearest neighbor（kNN），找在特徵向量空間中距離目標最近的 k 個 label</p>
+<h3 id="Loss-function-or-Squared-error-loss"><a href="#Loss-function-or-Squared-error-loss" class="headerlink" title="Loss function or Squared error loss"></a>Loss function or Squared error loss</h3><p>進行錯誤分類的懲罰度量</p>
+<h3 id="Model-Based-vs-Instance-Based-Learning"><a href="#Model-Based-vs-Instance-Based-Learning" class="headerlink" title="Model-Based vs. Instance-Based Learning"></a>Model-Based vs. Instance-Based Learning</h3><p>Model-Based：透過 training data 學習參數而來創造模型</p>
+<p>Instance-Based Learning：使用整個 dataset 作為模型，例如 k-Nearest Neighbors (kNN)</p>
+<h3 id="Shallow-vs-Deep-Learning"><a href="#Shallow-vs-Deep-Learning" class="headerlink" title="Shallow vs. Deep Learning"></a>Shallow vs. Deep Learning</h3><p>Shallow Learning：從訓練實例的特徵中學習模型參數</p>
+<ul>
+<li>Examples of the shallow architectures:<ul>
+<li>Support vector machines (SVMs) </li>
+<li>Logistic regression</li>
+<li>Kernel regression </li>
+<li>Multilayer perceptrons (MLPs) with a single hidden layer including extreme learning machines (ELMs)</li>
+</ul>
+</li>
+</ul>
+<p>Deep Learning：譬如 neural network 神經網路，尤其是輸入與輸出之間有一層以上的演算法，大多數深度神經網路學習中模型的參數都樹從前幾層的輸出中學習的</p>
+<h3 id="Linear-vs-Non-linear-model"><a href="#Linear-vs-Non-linear-model" class="headerlink" title="Linear vs Non-linear model"></a>Linear vs Non-linear model</h3><p>Linear model：A straight line (or a plane, or a hyperplane)<br>很難完美的分類，因為可能會有噪音 noise in the data、錯誤標記 errors of labeling、異常值 outliers</p>
+<p>ex:<br>(f(x<sub>i</sub>) - y<sub>i</sub>)<sup>2</sup></p>
+<p>用在 linear regression</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Hundred-Page Machine learning Book by A. Burkov</li>
+<li>黃貞瑛老師的機器學習課程</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7XZR0-4uS5s&list=PLJV_el3uVTsPM2mM-OQzJXziCGJa8nJL8" >台大電機李宏毅老師 - 【機器學習2022】開學囉~ 又要週更了~</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/03/08/Machine-Learning-Support-Vector-Machine/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Support Vector Machine</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/02/16/Cyber-Security-Web-Cache-Deception/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - Web Cache Deception</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Machine Learning - Concept</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conspectus"><span class="nav-text">Conspectus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Learning-Conspectus"><span class="nav-text">Machine Learning Conspectus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Supervised-Learning"><span class="nav-text">Supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semi-supervised-Learning"><span class="nav-text">Semi-supervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unsupervised-Learning"><span class="nav-text">Unsupervised Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reinforcemend-Learning"><span class="nav-text">Reinforcemend Learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attribute"><span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Type"><span class="nav-text">Model Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-model"><span class="nav-text">Linear model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-Based-model"><span class="nav-text">Rule-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Based-model"><span class="nav-text">Instance-Based model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function-or-Squared-error-loss"><span class="nav-text">Loss function or Squared error loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Based-vs-Instance-Based-Learning"><span class="nav-text">Model-Based vs. Instance-Based Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shallow-vs-Deep-Learning"><span class="nav-text">Shallow vs. Deep Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-vs-Non-linear-model"><span class="nav-text">Linear vs Non-linear model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/03/29/cyber-security-xss/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Basic Cyber Security - XSS Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber Security - XSS">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/03/29/Cyber-Security-XSS/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Basic Cyber Security - XSS Introduction">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-03-29T08:27:41.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.903Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Cyber Security">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Cyber Security - XSS -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post68.JPG" alt="Cyber Security - XSS" />
+                    <h1 class="article-title-cover">Cyber Security - XSS</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-03-29</span>
+        <span class="mobile">2022-03-29</span>
+        <!-- <span class="desktop">2022-03-29 16:27:41</span>
+        <span class="mobile">2022-03-29 16:27</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/XSS/">XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>XSS 全名為 <strong>Cross-site Scripting</strong> 跨網站腳本攻擊</p>
+<blockquote>
+<p>之所以不叫 CSS 是因為 CSS 已經用來表示網頁前端的 CSS 了，所以這邊改用 X 來表示 cross</p>
+</blockquote>
+<p>XSS 是列入 OWASP 網頁安全漏洞前十大排名、跟前端有關的安全問題<br>手段為攻擊者透過在網路上注入惡意程式碼，並且讓其他使用者觸發執行該程式碼來進行攻擊</p>
+<ul>
+<li>通常這些惡意程式碼指的是 JavaScript 或 HTML</li>
+<li>漏洞的成因，是因為網站後端未過濾或沒有驗證使用者輸入，導致惡意輸入惡意程式碼不會被抓到，前端網頁就傻傻的直接執行了</li>
+<li>而漏洞的影響可能會導致使用者資訊 (例如 cookie) 被傳送給攻擊者，從而獲得使用者的隱私訊息，或駭客進一步冒用使用者身分、冒充受害的使用者執行動作等</li>
+</ul>
+<p>簡單來說就是 : 「當網站沒有做好的驗證，就可以讓駭客輕易輸入惡意程式碼在網站上，就像埋下一個地雷，讓點擊到該網站的其他使用者受到攻擊」</p>
+<p>而防止 XSS 的心態是 : 「Don’t trust user input&#x2F;request 」<br>任何輸入都有可能是危險的，輸入框包含網址列、input、任何可以讓使用者更動網頁內容的地方</p>
+<p>XSS 的常見類型有</p>
+<ol>
+<li>Reflected (反射型)</li>
+<li>Stored (儲存型)</li>
+<li>DOM based (DOM 型)</li>
+</ol>
+<h3 id="Reflected-XSS-反射型"><a href="#Reflected-XSS-反射型" class="headerlink" title="Reflected XSS (反射型)"></a>Reflected XSS (反射型)</h3><p>反射型 Reflected XSS 是一種非持久性的攻擊，攻擊者透過在網頁中插入惡意程式碼，讓你在瀏覽網頁時執行，從而達到攻擊的目的</p>
+<p>但是反射型需要利用社交工程，你必須要用騙的，去誘騙使用者點擊你傳給他的惡意連結，才能達到入侵的目的</p>
+<p>反射型特別的地方在於他插入的惡意程式並不會被儲存在網頁當中，且需要引誘使用者透過連結的方式才能發動攻擊</p>
+<p>通常會透過觸發 <code>alert()</code> 的方式來檢查網頁中是否有 Reflected XSS 漏洞</p>
+<p>反射型的攻擊流程是先構造出帶有惡意程式的 url，接著引誘使用者觸發連結(例如透過釣魚信件)，連結被觸發後，伺服器會將惡意程式碼拼接到 HTML，並回傳給使用者<br>最後使用者端的瀏覽器解析回傳結果，惡意程式碼被執行，你的電腦被駭</p>
+<h4 id="Reflected-XSS-實際攻擊"><a href="#Reflected-XSS-實際攻擊" class="headerlink" title="Reflected XSS 實際攻擊"></a>Reflected XSS 實際攻擊</h4><ol>
+<li>攻擊者先創造一個惡意連結</li>
+<li>用社交工程，例如釣魚郵件等方式給受害者</li>
+<li>受害者點下去之後，可能就會提交特別的金鑰，或著受害者純粹就只是閱覽了這個惡意的有毒網站，而這些被注入的惡意程式碼就會到處遊歷以後攻擊那些防禦比較弱的網站，並反射攻擊回用戶的瀏覽器</li>
+</ol>
+<blockquote>
+<p>因為他是反射型，不是 Stored XSS，所以沒有存進 Database</p>
+</blockquote>
+<h3 id="Stored-XSS-儲存型"><a href="#Stored-XSS-儲存型" class="headerlink" title="Stored XSS (儲存型)"></a>Stored XSS (儲存型)</h3><p>儲存型 Stored XSS 和反射型 Reflected XSS 的攻擊手段類似，不同的是惡意程式碼會被<strong>儲存在伺服器</strong>當中</p>
+<p>當使用者瀏覽該網站就會毫無防備的被攻擊，並不需要被引誘點擊連結才會被打，這種攻擊可能會對伺服器造成永久性的傷害，造成的危害很大</p>
+<p>儲存型的攻擊流程是構造惡意程式碼並上傳至該網站的資料庫，當使用者瀏覽該網站時，伺服器端就會將包含惡意程式碼的內容從資料庫取出，並回傳給使用者<br>當使用者的瀏覽器接收到回結果並分析，惡意程式碼被執行，你的電腦又被駭ㄌ</p>
+<h4 id="Stored-XSS-實際攻擊"><a href="#Stored-XSS-實際攻擊" class="headerlink" title="Stored XSS 實際攻擊"></a>Stored XSS 實際攻擊</h4><ol>
+<li>駭客在網站留言板留言，注入 XSS payload</li>
+<li>Web Application 將 XSS payload 存到 database</li>
+<li>惡意程式碼被顯示在網站上</li>
+<li>使用者打開網站後看到留言或是點擊觸發，便成為了受害者</li>
+</ol>
+<h3 id="DOM-Based-XSS-DOM-型"><a href="#DOM-Based-XSS-DOM-型" class="headerlink" title="DOM Based XSS (DOM 型)"></a>DOM Based XSS (DOM 型)</h3><p>DOM 全名為 <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel<br>當應用程式缺乏適當的驗證，如允許網頁可出現不可信任的資訊時，或者是允許在使用者瀏覽器中執行腳本程式，可能就會導致有心人士劫持使用者 Session、網頁置換或者是轉址到其他惡意網站等</p>
+<p>DOM Based XSS 跟 Reflect 非常像，不同是 DOM Based 惡意程式碼沒有到 server 端被執行而是直接在 client 端就被執行</p>
+<p>DOM 型的攻擊流程是通過修改原始客戶端使用的受害者瀏覽器中的 DOM 環境而執行的腳本，以便客戶端程式碼以意外方式運行，也就是說，頁面本身沒有被改變，但頁面中包含的客戶端程式碼由於 DOM 環境中發生的惡意修改而執行不同</p>
+<p>這與其他 XSS 攻擊（也就是前面講的 stored 存儲或 reflected 反射）形成對比，由於服務器端，也就是你的 server 缺陷，他的攻擊會被放置在回應的頁面中</p>
+<p>總結來說，前兩者是透過 server 端處理注入進的惡意請求來動態觸發；而 DOM based 是透過 client 端直接觸發</p>
+<h4 id="DOM-Based-實際攻擊"><a href="#DOM-Based-實際攻擊" class="headerlink" title="DOM Based 實際攻擊"></a>DOM Based 實際攻擊</h4><ol>
+<li>在 DOM Based 的攻擊上，駭客將惡意程式碼注入在網頁上</li>
+<li>惡意程式碼顯示在網站上</li>
+<li>DOM Based 的惡意程式碼沒有在 server 端被執行而是會直接在 client 端點擊網站後被執行</li>
+</ol>
+<h2 id="Impact-Prevention"><a href="#Impact-Prevention" class="headerlink" title="Impact &amp; Prevention"></a>Impact &amp; Prevention</h2><p>這邊必須先來提提 Cookie</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
+<li>Cookie 儲存在客戶端中，按在客戶端中的儲存位置，可分為非持久的 session Cookie 和持久的 persistant Cookie<ul>
+<li>session Cookie 由瀏覽器維護，儲存在記憶體中，會在你離開網站時刪除，存在時間短暫</li>
+<li>persistant Cookie 儲存在硬碟裡，有過期時間，除非使用者手動清理或到了過期時間，硬碟 Cookie 不會清除，存在時間較長</li>
+</ul>
+</li>
+<li>cookie 的用途是記錄使用者狀態的資料<ul>
+<li>因為 HTTP 協定是無狀態協定，當伺服器接收到請求時，都視為是一個全新的請求，伺服器不會記得使用者上一次做了什麼，而這阻礙了那些互動式網頁的呈現，</li>
+<li>舉例來說，在你今天逛蝦皮的時候，你可能在瀏覽好幾個不同的頁面後，買了一盒餅乾和兩瓶飲料，但最後結帳時，由於 HTTP 的無狀態性，如果你沒有額外用其他的東西儲存你的購物車紀錄，那你的伺服器其實是不知道你到底買了什麼的，所以 Cookie 就是用來繞開 HTTP 的無狀態性的方式之一</li>
+<li>有了 coookie 伺服器可以設定或讀取 Cookie 中包含的資訊，藉此維護使用者跟伺服器來回要求封包和回應封包的這個對話狀態，當你今天選購了一包餅乾，伺服器在向使用者傳送餅乾網頁的同時，還傳送了一段 Cookie，記錄著這包餅乾商品的資訊，最後結帳時，你的伺服器只要讀取最後的的 Cookie 即可</li>
+<li>Cookie 的另一個例子是當你登入一個網站時，網站可能會問你要輸入使用者名稱和密碼，並且跟你說你可以勾選”記住密碼”、或是”下次自動登入”，那這原理是因為你前一次登入時，伺服器傳送了包含你的登入憑據（也就是使用者名稱加密碼，但是是以某種加密形式）的 Cookie 到你的硬碟上；那你下一次登入時，如果該 Cookie 還沒被清除，瀏覽器就會傳送該 Cookie，然後你的伺服器會去驗證這段 cookie 憑據，於是你就直接登入了</li>
+</ul>
+</li>
+<li>但駭客今天可以透過擷取你的 cookie 資料，跨網站攻擊，讓駭客可以取得你的網站的管理者權限，因而去達到偽造登入的目的<ul>
+<li>尤其是如果你今天取得的是你的 google 帳密，然後你又把你全家大小各個網站的帳密都存在 google，那你就完蛋ㄌ</li>
+</ul>
+</li>
+</ul>
+<h3 id="Risks"><a href="#Risks" class="headerlink" title="Risks"></a>Risks</h3><p>光是一塊小小的餅乾就已經如此危險，那 XSS 的風險呢</p>
+<ul>
+<li>XSS 可以做到的攻擊像是 :</li>
+</ul>
+<ol>
+<li>偷你的 cookie</li>
+<li>將使用者重新導向到假網站，這時候可能會要你重新輸入帳號密碼之類的，他就會拿到你的帳密了，而且通常假網站都做得微妙微肖，沒有相當的資安意識的一般民眾很容易就會上當</li>
+<li>駭客也有可能直接就把你的網站玩壞</li>
+</ol>
+<h3 id="Prevention"><a href="#Prevention" class="headerlink" title="Prevention"></a>Prevention</h3><p>駭客攻擊手段防不勝防，我們很難去防禦住所有的攻擊手法，我們主要能做的就是不要被社交工程的手段打到</p>
+<ul>
+<li>作為使用者，我們可以做到：點開網址和輸入帳密之前要三思</li>
+<li>作為開發者或工程師，我們可以做到利用</li>
+</ul>
+<ol>
+<li>白名單過濾<ul>
+<li>例如除了允許輸入 HTML 的地方，其他都當作純字串處理、使用 HTML 或 URL encode 等等</li>
+</ul>
+</li>
+<li>也可以利用 HttpOnly 去做到保護 cookie<ul>
+<li>補充說明一下甚麼是 HttpOnly</li>
+<li>大致上就是當 cookie 有設定 HttpOnly flag 時，瀏覽器會限制 cookie 只能經由 HTTP、HTTPS 協定來存取</li>
+<li>因此當網站有 XSS 弱點時，若 cookie 含有 HttpOnly flag，則攻擊者無法直接經由 JavaScript 存取使用者的 session cookie，可降低使用者身份被盜用的機率</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Cyber-Security/">#Cyber Security</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/03/29/Cyber-Security-XSS-Game/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - XSS Game</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/03/23/PHP-Introduction/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">PHP - Introduction</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Cyber Security - XSS</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS"><span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflected-XSS-%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="nav-text">Reflected XSS (反射型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stored-XSS-%E5%84%B2%E5%AD%98%E5%9E%8B"><span class="nav-text">Stored XSS (儲存型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-Based-XSS-DOM-%E5%9E%8B"><span class="nav-text">DOM Based XSS (DOM 型)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Impact-Prevention"><span class="nav-text">Impact &amp; Prevention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Risks"><span class="nav-text">Risks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prevention"><span class="nav-text">Prevention</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

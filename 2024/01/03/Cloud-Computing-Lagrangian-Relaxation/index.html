@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/01/03/cloud-computing-lagrangian-relaxation/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/01/03/Cloud-Computing-Lagrangian-Relaxation/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation03.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation04.png">
+<meta property="article:published_time" content="2024-01-03T09:15:43.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.900Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Cloud Computing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/LagrangianRelaxation01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post62.JPG" alt="Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms" />
+                    <h1 class="article-title-cover">Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-01-03</span>
+        <span class="mobile">2024-01-03</span>
+        <!-- <span class="desktop">2024-01-03 17:15:43</span>
+        <span class="mobile">2024-01-03 17:15</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Cloud-Computing/">Cloud Computing</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>針對雲端群集伺服器的負載平衡優化實驗中應用到的 Lagrangian Relaxation 拉格朗日鬆弛演算法、Load Balance 負載平衡和 Dynamic Scheduling Algorithms 動態排程演算法的學習筆記</p>
+<h2 id="Lagrangian-Relaxation-Intro"><a href="#Lagrangian-Relaxation-Intro" class="headerlink" title="Lagrangian Relaxation Intro"></a>Lagrangian Relaxation Intro</h2><p>拉格朗日鬆弛 (Lagrangian Relaxation) 是一種優化問題的方法，通常用於處理具有約束條件的問題<br>基本概念是透過將原始問題的約束條件放入目標函數中，並引入拉格朗日鬆弛乘子來進行鬆弛<br>讓原問題轉化為無約束的優化問題</p>
+<p>作法為透過在原目標函數中引入的拉格朗日項讓原目標函數的最小值問題更小、讓原目標函數的最大值問題更大<br>例如對於最小值問題，在由拉格朗日乘子構造的拉格朗日函數中去最大值，將下界 (lower bound) 提高，以此獲得最佳下界</p>
+<h3 id="Lagrangian-Relaxation-的基本運算式"><a href="#Lagrangian-Relaxation-的基本運算式" class="headerlink" title="Lagrangian Relaxation 的基本運算式"></a>Lagrangian Relaxation 的基本運算式</h3><p>Lagrangian Relaxation 的基本運算式為：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation01.png"
+                     
+                ></p>
+<ul>
+<li>λ<sub>i</sub> 為非負的拉格朗日乘子</li>
+<li>μ<sub>j</sub> 為拉格朗日乘子</li>
+<li>L (x,λ,μ) 便是我們想要的 Lagrangian 函數</li>
+<li>min<sub>x</sub>L (x,λ,μ) 即為我們要的 Lagrangian Relaxation，將原始問題轉化為 Lagrangian 函數的最小化問題</li>
+</ul>
+<h2 id="Load-Balance-Intro"><a href="#Load-Balance-Intro" class="headerlink" title="Load Balance Intro"></a>Load Balance Intro</h2><p>負載平衡 (Load balancing) 是在電腦中，合理的分配工作到不同的資源上，以確保資源能夠最有效的被利用<br>其目標是確保每個資源都能盡可能地平均處理工作</p>
+<h3 id="針對伺服器的負載失衡問題："><a href="#針對伺服器的負載失衡問題：" class="headerlink" title="針對伺服器的負載失衡問題："></a>針對伺服器的負載失衡問題：</h3><p>在分散式伺服器中，不同的伺服器可能處於不同負載狀態<br>當某些伺服器過度忙碌，其他伺服器處於閒置狀態，就是負載失衡</p>
+<div class="note danger"><p><i style="color:#F9727D" class="fa-solid fa-face-angry"> </i> <del>當有人忙得要死但同事啥事都不用幹，會讓員工不爽</del><br>且使公司效率降低，損失整體效益，所以好的主管<del>要學會負載平衡</del>分配好工作！</p>
+</div>
+
+<h3 id="伺服器負載平衡方法"><a href="#伺服器負載平衡方法" class="headerlink" title="伺服器負載平衡方法"></a>伺服器負載平衡方法</h3><h4 id="Load-Balancer"><a href="#Load-Balancer" class="headerlink" title="Load Balancer"></a>Load Balancer</h4><p>負載平衡器 (Load Balancer) 是在伺服器群集前一步的裝置，用來將請求分配到不同的伺服器，根據不同的負載平衡演算法</p>
+<h4 id="Dynamic-Scheduling-Algorithms"><a href="#Dynamic-Scheduling-Algorithms" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h4><p>Load Balancer 分配請求使用的負載平衡演算法，我以下述 動態排程演算法 (Dynamic Scheduling Algorithms) 中的五種演算法做主要分析</p>
+<ol>
+<li>輪詢法 (Round Robin) </li>
+<li>加權輪詢演算法 (Weighted Round Robin) </li>
+<li>平滑加權輪詢演算法 (Smoothing Weighted Round Robin) </li>
+<li>最少連接法 (Least Connections) </li>
+<li>隨機法 (Random)</li>
+</ol>
+<h2 id="Dynamic-Scheduling-Algorithms-1"><a href="#Dynamic-Scheduling-Algorithms-1" class="headerlink" title="Dynamic Scheduling Algorithms"></a>Dynamic Scheduling Algorithms</h2><h3 id="1-輪詢法-Round-Robin"><a href="#1-輪詢法-Round-Robin" class="headerlink" title="1. 輪詢法 (Round Robin)"></a>1. 輪詢法 (Round Robin)</h3><p>將請求按照輪詢方式分配給伺服器，每個伺服器一次接收一個請求<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation02.png"
+                     
+                ></p>
+<h3 id="2-加權輪詢演算法-Weighted-Round-Robin"><a href="#2-加權輪詢演算法-Weighted-Round-Robin" class="headerlink" title="2. 加權輪詢演算法 (Weighted Round Robin)"></a>2. 加權輪詢演算法 (Weighted Round Robin)</h3><p>為不同的伺服器分配不同的權重，用以反映它們的性能，性能較好的伺服器分配更多請求</p>
+<p>加權輪詢演算法利用權重分配機制，權重越大，伺服器處理請求的優先級越高，每個請求將會以各自權重比例被送到伺服器上進行處理<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation03.png"
+                     
+                ></p>
+<h3 id="3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin"><a href="#3-平滑加權輪詢演算法-Smoothing-Weighted-Round-Robin" class="headerlink" title="3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)"></a>3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</h3><p>在分配任務給不同的伺服器時，每個伺服器有一個權重的平滑計分值，每完成一項任務，計分會增加，每次分配會考慮伺服器的當前權重指標計分多少</p>
+<p>平滑加權輪詢演算之步驟如下：<br>1.	為每個伺服器節點分配一個決策權重(Descision Weight)，初始值與權重相同<br>2.	選擇決策權重最大的伺服器節點<br>3.	將步驟2中所選的伺服器節點的決策權重減去所有伺服器節點的權重總和<br>4.	將每個伺服器節點的決策權重加上權重，更新為新的決策權重<br>5.	重複步驟2到步驟4，直到得出平滑加權循環數列</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\LagrangianRelaxation04.png"
+                     
+                >
+
+<h3 id="4-最少連接法-Least-Connections"><a href="#4-最少連接法-Least-Connections" class="headerlink" title="4. 最少連接法 (Least Connections)"></a>4. 最少連接法 (Least Connections)</h3><p>將請求分配給目前連接數最少的伺服器，讓較閒的伺服器來處理請求</p>
+<h3 id="5-隨機法-Random"><a href="#5-隨機法-Random" class="headerlink" title="5. 隨機法 (Random)"></a>5. 隨機法 (Random)</h3><p>透過隨機選擇來分配伺服器處理請求，但可能導致資源分配不均勻</p>
+<h2 id="Checkpoint"><a href="#Checkpoint" class="headerlink" title="Checkpoint"></a>Checkpoint</h2><p>檢查點 (Checkpoint) 用於在執行過程中定期保存系統的當前狀態,<br>以確保在系統遇到錯誤、中斷或意外狀況的時候，可以回復到之前有被保存到的狀態，而不會損失太多數據或進度</p>
+<h2 id="Starvation"><a href="#Starvation" class="headerlink" title="Starvation"></a>Starvation</h2><p>飢餓問題 (Starvation) 是指 process、threads 或任務由於無法獲得所需的資源而無法繼續運行或完成的情況<br>通常發生在多任務環境中，因為多個 process 競爭有限的系統資源而導致，因此需要通過合理的資源分配策略來避免飢餓問題產生</p>
+<h2 id="NP-hard-Problem"><a href="#NP-hard-Problem" class="headerlink" title="NP-hard Problem"></a>NP-hard Problem</h2><p>NP-hard 問題是指，在多項式時間內不可能找到精確解的決策問題，所以目前沒有已知的演算法可以在多項式時間內解決 NP-hard 問題的所有實例<br>如果有一個 NP-hard 問題可以被多項式時間解決，則所有 NP 問題都可以被多項式時間解決，所以 NP-hard 問題是所有 NP 問題中最難解決的問題<br>但 NP-hard 問題沒有已知的可解決的演算法，目前只能使用一些演算法來獲得近似解</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41348401/article/details/130903442" >拉格朗日鬆弛與拉格朗日分解 lagrangian relaxation</a> </li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/CloudInSky1/article/details/122297915" >拉格朗日鬆弛（一）——理論及算法</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Cloud-Computing/">#Cloud Computing</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/01/17/MATLAB-Note/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">MATLAB - Note</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/12/22/CUT-Contrastive-Learning-for-Unpaired-Image-to-Image-Translation/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">CUT - Contrastive Learning for Unpaired Image-to-Image Translation</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Cloud Computing - Lagrangian Relaxation &amp; Load Balance &amp; Dynamic Scheduling Algorithms</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lagrangian-Relaxation-Intro"><span class="nav-text">Lagrangian Relaxation Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lagrangian-Relaxation-%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%81%8B%E7%AE%97%E5%BC%8F"><span class="nav-text">Lagrangian Relaxation 的基本運算式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Balance-Intro"><span class="nav-text">Load Balance Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%9D%E5%B0%8D%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%9A%84%E8%B2%A0%E8%BC%89%E5%A4%B1%E8%A1%A1%E5%95%8F%E9%A1%8C%EF%BC%9A"><span class="nav-text">針對伺服器的負載失衡問題：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%B2%A0%E8%BC%89%E5%B9%B3%E8%A1%A1%E6%96%B9%E6%B3%95"><span class="nav-text">伺服器負載平衡方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Scheduling-Algorithms-1"><span class="nav-text">Dynamic Scheduling Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BC%AA%E8%A9%A2%E6%B3%95-Round-Robin"><span class="nav-text">1. 輪詢法 (Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8A%A0%E6%AC%8A%E8%BC%AA%E8%A9%A2%E6%BC%94%E7%AE%97%E6%B3%95-Weighted-Round-Robin"><span class="nav-text">2. 加權輪詢演算法 (Weighted Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B9%B3%E6%BB%91%E5%8A%A0%E6%AC%8A%E8%BC%AA%E8%A9%A2%E6%BC%94%E7%AE%97%E6%B3%95-Smoothing-Weighted-Round-Robin"><span class="nav-text">3. 平滑加權輪詢演算法 (Smoothing Weighted Round Robin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9C%80%E5%B0%91%E9%80%A3%E6%8E%A5%E6%B3%95-Least-Connections"><span class="nav-text">4. 最少連接法 (Least Connections)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%9A%A8%E6%A9%9F%E6%B3%95-Random"><span class="nav-text">5. 隨機法 (Random)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Checkpoint"><span class="nav-text">Checkpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Starvation"><span class="nav-text">Starvation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP-hard-Problem"><span class="nav-text">NP-hard Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

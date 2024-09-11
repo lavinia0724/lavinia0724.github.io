@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/05/30/pattern-recognition-an-improved-handwritten-chinese-character-recognition-system-using-support-vector-machine/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/05/30/Pattern-Recognition-An-improved-handwritten-Chinese-character-recognition-system-using-support-vector-machine/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg03.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg04.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg05.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg06.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg07.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg08.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg09.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg10.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg11.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg12.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg13.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg14.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg15.png">
+<meta property="article:published_time" content="2024-05-30T07:33:54.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.919Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Paper Reading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/PatternReg01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post96.JPG" alt="Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine" />
+                    <h1 class="article-title-cover">Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-05-30</span>
+        <span class="mobile">2024-05-30</span>
+        <!-- <span class="desktop">2024-05-30 15:33:54</span>
+        <span class="mobile">2024-05-30 15:33</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Paper-Reading/Pattern-Recognition/">Pattern Recognition</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Paper-Reading/Pattern-Recognition/An-improved-handwritten-Chinese-character-recognition-system-using-support-vector-machine/">An improved handwritten Chinese character recognition system using support vector machine</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Paper-Reading/">Paper Reading</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>雖然是 2005 年的論文，但因為上課需要報告所以還是學習了一下<br>順便附上我們做的簡報：</p>
+<a class="button  center large" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1DXMrCfGzBmNFwl_tLdT5_7yBLtxp15Na/view?usp=sharing" title="An improved handwritten Chinese character recognition system using support vector machine"><i class="fa-solid fa-file-powerpoint"></i> An improved handwritten Chinese character recognition system using support vector machine</a>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>本文描述了幾種改進中文文字識別系統的技術。透過增強非線性正規化、特徵提取，在具有數千個類別的大資料集上調整 support vector machine 的參數，來提高整個系統的性能。</p>
+<p>手寫中文文字具有複雜的結構和形狀變化，還存在許多相似的模式，導致基於像素值的方法表現不佳，因此會透過預處理步驟（例如：形狀正規化和特徵提取)，來對資料進行預先處理。</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">非線性正規化</a></li><li class="tab"><a class="#不重複的id-2">support vector machine</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>使用非線性的數學變換（如對數、指數、平方根等）來調整數據。這些變換可以根據數據的分佈特性來選擇，以達到更好的均勻化效果</p></div><div class="tab-pane" id="不重複的id-2"><p>用統計分類最小化的原則來估計一個分類的 hyperplane 超平面<br>透過找到一個 Decision Boundary 決策邊界來讓兩類之間的邊界最大化，使其可以完美區隔開<br>不一定是直線，有可能是曲線，不同的演算法都是在不同的假設或是條件下去找那條分類的線</p></div></div></div>
+
+<h3 id="Nonlinear-normalization"><a href="#Nonlinear-normalization" class="headerlink" title="Nonlinear normalization"></a>Nonlinear normalization</h3><p>非線性正規化 Nonlinear normalization</p>
+<p>Nonlinear normalization 是用於糾正非線性形狀變化和均勻化二維線密度，使空間能夠更有效地利用，並穩定特徵採樣點以進行 pattern 的匹配，<br>但此方法僅對二維圖像進行操作，非線性正規化可能會產生許多鋸齒狀，會對特徵提取有很大的影響，很難在不破壞筆劃信息的情況下將其平滑。</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">二維線密度</a></li><li class="tab"><a class="#不重複的id-2">平滑</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>指在二維空間中，沿著某些線條分佈的數據點的密度。例如，圖像中表示某些特徵的邊緣。</p></div><div class="tab-pane" id="不重複的id-2"><p>平滑（smoothing）是指通過某些算法或技術來減少這些鋸齒狀的邊緣，使得數據或圖像變得更加連續和柔和</p></div></div></div>
+
+<h3 id="LVQ-MQDF"><a href="#LVQ-MQDF" class="headerlink" title="LVQ & MQDF"></a>LVQ &amp; MQDF</h3><p>學習向量量化 Learning vector quantization, LVQ<br>修改二次判別函數 (Modified quadratic discriminant function, MQDF)</p>
+<p>許多優秀的分類器如多層感知器，由於建模的複雜性和「局部最小值問題」，不能直接應用於具有數千個類別的手寫中文字元識別，</p>
+<p>現在手寫中文字元的兩種主要分類方法為：</p>
+<ol>
+<li>透過 LVQ 生成一些代表性的參考模式作為模板</li>
+<li>修改二次判別函數 (Modified quadratic discriminant function, MQDF)</li>
+</ol>
+<p>LVQ 的決策邊界 (Decision Boundary)是成對的超平面 (hyperplane)，當實際類別邊界是非線性的時，會產生較大的偏差；</p>
+<p>MQDF 假設每個類別中的資料是高斯分佈，用最大似然（maximal likelihood approach）方法生成每個類別的密度模型，然後使用貝葉斯決策規則（Bayesian decision rule）進行分類，<br>因為在沒有足夠先驗知識的情況下，類別密度的估計通常是一個困難問題，</p>
+<p>本文的目的是通過使用改進的非線性正規化方法和支持向量機（SVM）來提高手寫中文字符的識別精度，<br>非線性正規化應用於灰度圖像，可以去除鋸齒狀，同時保留邊緣信息。<br>SVM 通常應用於類別較少的分類問題，如手寫數字識別</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">LVQ</a></li><li class="tab"><a class="#不重複的id-2">MQDF</a></li><li class="tab"><a class="#不重複的id-3">最大相似方法</a></li><li class="tab"><a class="#不重複的id-4">貝葉斯決策規則</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>用於分類任務，通過學習代表每個類別的原型向量，根據訓練樣本是否被正確分類，調整這個原型向量：<br>如果分類正確，將原型向量向訓練樣本移動。如果分類錯誤，將原型向量遠離訓練樣本移動。重複上述過程直到收斂進行分類<br>LVQ 的決策邊界是由一組超平面組成的。如果數據的實際分類邊界是彎曲的或非線性的，LVQ 可能會產生較大的誤差，因為它的邊界是直的</p></div><div class="tab-pane" id="不重複的id-2"><p>修正後的協方差矩陣，構建二次判別函數，用於評估樣本點屬於各個類別的可能性。對每個類別的協方差矩陣進行特徵值分解。保留主要的特徵值和特徵向量，並用平均值替代較小的特徵值</p></div><div class="tab-pane" id="不重複的id-3"><p>最大相似（maximal likelihood approach）方法<br>是一種統計方法，用於估計模型參數，使得在給定數據下，模型生成這些數據的可能性最大</p></div><div class="tab-pane" id="不重複的id-4"><p>用於在不確定性條件下做出最優決策。其核心思想是利用先驗知識和觀測數據來計算後驗概率，然後基於最小化期望損失（或最大化期望效用）來進行決策</p></div></div></div>
+
+<h2 id="Improved-nonlinear-normalization"><a href="#Improved-nonlinear-normalization" class="headerlink" title="Improved nonlinear normalization"></a>Improved nonlinear normalization</h2><p>對於數字圖像，當用離散網格表示具有尖銳邊緣和平滑曲線的細節時會發生混疊 (aliasing)。</p>
+<p>混疊就是：當一條具有尖銳不連續性的直線顯示在電腦屏幕上時，會看到的鋸齒狀就是混疊引起的，但可以透過在高於最終所需的分辨準確率下取樣連續圖像，接著應用抗混疊濾波器 (用來限制訊號的頻寬用) 來去除，然後再降採樣到所需分辨率來最小化。</p>
+<p>為了在非線性正規化後有效去除鋸齒狀，我們在二維圖像上確定取樣點的位置並生成灰度圖像，</p>
+<p>因為噪聲過濾和邊緣平滑在灰度圖像上比起在二維圖像上會更容易，<br>本文應用的非線性正規化結構的示意圖：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg01.png" width="200" height="300">
+
+<p>非線性正規化應用於二維圖像以計算取樣點的位置，好生成灰度圖像，x 和 y 軸上的特徵投影函數定義為公式如下：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg02.png" width="200" height="150">
+
+<p>令 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.649ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2496.7 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D70C" d="M58 -216Q25 -216 23 -186Q23 -176 73 26T127 234Q143 289 182 341Q252 427 341 441Q343 441 349 441T359 442Q432 442 471 394T510 276Q510 219 486 165T425 74T345 13T266 -10H255H248Q197 -10 165 35L160 41L133 -71Q108 -168 104 -181T92 -202Q76 -216 58 -216ZM424 322Q424 359 407 382T357 405Q322 405 287 376T231 300Q217 269 193 170L176 102Q193 26 260 26Q298 26 334 62Q367 92 389 158T418 266T424 322Z"></path></g><g data-mml-node="mo" transform="translate(517,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(906,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1251,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(1695.7,0)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g><g data-mml-node="mo" transform="translate(2107.7,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container> 為計算的輸入二值圖像上的線密度。</p>
+<h3 id="Forward-function"><a href="#Forward-function" class="headerlink" title="Forward function"></a>Forward function</h3><p>將輸入圖像中的位置 (i,j) 映射到正規化圖像中的位置 (m,n) 由以下公式導出：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg03.png" width="300" height="100">
+
+<p>其中 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="3.706ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1638 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="230A" d="M174 734Q174 735 175 737T177 740T180 744T184 747T189 749T196 750Q206 748 214 735V-210H310H373Q401 -210 411 -213T422 -230T411 -247T369 -251Q362 -251 338 -251T298 -250H190Q178 -246 174 -234V734Z"></path></g><g data-mml-node="mi" transform="translate(444,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(1194,0)"><path data-c="230B" d="M229 734Q229 735 230 737T232 740T235 744T239 747T244 749T251 750Q262 748 269 735V-235Q266 -240 256 -249L147 -250H77Q43 -250 32 -247T21 -230T32 -213T72 -209Q79 -209 99 -209T133 -210H229V734Z"></path></g></g></g></svg></mjx-container> 是小於等於 A 的最大整數（A的地板值）</p>
+<p>而以下公式說明了輸出圖像的像素值來自於原始圖像中的一個像素：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg04.png" width="300" height="100">
+
+<p>由於輸入和輸出圖像的離散性，輸入圖像的許多取樣點可以映射到輸出圖像中的同一點，而論文中考慮這些輸入取樣點的所有特徵。</p>
+<p>定義集合 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="16.851ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 7448.1 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(645,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1800.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(2856.6,0)"><path data-c="7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path></g><g data-mml-node="mi" transform="translate(3356.6,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(3701.6,0)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g><g data-mml-node="mo" transform="translate(4113.6,0) translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mi" transform="translate(4391.6,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(5014.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(6070.1,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(6948.1,0)"><path data-c="7D" d="M65 731Q65 745 68 747T88 750Q171 750 216 725T279 670Q288 649 289 635T291 501Q292 362 293 357Q306 312 345 291T417 269Q428 269 431 266T434 250T431 234T417 231Q380 231 345 210T298 157Q293 143 292 121T291 -28V-79Q291 -134 285 -156T256 -198Q202 -250 89 -250Q71 -250 68 -247T65 -230Q65 -224 65 -223T66 -218T69 -214T77 -213Q91 -213 108 -210T146 -200T183 -177T207 -139Q208 -134 209 3L210 139Q223 196 280 230Q315 247 330 250Q305 257 280 270Q225 304 212 352L210 362L209 498Q208 635 207 640Q195 680 154 696T77 713Q68 713 67 716T65 731Z"></path></g></g></g></svg></mjx-container>，其中 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="13.553ex" height="1.984ex" role="img" focusable="false" viewBox="0 -683 5990.6 877"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1155.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2211.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(2711.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(3156.2,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(4494.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(4939.6,0)"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container>。令 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="3.344ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 1478 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(600,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 為集合 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.446ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 1523 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(645,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 中的元素數量，<br>為了確保正規化圖像中所有位置的像素值，需要進行反向映射，下圖顯示了 m 的反向映射：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg05.png" width="200" height="150">
+
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.593ex" height="1.532ex" role="img" focusable="false" viewBox="0 -677 704 677"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g></g></g></svg></mjx-container> 是一個長度為 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.378ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 1051 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container> 的數組。<br>元素 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="3.631ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1605 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mo" transform="translate(704,0)"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(982,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1327,0)"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g></g></g></svg></mjx-container> 是一個指向 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.24ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 990 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mi" transform="translate(645,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 的大小及其元素的<br>數組的起始地址的指針。</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="4.69ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 2073 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(888,0)"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g><g data-mml-node="mi" transform="translate(1392,0)"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g></g></g></svg></mjx-container> 表示空指針，<br>即沒有輸入索引 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.14ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 504 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g></g></g></svg></mjx-container> 映射到這裡。</p>
+<p>為了計算正規化圖像中的所有像素值，T 中的每個元素必須是一個非空指針，當 T 中的一個元素為空時，就將最近的非空元素分配給它。</p>
+<p>這樣可以確定索引 n 的反向映射，正規化圖像中的每個像素都可以有其在輸入灰度圖像中的對應像素。</p>
+<p>如果輸入圖像中的多個像素映射到正規化圖像中的同一像素，就把這些源像素中的最大值分配給目標像素，這樣的操作可以減少鋸齒狀的影響。</p>
+<p>前述的方法解決了混疊的問題，使用不同的方法的圖像如下：</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg06.png" width="200" height="150">
+
+<p>(A) 原始圖像<br>(B) 未改進 nonlinear normalization 前的圖像，在外圍區域的筆畫會變形<br>(C) 使用改進 nonlinear normalization 的圖像</p>
+<h2 id="Feature-extraction"><a href="#Feature-extraction" class="headerlink" title="Feature extraction"></a>Feature extraction</h2><p>大多數中文字由筆劃組成，所以可以將手寫中文字分解為多個方向的子圖像，並進行各方向分析，</p>
+<p>本論文的正規化方法會生成灰階圖，基於圖像梯度計算特徵提取的過程如下：</p>
+<ol>
+<li>將灰階正規化圖像標準化，使其均值和最大值分別為 <code>0</code> 和 <code>1.0</code></li>
+<li>將 <code>64×64</code> 的正規化圖像置於 <code>80×80</code> 的框內，有效利用四個邊緣區域的<br> 資訊</li>
+<li>應用邊緣運算符計算圖像梯度的強度和方向</li>
+<li>將圖像劃分為 <code>9×9</code> 個大小為 <code>16×16</code> 的子區域，每個子區域與相鄰子區<br> 域重疊 <code>8</code> 個 pixel。</li>
+</ol>
+<ul>
+<li>每個子區域分為四部分：A、B、C 和 D。<br>A 是中心的 4×4 區域。<br>B 是除去 A 區域的 8×8 區域。<br>C 是除去 B 區域的 12×12 區域。<br>D 是除去 C 區域的 16×16 區域。</li>
+</ul>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg07.png" width="200" height="200">
+
+<ol start="5">
+<li>累積每個區域 A、B、C、D 中 <code>32</code> 個向量化方向的梯度強度。為了減少位置變化的副作用，使用一維掩碼<code>（4, 3, 2, 1）</code>對每個方向的累積梯度強度進行降採樣，結果會得到一個大小 <code>32</code> 的特徵向量，也就是 <code>[32 x 4] x [4 x 1] = [32 x 1]</code>。</li>
+<li>接著再使用一維掩碼<code>（1, 4, 6, 4, 1）</code>進行降採樣，將方向分辨率從 <code>32</code> 降至 <code>16</code>，作法為把 <code>32</code> 分成五個掩碼窗口，窗口一有 <code>1</code> 個元素、窗口二有 <code>4</code> 個元素 … 窗口五有 <code>1</code> 個元素，總共大小 <code>1 + 6 + 4 + 4 + 1 = 16</code> 的向量。</li>
+<li>最後生成一個大小為 <code>1296</code>（<code>9</code> 個水平，<code>9</code> 個垂直和 <code>16</code> 個方向分辨率, <code>9x9x16 = 1296</code> ）的特徵向量。</li>
+<li>對特徵向量的每個分量應用變量變換 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="3.526ex" height="1.929ex" role="img" focusable="false" viewBox="0 -841.7 1558.7 852.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="TeXAtom" transform="translate(605,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path data-c="2E" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z" transform="translate(500,0)"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(778,0)"></path></g></g></g></g></g></svg></mjx-container>，使每個分量的分佈接近常態分佈。</li>
+<li>將特徵向量按一個常數因子進行縮放，使特徵分量的值範圍在 <code>0</code> 到 <code>1.0</code>之間。</li>
+</ol>
+<h2 id="Parameter-selection-for-support-vector-machine"><a href="#Parameter-selection-for-support-vector-machine" class="headerlink" title="Parameter selection for support vector machine"></a>Parameter selection for support vector machine</h2><p>給定訓練向量 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.452ex;" xmlns="http://www.w3.org/2000/svg" width="18.514ex" height="2.149ex" role="img" focusable="false" viewBox="0 -750 8183 950"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(605,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(1176.7,0)"><path data-c="2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path></g><g data-mml-node="msup" transform="translate(2121.5,0)"><g data-mml-node="mi"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g><g data-mml-node="mi" transform="translate(792,363) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mi" transform="translate(3387.8,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(4387.8,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(5010.5,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(6066.3,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(6566.3,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(7011,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g></g></g></svg></mjx-container>, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.674ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 298 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g></g></g></svg></mjx-container> 和向量 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="6.256ex" height="2.395ex" role="img" focusable="false" viewBox="0 -853.7 2765.3 1058.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(767.8,0)"><path data-c="2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path></g><g data-mml-node="msup" transform="translate(1712.6,0)"><g data-mml-node="mi"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g><g data-mml-node="mi" transform="translate(792,363) scale(0.707)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g></g></g></g></svg></mjx-container>，使得 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="11.905ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 5262.2 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(523,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(1094.7,0)"><path data-c="2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path></g><g data-mml-node="mo" transform="translate(2039.5,0)"><path data-c="7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path></g><g data-mml-node="mo" transform="translate(2539.5,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(3317.5,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(3817.5,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(4262.2,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(4762.2,0)"><path data-c="7D" d="M65 731Q65 745 68 747T88 750Q171 750 216 725T279 670Q288 649 289 635T291 501Q292 362 293 357Q306 312 345 291T417 269Q428 269 431 266T434 250T431 234T417 231Q380 231 345 210T298 157Q293 143 292 121T291 -28V-79Q291 -134 285 -156T256 -198Q202 -250 89 -250Q71 -250 68 -247T65 -230Q65 -224 65 -223T66 -218T69 -214T77 -213Q91 -213 108 -210T146 -200T183 -177T207 -139Q208 -134 209 3L210 139Q223 196 280 230Q315 247 330 250Q305 257 280 270Q225 304 212 352L210 362L209 498Q208 635 207 640Q195 680 154 696T77 713Q68 713 67 716T65 731Z"></path></g></g></g></svg></mjx-container>，我們通過尋找 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.448ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 640 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path></g></g></g></svg></mjx-container> 來支持 SVM，以解決以下 convex quadratic optimization problem(凸二次規劃問題)。</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg08.png" width="300" height="100">
+
+<p>其中 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.09ex;" xmlns="http://www.w3.org/2000/svg" width="6.202ex" height="2.022ex" role="img" focusable="false" viewBox="0 -853.7 2741.3 893.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mo" transform="translate(743.8,0)"><path data-c="2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path></g><g data-mml-node="msup" transform="translate(1688.6,0)"><g data-mml-node="mi"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g><g data-mml-node="mi" transform="translate(792,363) scale(0.707)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g></g></g></g></svg></mjx-container> 是一個所有分量都為 <code>1</code> 的向量，<br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="1.79ex" height="2.032ex" role="img" focusable="false" viewBox="0 -704 791 898"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"></path></g></g></g></svg></mjx-container> 是一個 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.643ex" height="1.595ex" role="img" focusable="false" viewBox="0 -694 1168 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(298,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(870,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g></g></g></svg></mjx-container> 的 semidefinite kernel matrix，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="10.282ex" height="2.258ex" role="img" focusable="false" viewBox="0 -704 4544.8 998.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"></path></g><g data-mml-node="mi" transform="translate(824,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mi" transform="translate(1118,0)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g><g data-mml-node="mo" transform="translate(1807.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msub" transform="translate(2863.5,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(523,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="msub" transform="translate(3680.5,0)"><g data-mml-node="mi"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(523,-150) scale(0.707)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></g></svg></mjx-container><br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="22.54ex" height="2.363ex" role="img" focusable="false" viewBox="0 -750 9962.8 1044.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g><g data-mml-node="mo" transform="translate(889,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(1278,0)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(605,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(2177,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(2621.6,0)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(605,-150) scale(0.707)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g><g data-mml-node="mo" transform="translate(3567.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(3956.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(4401.6,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(4746.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(5191.3,0)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g><g data-mml-node="mo" transform="translate(5881.1,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(6936.8,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(7436.8,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(7881.5,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(9220.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(9664.8,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g></g></g></svg></mjx-container>，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g></g></g></svg></mjx-container> 是 kernel function</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">convex quadratic optimization problem</a></li><li class="tab"><a class="#不重複的id-2">semidefinite kernel matrix</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>convex quadratic optimization problem(凸二次規劃問題):</p>
+<p>凸二次規劃問題（convex quadratic optimization problem）是指一類凸優化問題，其目標函數是一個凸二次函數，約束條件可以是線性的或者是凸的</p></div><div class="tab-pane" id="不重複的id-2"><p>半定核矩陣（semidefinite kernel matrix）:</p>
+<p>當我們在機器學習中處理數據時，有時需要量化數據樣本之間的相似度或者內在關係。半定核矩陣是一種特殊類型的核矩陣，任何非零向量與該矩陣相乘後的結果都是非負的，可以幫助我們處理非線性問題，就像論文中 SVM 和 kernel 主成分分析中，通過使用半定核矩陣確保所得到的結果是合理的</p></div></div></div>
+
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g></g></g></svg></mjx-container> 和 kernel function <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g></g></g></svg></mjx-container> 的選擇會影響 SVM，通常會使用交叉驗證集 (cross validation set)，</p>
+<p>透過選擇一個包含較少類別的訓練子集和驗證集，使選擇的這個過程成本較低，且這些類別的 pattern 相似或容易被錯誤分類，方法如下：</p>
+<ol>
+<li>根據類別對訓練數據進行分組</li>
+<li>將每個類別的訓練數據分為兩部分：75%用於訓練，其餘用於驗證</li>
+<li>對每個類別使用具有低計算成本的判別函數，例如：歐幾里得判別函數 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="29.06ex" height="2.452ex" role="img" focusable="false" viewBox="0 -833.9 12844.7 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(553,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mo" transform="translate(847,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1236,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(1808,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(2474.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(3530.5,0) translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mi" transform="translate(3808.5,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(4602.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="msub" transform="translate(5603,0)"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(331,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="msup" transform="translate(6227.9,0)"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path></g><g data-mml-node="mn" transform="translate(311,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mo" transform="translate(6942.5,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(7387.1,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(8009.9,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(9065.7,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(9565.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(10010.3,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(11349,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(11793.7,0)"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container>，(<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="1.414ex" height="1.927ex" role="img" focusable="false" viewBox="0 -694 625 851.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(331,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container>  是類別 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 的均值向量，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.378ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 1051 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container> 是類別的數量)</li>
+<li>在驗證集上評估判別函數的性能，並計算混淆矩陣 (confusion matrix)，其定義為：</li>
+</ol>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg09.png" width="300" height="150">
+
+<p>其中每一行 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container> 對應於類別 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.36ex" height="1.359ex" role="img" focusable="false" viewBox="0 -443 1043 600.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg></mjx-container>，每一列 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></svg></mjx-container> 包含被分類到類別 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="2.467ex" height="1.668ex" role="img" focusable="false" viewBox="0 -443 1090.3 737.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></g></g></g></g></svg></mjx-container> 的樣本數量</p>
+<ol start="5">
+<li>根據每個類別計算錯誤分類的樣本數量，公式如下：</li>
+</ol>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg10.png" width="200" height="100">
+
+<ol start="6">
+<li>對 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.452ex;" xmlns="http://www.w3.org/2000/svg" width="17.424ex" height="2.149ex" role="img" focusable="false" viewBox="0 -750 7701.5 950"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="msub" transform="translate(466,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(484,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="mi" transform="translate(1244,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="mi" transform="translate(2244,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(2866.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(3922.5,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(4422.5,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(4867.2,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(6205.8,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(6650.5,0)"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container> 按降序排列，獲取前 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.14ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 504 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g></g></g></svg></mjx-container> (<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.14ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 504 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g></g></g></svg></mjx-container> 遠小於 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.378ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 1051 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></g></g></g></svg></mjx-container>) 的選擇下標 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="8.584ex" height="1.934ex" role="img" focusable="false" viewBox="0 -661 3793.9 855"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(378,-150) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><g data-mml-node="mo" transform="translate(781.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(1226.2,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(2564.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(3009.6,0)"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(378,-150) scale(0.707)"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g></g></g></g></svg></mjx-container></li>
+<li>根據混淆矩陣找到可以分類到類別集合 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="26ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 11492.1 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path></g><g data-mml-node="msub" transform="translate(500,0)"><g data-mml-node="mi"><path data-c="1D498" d="M636 367Q636 400 664 426T719 453Q748 453 772 431T796 357Q796 321 782 256T727 112T633 6Q604 -8 567 -8Q466 -8 415 43Q414 42 410 38T403 31T396 25T388 18T378 11T367 5T355 0T340 -4T324 -7T306 -8Q249 -8 209 5T151 40T125 84T117 129Q117 176 153 274T190 388Q190 408 158 396Q112 376 90 306Q85 288 81 285T61 282H55H44Q24 282 24 296Q24 305 34 328T63 380T114 430T187 452Q240 452 274 427T309 362Q309 346 275 255T240 117Q240 43 317 43Q325 43 333 45T347 50T359 57T369 66T377 75T383 83T388 90L390 95Q390 99 389 110T387 129Q387 139 391 167Q393 177 419 282T448 396Q456 414 475 429T519 444Q546 444 559 428T572 397Q572 384 542 265T511 114Q511 43 579 43Q608 43 633 66T673 122T699 188T714 244L718 267Q718 291 673 315Q636 335 636 367Z"></path></g><g data-mml-node="TeXAtom" transform="translate(864,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D48A" d="M205 615Q205 646 229 670T283 694Q310 694 324 679T339 641Q339 610 315 586T258 562Q235 562 220 577T205 615ZM24 296Q24 305 34 328T63 380T115 430T187 452Q205 452 223 448T262 435T295 406T308 360Q308 345 287 290T240 170T207 87Q202 67 202 57Q202 42 215 42Q235 42 257 64Q288 92 302 140Q307 156 310 159T330 162H336H347Q367 162 367 148Q367 140 357 117T329 65T276 14T201 -8Q158 -8 121 15T83 84Q83 104 133 229T184 358Q189 376 189 388Q189 402 177 402Q156 402 134 380Q103 352 89 304Q84 288 81 285T61 282H55H44Q24 282 24 296Z"></path></g><g data-mml-node="mn" transform="translate(405,0)"><path data-c="1D7CF" d="M481 0L294 3Q136 3 109 0H96V62H227V304Q227 546 225 546Q169 529 97 529H80V591H97Q231 591 308 647L319 655H333Q355 655 359 644Q361 640 361 351V62H494V0H481Z"></path></g></g></g><g data-mml-node="mo" transform="translate(2107,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(2551.6,0)"><g data-mml-node="mi"><path data-c="1D498" d="M636 367Q636 400 664 426T719 453Q748 453 772 431T796 357Q796 321 782 256T727 112T633 6Q604 -8 567 -8Q466 -8 415 43Q414 42 410 38T403 31T396 25T388 18T378 11T367 5T355 0T340 -4T324 -7T306 -8Q249 -8 209 5T151 40T125 84T117 129Q117 176 153 274T190 388Q190 408 158 396Q112 376 90 306Q85 288 81 285T61 282H55H44Q24 282 24 296Q24 305 34 328T63 380T114 430T187 452Q240 452 274 427T309 362Q309 346 275 255T240 117Q240 43 317 43Q325 43 333 45T347 50T359 57T369 66T377 75T383 83T388 90L390 95Q390 99 389 110T387 129Q387 139 391 167Q393 177 419 282T448 396Q456 414 475 429T519 444Q546 444 559 428T572 397Q572 384 542 265T511 114Q511 43 579 43Q608 43 633 66T673 122T699 188T714 244L718 267Q718 291 673 315Q636 335 636 367Z"></path></g><g data-mml-node="TeXAtom" transform="translate(864,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D48A" d="M205 615Q205 646 229 670T283 694Q310 694 324 679T339 641Q339 610 315 586T258 562Q235 562 220 577T205 615ZM24 296Q24 305 34 328T63 380T115 430T187 452Q205 452 223 448T262 435T295 406T308 360Q308 345 287 290T240 170T207 87Q202 67 202 57Q202 42 215 42Q235 42 257 64Q288 92 302 140Q307 156 310 159T330 162H336H347Q367 162 367 148Q367 140 357 117T329 65T276 14T201 -8Q158 -8 121 15T83 84Q83 104 133 229T184 358Q189 376 189 388Q189 402 177 402Q156 402 134 380Q103 352 89 304Q84 288 81 285T61 282H55H44Q24 282 24 296Z"></path></g><g data-mml-node="mn" transform="translate(405,0)"><path data-c="1D7D0" d="M175 580Q175 578 185 572T205 551T215 510Q215 467 191 449T137 430Q107 430 83 448T58 511Q58 558 91 592T168 640T259 654Q328 654 383 637Q451 610 484 563T517 459Q517 401 482 360T368 262Q340 243 265 184L210 140H274Q416 140 429 145Q439 148 447 186T455 237H517V233Q516 230 501 119Q489 9 486 4V0H57V25Q57 51 58 54Q60 57 109 106T215 214T288 291Q364 377 364 458Q364 515 328 553T231 592Q214 592 201 589T181 584T175 580Z"></path></g></g></g><g data-mml-node="mo" transform="translate(4158.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mo" transform="translate(4603.3,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"></path></g><g data-mml-node="mo" transform="translate(5941.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="msub" transform="translate(6386.6,0)"><g data-mml-node="mi"><path data-c="1D498" d="M636 367Q636 400 664 426T719 453Q748 453 772 431T796 357Q796 321 782 256T727 112T633 6Q604 -8 567 -8Q466 -8 415 43Q414 42 410 38T403 31T396 25T388 18T378 11T367 5T355 0T340 -4T324 -7T306 -8Q249 -8 209 5T151 40T125 84T117 129Q117 176 153 274T190 388Q190 408 158 396Q112 376 90 306Q85 288 81 285T61 282H55H44Q24 282 24 296Q24 305 34 328T63 380T114 430T187 452Q240 452 274 427T309 362Q309 346 275 255T240 117Q240 43 317 43Q325 43 333 45T347 50T359 57T369 66T377 75T383 83T388 90L390 95Q390 99 389 110T387 129Q387 139 391 167Q393 177 419 282T448 396Q456 414 475 429T519 444Q546 444 559 428T572 397Q572 384 542 265T511 114Q511 43 579 43Q608 43 633 66T673 122T699 188T714 244L718 267Q718 291 673 315Q636 335 636 367Z"></path></g><g data-mml-node="TeXAtom" transform="translate(864,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D48A" d="M205 615Q205 646 229 670T283 694Q310 694 324 679T339 641Q339 610 315 586T258 562Q235 562 220 577T205 615ZM24 296Q24 305 34 328T63 380T115 430T187 452Q205 452 223 448T262 435T295 406T308 360Q308 345 287 290T240 170T207 87Q202 67 202 57Q202 42 215 42Q235 42 257 64Q288 92 302 140Q307 156 310 159T330 162H336H347Q367 162 367 148Q367 140 357 117T329 65T276 14T201 -8Q158 -8 121 15T83 84Q83 104 133 229T184 358Q189 376 189 388Q189 402 177 402Q156 402 134 380Q103 352 89 304Q84 288 81 285T61 282H55H44Q24 282 24 296Z"></path></g><g data-mml-node="mi" transform="translate(405,0)"><path data-c="1D470" d="M247 624Q242 624 233 624T220 623Q186 623 186 640Q186 647 190 664T202 684Q206 686 226 686Q277 684 393 684Q435 684 471 684T528 685T553 686Q573 686 573 670Q573 650 564 632Q556 624 537 624H501H449L380 344Q309 64 309 63T356 62Q361 62 370 62T384 63Q417 63 417 46Q417 26 408 8Q403 3 396 0L352 1Q325 2 216 2T82 1L45 0Q30 7 30 16Q33 51 46 60Q51 62 102 62H154L294 623Q294 624 247 624Z"></path></g></g></g><g data-mml-node="mo" transform="translate(7992.1,0)"><path data-c="7D" d="M65 731Q65 745 68 747T88 750Q171 750 216 725T279 670Q288 649 289 635T291 501Q292 362 293 357Q306 312 345 291T417 269Q428 269 431 266T434 250T431 234T417 231Q380 231 345 210T298 157Q293 143 292 121T291 -28V-79Q291 -134 285 -156T256 -198Q202 -250 89 -250Q71 -250 68 -247T65 -230Q65 -224 65 -223T66 -218T69 -214T77 -213Q91 -213 108 -210T146 -200T183 -177T207 -139Q208 -134 209 3L210 139Q223 196 280 230Q315 247 330 250Q305 257 280 270Q225 304 212 352L210 362L209 498Q208 635 207 640Q195 680 154 696T77 713Q68 713 67 716T65 731Z"></path></g><g data-mml-node="mi" transform="translate(8492.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(9492.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">類</text></g><g data-mml-node="mi" transform="translate(10492.1,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">別</text></g></g></g></svg></mjx-container>𝑺$，如下：</li>
+</ol>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg11.png" width="200" height="80">
+
+<ol start="8">
+<li>從類別集合 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.459ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 645 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g></g></g></svg></mjx-container> 中選擇訓練集和交叉驗證集，以調整 SVM 的 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g></g></g></svg></mjx-container> 和 kernel function <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g></g></g></svg></mjx-container></li>
+</ol>
+<p>獲得 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g></g></g></svg></mjx-container> 和 kernel function <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g></g></g></svg></mjx-container> 後，再對所有類別的訓練集去訓練 SVM。</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">判別函數</a></li><li class="tab"><a class="#不重複的id-2">歐幾里得判別函數</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>用於將輸入樣本分類到不同類別或類別之間的一種函數，接受一個或多個輸入特徵，並返回一個類別標籤或類別概率</p></div><div class="tab-pane" id="不重複的id-2"><p>基於歐幾里得距離的概念，即兩個點之間的直線距離，對於給定的輸入樣本，歐幾里得判別函數會計算該樣本與每個類別的代表點（通常是該類別的中心）之間的歐幾里得距離</p></div></div></div>
+
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>論文的資料集使用的是由日本電氣技術實驗室創建的 ETL9B 資料集，<br>我們實際上網找到的開源數據庫連結如下，其中 ETL9B 的數據庫字元如下:</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg12.png" width="100" height="400">
+
+<p><a class="link" target="_blank" rel="noopener" href="http://etlcdb.db.aist.go.jp/specification-of-etl-9">http://etlcdb.db.aist.go.jp/specification-of-etl-9</a></p>
+<p>該數據庫包含 <code>3036</code> 類別，每類有 <code>200</code> 個樣本<br>所有樣本都是大小為 <code>64</code>（寬）x <code>63</code>（高）的二維圖像<br>該數據庫中的樣本被分為五組（<code>A</code> 到 <code>E</code>），每組每類有 <code>40</code> 個文字<br>在論文的實驗中，<code>A</code> 組到 <code>D</code> 組用於訓練，<code>E</code> 組用於測試<br>所以訓練集和測試集的大小分別為 <code>485,760</code> 和 <code>121,440</code> 張圖片</p>
+<p>對於前面提到的 SVM，論文的建構方法為使用<br>一對多的方法構建 <code>3036</code> 個 classifier</p>
+<p>每個 classifier 都會將其中一個指定類別與其餘類別分開<br>論文使用的分類決策：選擇 classifier 輸出值最大的類別</p>
+<p>Pattern 使用 <code>3x3</code> 遮罩 (mask) 進行平滑處理，中心元素設為 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.781ex;" xmlns="http://www.w3.org/2000/svg" width="1.795ex" height="2.737ex" role="img" focusable="false" viewBox="0 -864.9 793.6 1209.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mn" transform="translate(220,394) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mn" transform="translate(220,-345) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><rect width="553.6" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>，其餘元素設為 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.816ex;" xmlns="http://www.w3.org/2000/svg" width="2.595ex" height="2.773ex" role="img" focusable="false" viewBox="0 -864.9 1147.1 1225.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mn" transform="translate(396.8,394) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mn" transform="translate(220,-345) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g><rect width="907.1" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container>，<br>特徵提取中的常數因子設置為 <code>0.05</code>，在判別分析後，<code>1296</code> 維特徵向量減少到 <code>392</code> 維</p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">分類決策</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>分類器接收到一個新的輸入樣本時，它會根據該樣本的特徵值和模型的參數，進行一系列的計算和判斷，最終將該樣本分類到某一個類別中</p></div></div></div>
+
+<p>ETL9B 有 <code>3036</code> 個類別，為了減少計算成本並加快分類速度，需要使用預分類器來獲得較高的累計識別率，這樣只有少數幾個選定的候選者包含真實的類別標籤</p>
+<p>論文使用的是應用歐幾里得判別函數來選擇 <code>20</code> 個候選者（在即便是第 <code>20</code> 名的候選者，累計識別準確率也有 <code>99.92%</code>）使用具有 RBF 核的 SVM 作為主要 classifier，再從這些候選者中做出最終決策</p>
+<p>RBF 核的定義為：<br><img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg13.png" width="200" height="60"></p>
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">RBF 核</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>作用是將原始特徵空間映射到更高維的特徵空間，從而使得非線性問題可以在高維空間中被線性分類</p></div></div></div>
+
+<p>再從從前面 Parameter selection for support vector machine 中提出的方法來確定 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.4ex" height="1.892ex" role="img" focusable="false" viewBox="0 -825.4 1060.6 836.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"></path></g><g data-mml-node="mn" transform="translate(604,363) scale(0.707)"><path data-c="1D7D0" d="M175 580Q175 578 185 572T205 551T215 510Q215 467 191 449T137 430Q107 430 83 448T58 511Q58 558 91 592T168 640T259 654Q328 654 383 637Q451 610 484 563T517 459Q517 401 482 360T368 262Q340 243 265 184L210 140H274Q416 140 429 145Q439 148 447 186T455 237H517V233Q516 230 501 119Q489 9 486 4V0H57V25Q57 51 58 54Q60 57 109 106T215 214T288 291Q364 377 364 458Q364 515 328 553T231 592Q214 592 201 589T181 584T175 580Z"></path></g></g></g></g></svg></mjx-container> 的最佳參數，</p>
+<p>論文中使用歐幾里得判別函數並將參數 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.14ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 504 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43C" d="M43 1Q26 1 26 10Q26 12 29 24Q34 43 39 45Q42 46 54 46H60Q120 46 136 53Q137 53 138 54Q143 56 149 77T198 273Q210 318 216 344Q286 624 286 626Q284 630 284 631Q274 637 213 637H193Q184 643 189 662Q193 677 195 680T209 683H213Q285 681 359 681Q481 681 487 683H497Q504 676 504 672T501 655T494 639Q491 637 471 637Q440 637 407 634Q393 631 388 623Q381 609 337 432Q326 385 315 341Q245 65 245 59Q245 52 255 50T307 46H339Q345 38 345 37T342 19Q338 6 332 0H316Q279 2 179 2Q143 2 113 2T65 2T43 1Z"></path></g></g></g></svg></mjx-container> 設置為 <code>20</code>，集合 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.038ex;" xmlns="http://www.w3.org/2000/svg" width="1.615ex" height="1.629ex" role="img" focusable="false" viewBox="0 -703 714 720"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D47A" d="M354 45Q429 45 467 91T506 184Q506 225 477 250Q461 262 384 279T294 300Q238 318 210 362T182 452Q182 493 202 540T257 623Q338 702 449 702Q491 702 501 701Q571 690 610 654Q614 649 617 650Q618 650 650 675T683 702Q685 703 692 703Q714 703 714 690Q714 686 687 578T658 466Q653 458 629 458Q606 458 602 463Q600 465 599 466Q599 467 599 469T598 473Q598 475 599 487T600 511Q600 584 557 614T454 645Q386 645 347 606T308 520Q308 506 311 496T323 477T338 464T360 454T384 446T413 439T441 433Q523 416 549 401Q581 384 602 352Q631 309 631 254Q631 214 615 170T567 83T478 12T347 -16Q322 -16 300 -14T261 -8T230 0T205 10T187 20T172 30L162 37L130 11Q124 7 119 3T110 -4T104 -9T100 -13T96 -15T93 -16T91 -17T88 -17H82Q76 -17 73 -16T69 -14T66 -10T63 -5L90 107Q97 133 106 170Q116 211 120 219T136 228H148Q167 228 173 227T179 218Q179 216 176 200T173 168Q173 102 227 74T354 45Z"></path></g></g></g></svg></mjx-container> 的為 <code>144</code><br>而論文的實驗結果，當 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.4ex" height="1.892ex" role="img" focusable="false" viewBox="0 -825.4 1060.6 836.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"></path></g><g data-mml-node="mn" transform="translate(604,363) scale(0.707)"><path data-c="1D7D0" d="M175 580Q175 578 185 572T205 551T215 510Q215 467 191 449T137 430Q107 430 83 448T58 511Q58 558 91 592T168 640T259 654Q328 654 383 637Q451 610 484 563T517 459Q517 401 482 360T368 262Q340 243 265 184L210 140H274Q416 140 429 145Q439 148 447 186T455 237H517V233Q516 230 501 119Q489 9 486 4V0H57V25Q57 51 58 54Q60 57 109 106T215 214T288 291Q364 377 364 458Q364 515 328 553T231 592Q214 592 201 589T181 584T175 580Z"></path></g></g></g></g></svg></mjx-container> 為 <code>0.8</code> 的時候，驗證集達到最好結果</p>
+<p>在訓練集上，由於每個類別僅有 <code>160</code> 個樣本，這樣樣本數太少，所以要增加訓練樣本的數量，論文中提到透過將每個訓練圖像在四個方向（左、右、下、上）各移動一個像素，來做資料擴充</p>
+<p>移位後的訓練集大小為 <code>2,428,000</code>，下表顯示了 SVM 在 ETL9B 的識別準確率，</p>
+<p>SVMa 是在原始資料集的訓練結果，SVMb 是在位移資料集的訓練結果<br>從 Substitution error 可以看出 SVMb 只略微提高了性能，並不是非常有效</p>
+<p>但在論文中提到直到改成使用二次判別函數作為主要 classifier 時，才在 Substitution error 取得了 <code>0.95</code> 的替代錯誤率</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg14.png" width="500" height="100">
+
+<div class="tabs" id="tab-不重複的id"><ul class="nav-tabs"><li class="tab active"><a class="#不重複的id-1">二次判別函數</a></li></ul><div class="tab-content"><div class="tab-pane active" id="不重複的id-1"><p>是一種用於對多類別問題進行分類的方法。它屬於線性判別函數的一種擴展，通常用於將樣本映射到多個類別中的一個。這種方法的名稱源於其決策邊界（decision boundary）是二次曲線的形式。</p></div></div></div>
+
+<p>下圖表示了 ETL 測試集的錯誤分類</p>
+<p>箭頭左邊是該字元的原始標籤<br>右邊是被錯誤分類的字元標籤</p>
+<img lazyload="" src="/images/loading.svg" data-src="/images/postImgs/PatternReg15.png" width="300" height="300">
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本論文的貢獻為：提出了一種非線性正規化方案的方法，<br>以 ETL9B 手寫漢字做為資料集，構建了一個高性能 SVM</p>
+<p>這種新方法具有消除正規化圖像周邊區域的鋸齒效應和筆畫變形的優勢，<br>適用於生成包含少量類別的資料集，<br>以便 SVM 處理具有數千類別的大型數據集上的大規模分類問題。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link" target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0167865505000619">[1] Jian-xiong Dong a, Adam Krzy_ zak, Ching Y. Suen, “An improved handwritten Chinese character recognition system using support vector machine”, 2005</a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Machine-Learning/">#Machine Learning</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Paper-Reading/">#Paper Reading</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/06/08/LeetCode-523-Continuous-Subarray-Sum/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">LeetCode - 523. Continuous Subarray Sum</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/05/29/Machine-Learning-Instance-Based-Learning/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Instance-Based Learning</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Pattern Recognition - An improved handwritten Chinese character recognition system using support vector machine</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nonlinear-normalization"><span class="nav-text">Nonlinear normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVQ-MQDF"><span class="nav-text">LVQ &amp; MQDF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improved-nonlinear-normalization"><span class="nav-text">Improved nonlinear normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-function"><span class="nav-text">Forward function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-extraction"><span class="nav-text">Feature extraction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameter-selection-for-support-vector-machine"><span class="nav-text">Parameter selection for support vector machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

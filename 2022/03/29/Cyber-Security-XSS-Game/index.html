@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/03/29/cyber-security-xss-game/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Basic Cyber Security - XSS  Game Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber Security - XSS Game">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/03/29/Cyber-Security-XSS-Game/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Basic Cyber Security - XSS  Game Introduction">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame03.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame04.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame05.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame06.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame07.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame08.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame09.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame10.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame11.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame12.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame13.png">
+<meta property="article:published_time" content="2022-03-29T15:21:14.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.903Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Cyber Security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/XSSgame01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Cyber Security - XSS Game -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post42.jpg" alt="Cyber Security - XSS Game" />
+                    <h1 class="article-title-cover">Cyber Security - XSS Game</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-03-29</span>
+        <span class="mobile">2022-03-29</span>
+        <!-- <span class="desktop">2022-03-29 23:21:14</span>
+        <span class="mobile">2022-03-29 23:21</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Cyber-Security/Web/XSS/">XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Cyber-Security/">Cyber Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>接續前篇 <a href="https://lavinia0724.github.io/2022/03/29/Cyber-Security-XSS/">Cyber Security - XSS</a>，XSS Game 是一個可被 XSS 攻擊的靶機</p>
+<h2 id="XSS-Game"><a href="#XSS-Game" class="headerlink" title="XSS Game"></a>XSS Game</h2><p>網址：<a class="link"   target="_blank" rel="noopener" href="https://xss-game.appspot.com/" >https://xss-game.appspot.com/</a><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame01.png"
+                     
+                ></p>
+<h3 id="XSS-Game-Intro"><a href="#XSS-Game-Intro" class="headerlink" title="XSS Game Intro"></a>XSS Game Intro</h3><ul>
+<li>XSS Game 的規則就是要噴出 alert() 就算通關了</li>
+<li>一般來說，如果我們今天實際在打一個網站，或是其他 CTF 的時候，</li>
+<li>我們會藉由看 source code，來看看這個網站有沒有過濾甚麼字元 </li>
+<li>而噴 alert 的話，通常會用 alert(1)，因為最快也最方便，一但有跳出警告視窗就代表這裡可以被 XSS</li>
+<li>有些關會有 Target code 和 Hints 可以做參考</li>
+</ul>
+<div class="note-large red"><div class="notel-title"><p>WARNING</p>
+</div><div class="notel-content"><p>本篇文章有大量暴雷內容，若想自己體驗解題樂趣，請不要往下看！！！</p>
+</div></div>
+
+<h3 id="Level-1-Hello-world-of-XSS"><a href="#Level-1-Hello-world-of-XSS" class="headerlink" title="Level - 1 Hello, world of XSS"></a>Level - 1 Hello, world of XSS</h3><h4 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame03.png"
+                     
+                >
+
+<ul>
+<li>題目敘述講到，這個 level 演示了跨站點腳本的常見原因，其中用戶輸入直接包含在頁面中但沒有經過適當的轉義</li>
+<li>那大家可以試試利用下面這個感覺很容易受攻擊的輸入框，並找到一種方法使其執行 JavaScript<blockquote>
+<p>你今天要在 html 裡面執行 js 你會怎麼寫？</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>這個網站提供的 Hint 裡有提到，你可以去偷看他的 Target code</li>
+<li>你寫 tag 會發生甚麼</li>
+<li>那最後一個就是直接提示你要寫 <code>&lt;script&gt;</code> 去包 alert</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure></div><ul><li>那我們這邊這題的 payload 很簡單，就是這樣的一個 <code>alert(1)</code> 而已</li><li>那我們外層用 <code>&lt;script&gt;</code> 的標籤把他包起來，那這樣他就會噴出 alert，這題就解決了</li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame02.png"
+                     
+                >
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-2-Persistence-is-key"><a href="#Level-2-Persistence-is-key" class="headerlink" title="Level - 2 Persistence is key"></a>Level - 2 Persistence is key</h3><h4 id="Intro-1"><a href="#Intro-1" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame04.png"
+                     
+                >
+
+<ul>
+<li>onerror、onclick<ul>
+<li>onerror 是無法載入連結時會執行的 JS 指令，他可以用來判斷圖片是否存在，也可以是代表當你圖片不存時，判斷使用預設圖</li>
+<li>onclick，是當你點擊你所指定的元素時判斷 event</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hint-1"><a href="#Hint-1" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>那這個網站他所提供的 Hint 有提到，我們的這些 post 內可以包含 html 的模板</li>
+<li>我們這次不能再用 <code>&lt;script&gt;</code> tag 了，但是我們可以用其他 JavaScript 的元素屬性取代</li>
+<li>然後第三點幾乎說出來了，我們這層跟 i、m、g 有關，而且也會跟 onerror 的屬性有關</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>我們可以發現這邊最下面是個網頁留言板</li><li>那我們這邊直觀的想到 html 是有標籤是可以加入圖片的，但我們這邊又沒有要讓圖片正常顯示的意思</li><li>所以我們可以在 src 的地方隨便寫，後面再寫個我們剛剛教的 onerror，而 onerror 的執行動作再寫個網站所要求的 alert(1)</li><li>那他的原理是今天你的圖片因為 src 是亂給的，那你就不會跑出圖片，那就會接著執行你的 onerror，然後 alert 就會隨之被噴出來了<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&#x27;NOPE&#x27;</span> onerror=<span class="string">&#x27;alert(1)&#x27;</span>&gt;</span><br></pre></td></tr></table></figure></div></li><li>這題也有另解，可以利用剛 onclick 來寫</li><li>那他的 payload 也跟 onerror 差不多<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;xxx&quot;</span> onclick=<span class="string">&quot;alert(1)&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>原理跟 onerror 差不多，也是因為前面 src 死掉，後面 onclick 點下去以後也是直接噴 alert</li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame05.png"
+                     
+                >
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-3-That-sinking-feeling…"><a href="#Level-3-That-sinking-feeling…" class="headerlink" title="Level - 3 That sinking feeling…"></a>Level - 3 That sinking feeling…</h3><h4 id="Intro-2"><a href="#Intro-2" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame06.png"
+                     
+                >
+
+<ul>
+<li>一些常見的 JavaScript function 是執行接收器，這代表著它們將導致瀏覽器執行出現在其輸入中的任何腳本</li>
+<li>這一事實被更高級別的 API 隱藏，也就是在後台使用的功能之一</li>
+</ul>
+<h4 id="Hint-2"><a href="#Hint-2" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>那我們再來看看 Hint，要定位錯誤的原因，可以看 JavaScript 然後依看它在哪裡去處理用戶所提供的輸入</li>
+<li>window.location 的對像數據可能會受到攻擊者的影響</li>
+<li>你現在確定了注入點，可以想想你需要做什麼才能弄入一個新的 HTML 元素</li>
+<li>最後這裡提到，和以前一樣，使用 <code>&lt;script&gt;</code> 不會起作用，因為瀏覽器不會執行頁面加載後添加的腳本</li>
+</ol>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>可以觀察到網址後方 &#96;frame# 後面數字 (1 ~ 3) 決定的是頁面顯示圖片</li><li>那我們這裡一樣建議搭配 <code>&lt;img onerror = &#39;&#39;&gt;</code>，讓他讀取一個不存在的圖片並加入 onerror 屬性</li><li>直接在後面加上 onerror 的屬性判別式就好</li><li>我直接示範一下 payload<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">https</span>:<span class="comment">//xss-game.appspot.com/level3/frame#4.jpg&#x27; onerror = &#x27;alert()&#x27;&gt;//</span></span><br></pre></td></tr></table></figure></div></li><li>那這邊解釋一下<ul><li><code>4.jpg</code> : 指向不存在的東西</li><li><code>onerror = &#39;alert()&#39;&gt;</code> : 加入 onerror 彈出 alert() 並關閉 <code>&lt;img&gt;</code> 標籤</li><li>這邊需要注意一下這裡在 4.jpg 後面有個 <code>&#39;</code> 他是代表我們現在要把前面的語句關掉，那這個很重要</li><li>最後的 &#x2F;&#x2F; : 把剩下不完整、關不起來的 JavaScript 整個註解掉</li></ul></li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame07.png"
+                     
+                >
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-4-Context-matters"><a href="#Level-4-Context-matters" class="headerlink" title="Level - 4 Context matters"></a>Level - 4 Context matters</h3><h4 id="Intro-3"><a href="#Intro-3" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame08.png"
+                     
+                >
+
+<ul>
+<li>用戶提供的每一位數據都必須針對將出現的頁面的上下文進行正確轉義</li>
+<li>那因為這一題需要的觀念比較多，我直接先講解一點點的觀念</li>
+</ul>
+<h4 id="Hint-3"><a href="#Hint-3" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>看一下 startTimer 函數是怎麼調用的</li>
+<li>當瀏覽器解析標籤屬性時，它們首先對它們的值進行 HTML 解碼</li>
+<li>嘗試輸入單引號 <code>&#39;</code> 並觀察</li>
+</ol>
+<h4 id="講解"><a href="#講解" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>首先我們來看他的 target code，我們可以看出他這裡有一個 form 的表單，然後 method 是 GET</li>
+<li>他有一個 buttom 跟他有一個設定的值，而且他的 default 是 3</li>
+<li>當你點下他的表單之後，他就會跳到 timer.html 這個頁面</li>
+<li>這邊有個大括號，他也是在 python 裡面會有一個 template 的模板，你可以把參數丟到這個大括號裡面</li>
+<li>當使用者去對這個 timer 的參數去做更動的時候，他就去看到這個大括號的 template，然後去把值做更改</li>
+<li>然後去根據使用者的輸入去做更新，看使用者輸入甚麼就去把它填在裡面</li>
+<li>那這邊的 img 也是一樣，他會 onload 這個叫做 startTimer 的 function，如果你輸入 3 的話他就會把 3 帶進這個單引號裡面</li>
+<li>那他就會把 3 當作字串傳進這個 function 裡面，那他就會去 startTimer 裡面等個 3 秒</li>
+<li>等 3 秒回來可以看到這邊有個 message 是說你的 timer 會執行 3 秒</li>
+<li>那我們現在回到我們的重點，我們要怎麼去 XSS</li>
+<li>這邊的重點是這個 onload</li>
+<li>我們可以發現我們的 Timer 沒有做任何過濾，所以我們也一樣有可能可以對程式碼做一樣關起來的行為</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>在 target code 上的<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;/static/loading.gif&quot;</span> onload=<span class="string">&quot;startTimer(&#x27;&#123;&#123; timer &#125;&#125;&#x27;);&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>加上目標 payload（本題解答）<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span><span class="string">&#x27;); alert(1)//&#x27;</span>);</span><br></pre></td></tr></table></figure></div></li><li>完整會變成<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;/static/loading.gif&quot;</span> onload=<span class="string">&quot;startTimer(&#x27;3&#x27;);alert(1)//&#x27;);&quot;</span> /&gt;</span><br></pre></td></tr></table></figure></div></li><li>我們前面是說把 Timer 丟進來，會丟到這邊的大括號裡面</li><li>因此我們就可以 onload</li><li>那我們這邊可以利用 payload，像這樣寫的結果可以禮節成</li><li>我們先輸入 3，分號是這個 function 的結尾，分號會截斷這個 function</li><li>截斷完之後我們再來 alert，因此他就會去執行 alert 的指令，就可以完成我們這一關想要做的事情</li><li>那這邊要注意</li><li>後面要再把他註解掉，因為我們可以看到這邊的 Timer 後面還有東西</li><li>要記得把我們輸入的字串關起來，因為有可能會有一些垃圾的字串，所以這邊要再做單引號括號分號把他關起來做截斷</li><li>那我們這邊做到以後，我們輸入 payload，alert 噴出來，這一關順利結束</li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame09.png"
+                     
+                >
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-5-Breaking-protocol"><a href="#Level-5-Breaking-protocol" class="headerlink" title="Level - 5 Breaking protocol"></a>Level - 5 Breaking protocol</h3><h4 id="Intro-4"><a href="#Intro-4" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame10.png"
+                     
+                >
+
+<ul>
+<li>這關考的是跨站點腳本不僅僅是正確地轉義數據</li>
+<li>有時，即使沒有向 DOM 注入新元素，攻擊者也可以做壞事</li>
+<li>那因為這題一樣蠻難的，所以也先戴一下講解</li>
+</ul>
+<h4 id="Hint-4"><a href="#Hint-4" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>這個級別的標題是一個提示，這關的 Title 如各位所見，叫做 Breaking protocol</li>
+<li>查看註冊框架的來源並了解如何使用 URL 參數很有用</li>
+<li>如果你想讓點擊一個鏈接執行 Javascript（不使用 onclick 處理程序的話），你會怎麼做？</li>
+<li>如果你真的卡住了，可以看看這個 IETF 草案</li>
+</ol>
+<h4 id="講解-1"><a href="#講解-1" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>我們現在一樣來看 target code</li>
+<li>一開始我們先看這份 confirm.html</li>
+<li>我們可以看到他這邊如果按 signup 以後就會來到 signup.html 這個頁面</li>
+<li>我們會發現這個 next 會去 confirm</li>
+<li>那如果我們隨便輸入，他就會跟我們說謝謝我們的輸入</li>
+<li>那很明顯這裡就可以動手腳</li>
+<li>那這個 href 一般來說都是放連結，看你要連去哪裡，或是連到 local 的資源或文字檔</li>
+<li>那我們這邊也可以插 JavaScript，所以我們現在的問題是要怎麼把 JavaScript 的參數塞到 next 裡面</li>
+<li>我們原本 next 是要執行 confirm 裡的 function，但我們現在不想要他執行 confirm 裡的 function，我想要他執行 alert</li>
+<li>那我們要怎麼在 href 裡面執行 JavaScript?</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>這題的關鍵在於要怎麼在 href 裡面執行 JavaScript<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">javascript</span>:<span class="title function_">alert</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div></li><li>他就是把 <code>:</code> 後面的東西用 javascript 執行，</li><li>那我們要先送出第一次的 request，這樣他在第一次的送出之後才會去渲染你的前端頁面</li><li>而在那之後你的 default 也才會有這個 script 在裡面</li><li>像我們這邊可以在網址列裡的 next 後面寫上 <code>javascript:alert(1)</code> 並且按下 go 一次</li><li>然後其實這個 next 的 href 後面就會被換成 javascript : alert(1)，在那個頁面裡面</li><li>那接下來你就可以隨便輸入了</li><li>隨便輸入以後按 next，他就會去執行這個 href 裡面的 javascript</li><li>alert 就會噴出來了</li><li>這提到此結束，那解法很多，只要能夠達到正確的結果的都是好解法</li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame11.png"
+                     
+                >
+              </div>
+            </details>
+
+<hr>
+<h3 id="Level-6-Follow-the-Rabbit"><a href="#Level-6-Follow-the-Rabbit" class="headerlink" title="Level - 6 Follow the Rabbit"></a>Level - 6 Follow the Rabbit</h3><h4 id="Intro-5"><a href="#Intro-5" class="headerlink" title="Intro"></a>Intro</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame12.png"
+                     
+                >
+
+<ul>
+<li>複雜的 Web 應用程序有時能夠動態的 load JavaScript libraries，是根據其 URL 參數的值或 location.hash 的一部分</li>
+<li>要正確處理這一點非常棘手，因為在加載腳本或其他潛在危險類型的數據（如 XMLHttpRequest）時，允許用戶輸入影響 URL 通常會導致嚴重的漏洞</li>
+<li>這題也蠻難的，所以我們這邊一樣先帶一點講解</li>
+</ul>
+<h4 id="Hint-5"><a href="#Hint-5" class="headerlink" title="Hint"></a>Hint</h4><ol>
+<li>我們可以查看位置片段的值（# 之後）如何影響加載腳本的 URL</li>
+<li>那麼對於小工具，URL 的安全檢查真的萬無一失嗎？</li>
+<li>有時候，當我感到沮喪時，我想尖叫… 這個好真實</li>
+<li>如果您不能輕鬆地託管自己的惡意 JavaScript 文件，我們可以查看 google.com&#x2F;jsapi?callback&#x3D;foo 是否有所幫助</li>
+</ol>
+<h4 id="講解-2"><a href="#講解-2" class="headerlink" title="講解"></a>講解</h4><ul>
+<li>那我們現在來看一下 code，我們可以看到 URL 後面有個井號，那這代表說他會去引入井號之後的 JS</li>
+<li>接著他引入完這個 JS 之後就會在這個頁面做執行</li>
+<li>那我們發現了這個洞，就會想要去引入外部的 JS 進來</li>
+<li>但我們在第 21 行會發現，他有去比對我們的 http、https</li>
+<li>所以如果我們去引入了一個外部連結，那這邊說他會去擋 http、https，所以我們可能要用其他的手法繞過</li>
+<li>那我們現在有幾個思路</li>
+</ul>
+<ol>
+<li>在井號後面的 JS 會被 include</li>
+<li>所以我們要想辦法生一個 alert 的 JS，讓他從外部引入</li>
+</ol>
+<ul>
+<li>那這邊要注意的就是前面說的，他會擋 http 和 https</li>
+<li>但其實我們可以用大小寫去繞過他</li>
+<li>那另外，因為有提到說我們要從外部去引入寫 JS 的連結，那要用甚麼工具，根據提示我們可以發現 google 就有這樣的文件</li>
+</ul>
+<details class="red" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Solution </summary>
+              <div class='content'>
+              <ul><li>我們從最後的井號之後開始去編寫我們要引入的外部 JS</li><li>那我們這邊可以利用剛剛 Hint 提到的 google JS 的 API</li><li>那他的用法其實就是改提示的東西，提示長這樣<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google.<span class="property">com</span>/jsapi?callback=foo</span><br></pre></td></tr></table></figure></div></li><li>那我們把他魔改成這樣，後面加上 alert，因為我們的目的是要噴 alert</li><li>但是這樣還不夠，前面也要補上 https，但不只要補上 https，還要改他的大小寫</li><li>因為我們剛剛有發現，target code 有說他會檔小寫的 http 和 https</li><li>所以我們這邊就故意用大寫去繞過他，像是寫 hTTp，h 大踢大踢 p 之類的去繞過他<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hTTps</span>:<span class="comment">//www.google.com/jsapi?callback=alert</span></span><br></pre></td></tr></table></figure></div></li><li>完整的 code<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">https</span>:<span class="comment">//xss-game.appspot.com/level6/frame#hTTps://www.google.com/jsapi?callback=alert</span></span><br></pre></td></tr></table></figure></div></li><li>那最後會看到 alert 噴出來，這題也順利結束！</li></ul><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\XSSgame13.png"
+                     
+                >
+              </div>
+            </details>
+
+<h4 id="Congratulations"><a href="#Congratulations" class="headerlink" title="Congratulations"></a>Congratulations</h4><ul>
+<li>那我們成功順利地打完 XSS Game 的六關了！</li>
+<li>並且收穫了一個大蛋糕，<del>其實我第一眼看他以為他是在對我比中指</del></li>
+<li>那下面有你可以回應他說你覺得喜不喜歡、難度如何的小按鈕，給作者一點回饋</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Cyber-Security/">#Cyber Security</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/05/01/Algorithm-BFS/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Algorithm - BFS</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/03/29/Cyber-Security-XSS/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - XSS</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Cyber Security - XSS Game</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-Game"><span class="nav-text">XSS Game</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS-Game-Intro"><span class="nav-text">XSS Game Intro</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-1-Hello-world-of-XSS"><span class="nav-text">Level - 1 Hello, world of XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-2-Persistence-is-key"><span class="nav-text">Level - 2 Persistence is key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-3-That-sinking-feeling%E2%80%A6"><span class="nav-text">Level - 3 That sinking feeling…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-4-Context-matters"><span class="nav-text">Level - 4 Context matters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-5-Breaking-protocol"><span class="nav-text">Level - 5 Breaking protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Level-6-Follow-the-Rabbit"><span class="nav-text">Level - 6 Follow the Rabbit</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

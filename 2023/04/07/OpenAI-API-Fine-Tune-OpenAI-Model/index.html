@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/04/07/openai-api-fine-tune-openai-model/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Fine-Tune OpenAI davinci model with pytesseract">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI API - Fine-Tune OpenAI Model Side Project">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/04/07/OpenAI-API-Fine-Tune-OpenAI-Model/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Fine-Tune OpenAI davinci model with pytesseract">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Fine-Tune01.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Fine-Tune02.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Fine-Tune03.png">
+<meta property="article:published_time" content="2023-04-07T11:00:14.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.917Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Implementation">
+<meta property="article:tag" content="Generative AI">
+<meta property="article:tag" content="Side Project">
+<meta property="article:tag" content="OpenAI API">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Fine-Tune01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            OpenAI API - Fine-Tune OpenAI Model Side Project -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post45.jpg" alt="OpenAI API - Fine-Tune OpenAI Model Side Project" />
+                    <h1 class="article-title-cover">OpenAI API - Fine-Tune OpenAI Model Side Project</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-07</span>
+        <span class="mobile">2023-04-07</span>
+        <!-- <span class="desktop">2023-04-07 19:14</span>
+        <span class="mobile">2023-04-07 19</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OpenAI-API-Side-Project/">OpenAI API Side Project</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/OpenAI-API-Side-Project/Fine-Tune-OpenAI-Model/">Fine-Tune OpenAI Model</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Generative-AI/">Generative AI</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Side-Project/">Side Project</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/OpenAI-API/">OpenAI API</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Research-Motivation"><a href="#Research-Motivation" class="headerlink" title="Research Motivation"></a>Research Motivation</h2><p><a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/fine-tuning/fine-tuning" >Fine-Tune OpenAI</a> davinci model with pytesseract</p>
+<p>接續 <a href="https://lavinia0724.github.io/2023/03/07/OpenAI-API-connect-OpenAI-API-with-MATLAB-Program-Side-Project/">connect OpenAI API with MATLAB Program Side Project</a><br>想嘗試更多 OpenAI API 技術而產出的延伸自主研究</p>
+<a class="button  center large" target="_blank" rel="noopener" href='https://github.com/lavinia0724/Fine-Tune-OpenAI-Model' title='LAVI's Fine-Tune OpenAI Model Side Project'><i class='fa-brands fa-github'></i> LAVI's Fine-Tune OpenAI Model Side Project</a>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>利用 Python 套件 pytesseract 進行影像文字分析後，將字串處理為可提供給 OpenAI GPT-3 model prompt 的語句形式</p>
+<p>進行 OpenAI model 訓練，使訓練出的模型可根據訓練資料回答資訊</p>
+<h2 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Fine-Tune01.png"
+                     
+                >
+
+<ol>
+<li><p>pytesseract - Text Extraction<br>在 dataSet 的獲取，考量到現在許多餐廳的菜單都是做成了圖片形式、網站爬蟲有些無法爬到直接的文字資料，因此我想到利用 Python 的 pytesseract 套件，撰寫「圖片文字辨識」的腳本，如此一來便可透過提取圖片中的文字，取得食品名稱及其熱量</p>
+</li>
+<li><p>jieba - Chinese word segmentation module<br>在 OpenAI API prompt 的詢問語句，參考現在當紅的 python 套件 jieba 分詞器，因為 OpenAI 的訓練資料大多為英文資料，而我提供的詢問語句以中文為主，由於中文語句於斷詞處的不同可能會產生不同語意，故我利用 jieba 分詞器判斷 prompt 之中文語句中的詞性及其權重進行切割，再進行詢問，以提高 Fine-Tune 訓練回覆資訊的準確度</p>
+</li>
+<li><p>OpenAI API - Fine-Tune Davinci Model</p>
+</li>
+<li><p>OpenAI playgroud - application Result</p>
+</li>
+</ol>
+<h2 id="Information"><a href="#Information" class="headerlink" title="Information"></a>Information</h2><h3 id="1-預處理"><a href="#1-預處理" class="headerlink" title="1. 預處理"></a>1. 預處理</h3><ul>
+<li>將 OpenAI API key 放進系統環境變數</li>
+<li>將想 text detection 的圖片放好後，修改程式中讀取圖片的路徑</li>
+<li>pytesseract 套件預設提取英文字，故需下載繁體中文包 (放在 <code>Program Files\Tesseract-OCR</code> 中讀取)</li>
+</ul>
+<h3 id="2-pytesseract-讀取圖片後進行字串處理"><a href="#2-pytesseract-讀取圖片後進行字串處理" class="headerlink" title="2. pytesseract 讀取圖片後進行字串處理"></a>2. pytesseract 讀取圖片後進行字串處理</h3><ul>
+<li>利用 PIL 的 <code>pytesseract.image_to_string</code> 讀取指定圖片上的文字內容，語言使用 chi_tra (繁體中文)</li>
+<li>用 replace 將讀取的不必要空白取代，並對整體文字內容進行 split 切割成獨立字串</li>
+</ul>
+<h3 id="3-OpenAI-模型訓練"><a href="#3-OpenAI-模型訓練" class="headerlink" title="3. OpenAI 模型訓練"></a>3. OpenAI 模型訓練</h3><ul>
+<li>將處理好的字串進行 jieba 切割<ul>
+<li>因為 OpenAI 讀取關鍵字時難以正確判斷中文字串語意，可利用 jieba 斷詞器對字串進行權重切割，可另 OpenAI 模型更好的對關鍵詞進行訓練</li>
+</ul>
+</li>
+<li>利用 <code>prompt = f&quot;&#123;prevPrompt&#125;\n&#123;prevAns&#125;\n###\n&#123;oriprompt&#125;&quot;</code> 使上一筆的查詢與結果可影響當前的輸入訓練結果，使各筆輸出結果判斷越漸相似</li>
+<li>利用 <code>openai.Completion.create()</code> 對 OpenAI davinci model 進行訓練</li>
+</ul>
+<h3 id="4-整理收到的回應與每筆輸出資訊"><a href="#4-整理收到的回應與每筆輸出資訊" class="headerlink" title="4. 整理收到的回應與每筆輸出資訊"></a>4. 整理收到的回應與每筆輸出資訊</h3><ul>
+<li>利用 pandas 中 <code>pd.concat</code> 將每筆資訊整合</li>
+</ul>
+<h3 id="5-儲存整理好的資訊"><a href="#5-儲存整理好的資訊" class="headerlink" title="5. 儲存整理好的資訊"></a>5. 儲存整理好的資訊</h3><ul>
+<li>利用 <code>df.to_csv(&quot;TrainingModel.csv&quot;, encoding=&quot;utf_8_sig&quot;)</code> 將資訊輸出成 <code>.csv</code> 檔案</li>
+</ul>
+<h3 id="6-OpenAI-Fine-Tune-model-資料預處理"><a href="#6-OpenAI-Fine-Tune-model-資料預處理" class="headerlink" title="6. OpenAI Fine-Tune model 資料預處理"></a>6. OpenAI Fine-Tune model 資料預處理</h3><ul>
+<li>Fine-Tune mode 指定訓練資料欄位名稱為：<code>prompt</code>、<code>completion</code></li>
+<li>調整好欄位資訊後輸出成 <code>.csv</code> 檔案<ul>
+<li>OpenAI 官方文件說可以提供 <code>.csv</code> 檔，而他在 Fine-Tune 你的模型時會將其轉為 <code>.jsonl</code> 格式</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-Fine-Tune-Training-Command"><a href="#7-Fine-Tune-Training-Command" class="headerlink" title="7. Fine-Tune Training Command"></a>7. Fine-Tune Training Command</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Fine-Tune02.png"
+                     
+                >
+
+<ul>
+<li><code>openai tools fine_tunes.prepare_data -f &lt;LOCAL_FILE&gt;</code><ul>
+<li>讀取 <code>preparedData.csv</code> 為我的 fine_tune prepare data</li>
+</ul>
+</li>
+<li><code>openai api fine_tunes.create -t &lt;TRAIN_FILE_ID_OR_PATH&gt; -m &lt;BASE_MODEL&gt;</code><ul>
+<li>利用 prepare data 生成一個 <code>.jsonl</code> 檔案後利用其和 davinci model 進行 fine-tune 訓練</li>
+</ul>
+</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Fine-Tune03.png"
+                     
+                >
+
+<ul>
+<li><code>openai api fine_tunes.follow -i &lt;YOUR_FINE_TUNE_JOB_ID&gt;</code><ul>
+<li>查看我目前模型訓練的進度</li>
+<li>看你的 model 排隊進 queue 裡被訓練了沒，可能會花 30 min 到 1 hr 不等</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-測試模型訓練完的結果"><a href="#8-測試模型訓練完的結果" class="headerlink" title="8. 測試模型訓練完的結果"></a>8. 測試模型訓練完的結果</h3><ul>
+<li>進到 <a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/playground" >OpenAI playground</a> 後選擇你的 Fine-Tune 模型</li>
+<li>在僅輸入 keyword 的前提下，輸出會與你的 Training Dataset 相似邏輯</li>
+</ul>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">import</span> pytesseract</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">openai.api_key = os.getenv(<span class="string">&quot;OPENAI_API_KEY&quot;</span>)</span><br><span class="line">pytesseract.pytesseract.tesseract_cmd = <span class="string">r&#x27;C:\\Program Files\\Tesseract-OCR\\tesseract.exe&#x27;</span></span><br><span class="line"></span><br><span class="line">pathlist = Path(<span class="string">&quot;C:\\Users\\momia\\Downloads\\pytesseract&quot;</span>).glob(<span class="string">&#x27;**/*.jpg&#x27;</span>)</span><br><span class="line"><span class="comment"># config = r&#x27;-c tessedit_char_blacklist= --psm 6&#x27;</span></span><br><span class="line"></span><br><span class="line">prevPrompt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">prevAns = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">df = pd.DataFrame()  </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> fontPath <span class="keyword">in</span> pathlist:</span><br><span class="line">  <span class="comment"># print(fontPath)</span></span><br><span class="line">  </span><br><span class="line">  basename = os.path.splitext(os.path.basename(fontPath))[<span class="number">0</span>]</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;basename: &#x27;</span> + basename)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># if not os.path.isdir(basename):</span></span><br><span class="line">  <span class="comment">#   os.mkdir(basename)  </span></span><br><span class="line"></span><br><span class="line">  img = Image.<span class="built_in">open</span>(<span class="string">f&#x27;<span class="subst">&#123;basename&#125;</span>.jpg&#x27;</span>)</span><br><span class="line">  text = pytesseract.image_to_string(img, lang=<span class="string">&#x27;chi_tra&#x27;</span>)</span><br><span class="line">  <span class="comment"># print(text)</span></span><br><span class="line">  text = text.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  text = text.split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> text[<span class="number">5</span>:<span class="number">15</span>]:</span><br><span class="line">    <span class="keyword">if</span> item == <span class="string">&#x27;&#x27;</span> :</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    <span class="comment"># print(item)</span></span><br><span class="line"></span><br><span class="line">    sentence = jieba.cut(item)</span><br><span class="line">    sentence = (<span class="string">&#x27; &#x27;</span>.join(sentence))</span><br><span class="line">    <span class="built_in">print</span>(sentence)</span><br><span class="line">    sentence = sentence.replace(<span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;熱量為&#x27;</span>)</span><br><span class="line">    sentence = sentence.replace(<span class="string">&#x27;;&#x27;</span>, <span class="string">&#x27;熱量為&#x27;</span>)</span><br><span class="line">    <span class="comment"># print()</span></span><br><span class="line"></span><br><span class="line">    oriprompt = <span class="string">f&quot;<span class="subst">&#123;sentence&#125;</span> 請在 20 字內說明要花多少時間運動才能消耗此熱量&quot;</span></span><br><span class="line">    <span class="comment"># print(oriprompt)</span></span><br><span class="line">    prompt = <span class="string">f&quot;<span class="subst">&#123;prevPrompt&#125;</span>\n<span class="subst">&#123;prevAns&#125;</span>\n###\n<span class="subst">&#123;oriprompt&#125;</span>&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(prompt)</span><br><span class="line">    response = openai.Completion.create(</span><br><span class="line">      model=<span class="string">&quot;text-davinci-003&quot;</span>,</span><br><span class="line">      prompt=prompt,</span><br><span class="line">      temperature=<span class="number">1</span>,</span><br><span class="line">      max_tokens=<span class="number">500</span>,</span><br><span class="line">      top_p=<span class="number">1</span>,</span><br><span class="line">      frequency_penalty=<span class="number">0</span>,</span><br><span class="line">      presence_penalty=<span class="number">0</span>,</span><br><span class="line">      stop=[<span class="string">&quot;###&quot;</span>]</span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># print(response)</span></span><br><span class="line"></span><br><span class="line">    finish_reason = response[<span class="string">&#x27;choices&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;finish_reason&#x27;</span>]</span><br><span class="line">    responseText = response[<span class="string">&#x27;choices&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(responseText)</span><br><span class="line"></span><br><span class="line">    prevPrompt = oriprompt</span><br><span class="line">    prevAns = responseText</span><br><span class="line"></span><br><span class="line">    newRow = &#123;</span><br><span class="line">      <span class="string">&#x27;item&#x27;</span>:item, </span><br><span class="line">      <span class="string">&#x27;sentence&#x27;</span>:sentence, </span><br><span class="line">      <span class="string">&#x27;prompt&#x27;</span>:oriprompt, </span><br><span class="line">      <span class="string">&#x27;responseText&#x27;</span>:responseText, </span><br><span class="line">      <span class="string">&#x27;finish_reason&#x27;</span>:finish_reason&#125;</span><br><span class="line">    newRow = pd.DataFrame([newRow])</span><br><span class="line">    df = pd.concat([df, newRow], axis=<span class="number">0</span>, ignore_index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">df.to_csv(<span class="string">&quot;TrainingModel.csv&quot;</span>, encoding=<span class="string">&quot;utf_8_sig&quot;</span>)</span><br><span class="line">df = pd.read_csv(<span class="string">&quot;TrainingModel.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line">prepared_data = df.loc[:,[<span class="string">&#x27;sentence&#x27;</span>,<span class="string">&#x27;responseText&#x27;</span>]]</span><br><span class="line">prepared_data.rename(columns=&#123;<span class="string">&#x27;sentence&#x27;</span>:<span class="string">&#x27;prompt&#x27;</span>, <span class="string">&#x27;responseText&#x27;</span>:<span class="string">&#x27;completion&#x27;</span>&#125;, inplace=<span class="literal">True</span>)</span><br><span class="line">prepared_data.to_csv(<span class="string">&#x27;preparedData.csv&#x27;</span>, encoding=<span class="string">&quot;utf_8_sig&quot;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10289536" >iThome 圖片轉文字 OCR 圖片字元辨識</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10227263" >iThome 聽過 OCR 嗎? 實作看看吧 – pytesseract</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://hackmd.io/@DCT/Tesseract-OCR-%E6%96%87%E5%AD%97%E8%BE%A8%E8%AD%98" >Tesseract 使用＆安裝＆訓練</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://yanwei-liu.medium.com/python%E8%87%AA%E7%84%B6%E8%AA%9E%E8%A8%80%E8%99%95%E7%90%86-%E4%BA%8C-%E4%BD%BF%E7%94%A8jieba%E9%80%B2%E8%A1%8C%E4%B8%AD%E6%96%87%E6%96%B7%E8%A9%9E-faf7828141a4" >Python自然語言處理(二)：使用jieba進行中文斷詞</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.kennycoder.io/2020/02/12/Python-%E7%9F%A5%E5%90%8DJieba%E4%B8%AD%E6%96%87%E6%96%B7%E8%A9%9E%E5%B7%A5%E5%85%B7%E6%95%99%E5%AD%B8/" >Python - 知名 Jieba 中文斷詞工具教學</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/fine-tuning/prepare-training-data" >OpenAI Prepare training data</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Generative-AI/">#Generative AI</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Side-Project/">#Side Project</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/OpenAI-API/">#OpenAI API</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/04/26/OCR-pytesseract/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">OCR - pytesseract &amp; jieba</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/03/07/OpenAI-API-connect-OpenAI-API-with-MATLAB-Program-Side-Project/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">OpenAI API - Fine-Tune OpenAI Model Side Project</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Research-Motivation"><span class="nav-text">Research Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%A7%8B"><span class="nav-text">架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information"><span class="nav-text">Information</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A0%90%E8%99%95%E7%90%86"><span class="nav-text">1. 預處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pytesseract-%E8%AE%80%E5%8F%96%E5%9C%96%E7%89%87%E5%BE%8C%E9%80%B2%E8%A1%8C%E5%AD%97%E4%B8%B2%E8%99%95%E7%90%86"><span class="nav-text">2. pytesseract 讀取圖片後進行字串處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-OpenAI-%E6%A8%A1%E5%9E%8B%E8%A8%93%E7%B7%B4"><span class="nav-text">3. OpenAI 模型訓練</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%95%B4%E7%90%86%E6%94%B6%E5%88%B0%E7%9A%84%E5%9B%9E%E6%87%89%E8%88%87%E6%AF%8F%E7%AD%86%E8%BC%B8%E5%87%BA%E8%B3%87%E8%A8%8A"><span class="nav-text">4. 整理收到的回應與每筆輸出資訊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%84%B2%E5%AD%98%E6%95%B4%E7%90%86%E5%A5%BD%E7%9A%84%E8%B3%87%E8%A8%8A"><span class="nav-text">5. 儲存整理好的資訊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-OpenAI-Fine-Tune-model-%E8%B3%87%E6%96%99%E9%A0%90%E8%99%95%E7%90%86"><span class="nav-text">6. OpenAI Fine-Tune model 資料預處理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Fine-Tune-Training-Command"><span class="nav-text">7. Fine-Tune Training Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%B8%AC%E8%A9%A6%E6%A8%A1%E5%9E%8B%E8%A8%93%E7%B7%B4%E5%AE%8C%E7%9A%84%E7%B5%90%E6%9E%9C"><span class="nav-text">8. 測試模型訓練完的結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

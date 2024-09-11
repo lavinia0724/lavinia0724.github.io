@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/05/10/deep-learning-backpropagation-algorithm-to-classify-mnist/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Deep Learning - Backpropagation Algorithm to Classify MNIST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning - Backpropagation Algorithm to Classify MNIST">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/05/10/Deep-Learning-Backpropagation-Algorithm-to-Classify-MNIST/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Deep Learning - Backpropagation Algorithm to Classify MNIST">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Backpropagation-Algorithm-MNIST01.png">
+<meta property="article:published_time" content="2024-05-10T02:18:54.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.904Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Implementation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Backpropagation-Algorithm-MNIST01.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Deep Learning - Backpropagation Algorithm to Classify MNIST -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post88.JPG" alt="Deep Learning - Backpropagation Algorithm to Classify MNIST" />
+                    <h1 class="article-title-cover">Deep Learning - Backpropagation Algorithm to Classify MNIST</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-05-10</span>
+        <span class="mobile">2024-05-10</span>
+        <!-- <span class="desktop">2024-05-10 10:18:54</span>
+        <span class="mobile">2024-05-10 10:18</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Implementation/Backpropagation-Algorithm-to-Classify-MNIST/">Backpropagation Algorithm to Classify MNIST</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/MNIST-Backpropagation-Algorithm" title="MNIST-Backpropagation-Algorithm"><i class="fa-brands fa-github"></i> MNIST-Backpropagation-Algorithm</a>
+
+<h2 id="先備知識"><a href="#先備知識" class="headerlink" title="先備知識"></a>先備知識</h2><ul>
+<li>參數/超參數(Parameter/Hyperparameter)區別：<ul>
+<li>參數值是經由學習演算法訓練所得出，例如權重和偏差值(Weights  and  Biases)。</li>
+<li>超參數是在學習演算法過程中，必需先設置的參數值。例如：學習率，隱藏神經元層數/個數，Mini-Batch Size等。</li>
+<li>超參數協助學習演算法找到適當或最佳參數值。</li>
+</ul>
+</li>
+<li>One-Hot Encoding: 	<ul>
+<li>機器學習分類問題的標籤，常將類別以One-Hot Vector表示，即向量分量僅有一個維度的值是1，其餘爲0。</li>
+<li>例如三分類標籤第一、二、三類分別為：<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -3.733ex;" xmlns="http://www.w3.org/2000/svg" width="4.149ex" height="8.597ex" role="img" focusable="false" viewBox="0 -2150 1834 3800"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo"><path data-c="23A1" d="M319 -645V1154H666V1070H403V-645H319Z" transform="translate(0,996)"></path><path data-c="23A3" d="M319 -644V1155H403V-560H666V-644H319Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A2" d="M319 0V602H403V0H319Z" transform="scale(1,1.002)"></path></svg></g><g data-mml-node="mtable" transform="translate(667,0)"><g data-mml-node="mtr" transform="translate(0,1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mtr"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g><g data-mml-node="mtr" transform="translate(0,-1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></g><g data-mml-node="mo" transform="translate(1167,0)"><path data-c="23A4" d="M0 1070V1154H347V-645H263V1070H0Z" transform="translate(0,996)"></path><path data-c="23A6" d="M263 -560V1155H347V-644H0V-560H263Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A5" d="M263 0V602H347V0H263Z" transform="scale(1,1.002)"></path></svg></g></g></g></g></svg></mjx-container>, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -3.733ex;" xmlns="http://www.w3.org/2000/svg" width="4.149ex" height="8.597ex" role="img" focusable="false" viewBox="0 -2150 1834 3800"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo"><path data-c="23A1" d="M319 -645V1154H666V1070H403V-645H319Z" transform="translate(0,996)"></path><path data-c="23A3" d="M319 -644V1155H403V-560H666V-644H319Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A2" d="M319 0V602H403V0H319Z" transform="scale(1,1.002)"></path></svg></g><g data-mml-node="mtable" transform="translate(667,0)"><g data-mml-node="mtr" transform="translate(0,1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g><g data-mml-node="mtr"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mtr" transform="translate(0,-1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></g><g data-mml-node="mo" transform="translate(1167,0)"><path data-c="23A4" d="M0 1070V1154H347V-645H263V1070H0Z" transform="translate(0,996)"></path><path data-c="23A6" d="M263 -560V1155H347V-644H0V-560H263Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A5" d="M263 0V602H347V0H263Z" transform="scale(1,1.002)"></path></svg></g></g></g></g></svg></mjx-container>, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -3.733ex;" xmlns="http://www.w3.org/2000/svg" width="4.149ex" height="8.597ex" role="img" focusable="false" viewBox="0 -2150 1834 3800"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo"><path data-c="23A1" d="M319 -645V1154H666V1070H403V-645H319Z" transform="translate(0,996)"></path><path data-c="23A3" d="M319 -644V1155H403V-560H666V-644H319Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A2" d="M319 0V602H403V0H319Z" transform="scale(1,1.002)"></path></svg></g><g data-mml-node="mtable" transform="translate(667,0)"><g data-mml-node="mtr" transform="translate(0,1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g><g data-mml-node="mtr"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g><g data-mml-node="mtr" transform="translate(0,-1400)"><g data-mml-node="mtd"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g><g data-mml-node="mo" transform="translate(1167,0)"><path data-c="23A4" d="M0 1070V1154H347V-645H263V1070H0Z" transform="translate(0,996)"></path><path data-c="23A6" d="M263 -560V1155H347V-644H0V-560H263Z" transform="translate(0,-1006)"></path><svg width="667" height="402" y="49" x="0" viewBox="0 100.5 667 402"><path data-c="23A5" d="M263 0V602H347V0H263Z" transform="scale(1,1.002)"></path></svg></g></g></g></g></svg></mjx-container>。</li>
+<li>將類別標籤轉換成One-Hot Vector的過程則稱One-Hot Encoding。</li>
+</ul>
+</li>
+<li>訓練/驗證/測試準確率：<ul>
+<li>反向傳播演算法停止訓練後，固定類神經網路模型的權重和偏差值，計算每一筆資料的輸出值向量，決定其分類。類別之認定，取最大輸出值分量為其類別</li>
+<li>如果訓練集有 <code>1000</code> 筆，其中 <code>900</code> 筆正確，則訓練準確率 <code>= 900/1000 = 90%</code>。</li>
+<li>驗證/測試準確率也是相同計算方法，即正確筆數與驗證/測試集筆數的比率。</li>
+</ul>
+</li>
+<li>停止條件通常包括：<ul>
+<li>超過最大世代數時停止。</li>
+<li>當訓練集上某些錯誤度量的平均值足夠小時停止，例如平均交叉熵，均方根誤差，平均絕對誤差等。</li>
+<li>當世代數增加，雖然訓練資料集準確率上升，而未參與訓練的驗證集準確率卻下降，此時可停止訓練。其功用為檢視是否有過度訓練(Over Training)而造成過度擬合(Over Fitting)的問題 。</li>
+</ul>
+</li>
+<li>Stochastic Backpropagation 演算法<img lazyload="" src="/images/loading.svg" data-src="\images\postImgs\Backpropagation-Algorithm-MNIST01.png"></li>
+</ul>
+<h2 id="Backpropagation-Algorithm-by-PyTorch"><a href="#Backpropagation-Algorithm-by-PyTorch" class="headerlink" title="Backpropagation Algorithm by PyTorch"></a>Backpropagation Algorithm by PyTorch</h2><p>老師希望我們學習瞭解反向傳播演算法(Backpropagation algorithm)如何學習多層網路的權重(Weights)和偏差值(Biases)，對 MNIST(Modified  National  Institute  of  Standards  and  Technology database)手寫數字數據集進行 <code>9 </code>分類</p>
+<p>資料集為老師從 MNIST 資料集中取的部分資料，共有 <code>60,000</code> 筆訓練資料和 <code>10,000</code> 筆測試資料，每筆資料為 <code>28x28</code> 灰階圖像(即 <code>784</code> 維輸入屬性)</p>
+<h4 id="import-套件"><a href="#import-套件" class="headerlink" title="import 套件"></a>import 套件</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils <span class="keyword">import</span> data <span class="keyword">as</span> data_</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="設定世代數量、讀檔、資料切割與處理"><a href="#設定世代數量、讀檔、資料切割與處理" class="headerlink" title="設定世代數量、讀檔、資料切割與處理"></a>設定世代數量、讀檔、資料切割與處理</h4><p>因為題目只有 Training Dataset，所以另外切割 <code>20%</code> 的資料為 Validation Dataset</p>
+<p>在讀取資料的過程中進行標準化</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 設定要跑的世代數量</span></span><br><span class="line">epochs = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 讀檔，透過 pandas 的 df.read_csv 來讀 csv 檔</span></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_train9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># df.iloc，dataframe integer location 用整數位置做為基準去讀資料，</span></span><br><span class="line"><span class="comment"># [:, 1:]，row 全部資料都讀，cloumn 是從第 1 格開始讀到最後</span></span><br><span class="line"><span class="comment"># 變數型態是 float32</span></span><br><span class="line"><span class="comment"># .values/255 是做資料的標準化，有利於神經網路的訓練，以避免梯度消失或爆炸的問題</span></span><br><span class="line"><span class="comment"># 最後轉換成 torch 的 tensor 型態</span></span><br><span class="line">train_data_x = torch.tensor(df.iloc[:, <span class="number">1</span>:].values/<span class="number">255</span>, dtype=torch.float32)</span><br><span class="line"><span class="comment"># [:, 0] y 是讀 label，只要讀第 0 行就好</span></span><br><span class="line"><span class="comment"># pd.get_dummies 是利用 pandas 做 one-hot encoding 的方式</span></span><br><span class="line">train_data_y = torch.tensor(pd.get_dummies(df.iloc[:, <span class="number">0</span>]).values, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 從資料集中取 80% 當 training dataset、20% 當 validation dataset</span></span><br><span class="line">train_data_amount = (<span class="built_in">len</span>(train_data_x) // <span class="number">10</span>) * <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># validation 取剛才取出的 dataset 中從 80% 開始到最後的所有資料</span></span><br><span class="line">validation_data_x = train_data_x[train_data_amount:]</span><br><span class="line">validation_data_y = train_data_y[train_data_amount:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># train 取從頭開始到 80% 的資料</span></span><br><span class="line">train_data_x = train_data_x[:train_data_amount]</span><br><span class="line">train_data_y = train_data_y[:train_data_amount]</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="定義神經網路模型"><a href="#定義神經網路模型" class="headerlink" title="定義神經網路模型"></a>定義神經網路模型</h4><p>神經元數量、層數、激活函數都可以修改，微調模型<br>特別對權重進行常態分佈的初始化，因為每次權重都隨機，模型在 gradient decent 的時候才會可以找到不同的局部最佳解</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定義神經網絡模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NeuralNetwork</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># super 的用法就是將函數的調用委託給父類別，而通常那個父類別就是pytorch內建的函數 nn.Module 所以我們需要用 __init__() 來初始化(initialize)整個函數</span></span><br><span class="line">        <span class="built_in">super</span>(NeuralNetwork, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層神經網路，每層的輸入與輸出 channel 如下</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">784</span>, <span class="number">30</span>) <span class="comment"># 784 row(in) x 30 cloumn(out)</span></span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">30</span>, <span class="number">28</span>) <span class="comment"># 30 row x 28 cloumn</span></span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">28</span>, <span class="number">9</span>) <span class="comment"># 28 row x 9 clumn</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 每層神經網路的權重都透過常態分佈來設計，標準差為 0.1，平均為 0.0</span></span><br><span class="line">        nn.init.normal_(self.fc1.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line">        nn.init.normal_(self.fc2.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line">        nn.init.normal_(self.fc3.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x.view(<span class="number">1</span>, <span class="number">784</span>)        <span class="comment"># 吃進來的一筆資料總共 1 row 784 column</span></span><br><span class="line">        x = torch.sigmoid(self.fc1(x))   <span class="comment"># 對第一層神經網路的 x 輸出做 sigmoid</span></span><br><span class="line">        x = torch.sigmoid(self.fc2(x))   <span class="comment"># 對第二層神經網路的 x 輸出做 sigmoid</span></span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> torch.softmax(x, dim=<span class="number">1</span>)   <span class="comment"># 對第三層神經網路的 x 輸出做 softmax</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="設計-Early-Stop-條件"><a href="#設計-Early-Stop-條件" class="headerlink" title="設計 Early Stop 條件"></a>設計 Early Stop 條件</h4><p>我 Early Stop 的條件設為，每當 validation loss 沒有變得更好，就記錄一次，當超過我設定的 patience 次數，就提早停止訓練</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 設計 Early Stop 條件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Early_Stop_checker</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, patience=<span class="number">1</span></span>):</span><br><span class="line">        self.patience = patience  <span class="comment"># patience 為能夠接受 validation loss 減少變好的世代數</span></span><br><span class="line">        self.counter = <span class="number">0</span>          <span class="comment"># counter 用來計算目前已經幾代 validation loss 沒有變好</span></span><br><span class="line">        self.min_validation_loss = <span class="built_in">float</span>(<span class="string">'inf'</span>) <span class="comment"># 紀錄所有世代中最小的 validation loss</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">early_stop</span>(<span class="params">self, validation_loss</span>):</span><br><span class="line">        <span class="keyword">if</span> validation_loss &lt; self.min_validation_loss: <span class="comment"># 如果當前的 validation loss 比過去最好的 validation loss 要小，則更新 min_validation_loss</span></span><br><span class="line">            self.min_validation_loss = validation_loss</span><br><span class="line">            self.counter = <span class="number">0</span>                           <span class="comment"># 更新後 counter 歸零</span></span><br><span class="line">        <span class="keyword">elif</span> validation_loss &gt; self.min_validation_loss: <span class="comment"># 如果當前的 validation loss 比過去最好的 validation loss 要不好</span></span><br><span class="line">            self.counter += <span class="number">1</span>                          <span class="comment"># counter + 1</span></span><br><span class="line">            <span class="keyword">if</span> self.counter &gt;= self.patience:          <span class="comment"># 如果 counter 已經超過 patience，就 early stop</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="宣告模型、Loss-Function、Optimizer"><a href="#宣告模型、Loss-Function、Optimizer" class="headerlink" title="宣告模型、Loss Function、Optimizer"></a>宣告模型、Loss Function、Optimizer</h4><p>使用 SGD (Stochastic Gradient Decent) 隨機梯度下降法<br>learning rate 設為 <code>0.01</code><br>提早停止的條件為 validation loss 已連續三代沒有變得更好</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化模型、損失函數和優化器</span></span><br><span class="line">model = NeuralNetwork()</span><br><span class="line"><span class="comment"># 使用交叉熵損失函數</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line"><span class="comment"># 使用隨機梯度下降演算法，learning rate 設 0.01</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr = <span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line">early_stop_checker = Early_Stop_checker(patience=<span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="模型訓練"><a href="#模型訓練" class="headerlink" title="模型訓練"></a>模型訓練</h4><p>因為使用 stochastic gradient decent，所以要一筆一筆資料跑(也可以改用 batch 啦)</p>
+<p>反向傳播三板斧，好像很難但其實沒那麼難<br><code>optimizer.zero_grad()</code> 清除所有梯度<br><code>loss.backward()</code> 透過反向傳播獲得每個參數的梯度值<br><code>optimizer.step()</code> 透過梯度下降執行參數更新</p>
+<p>每代計算一次 loss，當 validation loss 符合前面設計的 early stopping 條件，就提早停止訓練</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 訓練模型</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment"># 使用 Stochastic 梯度下降，要一筆一筆資料跑，batch 或 mini-batch 才是一口氣跑多筆資料</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">        <span class="comment"># 訓練模型要設定成 model.train()</span></span><br><span class="line">        model.train()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 清除所有梯度</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        <span class="comment"># 將 train_data_x 一筆一筆放進模型訓練，將該筆資料的預測值存進 predict</span></span><br><span class="line">        <span class="comment"># torch.unsqueeze 對 x 做擴維，原本的 torch.tensor(x) = [1, 2, 3, 4]，擴維後變成 [[1, 2, 3, 4]]</span></span><br><span class="line">        predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 計算 loss，把預測的 predict (也就是 ŷ)，和 y 去做 cross entropy 計算</span></span><br><span class="line">        <span class="comment"># 將 y 擴維後透過 torch.argmax 返回指定維度</span></span><br><span class="line">        loss = criterion(predict, torch.unsqueeze(train_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 做 Backpropagation</span></span><br><span class="line">        loss.backward() <span class="comment"># 透過反向傳播獲得每個參數的梯度值</span></span><br><span class="line">        optimizer.step() <span class="comment"># 透過梯度下降執行參數更新</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算這次世代更新完後的 loss 和 accuracy</span></span><br><span class="line">    <span class="comment"># torch.no_grad() 顧名思義就是 no gradient</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="comment"># 評估模型要設定成 model.eval()</span></span><br><span class="line">        model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- training ----------------------------------------------- #</span></span><br><span class="line">        train_loss = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">            <span class="comment"># 一樣把 train data x 丟給模型預測，只是這次不用再計算梯度和更新</span></span><br><span class="line">            train_predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line">            <span class="comment"># 加總全部的 loss (等等最後會取平均)</span></span><br><span class="line">            train_loss += criterion(train_predict, torch.unsqueeze(train_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將所有資料的 loss (剛剛加總了)取平均</span></span><br><span class="line">        train_loss = train_loss/<span class="built_in">len</span>(train_data_x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- validation ----------------------------------------------- #</span></span><br><span class="line">        validation_loss = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 驗證其實做的是一樣的事情，只是在模型訓練的時候，並沒有學過這些資料</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(validation_data_x)):</span><br><span class="line">          <span class="comment"># 把要驗證的資料都進已經訓練好的模型預測</span></span><br><span class="line">          validation_predict = model(torch.unsqueeze(validation_data_x[i], <span class="number">0</span>))</span><br><span class="line">          <span class="comment"># 計算驗證 loss</span></span><br><span class="line">          validation_loss += criterion(validation_predict, torch.unsqueeze(validation_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 計算驗證 loss</span></span><br><span class="line">        validation_loss = validation_loss/<span class="built_in">len</span>(validation_data_x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Early Stopping，提前終止訓練，為了避免 overfitting</span></span><br><span class="line">        <span class="keyword">if</span> early_stop_checker.early_stop(validation_loss):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f"Early stopping at epoch: <span class="subst">{epoch}</span> "</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 輸出當前世代、當前的 train loss、validation loss</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Epoch <span class="subst">{epoch + <span class="number">1</span>}</span>/<span class="subst">{epochs}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="計算訓練模型的準確率"><a href="#計算訓練模型的準確率" class="headerlink" title="計算訓練模型的準確率"></a>計算訓練模型的準確率</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">train_correct = <span class="number">0</span></span><br><span class="line">validation_correct = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算 train accuracy 和 validation accuracy</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">    train_predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line">    <span class="comment"># torch.max(train_predict, 1) 回傳的是在 train_predict 中有最大值的 index，也就會是該筆資料的 label</span></span><br><span class="line">    <span class="comment"># (train_predict 回傳的是此筆資料是 1, 2, 3, 4, 5, 6, 7, 8, 9 的機率，所以取最大機率的那格，就是預測此筆資料為那個數字)</span></span><br><span class="line">    _, predicted_label = torch.<span class="built_in">max</span>(train_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果預測成功了，預測成功的筆數就 + 1</span></span><br><span class="line">    <span class="keyword">if</span>(predicted_label == torch.argmax(train_data_y[i])):</span><br><span class="line">        train_correct += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(validation_data_x)):</span><br><span class="line">    validation_predict = model(torch.unsqueeze(validation_data_x[i], <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 確認驗證資料是否預測正確</span></span><br><span class="line">    _, predicted_label = torch.<span class="built_in">max</span>(validation_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果驗證預測正確，驗證預測正確筆數 + 1</span></span><br><span class="line">    <span class="keyword">if</span>(predicted_label == torch.argmax(validation_data_y[i])):</span><br><span class="line">        validation_correct += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 準確率為所有的資料中，預測成功的筆數</span></span><br><span class="line">train_accuracy = train_correct / <span class="built_in">len</span>(train_data_x)</span><br><span class="line">validation_accuracy = validation_correct / <span class="built_in">len</span>(validation_data_x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 輸出訓練結束、最後在哪個世代結束、最終的 train loss、train accuracy、validation loss、validation accuracy</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Finished Training'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Epoch result <span class="subst">{epoch}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Train Accuracy: <span class="subst">{train_accuracy * <span class="number">100</span>:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Validation Accuracy: <span class="subst">{validation_accuracy * <span class="number">100</span>:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="測試模型"><a href="#測試模型" class="headerlink" title="測試模型"></a>測試模型</h4><p>讀取測試資料，對測試資料進行處理，用剛才訓練好的模型進行預測，將預測結果儲存起來</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 讀 test 資料</span></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_test9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同樣，讀所有 test 資料，但因為 test 資料不會有 label，所以 [:, :] 所有 row 和 column 都讀</span></span><br><span class="line">test_data_x = torch.tensor(df.iloc[:, :].values/<span class="number">255</span>, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 因為最後要把 testing 每筆資料的預測結果輸出成 csv 檔，所以要記錄結果</span></span><br><span class="line">test_predict_result = []</span><br><span class="line">classification = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># testing 也是一種評估模型模式，一樣不用計算梯度</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(test_data_x)):</span><br><span class="line">      <span class="comment"># 把 test 資料都進模型預測</span></span><br><span class="line">      test_predict = model(torch.unsqueeze(test_data_x[i], <span class="number">0</span>))</span><br><span class="line">      <span class="comment"># 得到該筆資料的 label</span></span><br><span class="line">      _, predicted_label = torch.<span class="built_in">max</span>(test_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 把預測結果的 label 記錄起來</span></span><br><span class="line">      test_predict_result.append(classification[predicted_label.numpy().item()])</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="輸出預測資料與模型"><a href="#輸出預測資料與模型" class="headerlink" title="輸出預測資料與模型"></a>輸出預測資料與模型</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把 test_predict_result 轉成 pandas 的 dataframe，並且給他欄位名稱叫做 Label</span></span><br><span class="line">test_predict_result = pd.DataFrame({<span class="string">'Label'</span>: test_predict_result})</span><br><span class="line"><span class="comment"># 把 test_predict_result 輸出 csv 檔</span></span><br><span class="line">test_predict_result.to_csv(<span class="string">'test_predict_result.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存訓練好的模型，路徑為跟此程式相同路徑</span></span><br><span class="line">PATH = <span class="string">'./mnist_nn.pth'</span></span><br><span class="line">torch.save(model.state_dict(), PATH)</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="完整程式"><a href="#完整程式" class="headerlink" title="完整程式"></a>完整程式</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils <span class="keyword">import</span> data <span class="keyword">as</span> data_</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 設定要跑的世代數量</span></span><br><span class="line">epochs = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 讀檔，透過 pandas 的 df.read_csv 來讀 csv 檔</span></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_train9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># df.iloc，dataframe integer location 用整數位置做為基準去讀資料，</span></span><br><span class="line"><span class="comment"># [:, 1:]，row 全部資料都讀，cloumn 是從第 1 格開始讀到最後</span></span><br><span class="line"><span class="comment"># 變數型態是 float32</span></span><br><span class="line"><span class="comment"># .values/255 是做資料的標準化，有利於神經網路的訓練，以避免梯度消失或爆炸的問題</span></span><br><span class="line"><span class="comment"># 最後轉換成 torch 的 tensor 型態</span></span><br><span class="line">train_data_x = torch.tensor(df.iloc[:, <span class="number">1</span>:].values/<span class="number">255</span>, dtype=torch.float32)</span><br><span class="line"><span class="comment"># [:, 0] y 是讀 label，只要讀第 0 行就好</span></span><br><span class="line"><span class="comment"># pd.get_dummies 是利用 pandas 做 one-hot encoding 的方式</span></span><br><span class="line">train_data_y = torch.tensor(pd.get_dummies(df.iloc[:, <span class="number">0</span>]).values, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 從資料集中取 80% 當 training dataset、20% 當 validation dataset</span></span><br><span class="line">train_data_amount = (<span class="built_in">len</span>(train_data_x) // <span class="number">10</span>) * <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># validation 取剛才取出的 dataset 中從 80% 開始到最後的所有資料</span></span><br><span class="line">validation_data_x = train_data_x[train_data_amount:]</span><br><span class="line">validation_data_y = train_data_y[train_data_amount:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># train 取從頭開始到 80% 的資料</span></span><br><span class="line">train_data_x = train_data_x[:train_data_amount]</span><br><span class="line">train_data_y = train_data_y[:train_data_amount]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定義神經網絡模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NeuralNetwork</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># super 的用法就是將函數的調用委託給父類別，而通常那個父類別就是pytorch內建的函數 nn.Module 所以我們需要用 __init__() 來初始化(initialize)整個函數</span></span><br><span class="line">        <span class="built_in">super</span>(NeuralNetwork, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層神經網路，每層的輸入與輸出 channel 如下</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">784</span>, <span class="number">30</span>) <span class="comment"># 784 row(in) x 30 cloumn(out)</span></span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">30</span>, <span class="number">28</span>) <span class="comment"># 30 row x 28 cloumn</span></span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">28</span>, <span class="number">9</span>) <span class="comment"># 28 row x 9 clumn</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 每層神經網路的權重都透過常態分佈來設計，標準差為 0.1，平均為 0.0</span></span><br><span class="line">        nn.init.normal_(self.fc1.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line">        nn.init.normal_(self.fc2.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line">        nn.init.normal_(self.fc3.weight, mean=<span class="number">0.0</span>, std=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x.view(<span class="number">1</span>, <span class="number">784</span>)        <span class="comment"># 吃進來的一筆資料總共 1 row 784 column</span></span><br><span class="line">        x = torch.sigmoid(self.fc1(x))   <span class="comment"># 對第一層神經網路的 x 輸出做 sigmoid</span></span><br><span class="line">        x = torch.sigmoid(self.fc2(x))   <span class="comment"># 對第二層神經網路的 x 輸出做 sigmoid</span></span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> torch.softmax(x, dim=<span class="number">1</span>)   <span class="comment"># 對第三層神經網路的 x 輸出做 softmax</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 設計 Early Stop 條件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Early_Stop_checker</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, patience=<span class="number">1</span></span>):</span><br><span class="line">        self.patience = patience  <span class="comment"># patience 為能夠接受 validation loss 減少變好的世代數</span></span><br><span class="line">        self.counter = <span class="number">0</span>          <span class="comment"># counter 用來計算目前已經幾代 validation loss 沒有變好</span></span><br><span class="line">        self.min_validation_loss = <span class="built_in">float</span>(<span class="string">'inf'</span>) <span class="comment"># 紀錄所有世代中最小的 validation loss</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">early_stop</span>(<span class="params">self, validation_loss</span>):</span><br><span class="line">        <span class="keyword">if</span> validation_loss &lt; self.min_validation_loss: <span class="comment"># 如果當前的 validation loss 比過去最好的 validation loss 要小，則更新 min_validation_loss</span></span><br><span class="line">            self.min_validation_loss = validation_loss</span><br><span class="line">            self.counter = <span class="number">0</span>                           <span class="comment"># 更新後 counter 歸零</span></span><br><span class="line">        <span class="keyword">elif</span> validation_loss &gt; self.min_validation_loss: <span class="comment"># 如果當前的 validation loss 比過去最好的 validation loss 要不好</span></span><br><span class="line">            self.counter += <span class="number">1</span>                          <span class="comment"># counter + 1</span></span><br><span class="line">            <span class="keyword">if</span> self.counter &gt;= self.patience:          <span class="comment"># 如果 counter 已經超過 patience，就 early stop</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化模型、損失函數和優化器</span></span><br><span class="line">model = NeuralNetwork()</span><br><span class="line"><span class="comment"># 使用交叉熵損失函數</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line"><span class="comment"># 使用隨機梯度下降演算法，learning rate 設 0.01</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr = <span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">early_stop_checker = Early_Stop_checker(patience=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 訓練模型</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment"># 使用 Stochastic 梯度下降，要一筆一筆資料跑，batch 或 mini-batch 才是一口氣跑多筆資料</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">        <span class="comment"># 訓練模型要設定成 model.train()</span></span><br><span class="line">        model.train()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 清除所有梯度</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        <span class="comment"># 將 train_data_x 一筆一筆放進模型訓練，將該筆資料的預測值存進 predict</span></span><br><span class="line">        <span class="comment"># torch.unsqueeze 對 x 做擴維，原本的 torch.tensor(x) = [1, 2, 3, 4]，擴維後變成 [[1, 2, 3, 4]]</span></span><br><span class="line">        predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 計算 loss，把預測的 predict (也就是 ŷ)，和 y 去做 cross entropy 計算</span></span><br><span class="line">        <span class="comment"># 將 y 擴維後透過 torch.argmax 返回指定維度</span></span><br><span class="line">        loss = criterion(predict, torch.unsqueeze(train_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 做 Backpropagation</span></span><br><span class="line">        loss.backward() <span class="comment"># 透過反向傳播獲得每個參數的梯度值</span></span><br><span class="line">        optimizer.step() <span class="comment"># 透過梯度下降執行參數更新</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算這次世代更新完後的 loss 和 accuracy</span></span><br><span class="line">    <span class="comment"># torch.no_grad() 顧名思義就是 no gradient</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="comment"># 評估模型要設定成 model.eval()</span></span><br><span class="line">        model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- training ----------------------------------------------- #</span></span><br><span class="line">        train_loss = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">            <span class="comment"># 一樣把 train data x 丟給模型預測，只是這次不用再計算梯度和更新</span></span><br><span class="line">            train_predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line">            <span class="comment"># 加總全部的 loss (等等最後會取平均)</span></span><br><span class="line">            train_loss += criterion(train_predict, torch.unsqueeze(train_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將所有資料的 loss (剛剛加總了)取平均</span></span><br><span class="line">        train_loss = train_loss/<span class="built_in">len</span>(train_data_x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- validation ----------------------------------------------- #</span></span><br><span class="line">        validation_loss = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 驗證其實做的是一樣的事情，只是在模型訓練的時候，並沒有學過這些資料</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(validation_data_x)):</span><br><span class="line">          <span class="comment"># 把要驗證的資料都進已經訓練好的模型預測</span></span><br><span class="line">          validation_predict = model(torch.unsqueeze(validation_data_x[i], <span class="number">0</span>))</span><br><span class="line">          <span class="comment"># 計算驗證 loss</span></span><br><span class="line">          validation_loss += criterion(validation_predict, torch.unsqueeze(validation_data_y[i], <span class="number">0</span>).argmax(dim=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 計算驗證 loss</span></span><br><span class="line">        validation_loss = validation_loss/<span class="built_in">len</span>(validation_data_x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Early Stopping，提前終止訓練，為了避免 overfitting</span></span><br><span class="line">        <span class="keyword">if</span> early_stop_checker.early_stop(validation_loss):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f"Early stopping at epoch: <span class="subst">{epoch}</span> "</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 輸出當前世代、當前的 train loss、validation loss</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Epoch <span class="subst">{epoch + <span class="number">1</span>}</span>/<span class="subst">{epochs}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"></span><br><span class="line">train_correct = <span class="number">0</span></span><br><span class="line">validation_correct = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算 train accuracy 和 validation accuracy</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(train_data_x)):</span><br><span class="line">    train_predict = model(torch.unsqueeze(train_data_x[i], <span class="number">0</span>))</span><br><span class="line">    <span class="comment"># torch.max(train_predict, 1) 回傳的是在 train_predict 中有最大值的 index，也就會是該筆資料的 label</span></span><br><span class="line">    <span class="comment"># (train_predict 回傳的是此筆資料是 1, 2, 3, 4, 5, 6, 7, 8, 9 的機率，所以取最大機率的那格，就是預測此筆資料為那個數字)</span></span><br><span class="line">    _, predicted_label = torch.<span class="built_in">max</span>(train_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果預測成功了，預測成功的筆數就 + 1</span></span><br><span class="line">    <span class="keyword">if</span>(predicted_label == torch.argmax(train_data_y[i])):</span><br><span class="line">        train_correct += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(validation_data_x)):</span><br><span class="line">    validation_predict = model(torch.unsqueeze(validation_data_x[i], <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 確認驗證資料是否預測正確</span></span><br><span class="line">    _, predicted_label = torch.<span class="built_in">max</span>(validation_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果驗證預測正確，驗證預測正確筆數 + 1</span></span><br><span class="line">    <span class="keyword">if</span>(predicted_label == torch.argmax(validation_data_y[i])):</span><br><span class="line">        validation_correct += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 準確率為所有的資料中，預測成功的筆數</span></span><br><span class="line">train_accuracy = train_correct / <span class="built_in">len</span>(train_data_x)</span><br><span class="line">validation_accuracy = validation_correct / <span class="built_in">len</span>(validation_data_x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 輸出訓練結束、最後在哪個世代結束、最終的 train loss、train accuracy、validation loss、validation accuracy</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Finished Training'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Epoch result <span class="subst">{epoch}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Train Accuracy: <span class="subst">{train_accuracy * <span class="number">100</span>:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"Validation Accuracy: <span class="subst">{validation_accuracy * <span class="number">100</span>:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------- Testing -----------------------------------------------#</span></span><br><span class="line"><span class="comment"># 讀 test 資料</span></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_test9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同樣，讀所有 test 資料，但因為 test 資料不會有 label，所以 [:, :] 所有 row 和 column 都讀</span></span><br><span class="line">test_data_x = torch.tensor(df.iloc[:, :].values/<span class="number">255</span>, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 因為最後要把 testing 每筆資料的預測結果輸出成 csv 檔，所以要記錄結果</span></span><br><span class="line">test_predict_result = []</span><br><span class="line">classification = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># testing 也是一種評估模型模式，一樣不用計算梯度</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(test_data_x)):</span><br><span class="line">      <span class="comment"># 把 test 資料都進模型預測</span></span><br><span class="line">      test_predict = model(torch.unsqueeze(test_data_x[i], <span class="number">0</span>))</span><br><span class="line">      <span class="comment"># 得到該筆資料的 label</span></span><br><span class="line">      _, predicted_label = torch.<span class="built_in">max</span>(test_predict, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 把預測結果的 label 記錄起來</span></span><br><span class="line">      test_predict_result.append(classification[predicted_label.numpy().item()])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把 test_predict_result 轉成 pandas 的 dataframe，並且給他欄位名稱叫做 Label</span></span><br><span class="line">test_predict_result = pd.DataFrame({<span class="string">'Label'</span>: test_predict_result})</span><br><span class="line"><span class="comment"># 把 test_predict_result 輸出 csv 檔</span></span><br><span class="line">test_predict_result.to_csv(<span class="string">'test_predict_result.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存訓練好的模型，路徑為跟此程式相同路徑</span></span><br><span class="line">PATH = <span class="string">'./mnist_nn.pth'</span></span><br><span class="line">torch.save(model.state_dict(), PATH)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="Backpropagation-Algorithm-by-Python"><a href="#Backpropagation-Algorithm-by-Python" class="headerlink" title="Backpropagation Algorithm by Python"></a>Backpropagation Algorithm by Python</h2><p>另外，我有寫過一份直接用 Python 手刻的版本<br>直接參考上面老師提供的 Stochastic Backpropagation 演算法</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sigmoid activation function</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Sigmoid</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + np.exp(-n))</span><br><span class="line">     </span><br><span class="line"><span class="comment"># One-Hot Encoding</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">One_Hot_Encoding</span>(<span class="params">y</span>):</span><br><span class="line">    <span class="keyword">return</span> pd.get_dummies(y).to_numpy()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Softmax: e^zi / Σ e^zj </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Softmax</span>(<span class="params">aL</span>):</span><br><span class="line">    <span class="comment"># size: aL = 9 * 1</span></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>):</span><br><span class="line">        total = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(aL)):</span><br><span class="line">            total += np.exp(aL[row][col])</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(aL)):</span><br><span class="line">            aL[row][col] = np.exp(aL[row][col]) / total</span><br><span class="line">    <span class="keyword">return</span> aL</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the training data</span></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_train9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># row size: 40500, col size: 785</span></span><br><span class="line">rowx, colx = df.shape</span><br><span class="line"></span><br><span class="line"><span class="comment"># take 80% data to training, 20% data to verify </span></span><br><span class="line">training_data_amount = (rowx // <span class="number">10</span>) * <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># row size: 40500, col size: 784</span></span><br><span class="line"><span class="comment"># avoid Sigmoid too large: [all data] / 1000</span></span><br><span class="line">training_data_x = df.to_numpy()[ : training_data_amount, <span class="number">1</span>:] / <span class="number">1000</span></span><br><span class="line">verify_data_x = df.to_numpy()[training_data_amount : , <span class="number">1</span>:] / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># row size: 9, col size: 1</span></span><br><span class="line">training_data_y = df.to_numpy()[ : training_data_amount, <span class="number">0</span>]</span><br><span class="line">verify_data_y = df.to_numpy()[training_data_amount : , <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># one hot encoding (y): </span></span><br><span class="line">training_data_y = One_Hot_Encoding(training_data_y)</span><br><span class="line">verify_data_y = One_Hot_Encoding(verify_data_y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Parameter/Hyperparameter</span></span><br><span class="line">epoch = <span class="number">40</span></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># use normal distribution random number to init w</span></span><br><span class="line">w1 = np.random.normal(loc = <span class="number">0</span>, scale = <span class="number">0.1</span>, size = (<span class="number">30</span>, <span class="number">784</span>))</span><br><span class="line">w2 = np.random.normal(loc = <span class="number">0</span>, scale = <span class="number">0.1</span>, size = (<span class="number">28</span>, <span class="number">30</span>))</span><br><span class="line">w3 = np.random.normal(loc = <span class="number">0</span>, scale = <span class="number">0.1</span>, size = (<span class="number">9</span>, <span class="number">28</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># init b</span></span><br><span class="line">b1 = np.random.rand(<span class="number">30</span>, <span class="number">1</span>)</span><br><span class="line">b2 = np.random.rand(<span class="number">28</span>, <span class="number">1</span>)</span><br><span class="line">b3 = np.random.rand(<span class="number">9</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output information</span></span><br><span class="line">output_epoch = []</span><br><span class="line">output_training_correct_rate = []</span><br><span class="line">output_verify_correct_rate = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># training model ===================================</span></span><br><span class="line"></span><br><span class="line">epoch_result = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (epoch):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(training_data_x)):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: (1, 784)</span></span><br><span class="line">        x_tmp = []</span><br><span class="line">        x_tmp.append(training_data_x[j])</span><br><span class="line">        x_tmp = np.array(x_tmp)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: (1, 9)</span></span><br><span class="line">        y_tmp = []</span><br><span class="line">        y_tmp.append(training_data_y[j])</span><br><span class="line">        y_tmp = np.array(y_tmp)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># feedforward -----------------------------------</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w1 = 30 * 784, x_tmp.transpose() = 784 * 1, b1 = 30 * 1</span></span><br><span class="line">        <span class="comment"># size: a1 = 30 * 1</span></span><br><span class="line">        n1 = w1 @ x_tmp.transpose() + b1</span><br><span class="line">        a1 = Sigmoid(n1)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w2 = 28 * 30, a1 = 30 * 1, b2 = 28 * 1</span></span><br><span class="line">        <span class="comment"># size: a2 = 28 * 1</span></span><br><span class="line">        n2 = w2 @ a1 + b2</span><br><span class="line">        a2 = Sigmoid(n2)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w3 = 9 * 28, a2 = 28 * 1, b3 = 9 * 1</span></span><br><span class="line">        <span class="comment"># size: aL = 9 * 1</span></span><br><span class="line">        n3 = w3 @ a2 + b3</span><br><span class="line">        aL = Softmax(n3)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># backward ------------------------------------</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: aL = 9 * 1, y_tmp = 1 * 9</span></span><br><span class="line">        <span class="comment"># size: delta_L = 9 * 1</span></span><br><span class="line">        delta_L = (aL - y_tmp.transpose())</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w3 = 9 * 26, delta_L = 9 * 1, a2 = 26 * 1</span></span><br><span class="line">        <span class="comment"># size: delta_2 = 26 * 1</span></span><br><span class="line">        delta_2 = (w3.transpose() @ delta_L) * (a2 * (<span class="number">1</span> - a2))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w2 = 26 * 20, delta_2 = 26 * 1, a1 = 20 * 1</span></span><br><span class="line">        <span class="comment"># size: delta_1 = 20 * 1</span></span><br><span class="line">        delta_1 = (w2.transpose() @ delta_2) * (a1 * (<span class="number">1</span> - a1))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># update</span></span><br><span class="line">        <span class="comment"># size: w3 = 9 * 26, delta_L = 9 * 1, a2 = 26 * 1</span></span><br><span class="line">        <span class="comment"># size: b3 = 9 * 1, delta_L = 9 * 1</span></span><br><span class="line">        w3 = w3 - learning_rate * (delta_L @ a2.transpose())</span><br><span class="line">        b3 = b3 - learning_rate * delta_L</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w2 = 26 * 20, delta_2 = 26 * 1, a1 = 20 * 1</span></span><br><span class="line">        <span class="comment"># size: b2 = 26 * 1, delta_2 = 26 * 1</span></span><br><span class="line">        w2 = w2 - learning_rate * (delta_2 @ a1.transpose())</span><br><span class="line">        b2 = b2 - learning_rate * delta_2</span><br><span class="line"></span><br><span class="line">        <span class="comment"># size: w1 = 20 * 784, delta_1 = 20 * 1, x_tmp = 1 * 784</span></span><br><span class="line">        <span class="comment"># size: b1 = 20 * 1, delta_1 = 20 * 1</span></span><br><span class="line">        w1 = w1 - learning_rate * (delta_1 @ x_tmp)</span><br><span class="line">        b1 = b1 - learning_rate * delta_1</span><br><span class="line"></span><br><span class="line">    <span class="comment"># calcualte accuracy rate for not overfitting ==================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># training data </span></span><br><span class="line">    training_correct_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(training_data_x)):</span><br><span class="line"></span><br><span class="line">        x_tmp = []</span><br><span class="line">        x_tmp.append(training_data_x[j])</span><br><span class="line">        x_tmp = np.array(x_tmp)</span><br><span class="line"></span><br><span class="line">        y_tmp = []</span><br><span class="line">        y_tmp.append(training_data_y[j])</span><br><span class="line">        y_tmp = np.array(y_tmp)</span><br><span class="line"></span><br><span class="line">        n1 = w1 @ x_tmp.transpose() + b1</span><br><span class="line">        a1 = Sigmoid(n1)</span><br><span class="line"></span><br><span class="line">        n2 = w2 @ a1 + b2</span><br><span class="line">        a2 = Sigmoid(n2)</span><br><span class="line"></span><br><span class="line">        n3 = w3 @ a2 + b3</span><br><span class="line">        aL = Softmax(n3)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># caculate correct num </span></span><br><span class="line"></span><br><span class="line">        max_value_aL = -<span class="number">2</span></span><br><span class="line">        max_idx_aL = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(aL)):</span><br><span class="line">            <span class="keyword">if</span>(max_value_aL &lt; aL[k][<span class="number">0</span>]):</span><br><span class="line">                max_value_aL = aL[k][<span class="number">0</span>]</span><br><span class="line">                max_idx_aL = k</span><br><span class="line"></span><br><span class="line">        max_idx_y = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(y_tmp[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span>(y_tmp[<span class="number">0</span>][k] == <span class="number">1</span>):</span><br><span class="line">                max_idx_y = k</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(max_idx_aL == max_idx_y):</span><br><span class="line">            training_correct_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># verify data -----------------------------</span></span><br><span class="line">    verify_correct_num = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(verify_data_x)):</span><br><span class="line"></span><br><span class="line">        x_tmp = []</span><br><span class="line">        x_tmp.append(verify_data_x[j])</span><br><span class="line">        x_tmp = np.array(x_tmp)</span><br><span class="line"></span><br><span class="line">        y_tmp = []</span><br><span class="line">        y_tmp.append(verify_data_y[j])</span><br><span class="line">        y_tmp = np.array(y_tmp)</span><br><span class="line"></span><br><span class="line">        n1 = w1 @ x_tmp.transpose() + b1</span><br><span class="line">        a1 = Sigmoid(n1)</span><br><span class="line"></span><br><span class="line">        n2 = w2 @ a1 + b2</span><br><span class="line">        a2 = Sigmoid(n2)</span><br><span class="line"></span><br><span class="line">        n3 = w3 @ a2 + b3</span><br><span class="line">        aL = Softmax(n3)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># caculate correct num</span></span><br><span class="line"></span><br><span class="line">        max_value_aL = -<span class="number">2</span></span><br><span class="line">        max_idx_aL = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(aL)):</span><br><span class="line">            <span class="keyword">if</span>(max_value_aL &lt; aL[k][<span class="number">0</span>]):</span><br><span class="line">                max_value_aL = aL[k][<span class="number">0</span>]</span><br><span class="line">                max_idx_aL = k</span><br><span class="line"></span><br><span class="line">        max_idx_y = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(y_tmp[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span>(y_tmp[<span class="number">0</span>][k] == <span class="number">1</span>):</span><br><span class="line">                max_idx_y = k</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(max_idx_aL == max_idx_y):</span><br><span class="line">            verify_correct_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    training_correct_rate = training_correct_num / <span class="built_in">len</span>(training_data_x)</span><br><span class="line">    verify_correct_rate = verify_correct_num / <span class="built_in">len</span>(verify_data_x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># avoid overfitting</span></span><br><span class="line">    <span class="keyword">if</span>(training_correct_rate &gt; <span class="number">0.96</span> <span class="keyword">or</span> verify_correct_rate &gt; <span class="number">0.96</span>):</span><br><span class="line">        epoch_result = i+<span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># output information for drawing compare plot</span></span><br><span class="line">    output_epoch.append(i+<span class="number">1</span>)</span><br><span class="line">    output_training_correct_rate.append(training_correct_rate)</span><br><span class="line">    output_verify_correct_rate.append(verify_correct_rate)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># print("Epoch now:", i+1)</span></span><br><span class="line">    <span class="comment"># print("Training Data Correct rate:", training_correct_num / len(training_data_x))</span></span><br><span class="line">    <span class="comment"># print("Verify Data Correct rate:"  , verify_correct_num / (len(verify_data_x)))</span></span><br><span class="line">    <span class="comment"># print()</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># draw the compare plot ===================================================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">plt.plot(output_epoch, output_training_correct_rate, color='indianred')</span></span><br><span class="line"><span class="string">plt.plot(output_epoch, output_verify_correct_rate, color='#7eb54e')</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># str_title = "Training Correct Rate by Learning Rate " + str(learning_rate)</span></span><br><span class="line"><span class="string">plt.title("Training Correct Rate vs Verify Correct Rate" )</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">plt.xlabel("Epoch")</span></span><br><span class="line"><span class="string">plt.ylabel("Correct Rate")</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">plt.legend(["Training Correct Rate", "Verify Correct Rate"], loc = "lower right")</span></span><br><span class="line"><span class="string">plt.grid()</span></span><br><span class="line"><span class="string">plt.savefig('output9.png')</span></span><br><span class="line"><span class="string">plt.show()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Predict Test9 ============================================================</span></span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">'mnist_test9.csv'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># row size: 9020, col size: 784</span></span><br><span class="line">rowx, colx = df.shape</span><br><span class="line"></span><br><span class="line">test_data_x = df.to_numpy()[:, :] / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">classification = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">ans_result = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="built_in">len</span>(test_data_x)):</span><br><span class="line">    x_tmp = []</span><br><span class="line">    x_tmp.append(test_data_x[i])</span><br><span class="line">    x_tmp = np.array(x_tmp)</span><br><span class="line"></span><br><span class="line">    n1 = w1 @ x_tmp.transpose() + b1</span><br><span class="line">    a1 = Sigmoid(n1)</span><br><span class="line"></span><br><span class="line">    n2 = w2 @ a1 + b2</span><br><span class="line">    a2 = Sigmoid(n2)</span><br><span class="line"></span><br><span class="line">    n3 = w3 @ a2 + b3</span><br><span class="line">    aL = Softmax(n3)</span><br><span class="line"></span><br><span class="line">    aL_idx_classification = np.argmax(aL)</span><br><span class="line">    ans_result.append(classification[aL_idx_classification])</span><br><span class="line"></span><br><span class="line">ans_result = np.array(ans_result)</span><br><span class="line">ans_result_df = pd.DataFrame(ans_result)</span><br><span class="line">ans_result_df.to_csv(<span class="string">'ans9.csv'</span>, index=<span class="literal">False</span>, header=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output result</span></span><br><span class="line">hidden_layer_neurons = [w1.shape[<span class="number">0</span>], w2.shape[<span class="number">0</span>], w3.shape[<span class="number">0</span>]]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Final Result:"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Epoch:"</span>, epoch_result, <span class="string">", Learning Rate:"</span>, learning_rate, <span class="string">", Hidden Layer:"</span>, hidden_layer_neurons)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Training Data Correct Rate:"</span>, training_correct_num / <span class="built_in">len</span>(training_data_x))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Validation Data Correct Rate:"</span>  , verify_correct_num / (<span class="built_in">len</span>(verify_data_x)))</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>黃貞瑛老師的深度學習課程</li>
+<li>許瀚丰、應名宥學長的助教輔導課程</li>
+<li>吳建中、詹閎安同學的共同討論</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Deep-Learning/">#Deep Learning</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/05/15/Deep-Learning-Transformer/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Deep Learning - Transformer</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/05/08/Deep-Learning-Simple-Stochastic-Gradient-Descent-Implementation/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Deep Learning - Simple Stochastic Gradient Descent Implementation</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Deep Learning - Backpropagation Algorithm to Classify MNIST</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%82%99%E7%9F%A5%E8%AD%98"><span class="nav-text">先備知識</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backpropagation-Algorithm-by-PyTorch"><span class="nav-text">Backpropagation Algorithm by PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F"><span class="nav-text">完整程式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backpropagation-Algorithm-by-Python"><span class="nav-text">Backpropagation Algorithm by Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

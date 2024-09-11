@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2022/03/23/php-introduction/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="PHP - Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP - Introduction">
+<meta property="og:url" content="https://lavinia0724.github.io/2022/03/23/PHP-Introduction/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="PHP - Introduction">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PHP01.jpeg">
+<meta property="og:image" content="https://blog.tarswork.com/upload/filemanager/post/2023/12_type_system.svg">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:720/format:webp/1*vx6NiLMmVMv2jahLWxgCMA.png">
+<meta property="article:published_time" content="2022-03-23T15:15:14.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.919Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/PHP01.jpeg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            PHP - Introduction -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post64.JPG" alt="PHP - Introduction" />
+                    <h1 class="article-title-cover">PHP - Introduction</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-03-23</span>
+        <span class="mobile">2022-03-23</span>
+        <!-- <span class="desktop">2022-03-23 23:15:14</span>
+        <span class="mobile">2022-03-23 23:15</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Programming-Languages/">Programming Languages</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Languages/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>先來聽首 PHP 之歌吧</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fCt2_AsCWKI?si=wVtjdv-ujUuBzNAI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h3 id="PHP-是全世界最好的語言"><a href="#PHP-是全世界最好的語言" class="headerlink" title="PHP 是全世界最好的語言"></a>PHP 是全世界最好的語言</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\PHP01.jpeg"
+                     
+                >
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/news/344408" >圖片來源</a></p>
+<p>然後 PHP 有個梗，他官方文件裡面曾經寫過 <strong>「PHP 是最好的 web 開發語言，那其他的語言如何呢？」</strong>，聽起來超囂張的 XD<br>結果後來就被華語圈的程式設計師以訛傳訛變成 「世界上最好的語言」</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>什麼是 PHP？<br>PHP 的前身是一個用來跟蹤訪問主業的人們的信息，叫做 Personal Home Page Tools<br>但是後來被重寫後，現在改稱 PHP: Hypertext Preprocessor</p>
+<p>因為 PHP 他長得像一隻大象，所以吉祥物是 elePHPhant，聽說有在賣周邊，在前面 PHP 之歌裡面出現，<del>有點想買</del></p>
+<p>PHP 是一個應用範圍很廣的語言，特別是在網路程式開發方面，你可以透過執行 PHP 的程式碼來產生網頁，提供瀏覽器讀取</p>
+<p>PHP 也是一種腳本語言，縮短了傳統編寫編譯的過程的電腦語言，常用於自動化流程，通常簡單易學也容易使用</p>
+<h3 id="弱型別"><a href="#弱型別" class="headerlink" title="弱型別"></a>弱型別</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://blog.tarswork.com/upload/filemanager/post/2023/12_type_system.svg"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://blog.tarswork.com/post/programming-language-type-system/" >圖片來源</a></p>
+<p>PHP 是一種弱型別語言，弱型別就是這個語言型別系統對於型別檢查的嚴格程度不是很嚴謹</p>
+<p>譬如說，如果今天用 PHP 寫說要讓數字 123 加上字串 456，那今天你得到的結果會是 579 ，因為 PHP 會很貼心的自動幫你發現說 “哦字串 456 可以轉成數字耶”，然後就很貼心的幫你把 456 轉成數字然後跟 123 相加</p>
+<blockquote>
+<p>沒有甚麼好或不好，這種貼心很方便省事，但是有時候你可能真的打錯 code，PHP 會不知道你打錯，一樣自作聰明的幫你轉，結果你程式可能到最後都順利輸出了，但是答案是錯的，然後你要 debug 就會 de 很久</p>
+</blockquote>
+<h3 id="動態語言"><a href="#動態語言" class="headerlink" title="動態語言"></a>動態語言</h3><p>動態語言指的是你可以在執行的時候改變他的結構、物件或型別的語言，你可以有新的函數、新的對象之類的，簡單來說就是你程式在運行的時候可以根據某些條件改變自身結構</p>
+<h3 id="後端語言"><a href="#後端語言" class="headerlink" title="後端語言"></a>後端語言</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*vx6NiLMmVMv2jahLWxgCMA.png"
+                     
+                ><br><a class="link"   target="_blank" rel="noopener" href="https://hugh-program-learning-diary-js.medium.com/%E5%BE%8C%E7%AB%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-8643ca1f5315" >圖片來源</a></p>
+<p>PHP 是常用的後端語言，後端由 server，後端語言、資料庫組成</p>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><p>基礎的 PHP 語法</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 單行註解</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   多行註解</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Hello World\n&quot;</span>;</span><br><span class="line">ECHO <span class="string">&quot;heLLo World\n&quot;</span>;</span><br><span class="line">eChO <span class="string">&quot;Hello wORlD\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>PHP 的 script 可以在你 document 的任何地方去寫他，然後他的 script 開頭會是 <code>&lt;?php</code> 這樣，結尾會是 <code>?&gt;</code>，中間就是你的 code</p>
+<p>PHP 檔案存檔就跟你一般存檔的時候一樣，你的 filename 巴拉巴拉然後副檔名最後 <code>.php</code>，PHP 註解的方式和 C 一樣</p>
+<p>最後他輸出的方式是寫 <code>echo</code>，而像是 <code>echo</code> 這類的關鍵字、保留字，在 PHP 的 Case Sensitivity 是大小寫沒差的，但是自己取的變數名稱就有差，只要變數中其中一個字元設不同的就會視為是不同變數</p>
+<p>PHP 結尾要記得加分號！！</p>
+<h2 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h2><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="number">123</span>;        </span><br><span class="line"><span class="variable">$_a</span> = -<span class="number">123</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="number">0123</span>;</span><br><span class="line"><span class="variable">$_b</span> = -<span class="number">0123</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="number">0x123</span>;</span><br><span class="line"><span class="variable">$_c</span> = -<span class="number">0x123</span>;</span><br><span class="line"><span class="variable">$f</span> = <span class="number">123.45</span>;</span><br><span class="line"><span class="variable">$_f</span> = -<span class="number">123.45</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>由於 PHP 的動態特性，動態語言的變數本身只有參考資料，並不會像靜態語言那樣還帶有著資料型態，所以所有變數都是 <code>$</code> 錢字號開頭，就不像 c 那樣還要寫成 <code>int a</code> 等等，不需要為他賦予變數型態</p>
+<p>任每次期中期末必考的那樣，PHP 的變數型態開頭也不能是數字，只能是單字或是 <code>_</code> 底線開頭，且變數名稱整體只能包含數字、英文字母和底線而且，變數名稱的大小寫有差，是 Case Sensitivity 這點和 c 語言也是一樣的哦</p>
+<p>接著，PHP 的存取範圍，在 32 bit 的系統整數可以表示的範圍是 -2147483648 ~ 2147483648<br>(我自己記大概都是記 20 億，也就是一個2後面9個零)，而 PHP 的存取範圍在 64 bit 的系統是和 long long int 的範圍是一樣的，只要超過範圍就會改用浮點數型態儲存</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>string 的寫入在 PHP 裡面就像平常在寫 c 一樣，但是有單引號和雙引號的區別</p>
+<p>如果在雙引號中寫入變數，那輸出字串時會自動將變數轉譯成變數值</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="string">&quot;NISRA!!!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;I love <span class="subst">$str</span>!\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// I love NISRA!!!</span></span><br></pre></td></tr></table></figure></div>
+
+<p>但如果是在單引號中寫入變數，那他會把這整串都當作真的只是字串，就不會轉譯變數</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="string">&quot;NISRA!!!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;I love $str!\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// I love $str!\n</span></span><br></pre></td></tr></table></figure></div>
+
+<p>PHP 的 strlen() 是回傳多少這個字串有 bytes 而不是多少字元</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">strlen</span>(<span class="string">&quot;strabc123&quot;</span>); </span><br><span class="line"><span class="comment">// 9</span></span><br></pre></td></tr></table></figure></div>
+
+<p>PHP 裡面，英文字母的 <code>.</code> 用來串接字串</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">&quot;123&quot;</span> . <span class="string">&#x27;4&#x27;</span> . <span class="string">&quot;.5\n&quot;</span>; </span><br><span class="line"><span class="comment">// 1234.5</span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果我們今天用加號相加呢，前面有題到，PHP 是弱型別語言，所以今天如果我們的字串是數字的話，PHP 是允許這個字串和 int、float 型別的數字做相加的<br>執行以後會發現輸出結果是 127.56，也正體現了弱型別的特性</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">&quot;123&quot;</span> + <span class="number">4</span> + <span class="number">0.56</span>; </span><br><span class="line"><span class="comment">// 127.56</span></span><br></pre></td></tr></table></figure></div>
+
+<p>用字串做相加，譬如說我們把剛剛的 4 和 0.56 都改成字串型態<br>執行以後會發現，他的輸出結果一樣是 127.56，也就是這些字串都被判斷為 int 而做相加</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">&quot;123&quot;</span> + <span class="string">&quot;4&quot;</span> + <span class="string">&quot;0.56&quot;</span>; </span><br><span class="line"><span class="comment">// 127.56</span></span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>C 的字串結尾最後會有空字元，但 PHP 沒有</p>
+</blockquote>
+<h3 id="Conditions"><a href="#Conditions" class="headerlink" title="Conditions"></a>Conditions</h3><p>簡單的 PHP if elseif else 的範例</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$t</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;H&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;6&quot;</span> &lt;= <span class="variable">$t</span> &amp;&amp; <span class="variable">$t</span> &lt; <span class="string">&quot;12&quot;</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;Good morning!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">elseif</span>(<span class="string">&quot;12&quot;</span> &lt;= <span class="variable">$t</span> &amp;&amp; <span class="variable">$t</span> &lt; <span class="string">&quot;18&quot;</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;Good afternoon!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;Good night!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><code>$t</code> 是一個我們自己設的變數，<code>date(&quot;H&quot;)</code> 是回傳 24 小時制的字串，這個 H 是固定的<br>那我們現在把他丟進 if 判斷式裡面判斷，而這邊要用字串型態判斷是因為我們這邊 date 是用 “H” 字串作為 <code>$t </code>的型態，而可以用字串型態去比較數字的大小是因為 PHP 是弱型別語言</p>
+<h3 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h3><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$i</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$i</span> &lt;= <span class="number">5</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$i</span>++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$j</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$j</span>++;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="variable">$j</span> &lt;= <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$k</span> = <span class="number">1</span>; <span class="variable">$k</span> &lt;= <span class="number">5</span>; <span class="variable">$k</span>++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$k</span> == <span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">elseif</span>(<span class="variable">$k</span> == <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$k</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$num</span> = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$num</span> <span class="keyword">as</span> <span class="variable">$n</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$n</span>&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>array 的寫法，可以直接宣告 <code>$var = array();</code><br>而如果要宣告二維陣列的話，會宣告 <code>$array = array(array());</code>，此種寫法，會讓陣列包含一個 <code>[0] =&gt; array()</code> 陣列頭的元素<br>下面有詳細說明</p>
+<p><code>for each</code> 一般來說並不太常被使用，但是如果要寫的話可以這樣寫 <code>foreach($array as $value)</code><br>前面是你剛剛設為 array 的參數名稱，<code>as</code> 後面是你現在設定要遍歷整個陣列的變數名稱<br>我自己的理解上，我覺得他的判斷式有點像 c++ 的 <code>for(auto i : array)</code></p>
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p>在 PHP 裡面，array 的宣告是長這樣</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$f</span> = <span class="keyword">array</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果要初始化放值在 array 裡面，就在括號裡面用雙引號填寫值，中間用逗號隔開</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$f</span> = <span class="keyword">array</span>(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>當我們想要表示陣列的大小時，在 PHP 我們會寫 count(f)，中間的括號放我們的陣列變數，代表你的陣列中總共有多少元素</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$f</span> = <span class="keyword">array</span>(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">count</span>(<span class="variable">$f</span>); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$f</span>[<span class="variable">$i</span>] . <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// A B </span></span><br></pre></td></tr></table></figure></div>
+
+<p>一樣可以用 <code>.</code> 來對陣列和字串做串接</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="variable">$f</span>[<span class="number">0</span>] . <span class="string">&quot; is &quot;</span> . <span class="variable">$f</span>[<span class="number">1</span>] . <span class="string">&quot;&#x27;s friend\n&quot;</span>;</span><br><span class="line"><span class="comment">// A is B&#x27;s friend</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Associative"><a href="#Associative" class="headerlink" title="Associative"></a>Associative</h3><p>PHP 的 array 有的 Associative 特性<br>我們可以用一個自己設定的 key 值去當作該陣列的索引值，有點像 c 的 STL map<br>譬如說我現在把 key 值設為字串 LAVI，那我可以用像這樣，像箭頭一樣的符號 等於大於 <code>=&gt;</code> 然後接我想要放入的值<br>那我們輸出來看看，這邊一樣，取值的話也一樣是在陣列裡面放 key 值</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$age</span> = <span class="keyword">array</span>(<span class="string">&quot;LAVI&quot;</span> =&gt; <span class="string">&quot;19&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;LAVI is &quot;</span> . <span class="variable">$age</span>[<span class="string">&#x27;LAVI&#x27;</span>] . <span class="string">&quot; years old.\n&quot;</span>;</span><br><span class="line"><span class="comment">// LAVI is 19 years old</span></span><br></pre></td></tr></table></figure></div>
+
+<p>也可以直接用像對陣列賦值一樣的寫法，直接把字串索引的 key 寫在陣列的中括號裡面</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$age</span>[<span class="string">&#x27;LAVI&#x27;</span>] = <span class="string">&quot;19&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;LAVI is &quot;</span> . <span class="variable">$age</span>[<span class="string">&#x27;LAVI&#x27;</span>] . <span class="string">&quot; years old.\n&quot;</span>;</span><br><span class="line"><span class="comment">// LAVI is 19 years old</span></span><br></pre></td></tr></table></figure></div>
+
+<p>我們也可以一次對整個陣列賦予很多 value，只要我們中間用逗點隔開就好，那我們接下來來試著用 <code>foreach</code> 迴圈輸出看看<br>這邊是因為如果用 <code>i = 0、i &lt;</code> 陣列大小之類的，但因為我們現在索引值不是 0 1 2 3 那些了，所以不能那樣寫<br>那我們這邊的寫法是陣列名字變數 <code>as</code> 你取的變數名，此時它代表的意義是你的 key 值<br>後面接箭頭指向的另一個變數值也是你自己取的另一個變數，它代表的意義是你的 value<br>也順便同時來看看 key 值是多少</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$age</span> = <span class="keyword">array</span>(<span class="string">&quot;A&quot;</span> =&gt; <span class="string">&quot;15&quot;</span>, <span class="string">&quot;B&quot;</span> =&gt; <span class="string">&quot;30&quot;</span>, <span class="string">&quot;C&quot;</span> =&gt; <span class="string">&quot;20&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$age</span> <span class="keyword">as</span> <span class="variable">$i</span> =&gt; <span class="variable">$i_value</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;Key = &quot;</span> . <span class="variable">$i</span> . <span class="string">&quot;, Value = &quot;</span> . <span class="variable">$i_value</span>;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Sort"><a href="#Sort" class="headerlink" title="Sort"></a>Sort</h4><p>對這個 array 做排序，PHP 有內建的 sort 函式<br>我們可以簡單的寫個一維陣列，然後用 foreach 輸出</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$numbers</span> = <span class="keyword">array</span>(<span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">22</span>, <span class="number">11</span>);</span><br><span class="line">    <span class="title function_ invoke__">sort</span>(<span class="variable">$numbers</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$numbers</span> <span class="keyword">as</span> <span class="variable">$i</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$i</span> . <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// 2 4 6 11 22 </span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果是字串呢<br>可以看到，他排序的方式是按照第一個字元的字典序作排列</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$f</span> = <span class="keyword">array</span>(<span class="string">&quot;ABC&quot;</span>, <span class="string">&quot;XYZ&quot;</span>, <span class="string">&quot;BCDEF&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">sort</span>(<span class="variable">$f</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$f</span> <span class="keyword">as</span> <span class="variable">$i</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$i</span> . <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// ABC BCDEF XYZ </span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果今天是 associative 的 array 呢<br>可以從結果看到，他 asort 這邊根據的是你的 value 值去做排序，而不是 key 值</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$age</span> = <span class="keyword">array</span>(<span class="string">&quot;P&quot;</span> =&gt; <span class="string">&quot;35&quot;</span>, <span class="string">&quot;B&quot;</span> =&gt; <span class="string">&quot;37&quot;</span>, <span class="string">&quot;J&quot;</span> =&gt; <span class="string">&quot;43&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">asort</span>(<span class="variable">$age</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$age</span> <span class="keyword">as</span> <span class="variable">$i</span> =&gt; <span class="variable">$i_value</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$i</span> . <span class="string">&quot; &quot;</span> . <span class="variable">$i_value</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">P 35</span></span><br><span class="line"><span class="comment">B 37</span></span><br><span class="line"><span class="comment">J 43</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果我們今天想要根據 key 值去做排序的話，可以用 <code>ksort()</code></p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$age</span> = <span class="keyword">array</span>(<span class="string">&quot;P&quot;</span> =&gt; <span class="string">&quot;35&quot;</span>, <span class="string">&quot;B&quot;</span> =&gt; <span class="string">&quot;37&quot;</span>, <span class="string">&quot;J&quot;</span> =&gt; <span class="string">&quot;43&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">ksort</span>(<span class="variable">$age</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$age</span> <span class="keyword">as</span> <span class="variable">$i</span> =&gt; <span class="variable">$i_value</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$i</span> . <span class="string">&quot; &quot;</span> . <span class="variable">$i_value</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Multidimensional"><a href="#Multidimensional" class="headerlink" title="Multidimensional"></a>Multidimensional</h4><p>關於多維陣列，PHP 的多維陣列有點像俄羅斯套娃，一層包一層那樣寫<br>那像如果我們今天要寫一個簡單的二維陣列 <code>data[2][3]</code>，row 有兩層、column 有三層，那我們可以這樣寫<br>為了方便自己看的話，我們可以把他換行對齊</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>( <span class="keyword">array</span>(<span class="string">&quot;LAVI&quot;</span>, <span class="number">160</span>, <span class="number">449</span>),</span><br><span class="line">                <span class="keyword">array</span>(<span class="string">&quot;TsaiTing&quot;</span>, <span class="number">165</span>, <span class="number">217</span>),</span><br><span class="line">               );</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h4><p>PHP 的 function 寫法，是開頭先寫 function，放一個空白之後後面接你自己取名的 function name，再接一個括弧，這個括弧裡面看你裡面有沒有要放參數</p>
+<p><code>===</code> 是除了本來值相同的等於外，參數型態也要相同，多了一個這樣的條件<br>function name 是 not case-sensitive，大小寫都可以 call 這個 function</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">NISRA</span>(<span class="params"><span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$arg</span> === <span class="string">&quot;name&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Network and Information Security Research Association\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">elseif</span>(<span class="variable">$arg</span> === <span class="string">&quot;year&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;since 2007\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">nisra</span>(<span class="string">&quot;name&quot;</span>); </span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">NISRA</span>(<span class="string">&quot;year&quot;</span>);</span><br><span class="line"><span class="comment">// Network and Information Security Research Association</span></span><br><span class="line"><span class="comment">// since 2007</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="function-sum"><a href="#function-sum" class="headerlink" title="function sum"></a>function sum</h4><p>假設我們今天寫一個 function sum，他有傳入兩個參數 x 和 y，我們可以對這兩個參數都寫入初始賦值<br>他有點像 constructor，今天如果你 call 了他但內部沒有放入任何參數的話<br>他就會用你原本賦的值，否則，如果你有放入參數的話，他就會用你放的參數的值<br>如果你放入的參數的值的量不是你全部要求的傳入參數的量的話，沒被傳入的參數，他也會用你初始賦的值</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"><span class="keyword">int</span> <span class="variable">$x</span> = <span class="number">1</span>, <span class="keyword">int</span> <span class="variable">$y</span> = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable">$x</span> + <span class="variable">$y</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">sum</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">sum</span>(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">sum</span>();</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></div>
+<p>我們正常的傳入 <code>sum(2, 3)</code>，那他輸出的結果會是 5，也就是他用的是我們傳入的 2 3，不是 function 上賦值的 1 2</p>
+<p>如果我們只傳入 <code>sum(4)</code>，一個參數，那他輸出的結果是 6，也就是他 <code>x = 4</code>，是你傳入的參數，但 <code>y = 2</code>，是他初始賦的值</p>
+<p>你傳入一個甚麼參數都沒有的 sum()，最後輸出結果是 3，就是你初始賦的值 x &#x3D; 1 和 y &#x3D; 2</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">sum</span>(<span class="number">2</span>, <span class="string">&quot;3&quot;</span>);</span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure></div>
+<p>如果傳入的參數不是 int 呢 ? 如果傳入 <code>sum(2, &quot;3&quot;)</code>，後面放字串，那我們會發現輸出值一樣是 5，因為 PHP 又幫你自動做型態轉換了</p>
+<p>如果不想要他做型態轉換可以在最前面加上</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span>(strict_types=<span class="number">1</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="passing-arguments-by-reference"><a href="#passing-arguments-by-reference" class="headerlink" title="passing arguments by reference"></a>passing arguments by reference</h4><p>一般 PHP 裡我們都是用 passed by value<br>但我們這邊來寫寫看 passing arguments by reference，用位址來傳參數</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">&amp;<span class="variable">$value</span></span>) </span>&#123;</span><br><span class="line">  <span class="variable">$value</span>++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$num</span> = <span class="number">1</span>;</span><br><span class="line"><span class="title function_ invoke__">add</span>(<span class="variable">$num</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$num</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure></div>
+<p>這邊我們寫一個 function add，傳入參數的地方寫 <code>&amp;$value</code>，對 value 取址，PHP 的取址一樣是用 <code>&amp;</code> 符號<br>那我們這邊設立一個另一個參數 num 並賦予初始值 1，再來把它傳入 function add 中，而此時 value 是 num 的位址的值<br>那我們對 value 做加加，也就是對 num 的位址的值做加加，那就是對 1 做加加<br>所以我們最後輸出 num，輸出值是 2</p>
+<h2 id="Syntax-0x2"><a href="#Syntax-0x2" class="headerlink" title="Syntax 0x2"></a>Syntax 0x2</h2><h3 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h3><p>在 PHP 裡面，我們有很多的比較運算元，也有分嚴格比較和寬鬆比較<br>這也是 PHP 弱型別的體現<br>像是 <code>==</code>、<code>!=</code> 這些都是寬鬆的比較，它只比較兩者的值，不會比較型態是否相同，PHP 會自動幫你轉換型態<br>那像 <code>=</code>、<code>!</code> 是嚴格的比較，它不只比較值，也會比較型態</p>
+<h4 id="Loose-Comparison"><a href="#Loose-Comparison" class="headerlink" title="Loose Comparison"></a>Loose Comparison</h4><p>在寬鬆的比較下，也就是只有兩個等於的時候，<br>我們可以寫比較式來驗證看看它的 true or false 的狀態<br>這邊大家可以用 <code>var_dump()</code> 可以把 true or false 的變數資訊顯示出來</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">0</span> == <span class="string">&quot;nisra&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">1</span> == <span class="string">&quot;01&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="string">&quot;1&quot;</span> == <span class="string">&quot;01&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">在 8.0 版本</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">在 7.0 版本</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>可以看到結果是 false、true、true，第二和第三個之所以也都是 true，是因為像這類的 Numerical String，數字字串，在比較時都會被轉成數字<br>但是第一串 <code>0 == “nisra”</code> 現在在的 PHP 8 下，會被驗證成是 false，可是在，因為 PHP 8 之後的 Numerical String 不會被亂轉，但是在版本 8 以前會被轉，因而產生非預期的結果</p>
+<h4 id="Strict-Comparison"><a href="#Strict-Comparison" class="headerlink" title="Strict Comparison"></a>Strict Comparison</h4><p>那我們現在把它轉成嚴格比較，<code>===</code>，那可以發現結果變成都是 false 了，因為它現在要求你型態也要一致<br>所以只有像這樣，比較 <code>“01” === “01”</code>，型態是字串跟字串內容皆相同時才會回傳 true</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">0</span> === <span class="string">&quot;nisra&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">1</span> === <span class="string">&quot;01&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="string">&quot;1&quot;</span> === <span class="string">&quot;01&quot;</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="string">&quot;01&quot;</span> === <span class="string">&quot;01&quot;</span>);</span><br><span class="line"><span class="comment">// bool(true)</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h4><p>那 PHP 的 library 裡面還有很多比較運算元，譬如說 <code>&lt;&gt;</code> 就像是 <code>!=</code>，當你今天在將兩邊比較者都換成數字後，如果兩邊不等於，才會回傳 true<br>像剛剛的例子修改過後，會發現它反而變成 true、false、false 這樣</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">0</span> &lt;&gt; <span class="string">&quot;nisra&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="number">1</span> &lt;&gt; <span class="string">&quot;01&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="string">&quot;1&quot;</span> &lt;&gt; <span class="string">&quot;01&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">bool(true)</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">bool(false)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Superglobals-GLOBALS"><a href="#Superglobals-GLOBALS" class="headerlink" title="Superglobals $GLOBALS"></a>Superglobals <code>$GLOBALS</code></h3><p>PHP 很多的 Super global variables，也就是那種很像全域變數之類的觀念，它讓你在你成是範圍中的無論何處，全部的範圍內都可以被讀取<br>他們是一種變數，這些字是保留字<br>那像 <code>$GLOBALS</code>，它的用途是讓你可以使用無論宣告在哪裡的變數，而被它使用過的變數也可以在無論何處都可以被使用<br>像這樣，我們可以隨便先設立兩個變數在隨便一個地方，然後我們來寫 function 用這兩個變數但不傳入<br>那此時我們就要用 <code>$GLOBAL</code> 來抓這兩個值，不然一般你是不能用 function 內沒有，你也沒傳入的變數<br>那寫法是在 <code>$GLOBAL[]</code> 的中括號內用單引號括起你要抓的變數名稱 <code>&#39;x&#39;</code><br>而我們可以發現它輸出的 <code>$z</code> 結果是 100，也就是說我們在 function 裡把它變 global 後，在 function 外也可以 call 這個變數了</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$x</span> = <span class="number">75</span>;</span><br><span class="line">    <span class="variable">$y</span> = <span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="variable">$GLOBALS</span>[<span class="string">&#x27;z&#x27;</span>] = <span class="variable">$GLOBALS</span>[<span class="string">&#x27;x&#x27;</span>] + <span class="variable">$GLOBALS</span>[<span class="string">&#x27;y&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">addition</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$z</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// 100</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Superglobals-SERVER"><a href="#Superglobals-SERVER" class="headerlink" title="Superglobals $_SERVER"></a>Superglobals <code>$_SERVER</code></h3><p>那 <code>$_SERVER</code> 這個指令它會儲存這個 request 或是這個 server 存存在的一些資訊<br>譬如說 <code>PHP_SELF</code> 會回傳給你目前腳本的檔名<br><code>SERVER_NAME</code> 會回傳給你主機名<br><code>SCRIPT_NAME</code> 會回傳目前腳本的路徑</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>] . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_SERVER</span>[<span class="string">&#x27;SERVER_NAME&#x27;</span>] . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_SERVER</span>[<span class="string">&#x27;SCRIPT_NAME&#x27;</span>] . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/parser/temp/[...]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">/parser/temp/[...]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Superglobals-GET-POST"><a href="#Superglobals-GET-POST" class="headerlink" title="Superglobals $_GET &amp; $_POST"></a>Superglobals <code>$_GET</code> &amp; <code>$_POST</code></h3><p>在網路傳資料常見的有兩種模式<br>第一種是 get，第二種是 post</p>
+<h4 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a><code>$_GET</code></h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/?user=nisra</span><br></pre></td></tr></table></figure></div>
+
+<p>今天如果你在你的網址上看見 <code>?</code> 後面跟著甚麼等於甚麼 <code>and</code> 甚麼等於甚麼，那些就是你所謂的 get 變數<br>但如果今天它甚麼都沒有，但它還是傳了資料呢，那些資料就會被以 post 的方式傳出去<br>一個 http 封包，他一開始會告訴你它是用甚麼方式傳資料，像我們這邊可以看到這邊有個 &#x2F;? 後面接 <code>user=nisra</code>，那它這整串就是一個 get 變數<br>那這邊的意義是你檔案的路徑，你前面可能會先有一個甚麼甚麼 <code>.com</code>，像這邊舉例是 <code>example.com</code>，後面才會接這串變數<br>那 get 也因為是直接把要傳遞的資訊都直接寫給你看，如此一來它可傳輸的資料量會受限，因為 URL 所能接受的長度是有限的<br>而且此種方法較不安全，因為我們可以直接從 URL 中看見 get 傳送的變數</p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="$_POST"></a><code>$_POST</code></h4><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$name</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;user&#x27;</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;Hello, &#x27;</span> . <span class="variable">$name</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>那如果我們今天用 post 傳的時候，它甚麼都不會寫，沒有 <code>/?</code> 甚麼甚麼，就只有一個斜線而已 &#x2F;<br>因此，我們會說，使用 post 傳輸資料比用 get 更安全一點<br>POST 把要傳送的資料包起來放在內部，並不是直接露骨的把想幹嘛都寫在 URL 上<br>所以可以過濾掉那些不會使用封包、不知道怎麼攔截封包的人</p>
+<h4 id="GET-POST"><a href="#GET-POST" class="headerlink" title="$_GET &amp; $_POST"></a><code>$_GET</code> &amp; <code>$_POST</code></h4><p>總結來說<br>get 就像是寄名信片一樣，會把所有的資料都寫在 URL 上，不僅隱密性不夠而且傳輸的資料有限 (受限於 URL 所能接受的長度)，安全性較低<br>post 則是像寄信或寄包裹一樣，將要傳送的地址寫在 URL 上，裡面再包資料或檔案，內容大小比 get 所能接受的大小大得多，也因為資料不會直接寫在 URL 上，就像你可以看見這裡有個包裹，但你看不到包裹裡面有甚麼，所以相對 get 比較起來安全一點<br>但是 get 它有它的方便性在</p>
+<h2 id="Protocols-Wrappers"><a href="#Protocols-Wrappers" class="headerlink" title="Protocols &amp; Wrappers"></a>Protocols &amp; Wrappers</h2><h3 id="PHP-Supported"><a href="#PHP-Supported" class="headerlink" title="PHP Supported"></a>PHP Supported</h3><p>這邊要談的是 PHP 的偽協議<br>PHP 在處理協議的地方有很多種</p>
+<ul>
+<li><code>file:// - Accessing local filesystem</code> </li>
+<li><code>http:// - Accessing HTTP(s) URLs</code></li>
+<li><code>php:// - Accessing various I/O streams</code> </li>
+<li><code>phar:// - PHP Archive</code></li>
+<li>這些協議如果使用不當的話會造成<ul>
+<li>Local File Include，這個漏洞會造成這台伺服器本地端的檔案被你的 php 讀取，包括你一些重要的東西</li>
+<li>Remote File Include，遠端東東西被 php 檔讀取</li>
+<li>Remote Code Excution，它會讓遠端的使用者可以對你的主機進行指令操作，這些是很危險的嚴重漏洞</li>
+</ul>
+</li>
+</ul>
+<h4 id="file"><a href="#file" class="headerlink" title="file://"></a><code>file://</code></h4><p>那關於 file 這個協議<br>file 後面一定會跟一個路徑，那這個 file 它可以讀取你所有在 web root 上的檔案<br>那我們可以透過 file 來將那個檔案包含進來，然後顯示在網頁上<br>那顯示在網頁上會造成你可以隨意地看它主機內有甚麼檔案的危險性<br>那這邊大家回到剛剛的 index.php<br>我們來試試看讀取回傳檔案<br>我們這邊寫到 <code>$_GET[&#39;path&#39;]</code>，我們等等要用 get 取某個檔案的絕對路徑<br>那接著我們 <code>echo file_get_contents</code>，<code>file_get_contents</code>吃檔名，接著會把檔案內容轉換成字串型態，最後回傳，所以回傳的東西可能不見得很漂亮</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$p</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;path&#x27;</span>];</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$p</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="php"><a href="#php" class="headerlink" title="php://"></a><code>php://</code></h4><p>php 協議通常被攻擊者利用在要取得 PHP 原始碼的時候使用<br>因為 PHP 語法會被 web server 解析至前端時隱藏起來<br>那這個協議的編碼特性，可以將讀取到的原始碼經過編碼後輸出，而做到繞過的手段<br>那 php 這個協議中，他的寫法是先 <code>php://</code>，這邊一樣，他也自帶兩條斜線<br>這邊 <code>&lt;filter&gt;</code> 跟 parameters 都是可以做替換的<br>filter 可以換，變成 <code>php://input</code> 或 <code>php://filter</code> 等等<br>parameters 可以是 read，它代表的意思是以甚麼方式讀取，它可以等於 base64、string 等等看你需求的方式去做調整，它可有可無，如果需要很多個中間可以用 <code>|</code> (或)隔開，就是在你 enter 上面的那個直線<br>另外可以寫 resource，代表你要讀取的檔案，它是必備的</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/news/344408" >程序員的世紀之戰：誰才是最好的計算機語言！</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://hugh-program-learning-diary-js.medium.com/%E5%BE%8C%E7%AB%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-8643ca1f5315" >後端基礎概念：php 與 資料庫基本知識</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.php.net/manual/en/index.php" >PHP: PHP Manual</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.w3schools.com/php/default.asp" >PHP Tutorial - W3School</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20130066/ironman/3448" >Chess - 資安 0 ~ 100K 只要 30 天</a> 感恩學長！讚嘆學長！</li>
+<li>和阿鼠共同於 NISRA 110-2 備課&#x2F;授課</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/03/29/Cyber-Security-XSS/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - XSS</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/01/25/Github-Note/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Github - Note</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">PHP - Introduction</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-%E6%98%AF%E5%85%A8%E4%B8%96%E7%95%8C%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AA%9E%E8%A8%80"><span class="nav-text">PHP 是全世界最好的語言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B1%E5%9E%8B%E5%88%A5"><span class="nav-text">弱型別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E8%AA%9E%E8%A8%80"><span class="nav-text">動態語言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%8C%E7%AB%AF%E8%AA%9E%E8%A8%80"><span class="nav-text">後端語言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax"><span class="nav-text">Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Types"><span class="nav-text">Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditions"><span class="nav-text">Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loops"><span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-text">Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associative"><span class="nav-text">Associative</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax-0x2"><span class="nav-text">Syntax 0x2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison"><span class="nav-text">Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Superglobals-GLOBALS"><span class="nav-text">Superglobals $GLOBALS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Superglobals-SERVER"><span class="nav-text">Superglobals $_SERVER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Superglobals-GET-POST"><span class="nav-text">Superglobals $_GET &amp; $_POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-Wrappers"><span class="nav-text">Protocols &amp; Wrappers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Supported"><span class="nav-text">PHP Supported</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

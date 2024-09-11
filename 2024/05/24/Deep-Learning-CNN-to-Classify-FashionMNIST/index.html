@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2024/05/24/deep-learning-cnn-to-classify-fashionmnist/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Deep Learning - CNN to Classify FashionMNIST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning - CNN to Classify FashionMNIST">
+<meta property="og:url" content="https://lavinia0724.github.io/2024/05/24/Deep-Learning-CNN-to-Classify-FashionMNIST/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Deep Learning - CNN to Classify FashionMNIST">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-24T07:40:06.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.904Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Implementation">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Deep Learning - CNN to Classify FashionMNIST -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post93.JPG" alt="Deep Learning - CNN to Classify FashionMNIST" />
+                    <h1 class="article-title-cover">Deep Learning - CNN to Classify FashionMNIST</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-05-24</span>
+        <span class="mobile">2024-05-24</span>
+        <!-- <span class="desktop">2024-05-24 15:40:06</span>
+        <span class="mobile">2024-05-24 15:40</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Implementation/Deep-Learning-CNN-to-Classify-FashionMNIST/">Deep Learning - CNN to Classify FashionMNIST</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/MNIST-Backpropagation-Algorithm" title="CNN to Classify FashionMNIST"><i class="fa-brands fa-github"></i> CNN to Classify FashionMNIST</a>
+
+<p>利用 PyTorch 實作卷積神經網路（Convolutional Neural Network, CNN）</p>
+<h2 id="CNN-by-PyTorch"><a href="#CNN-by-PyTorch" class="headerlink" title="CNN by PyTorch"></a>CNN by PyTorch</h2><p>輸入資料本實驗採用含有 <code>10</code> 個類別的 Fashion-MNIST 數據集，每筆資料為  <code>28x28</code> 灰階圖像，共有 <code>60,000</code> 筆訓練資料和 <code>10,000</code> 筆測試資料</p>
+<h4 id="import-套件"><a href="#import-套件" class="headerlink" title="import 套件"></a>import 套件</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> random_split</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> PIL.Image <span class="keyword">as</span> Image</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="建立-CNN-網路"><a href="#建立-CNN-網路" class="headerlink" title="建立 CNN 網路"></a>建立 CNN 網路</h4><p>詳細捲積層、池化層、全連接層、dropout 如下</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用 CNN 於 FashionMNIST 資料</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConvNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(ConvNet, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層捲積層</span></span><br><span class="line">        self.conv1 = nn.Conv2d(in_channels=<span class="number">1</span>, out_channels=<span class="number">64</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(in_channels=<span class="number">64</span>, out_channels=<span class="number">64</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">        self.conv3 = nn.Conv2d(in_channels=<span class="number">64</span>, out_channels=<span class="number">128</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 池化層採 max pooling</span></span><br><span class="line">        self.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層全連接層</span></span><br><span class="line">        self.fc1 = nn.Linear(in_features=<span class="number">128</span> * <span class="number">11</span> * <span class="number">11</span>, out_features=<span class="number">512</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">512</span>, <span class="number">128</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 設定 dropout 和激活函數 relu</span></span><br><span class="line">        self.dropout = nn.Dropout(<span class="number">0.25</span>)</span><br><span class="line">        self.relu = nn.ReLU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># first conv</span></span><br><span class="line">        <span class="comment"># input shape 1 * 28 * 28, output shape = 64 * 26 * 26, Note: (n-f+1), 28-3+1=26</span></span><br><span class="line">        x = self.relu(self.conv1(x))</span><br><span class="line">        <span class="comment"># second conv</span></span><br><span class="line">        <span class="comment"># input shape 64 * 26 * 26, output shape = 64 * 24 * 24</span></span><br><span class="line">        x = self.relu(self.conv2(x))</span><br><span class="line">        <span class="comment"># third conv</span></span><br><span class="line">        <span class="comment"># input shape 64 * 24 * 24, output shape = 128 * 22 * 22, after pooling -&gt; 128 * 11 * 11, Note: (n-f)/s+1, (22-2)/2+1=11</span></span><br><span class="line">        x = self.pool(self.relu(self.conv3(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 全部做 flatten</span></span><br><span class="line">        x = torch.flatten(x, <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># fully connection layers</span></span><br><span class="line">        <span class="comment"># 可以決定要 dropout 的量、要對哪些層做 relu，都可以修改，都是實驗</span></span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x = self.relu(self.fc1(x))</span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x = self.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="設定超參數"><a href="#設定超參數" class="headerlink" title="設定超參數"></a>設定超參數</h4><div class="note danger"><p><i style="color:#F9727D" class="red fa-solid fa-circle-exclamation"> </i> 接下來會把 <code>def train()</code> 中的每一步逐步拆解說明</p>
+</div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>():</span><br><span class="line">    <span class="comment"># Device configuration</span></span><br><span class="line">    <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">        device = <span class="string">'cuda'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        device = <span class="string">'cpu'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 設定超參數</span></span><br><span class="line">    epochs = <span class="number">50</span></span><br><span class="line">    batch_size = <span class="number">4</span></span><br><span class="line">    lr = <span class="number">0.01</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="讀檔"><a href="#讀檔" class="headerlink" title="讀檔"></a>讀檔</h4><p>因為題目只有 Training Dataset，所以另外切割 <code>20%</code> 的資料為 Validation Dataset</p>
+<p>可以選擇對資料做資料擴充<br>這裡採取了 <code>transforms.RandomRotation</code>，也就是隨機角度旋轉圖片，將其轉化為 tensor 型態，然後做 normalize</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">    train_data = datasets.FashionMNIST(root=<span class="string">'./data'</span>, train=<span class="literal">True</span>, download=<span class="literal">True</span>, transform=transforms.Compose(</span><br><span class="line">                            [transforms.RandomRotation(degrees=<span class="number">20</span>),</span><br><span class="line">                             transforms.ToTensor(), transforms.Normalize(mean=(<span class="number">0.5</span>,), std=(<span class="number">0.5</span>,))]))</span><br><span class="line">    test_data = datasets.FashionMNIST(root=<span class="string">'./data'</span>, train=<span class="literal">False</span>, download=<span class="literal">True</span>, transform=transforms.Compose(</span><br><span class="line">                            [transforms.RandomRotation(degrees=<span class="number">20</span>),</span><br><span class="line">                             transforms.ToTensor(), transforms.Normalize(mean=(<span class="number">0.5</span>,), std=(<span class="number">0.5</span>,))]))</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="資料切割與處理"><a href="#資料切割與處理" class="headerlink" title="資料切割與處理"></a>資料切割與處理</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	<span class="comment"># 取 80% 的資料做 validation 資料集</span></span><br><span class="line">    train_data_size = <span class="built_in">int</span>(<span class="number">0.8</span>*<span class="built_in">len</span>(train_data))</span><br><span class="line">    val_data_size = <span class="built_in">len</span>(train_data) - train_data_size</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 透過 random_split 來隨機切 train_data 的資料到 validation data</span></span><br><span class="line">    train_data, val_data = random_split(train_data, [train_data_size, val_data_size])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Dataloader 來 load 資料，在這裡設計 load 的 batch size，shuffle=True 代表要讀取隨機打散的資料</span></span><br><span class="line">    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line">    val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line">    test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="宣告模型、Loss-Function、Optimizer"><a href="#宣告模型、Loss-Function、Optimizer" class="headerlink" title="宣告模型、Loss Function、Optimizer"></a>宣告模型、Loss Function、Optimizer</h4><p>model 為我們建立的 CNN<br>loss function 是 CrossEntropyLoss<br>採取 SGD (Stochastic Gradient Decent) 隨機梯度下降法</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">    model = ConvNet().to(device)</span><br><span class="line">    criterion = nn.CrossEntropyLoss()</span><br><span class="line">    optimizer = torch.optim.SGD(model.parameters(), lr=lr)</span><br><span class="line"></span><br><span class="line">    best_validation_loss = <span class="built_in">float</span>(<span class="string">'inf'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 我們這次將 train loss 和 validation loss 都記錄下來，畫成折線圖</span></span><br><span class="line">    all_training_loss = []</span><br><span class="line">    all_validation_loss = []</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="模型訓練"><a href="#模型訓練" class="headerlink" title="模型訓練"></a>模型訓練</h4><p>這次用 Min-Batch Stochastic Gradient Descent</p>
+<p>反向傳播三板斧<br><code>optimizer.zero_grad()</code> 清除所有梯度<br><code>loss.backward()</code> 透過反向傳播獲得每個參數的梯度值<br><code>optimizer.step()</code> 透過梯度下降執行參數更新</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	<span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        <span class="comment"># ----------------------------- training ----------------------------------------------- #</span></span><br><span class="line">        <span class="comment"># 訓練模型要設定成 model.train()</span></span><br><span class="line">        model.train()</span><br><span class="line">        <span class="comment"># 從 train loader 讀 batch 跑多筆資料</span></span><br><span class="line">        <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">            <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">            x = x.to(device)</span><br><span class="line">            y = y.to(device)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">                x = x.cuda()</span><br><span class="line">                y = y.cuda()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># forward -&gt; backward -&gt; update</span></span><br><span class="line">            <span class="comment"># 清除所有梯度</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            <span class="comment"># 將 train_data 依 batch size 的數量，放進模型訓練，將該筆資料的預測值存進 predict</span></span><br><span class="line">            predict = model(x)</span><br><span class="line">            <span class="comment"># 計算 loss，把預測的 predict (也就是 ŷ)，和 y 去做 cross entropy 計算</span></span><br><span class="line">            train_loss = criterion(predict, y)</span><br><span class="line"></span><br><span class="line">            train_loss.backward() <span class="comment"># 透過反向傳播獲得每個參數的梯度值</span></span><br><span class="line">            optimizer.step()   <span class="comment"># 透過梯度下降執行參數更新</span></span><br><span class="line"></span><br><span class="line">        all_training_loss.append(train_loss.data.cpu())</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- validation ----------------------------------------------- #</span></span><br><span class="line">        <span class="comment"># 評估模型要設定成 model.eval()</span></span><br><span class="line">        model.<span class="built_in">eval</span>()</span><br><span class="line">        <span class="comment"># torch.no_grad() 顧名思義就是 no gradient</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(val_loader):</span><br><span class="line">                x = x.to(device)</span><br><span class="line">                y = y.to(device)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">                  x = x.cuda()</span><br><span class="line">                  y = y.cuda()</span><br><span class="line"></span><br><span class="line">                predict = model(x)</span><br><span class="line">                validation_loss = criterion(predict, y)</span><br><span class="line"></span><br><span class="line">            all_validation_loss.append(validation_loss.data.cpu())</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 儲存最好的權重</span></span><br><span class="line">            <span class="keyword">if</span> validation_loss &lt; best_validation_loss:</span><br><span class="line">                best_validation_loss = validation_loss</span><br><span class="line">                torch.save(model, <span class="string">"best_model.pth"</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">'New best model saved at epoch'</span>, epoch+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'Train Epoch: {}/{} Traing_Loss: {} Validation_Loss: {}'</span>.<span class="built_in">format</span>(epoch+<span class="number">1</span>, epochs, train_loss.data, validation_loss.data))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Finished Training'</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="計算訓練模型的準確率"><a href="#計算訓練模型的準確率" class="headerlink" title="計算訓練模型的準確率"></a>計算訓練模型的準確率</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	correct_train, total_train = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="comment"># 計算 train accuracy 和 validation accuracy</span></span><br><span class="line">    <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">        x = x.to(device)</span><br><span class="line">        y = y.to(device)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            x = x.cuda()</span><br><span class="line">            y = y.cuda()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將 train_data 依 batch size 的數量進行預測</span></span><br><span class="line">        predict = model(x)</span><br><span class="line">        predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">        total_train += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 training data</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量                                       #</span></span><br><span class="line">        correct_train += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算訓練準確率</span></span><br><span class="line">    train_accuracy = <span class="number">100</span> * correct_train / <span class="built_in">float</span>(total_train)</span><br><span class="line"></span><br><span class="line">    correct_vaild, total_vaild = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(val_loader):</span><br><span class="line">        <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">        x = x.to(device)</span><br><span class="line">        y = y.to(device)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            x = x.cuda()</span><br><span class="line">            y = y.cuda()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將 validation_data 依 batch size 的數量進行預測</span></span><br><span class="line">        predict = model(x)</span><br><span class="line">        predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">        total_vaild += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 validation data</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量</span></span><br><span class="line">        correct_vaild += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算驗證準確率</span></span><br><span class="line">    validation_accuracy = <span class="number">100</span> * correct_vaild / <span class="built_in">float</span>(total_vaild)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="畫出-train-loss-和-validation-loss"><a href="#畫出-train-loss-和-validation-loss" class="headerlink" title="畫出 train loss 和 validation loss"></a>畫出 train loss 和 validation loss</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	plt.plot(<span class="built_in">range</span>(<span class="built_in">len</span>(all_training_loss)), all_training_loss, <span class="string">'indianred'</span>, label=<span class="string">'Training_loss'</span>)</span><br><span class="line">    plt.plot(<span class="built_in">range</span>(<span class="built_in">len</span>(all_validation_loss)), all_validation_loss, <span class="string">'#7eb54e'</span>, label=<span class="string">'validation_loss'</span>)</span><br><span class="line">    plt.title(<span class="string">'Training &amp; Validation loss'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'Number of epochs'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'Loss'</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.savefig(<span class="string">'loss.png'</span>)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="測試模型"><a href="#測試模型" class="headerlink" title="測試模型"></a>測試模型</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	<span class="comment"># testing 也是一種評估模型模式，一樣不用計算梯度</span></span><br><span class="line">    model = torch.load(<span class="string">"best_model.pth"</span>)</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 這次是從 FashionMNIST dataset 拿資料，有獲得了 test 的 label</span></span><br><span class="line">    correct_test, total_test = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_loader):</span><br><span class="line"></span><br><span class="line">          x = x.to(device)</span><br><span class="line">          y = y.to(device)</span><br><span class="line"></span><br><span class="line">          predict = model(x)</span><br><span class="line">          predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">          total_test += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 test data</span></span><br><span class="line"></span><br><span class="line">          <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量</span></span><br><span class="line">          correct_test += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    test_accuracy = <span class="number">100</span> * correct_test / total_test</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="輸出最終結果"><a href="#輸出最終結果" class="headerlink" title="輸出最終結果"></a>輸出最終結果</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def train():</span></span><br><span class="line">	<span class="comment"># 	...</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"-------- Final Result -------"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Epoch:"</span>, epochs, <span class="string">", Learning Rate:"</span>, lr)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Train Accuracy: <span class="subst">{train_accuracy:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Validation Accuracy: <span class="subst">{validation_accuracy:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f'Test Accuracy: <span class="subst">{test_accuracy:<span class="number">.2</span>f}</span>%'</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"-------------------------------"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="main"><a href="#main" class="headerlink" title="main"></a>main</h4><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    train()</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="完整程式"><a href="#完整程式" class="headerlink" title="完整程式"></a>完整程式</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> random_split</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> PIL.Image <span class="keyword">as</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用 CNN 於 FashionMNIST 資料</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConvNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(ConvNet, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層捲積層</span></span><br><span class="line">        self.conv1 = nn.Conv2d(in_channels=<span class="number">1</span>, out_channels=<span class="number">64</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(in_channels=<span class="number">64</span>, out_channels=<span class="number">64</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">        self.conv3 = nn.Conv2d(in_channels=<span class="number">64</span>, out_channels=<span class="number">128</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 池化層採 max pooling</span></span><br><span class="line">        self.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 建立 3 層全連接層</span></span><br><span class="line">        self.fc1 = nn.Linear(in_features=<span class="number">128</span> * <span class="number">11</span> * <span class="number">11</span>, out_features=<span class="number">512</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">512</span>, <span class="number">128</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">128</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 設定 dropout 和激活函數 relu</span></span><br><span class="line">        self.dropout = nn.Dropout(<span class="number">0.25</span>)</span><br><span class="line">        self.relu = nn.ReLU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># first conv</span></span><br><span class="line">        <span class="comment"># input shape 1 * 28 * 28, output shape = 64 * 26 * 26, Note: (n-f+1), 28-3+1=26</span></span><br><span class="line">        x = self.relu(self.conv1(x))</span><br><span class="line">        <span class="comment"># second conv</span></span><br><span class="line">        <span class="comment"># input shape 64 * 26 * 26, output shape = 64 * 24 * 24</span></span><br><span class="line">        x = self.relu(self.conv2(x))</span><br><span class="line">        <span class="comment"># third conv</span></span><br><span class="line">        <span class="comment"># input shape 64 * 24 * 24, output shape = 128 * 22 * 22, after pooling -&gt; 128 * 11 * 11, Note: (n-f)/s+1, (22-2)/2+1=11</span></span><br><span class="line">        x = self.pool(self.relu(self.conv3(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 全部做 flatten</span></span><br><span class="line">        x = torch.flatten(x, <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># fully connection layers</span></span><br><span class="line">        <span class="comment"># 可以決定要 dropout 的量、要對哪些層做 relu，都可以修改，都是實驗</span></span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x = self.relu(self.fc1(x))</span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x = self.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>():</span><br><span class="line">    <span class="comment"># Device configuration</span></span><br><span class="line">    <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">        device = <span class="string">'cuda'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        device = <span class="string">'cpu'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 設定超參數</span></span><br><span class="line">    epochs = <span class="number">50</span></span><br><span class="line">    batch_size = <span class="number">4</span></span><br><span class="line">    lr = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 這次的資料集不在 local，所以要 import 資料集並設定成 Pytorch dataset</span></span><br><span class="line">    <span class="comment"># Dataset: FashionMNIST dataset</span></span><br><span class="line">    <span class="comment"># 可以選擇對資料做資料擴充</span></span><br><span class="line">    <span class="comment"># 這裡採取了 transforms.RandomRotation，也就是隨機角度旋轉圖片，將其轉化為 tensor 型態，然後做 normalize</span></span><br><span class="line">    train_data = datasets.FashionMNIST(root=<span class="string">'./data'</span>, train=<span class="literal">True</span>, download=<span class="literal">True</span>, transform=transforms.Compose(</span><br><span class="line">                            [transforms.RandomRotation(degrees=<span class="number">20</span>),</span><br><span class="line">                             transforms.ToTensor(), transforms.Normalize(mean=(<span class="number">0.5</span>,), std=(<span class="number">0.5</span>,))]))</span><br><span class="line">    test_data = datasets.FashionMNIST(root=<span class="string">'./data'</span>, train=<span class="literal">False</span>, download=<span class="literal">True</span>, transform=transforms.Compose(</span><br><span class="line">                            [transforms.RandomRotation(degrees=<span class="number">20</span>),</span><br><span class="line">                             transforms.ToTensor(), transforms.Normalize(mean=(<span class="number">0.5</span>,), std=(<span class="number">0.5</span>,))]))</span><br><span class="line">    <span class="comment"># 取 80% 的資料做 validation 資料集</span></span><br><span class="line">    train_data_size = <span class="built_in">int</span>(<span class="number">0.8</span>*<span class="built_in">len</span>(train_data))</span><br><span class="line">    val_data_size = <span class="built_in">len</span>(train_data) - train_data_size</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 透過 random_split 來隨機切 train_data 的資料到 validation data</span></span><br><span class="line">    train_data, val_data = random_split(train_data, [train_data_size, val_data_size])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Dataloader 來 load 資料，在這裡設計 load 的 batch size，shuffle=True 代表要讀取隨機打散的資料</span></span><br><span class="line">    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line">    val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line">    test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># model 為我們建立的 CNN，loss function 是 CrossEntropyLoss，採取 SGD 隨機梯度下降法</span></span><br><span class="line">    model = ConvNet().to(device)</span><br><span class="line">    criterion = nn.CrossEntropyLoss()</span><br><span class="line">    optimizer = torch.optim.SGD(model.parameters(), lr=lr)</span><br><span class="line"></span><br><span class="line">    best_validation_loss = <span class="built_in">float</span>(<span class="string">'inf'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 我們這次將 train loss 和 validation loss 都記錄下來，畫成折線圖</span></span><br><span class="line">    all_training_loss = []</span><br><span class="line">    all_validation_loss = []</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">        <span class="comment"># ----------------------------- training ----------------------------------------------- #</span></span><br><span class="line">        <span class="comment"># 訓練模型要設定成 model.train()</span></span><br><span class="line">        model.train()</span><br><span class="line">        <span class="comment"># 從 train loader 讀 batch 跑多筆資料</span></span><br><span class="line">        <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">            <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">            x = x.to(device)</span><br><span class="line">            y = y.to(device)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">                x = x.cuda()</span><br><span class="line">                y = y.cuda()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># forward -&gt; backward -&gt; update</span></span><br><span class="line">            <span class="comment"># 清除所有梯度</span></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            <span class="comment"># 將 train_data 依 batch size 的數量，放進模型訓練，將該筆資料的預測值存進 predict</span></span><br><span class="line">            predict = model(x)</span><br><span class="line">            <span class="comment"># 計算 loss，把預測的 predict (也就是 ŷ)，和 y 去做 cross entropy 計算</span></span><br><span class="line">            train_loss = criterion(predict, y)</span><br><span class="line"></span><br><span class="line">            train_loss.backward() <span class="comment"># 透過反向傳播獲得每個參數的梯度值</span></span><br><span class="line">            optimizer.step()   <span class="comment"># 透過梯度下降執行參數更新</span></span><br><span class="line"></span><br><span class="line">        all_training_loss.append(train_loss.data.cpu())</span><br><span class="line"></span><br><span class="line">        <span class="comment"># ----------------------------- validation ----------------------------------------------- #</span></span><br><span class="line">        <span class="comment"># 評估模型要設定成 model.eval()</span></span><br><span class="line">        model.<span class="built_in">eval</span>()</span><br><span class="line">        <span class="comment"># torch.no_grad() 顧名思義就是 no gradient</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(val_loader):</span><br><span class="line">                x = x.to(device)</span><br><span class="line">                y = y.to(device)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">                  x = x.cuda()</span><br><span class="line">                  y = y.cuda()</span><br><span class="line"></span><br><span class="line">                predict = model(x)</span><br><span class="line">                validation_loss = criterion(predict, y)</span><br><span class="line"></span><br><span class="line">            all_validation_loss.append(validation_loss.data.cpu())</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 儲存最好的權重</span></span><br><span class="line">            <span class="keyword">if</span> validation_loss &lt; best_validation_loss:</span><br><span class="line">                best_validation_loss = validation_loss</span><br><span class="line">                torch.save(model, <span class="string">"best_model.pth"</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">'New best model saved at epoch'</span>, epoch+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'Train Epoch: {}/{} Traing_Loss: {} Validation_Loss: {}'</span>.<span class="built_in">format</span>(epoch+<span class="number">1</span>, epochs, train_loss.data, validation_loss.data))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Finished Training'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---------------------- comput accuracy -----------------------------------------------#</span></span><br><span class="line">    correct_train, total_train = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="comment"># 計算 train accuracy 和 validation accuracy</span></span><br><span class="line">    <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">        x = x.to(device)</span><br><span class="line">        y = y.to(device)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            x = x.cuda()</span><br><span class="line">            y = y.cuda()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將 train_data 依 batch size 的數量進行預測</span></span><br><span class="line">        predict = model(x)</span><br><span class="line">        predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">        total_train += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 training data</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量                                       #</span></span><br><span class="line">        correct_train += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算訓練準確率</span></span><br><span class="line">    train_accuracy = <span class="number">100</span> * correct_train / <span class="built_in">float</span>(total_train)</span><br><span class="line"></span><br><span class="line">    correct_vaild, total_vaild = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(val_loader):</span><br><span class="line">        <span class="comment"># 利用 GPU 來做操作</span></span><br><span class="line">        x = x.to(device)</span><br><span class="line">        y = y.to(device)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            x = x.cuda()</span><br><span class="line">            y = y.cuda()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 將 validation_data 依 batch size 的數量進行預測</span></span><br><span class="line">        predict = model(x)</span><br><span class="line">        predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">        total_vaild += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 validation data</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量</span></span><br><span class="line">        correct_vaild += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 計算驗證準確率</span></span><br><span class="line">    validation_accuracy = <span class="number">100</span> * correct_vaild / <span class="built_in">float</span>(total_vaild)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ----------------------------- draw loss picture -----------------------------</span></span><br><span class="line">    <span class="comment"># 畫出 Loss 的結果圖</span></span><br><span class="line">    plt.plot(<span class="built_in">range</span>(<span class="built_in">len</span>(all_training_loss)), all_training_loss, <span class="string">'indianred'</span>, label=<span class="string">'Training_loss'</span>)</span><br><span class="line">    plt.plot(<span class="built_in">range</span>(<span class="built_in">len</span>(all_validation_loss)), all_validation_loss, <span class="string">'#7eb54e'</span>, label=<span class="string">'validation_loss'</span>)</span><br><span class="line">    plt.title(<span class="string">'Training &amp; Validation loss'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'Number of epochs'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'Loss'</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.savefig(<span class="string">'loss.png'</span>)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---------------------- Testing -----------------------------------------------#</span></span><br><span class="line">    <span class="comment"># testing 也是一種評估模型模式，一樣不用計算梯度</span></span><br><span class="line">    model = torch.load(<span class="string">"best_model.pth"</span>)</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 這次是從 FashionMNIST dataset 拿資料，有獲得了 test 的 label</span></span><br><span class="line">    correct_test, total_test = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_loader):</span><br><span class="line"></span><br><span class="line">          x = x.to(device)</span><br><span class="line">          y = y.to(device)</span><br><span class="line"></span><br><span class="line">          predict = model(x)</span><br><span class="line">          predicted_label = torch.<span class="built_in">max</span>(predict.data, <span class="number">1</span>)[<span class="number">1</span>] <span class="comment"># 預測 label</span></span><br><span class="line">          total_test += <span class="built_in">len</span>(y)    <span class="comment"># 計算總共有多少筆 test data</span></span><br><span class="line"></span><br><span class="line">          <span class="comment"># 用 batch 的多筆資料，一次加總 predicted_label == y 成功的數量</span></span><br><span class="line">          correct_test += (predicted_label == y).<span class="built_in">float</span>().<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    test_accuracy = <span class="number">100</span> * correct_test / total_test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 輸出最終結果</span></span><br><span class="line">    <span class="built_in">print</span>()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"-------- Final Result -------"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Epoch:"</span>, epochs, <span class="string">", Learning Rate:"</span>, lr)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Train Loss: <span class="subst">{train_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Train Accuracy: <span class="subst">{train_accuracy:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Validation Loss: <span class="subst">{validation_loss:<span class="number">.4</span>f}</span>"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Validation Accuracy: <span class="subst">{validation_accuracy:<span class="number">.2</span>f}</span>%"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f'Test Accuracy: <span class="subst">{test_accuracy:<span class="number">.2</span>f}</span>%'</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"-------------------------------"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    train()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>黃貞瑛老師的深度學習課程</li>
+<li>許瀚丰、應名宥學長的助教輔導課程</li>
+<li>吳建中同學的共同討論</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Deep-Learning/">#Deep Learning</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2024/05/29/Machine-Learning-Instance-Based-Learning/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Machine Learning - Instance-Based Learning</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2024/05/21/Artificial-Intelligence-Rule-based-expert-systems/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Artificial Intelligence - Rule-based expert systems, Fuzzy expert systems and Genetic algorithms</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Deep Learning - CNN to Classify FashionMNIST</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN-by-PyTorch"><span class="nav-text">CNN by PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F"><span class="nav-text">完整程式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

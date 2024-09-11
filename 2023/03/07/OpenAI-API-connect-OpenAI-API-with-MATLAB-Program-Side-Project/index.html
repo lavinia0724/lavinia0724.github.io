@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/03/07/openai-api-connect-openai-api-with-matlab-program-side-project/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問、使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/03/07/OpenAI-API-connect-OpenAI-API-with-MATLAB-Program-Side-Project/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問、使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIArc.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIResponse.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/MATLABsendGmail.png">
+<meta property="article:published_time" content="2023-03-07T15:19:26.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.918Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Implementation">
+<meta property="article:tag" content="Generative AI">
+<meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="Side Project">
+<meta property="article:tag" content="OpenAI API">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/MATLABOpenAIArc.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post21.jpg" alt="OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP" />
+                    <h1 class="article-title-cover">OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-03-07</span>
+        <span class="mobile">2023-03-07</span>
+        <!-- <span class="desktop">2023-03-07 23:19:26</span>
+        <span class="mobile">2023-03-07 23:19</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OpenAI-API-Side-Project/">OpenAI API Side Project</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/OpenAI-API-Side-Project/MATLAB-Automatically-Send-Gmail/">MATLAB / Automatically Send Gmail</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Implementation/">Implementation</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Generative-AI/">Generative AI</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/MATLAB/">MATLAB</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Side-Project/">Side Project</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/OpenAI-API/">OpenAI API</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Research-Motivation"><a href="#Research-Motivation" class="headerlink" title="Research Motivation"></a>Research Motivation</h2><p>因 OpenAI 及其旗下的 ChatGPT 目前為資訊界大勢熱門議題<br>嘗試透過 OpenAI 提供之 API 服務、結合 MATLAB 撰寫程式自動連線對 OpenAI 之 Davinci model 進行 prompt 詢問<br>並將其 Response 的結果撰寫 MATLAB 程式以 SMTP 協定自動寄信給指定收件人</p>
+<a class="button  center large" target="_blank" rel="noopener" href='https://github.com/lavinia0724/MATLAB-OpenAI-API' title='LAVI's Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP'><i class='fa-brands fa-github'></i> LAVI's Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</a>
+
+<h2 id="Teaching-Steps-PPT"><a href="#Teaching-Steps-PPT" class="headerlink" title="Teaching Steps PPT"></a>Teaching Steps PPT</h2><p>剛好同個學期選修的進階生活美語課程有個人 Mini-Talk Presentation 演講<br>於是我就拿 OpenAI API with MATLAB Program 當作主題了 XD</p>
+<p>所以順道有製作 Presentation PPT<br>雖然是全英文的，但如果需要理解程式碼和運作原理的話，可以加減參考</p>
+<a class="button  center large" target="_blank" rel="noopener" href='https://drive.google.com/file/d/1aR0facxrC0Tgg9TTlim4lyyZxrkOACyi/view?usp=sharing' title='How to automatically connect OpenAI API with MATLAB Program'><i class='fa-solid fa-file-powerpoint'></i> How to automatically connect OpenAI API with MATLAB Program</a>
+
+<h2 id="What-is-API"><a href="#What-is-API" class="headerlink" title="What is API"></a>What is API</h2><p>本 side project 主要圍繞在如何應用 OpenAI 的 API 服務<br>那究竟什麼是 API 呢？<br>可參考我的這篇文章：</p>
+<a class="button  center large" href='https://lavinia0724.github.io/2023/03/06/Web-What-is-API/' title='Web - What is API'><i class='fa-solid fa-paper-plane'></i> Web - What is API</a>
+
+<h2 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\MATLABOpenAIArc.png"
+                     
+                >
+
+<h2 id="Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問"><a href="#Session-1-使用-MATLAB-撰寫程式連線-OpenAI-API-進行詢問" class="headerlink" title="Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問"></a>Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</h2><p>需先至 <a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/account/api-keys" >OpenAI API</a> 註冊帳號並生成自己的 API key</p>
+<p>如何生成 OpenAI API key 可以參考我的這篇文章：</p>
+<a class="button  center large" href='https://lavinia0724.github.io/2023/03/07/OpenAI-API-How-to-generate-OpenAI-API-key/' title='OpenAI API - How to generate OpenAI API key'><i class='fa-solid fa-paper-plane'></i> OpenAI API - How to generate OpenAI API key</a>
+
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><div class="highlight-container" data-rel="M"><figure class="iseeu highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import matlab.net.*</span><br><span class="line">import matlab.net.http.*</span><br><span class="line"></span><br><span class="line"><span class="comment">% Connect OpenAI API</span></span><br><span class="line">api_endpoint <span class="built_in">=</span> <span class="string">&quot;https://api.openai.com/v1/engines/davinci/completions&quot;</span>;</span><br><span class="line">api_key <span class="built_in">=</span> convertCharsToStrings(getenv(<span class="string">&quot;APIkey&quot;</span>)); <span class="comment">% 從環境變數裡提取 API key</span></span><br><span class="line"></span><br><span class="line">prompt <span class="built_in">=</span> <span class="string">&quot;Please introduce Cloud Computing&quot;</span> <span class="comment">% 向 Davinci model 詢問的 prompt 語句</span></span><br><span class="line">parameters <span class="built_in">=</span> struct(<span class="string">&#x27;prompt&#x27;</span>,prompt, <span class="string">&#x27;max_tokens&#x27;</span>,<span class="number">100</span>); <span class="comment">% 可接受 response 的最多 tocken 數</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% request 設定</span></span><br><span class="line">headers <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">headers(<span class="number">2</span>) <span class="built_in">=</span> matlab.net.http.HeaderField(<span class="string">&#x27;Authorization&#x27;</span>, [<span class="string">&#x27;Bearer &#x27;</span> + api_key]);</span><br><span class="line">request <span class="built_in">=</span> matlab.net.http.RequestMessage(<span class="string">&#x27;post&#x27;</span>,headers,parameters);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 發送 request 並接收 response</span></span><br><span class="line">response <span class="built_in">=</span> send(request, URI(api_endpoint));</span><br><span class="line">response_text <span class="built_in">=</span> response.Body.Data; <span class="comment">% 從回傳的封包的 body 內容提取文字</span></span><br><span class="line">response_text <span class="built_in">=</span> response_text.choices(<span class="number">1</span>).text;</span><br><span class="line">disp(response_text);</span><br></pre></td></tr></table></figure></div>
+<p>幾個小小細節：<br><code>api_key = convertCharsToStrings(getenv(&quot;APIkey&quot;));</code>：</p>
+<ul>
+<li>從系統環境變數中提取，為了不讓個人 API key 裸奔在程式碼中，提高安全性</li>
+<li>因為從系統環境變數中提取的型態是字元，故這裡要再將其轉為字串型態，以符合其連線所需的讀取型別</li>
+</ul>
+<p><code>parameters = struct(&#39;prompt&#39;,prompt, &#39;max_tokens&#39;,100);</code></p>
+<ul>
+<li>設定 model 根據 prompt 而回覆的 response 的最多 tocken 數</li>
+<li>因為 OpenAI 會根據 response 的 tocken 數計費，<del>回太多字錢包會燒起來</del></li>
+</ul>
+<h3 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h3><p>我向 OpenAI 詢問的問題是 “Please introduce Cloud Computing”</p>
+<p>他回覆的結果為：<br>Computing is raising a lot of eyebrows these days, but what is it really? This site provides more clarity.Cloud Disaster RecoveryCloud is the way of the future, so it is important to develop tools that will protect your data. Come to the Dis2 team to discuss solutions to your data recovery needs.Learn to Make the Most out of Your Microsoft Office SkillsA group of professionals met monthly at the Microsoft Software Center in Voorhees for some training tips..<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\MATLABOpenAIResponse.png"
+                     
+                ></p>
+<h2 id="Session-2-使用-MATLAB-撰寫程式寄-Gmail-信件至指定收件者的信箱"><a href="#Session-2-使用-MATLAB-撰寫程式寄-Gmail-信件至指定收件者的信箱" class="headerlink" title="Session 2. 使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱"></a>Session 2. 使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱</h2><p>自從 2022 年 5 月 30 後 Gmail 無法直接使用 SMTP 寄信，需進行二階段驗證<br>故要寄信的程式需特別開啟對於該應用程式軟體的二階段驗證 + 設定應用程式密碼</p>
+<h3 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h3><div class="highlight-container" data-rel="M"><figure class="iseeu highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% Automatically Sending Gmail</span></span><br><span class="line">username <span class="built_in">=</span> <span class="string">&#x27;&lt;source user name&gt;&#x27;</span>; <span class="comment">% &lt;source user name&gt; 換成你的信箱使用名稱</span></span><br><span class="line">password <span class="built_in">=</span> convertCharsToStrings(getenv(<span class="string">&quot;Passwd&quot;</span>)); <span class="comment">% 把應用程式密碼存於環境變數中引用</span></span><br><span class="line">mail <span class="built_in">=</span> <span class="string">&#x27;&lt;source&gt;@gmail.com&#x27;</span>; <span class="comment">% &lt;source&gt; 換成你自己的信箱</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 使用 SMTP 協定寄信</span></span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;E_mail&#x27;</span>, mail);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Server&#x27;</span>, <span class="string">&#x27;smtp.gmail.com&#x27;</span>);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Username&#x27;</span>, username);</span><br><span class="line">setpref(<span class="string">&#x27;Internet&#x27;</span>, <span class="string">&#x27;SMTP_Password&#x27;</span>, password);</span><br><span class="line"></span><br><span class="line"><span class="comment">% port 號用 465</span></span><br><span class="line">myprops <span class="built_in">=</span> java.lang.System.getProperties;</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.auth&#x27;</span>, <span class="string">&#x27;true&#x27;</span>);</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.socketFactory.class&#x27;</span>, <span class="string">&#x27;javax.net.ssl.SSLSocketFactory&#x27;</span>);</span><br><span class="line">myprops.setProperty(<span class="string">&#x27;mail.smtp.socketFactory.port&#x27;</span>, <span class="string">&#x27;465&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 自動寄信</span></span><br><span class="line"><span class="comment">% &lt;destination&gt;@gmail.com 換成你的寄信目標</span></span><br><span class="line"><span class="comment">% &lt;file path&gt; 換成你的檔案路徑</span></span><br><span class="line">sendmail(<span class="string">&#x27;&lt;destination&gt;@gmail.com&#x27;</span>,<span class="string">&#x27;主旨&#x27;</span>, <span class="string">&#x27;內文&#x27;</span>, &#123;<span class="string">&#x27;&lt;file path&gt;&#x27;</span>&#125;);</span><br></pre></td></tr></table></figure></div>
+<p>億點點細節：</p>
+<ul>
+<li>一些路徑和使用者名稱和信箱要再替換！</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://wpjian.com/zh-tw/tips/2020021430431.html" >SMTP port 選擇</a><ul>
+<li>25：標準SMTP埠，並且主要用於SMTP中繼，但可能會因濫用埠 25 從受感染的電腦發送垃圾郵件</li>
+<li>587：現代網路上 SMTP 提交的默認埠</li>
+<li>465：最初是為 SMTPS（基於 SSL 的 SMTP）註冊的，現已棄用，但許多 ISP 和雲託管提供商仍支持 465 埠用於 SMTP</li>
+</ul>
+</li>
+</ul>
+<p><code>password = convertCharsToStrings(getenv(&quot;Passwd&quot;));</code>：</p>
+<ul>
+<li>把密碼存於環境變數，這裡的密碼是 Google 帳戶應用程式登入密碼</li>
+<li>如何設定 Google 帳戶應用程式登入密碼請看我的這篇文章：<a class="button  center large" href='https://lavinia0724.github.io/2023/03/06/APP-Google-sign-in-with-app-passwords/' title='Google - sign in with app passwords'><i class='fa-solid fa-paper-plane'></i> Google - sign in with app passwords</a></li>
+</ul>
+<p><code>sendmail(&#39;&lt;destination&gt;@gmail.com&#39;,&#39;Introduction to Cloud Computing Homework&#39;&#39;The attached file is my Matlab homework Code, Thanks!&#39;, ...&#39;See the attached files for more info.&#39;,&#123;&#39;&lt;file path&gt;&#39;&#125;);</code>：</p>
+<ul>
+<li>sendmail（收件人信箱, 信件主旨, 信件內文, 附加檔案在本機的路徑）</li>
+</ul>
+<h3 id="結果-1"><a href="#結果-1" class="headerlink" title="結果"></a>結果</h3><p>這是我寄信的信箱的寄件備份，信件實被自動撰寫寄出<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\MATLABsendGmail.png"
+                     
+                ></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.mathworks.com/matlabcentral/answers/1894530-connecting-to-chatgpt-using-api" >Connecting to ChatGPT using API</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/getenv.html" >Math Works - getenv</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/convertcharstostrings.html" >Math Works - convertCharsToStrings</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/import_export/sending-email.html" >Math Works - Send Email</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://collin1027.pixnet.net/blog/post/149597248" >MATLAB 使用 sendmail 函數寄 Gmail 信件</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/shaynling/2017/09/28/151713" >MATLAB 自動寄信功能</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.mathworks.com/matlabcentral/answers/1672544-using-gmail-after-may-30-2022/?s_tid=ans_lp_feed_leaf" >Using gmail after May 30, 2022</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.google.com/mail/answer/185833?hl=en" >Sign in with app passwords</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wcXu0Ku82Bw" >How to send an email using MATLAB? How to check internet connection in MATLAB? (YouTube)</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://wpjian.com/zh-tw/tips/2020021430431.html" >SMTP port 選擇</a></li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Implementation/">#Implementation</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Generative-AI/">#Generative AI</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/MATLAB/">#MATLAB</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Side-Project/">#Side Project</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/OpenAI-API/">#OpenAI API</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/04/07/OpenAI-API-Fine-Tune-OpenAI-Model/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">OpenAI API - Fine-Tune OpenAI Model Side Project</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/03/07/OpenAI-API-How-to-generate-OpenAI-API-key/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">OpenAI API - How to generate OpenAI API key</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">OpenAI API - Connect OpenAI Model with MATLAB Program and Automatically Send Gmail by SMTP</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Research-Motivation"><span class="nav-text">Research Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Teaching-Steps-PPT"><span class="nav-text">Teaching Steps PPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-API"><span class="nav-text">What is API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%A7%8B"><span class="nav-text">架構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-1-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E9%80%A3%E7%B7%9A-OpenAI-API-%E9%80%B2%E8%A1%8C%E8%A9%A2%E5%95%8F"><span class="nav-text">Session 1. 使用 MATLAB 撰寫程式連線 OpenAI API 進行詢問</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-2-%E4%BD%BF%E7%94%A8-MATLAB-%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%AF%84-Gmail-%E4%BF%A1%E4%BB%B6%E8%87%B3%E6%8C%87%E5%AE%9A%E6%94%B6%E4%BB%B6%E8%80%85%E7%9A%84%E4%BF%A1%E7%AE%B1"><span class="nav-text">Session 2. 使用 MATLAB 撰寫程式寄 Gmail 信件至指定收件者的信箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-1"><span class="nav-text">Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C-1"><span class="nav-text">結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/12/08/python-pytorch/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Python PyTorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - PyTorch">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/12/08/Python-PyTorch/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Python PyTorch">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/PyTorchGradient.jpg">
+<meta property="article:published_time" content="2023-12-08T15:44:56.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.920Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/PyTorchGradient.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Python - PyTorch -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post54.jpg" alt="Python - PyTorch" />
+                    <h1 class="article-title-cover">Python - PyTorch</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-12-08</span>
+        <span class="mobile">2023-12-08</span>
+        <!-- <span class="desktop">2023-12-08 23:44:56</span>
+        <span class="mobile">2023-12-08 23:44</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Programming-Languages/">Programming Languages</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Languages/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Languages/Python/PyTorch/">PyTorch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>將複雜的深度學習（Deep Learning，以下簡稱 DL）演算法簡化，用 PyTorch 套件內建函釋即可運算</li>
+<li>專注於建構 DL 模型</li>
+<li>可使用 GPU 加速模型訓練</li>
+</ul>
+<h3 id="Course"><a href="#Course" class="headerlink" title="Course"></a>Course</h3><p>可以參考我的課程簡報：</p>
+<a class="button  center large" target="_blank" rel="noopener" href='https://drive.google.com/file/d/1DjZfKzKOfLbOKAlw5e3if2-zRt2jus56/view?usp=sharing' title='PyTorch Introduction'><i class='fa-solid fa-file-powerpoint'></i> PyTorch Introduction</a>
+
+<h3 id="What-is-PyTorch"><a href="#What-is-PyTorch" class="headerlink" title="What is PyTorch"></a>What is PyTorch</h3><ul>
+<li>DL Framework</li>
+<li>主要功能：<ul>
+<li>Build Neural Network</li>
+<li>Loss Function &amp; Optimizers</li>
+</ul>
+</li>
+</ul>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><ul>
+<li>Tensor</li>
+<li>高維度的向量（與 NumPy Array 相似）<ul>
+<li>向量相乘相加相除內積都可以在 Tensor 上做</li>
+<li>NumPy 用的熟的話，應該可以無痛轉接</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cuda"><a href="#Cuda" class="headerlink" title="Cuda"></a>Cuda</h3><p>確定 Cuda 活著</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.is_available()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h3><p>建立 empty 的 Tensor</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立一維空的 tensor</span></span><br><span class="line">x = torch.empty(<span class="number">5</span>) <span class="comment"># 一維的 tensor</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立指定維度的 tensor</span></span><br><span class="line">x = torch.empty((<span class="number">1</span>, <span class="number">2</span>)) <span class="comment"># 二維的 tensor：row 是 1、column 是 2</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([-7.4865e+37,  3.2980e-41,  3.0829e-44,  0.0000e+00, -7.4866e+37])</span></span><br><span class="line"><span class="string">tensor([[-6.2235e+37,  3.2980e-41]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>建立全部填滿指定值的 Tensor</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立全部填滿 0 的二維 tensor</span></span><br><span class="line">x = torch.zeros((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立全部填滿 1 的二維 tensor</span></span><br><span class="line">x = torch.ones((<span class="number">3</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string">tensor([[0., 0., 0.],</span></span><br><span class="line"><span class="string">        [0., 0., 0.]])</span></span><br><span class="line"><span class="string">tensor([[1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>建立全部填滿隨機值的 Tensor</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = torch.rand((<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[0.3799, 0.7677],</span></span><br><span class="line"><span class="string">        [0.2072, 0.4638]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>建立填滿自己指定值的 tensor（from List）</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[1, 2],</span></span><br><span class="line"><span class="string">        [3, 4]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>查看 Data Type</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones((<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(x.dtype)</span><br><span class="line"></span><br><span class="line"><span class="comment"># torch.float32 是 c++ 裡的 float</span></span><br><span class="line"><span class="comment"># torch.float64 是 c++ 裡的 double</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1.]])</span></span><br><span class="line"><span class="string">torch.float32</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>賦予 Data Type</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones((<span class="number">2</span>, <span class="number">2</span>), dtype=torch.int64)</span><br><span class="line"><span class="built_in">print</span>(x.dtype)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.int64</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>Data Size</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones((<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line"><span class="built_in">print</span>(x.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tensor 的 size 其實就是 NumPy 的 shape，是一樣的東西</span></span><br><span class="line"><span class="comment"># （甚至他們可以混用）</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([2, 2])</span></span><br><span class="line"><span class="string">torch.Size([2, 2])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>Tensor 和 NumPy 的轉換</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones((<span class="number">1</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tensor:&quot;</span>, x)</span><br><span class="line"></span><br><span class="line">y = x.numpy()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tensor to numpy:&quot;</span>, y)</span><br><span class="line"></span><br><span class="line">z = torch.from_numpy(y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy to tensor:&quot;</span>, z)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor: tensor([[1., 1., 1.]])</span></span><br><span class="line"><span class="string">tensor to numpy: [[1. 1. 1.]]</span></span><br><span class="line"><span class="string">numpy to tensor: tensor([[1., 1., 1.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轉換後記憶體位置會相同，因此資料處理時會同步！！！</span></span><br><span class="line"></span><br><span class="line">x = torch.ones((<span class="number">1</span>, <span class="number">3</span>))</span><br><span class="line">y = x.numpy()</span><br><span class="line"></span><br><span class="line">x += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># （因為 python 是個罪惡的語言，動態語言的特性讓他資料處理很不嚴謹）</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[2., 2., 2.]])</span></span><br><span class="line"><span class="string">[[2. 2. 2.]]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>使用 GPU</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 理論上在 GPU 的運算會比用 CPU 快很多</span></span><br><span class="line"><span class="comment"># 但還是依模型而定，本次作業的模型很小，可能 GPU 與 CPU 無法體現明顯差異，若各位有機會訓練大型模型，可以感受看看一個跑三天一個跑三小時的那個愉悅感（？）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 這個 if 是看你電腦的 GPU 能法被 PyTorch 調用</span></span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">  device = <span class="string">&#x27;cuda&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  device = <span class="string">&#x27;cpu&#x27;</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">3</span>, device=device)</span><br><span class="line">y = torch.zeros(<span class="number">3</span>)</span><br><span class="line">y = y.to(device) <span class="comment"># 把運算 copy 一份到 device 指定的 GPU 上，之後的運算都在 GPU 上進行</span></span><br><span class="line"></span><br><span class="line">z = x + y</span><br><span class="line"><span class="built_in">print</span>(z)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([1., 1., 1.], device=&#x27;cuda:0&#x27;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 算術運算必須同時在 CPU 或同時在 GPU 才能進行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">  device = <span class="string">&#x27;cuda&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  device = <span class="string">&#x27;cpu&#x27;</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">3</span>, device=device)</span><br><span class="line">y = torch.zeros(<span class="number">3</span>)</span><br><span class="line">y = y.to(<span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如此一來，x 在 GPU 上、y 在 CPU 上，就會無法運算</span></span><br><span class="line">z = x + y</span><br><span class="line"><span class="built_in">print</span>(z)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------------------------------------------------</span></span><br><span class="line"><span class="string">RuntimeError                              Traceback (most recent call last)</span></span><br><span class="line"><span class="string">&lt;ipython-input-21-65f30c7e20ec&gt; in &lt;cell line: 13&gt;()</span></span><br><span class="line"><span class="string">     11 </span></span><br><span class="line"><span class="string">     12 # 如此一來，x 在 GPU 上、y 在 CPU 上，就會無法運算</span></span><br><span class="line"><span class="string">---&gt; 13 z = x + y</span></span><br><span class="line"><span class="string">     14 print(z)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Gradient"><a href="#Gradient" class="headerlink" title="Gradient"></a>Gradient</h2><ul>
+<li>梯度</li>
+<li>在建立需要更新的數值時<ul>
+<li>將 requires_grad 設為 True</li>
+<li>開啟後計算就會自動產生 Backward Function</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在建立需要更新的數值時，將 requires_grad 設為 True</span></span><br><span class="line"><span class="comment"># 開啟後計算就會自動產生 Backward Function</span></span><br><span class="line"></span><br><span class="line">x = torch.tensor([<span class="number">5.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x: &quot;</span>, x)</span><br><span class="line"></span><br><span class="line">y = x + <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y: &quot;</span>, y)</span><br><span class="line"></span><br><span class="line">z = y ** <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;z: &quot;</span>, z)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x:  tensor([5.], requires_grad=True)</span></span><br><span class="line"><span class="string">y:  tensor([7.], grad_fn=&lt;AddBackward0&gt;)</span></span><br><span class="line"><span class="string">z:  tensor([49.], grad_fn=&lt;PowBackward0&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>例題：<ul>
+<li>y &#x3D; x + 2 且 z &#x3D; y * y</li>
+<li>若想計算當 x &#x3D; 5 時，z 所累積的梯度，該如何計算 ?</li>
+</ul>
+</li>
+</ul>
+<p>數學算法，手會這樣算：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\PyTorchGradient.jpg"
+                     
+                ></p>
+<p>程式的話，要這樣寫：</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">5.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x: &quot;</span>, x)</span><br><span class="line"></span><br><span class="line">y = x + <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y: &quot;</span>, y)</span><br><span class="line"></span><br><span class="line">z = y ** <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;z: &quot;</span>, z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在計算 Gradient 就是把它 backward 回去</span></span><br><span class="line">z.backward()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Gradient: &quot;</span>, x.grad)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x:  tensor([5.], requires_grad=True)</span></span><br><span class="line"><span class="string">y:  tensor([7.], grad_fn=&lt;AddBackward0&gt;)</span></span><br><span class="line"><span class="string">z:  tensor([49.], grad_fn=&lt;PowBackward0&gt;)</span></span><br><span class="line"><span class="string">Gradient:  tensor([14.])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="停止Gradient累計"><a href="#停止Gradient累計" class="headerlink" title="停止Gradient累計"></a>停止Gradient累計</h4><ul>
+<li>如何停止 Gradient 累計 ?<ul>
+<li>當更新神經網路權重時，不需要產生 Gradient</li>
+</ul>
+</li>
+<li>有三種方法：<ol>
+<li>直接關閉，將 requires_grad_ 設為 False</li>
+<li>使用 detach，會複製一份（預設requires_grad　為 False）</li>
+<li>with torch.no_grad()，不會對 requires_grad 產生改變，但運算時不累積梯度</li>
+</ol>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 直接關閉，將 requires_grad_ 設為 False</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x with requires_grad: &quot;</span>, x)</span><br><span class="line"></span><br><span class="line">x.requires_grad_ = <span class="literal">False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x not with requires_grad: &quot;</span>, x)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x with requires_grad:  tensor([1., 1., 1.], requires_grad=True)</span></span><br><span class="line"><span class="string">x not with requires_grad:  tensor([1., 1., 1.], requires_grad=True)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. 使用 detach，會複製一份（預設requires_grad　為 False）</span></span><br><span class="line"><span class="comment"># 但一樣會共享記憶體位址</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x: &quot;</span>, x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 複製一份 x 給 y，但沒有開 gradient</span></span><br><span class="line">y = x.detach()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y: &quot;</span>, y)</span><br><span class="line"></span><br><span class="line">y += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(x) <span class="comment"># 因為記憶體位址共享</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x:  tensor([1., 1., 1.], requires_grad=True)</span></span><br><span class="line"><span class="string">y:  tensor([1., 1., 1.])</span></span><br><span class="line"><span class="string">tensor([2., 2., 2.], requires_grad=True)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3. with torch.no_grad()，不會對 requires_grad 產生改變，但運算時不累積梯度</span></span><br><span class="line"><span class="comment"># 最常見，必用的一招</span></span><br><span class="line"><span class="comment"># 最常用在 inference 階段（模型推論）</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;x: &quot;</span>, x)</span><br><span class="line">  y = <span class="number">2</span> * (x + <span class="number">5</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;y: &quot;</span>, y)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># x 的 requires_grad 沒有被關閉</span></span><br><span class="line">	<span class="comment"># 但在使用 x 做運算，存值給 y 時，不累積梯度</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x:  tensor([1., 1., 1.], requires_grad=True)</span></span><br><span class="line"><span class="string">y:  tensor([12., 12., 12.])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="清空-Gradient"><a href="#清空-Gradient" class="headerlink" title="清空 Gradient"></a>清空 Gradient</h4><ul>
+<li>Pytorch 的 gradient 會累加，每次用完都需要清空 gradient<ul>
+<li>x.grad.zero_()</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pytorch 的 gradient 會累加，每次用完都需要清空 gradient</span></span><br><span class="line"></span><br><span class="line">x = torch.tensor(<span class="number">1.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x + <span class="number">2</span></span><br><span class="line">z = y * y</span><br><span class="line"></span><br><span class="line">z.backward()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x with gradient: &quot;</span>, x.grad)</span><br><span class="line"></span><br><span class="line">x.grad.zero_()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x with grad_zero: &quot;</span>, x.grad)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">x with gradient:  tensor(6.)</span></span><br><span class="line"><span class="string">x with grad_zero:  tensor(0.)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><ul>
+<li>Model 模型<ul>
+<li>用模型建網路</li>
+</ul>
+</li>
+<li>Optimizer 優化器&#x2F;最佳化器<ul>
+<li>Gradient Descent 梯度下降的方式</li>
+<li>Adam、SGD… 之類的</li>
+</ul>
+</li>
+<li>Criterion 評分標準<ul>
+<li>Loss Function</li>
+</ul>
+</li>
+</ul>
+<h3 id="Model-模型"><a href="#Model-模型" class="headerlink" title="Model 模型"></a>Model 模型</h3><ol>
+<li>依序建立模型的每層內容</li>
+<li>設定模型 forward 的順序</li>
+</ol>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假設今天的輸入是一個數字，讓他做 f = wx + b</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels, out_channels</span>):</span><br><span class="line">    <span class="comment"># model layers</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 自定義神經網路，對繼承至父親的屬性進行初始化</span></span><br><span class="line">    <span class="built_in">super</span>(Net, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># nn.Linear 定義一個神經網路的線性層</span></span><br><span class="line">    <span class="comment"># in_channels 是前一層輸入的神經元個數</span></span><br><span class="line">    <span class="comment"># out_channels 是本層輸出的神經元個數</span></span><br><span class="line">    <span class="comment"># bias 預設都是 True</span></span><br><span class="line">    self.fc = nn.Linear(in_channels, out_channels)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">    <span class="comment"># model structure</span></span><br><span class="line">    <span class="comment"># 希望輸出的 x 是輸入的 x 經過 self.fc 後的結果</span></span><br><span class="line">    x = self.fc(x)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 宣告 model</span></span><br><span class="line"><span class="comment"># 輸入的 channel 是一個數字，輸出的 channel 也是一個數字</span></span><br><span class="line">model = Net(in_channels=<span class="number">1</span>, out_channels=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(model)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Net(</span></span><br><span class="line"><span class="string">  (fc): Linear(in_features=1, out_features=1, bias=True)</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Optimizer-優化器-最佳化器"><a href="#Optimizer-優化器-最佳化器" class="headerlink" title="Optimizer 優化器&#x2F;最佳化器"></a>Optimizer 優化器&#x2F;最佳化器</h3><ul>
+<li>Gradient Descent 梯度下降的方式</li>
+<li>Adam、SGD… 之類的</li>
+<li>更新權重的方式</li>
+</ul>
+<h3 id="Criterion-評分標準"><a href="#Criterion-評分標準" class="headerlink" title="Criterion 評分標準"></a>Criterion 評分標準</h3><ul>
+<li>Loss Function</li>
+<li>Mean Square Error、CrossEntropy、Binary Cross Entropy… 之類的</li>
+</ul>
+<h3 id="Modle-Training"><a href="#Modle-Training" class="headerlink" title="Modle Training"></a>Modle Training</h3><ol>
+<li>Model 設定為 Train 模式</li>
+<li>Forward</li>
+<li>Calculate Loss</li>
+<li>Backward</li>
+</ol>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化 X, Y 為 3 * 1 的矩陣</span></span><br><span class="line">X = torch.tensor([[<span class="number">1.</span>], [<span class="number">2.</span>], [<span class="number">3.</span>]])</span><br><span class="line">Y = torch.tensor([[<span class="number">4.</span>], [<span class="number">6.</span>], [<span class="number">8.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 選擇 optimizer 為 Stochastic gradient descent 隨機梯度下降法，learning rate 為 0.01</span></span><br><span class="line"><span class="comment"># 選擇 critertion loss function 為 Mean Square Error 均方誤差</span></span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br><span class="line">critertion = nn.MSELoss()</span><br><span class="line">epoch = <span class="number">500</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 Model 設定為 Train 模式</span></span><br><span class="line">model.train()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> <span class="built_in">range</span>(epoch):</span><br><span class="line">    <span class="comment"># zip 函式可以同時迭代多個 list</span></span><br><span class="line">    <span class="keyword">for</span> (x, y) <span class="keyword">in</span> <span class="built_in">zip</span>(X, Y):</span><br><span class="line">        y_pred = model(x)</span><br><span class="line">        loss = critertion(y_pred, y)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()  <span class="comment"># 梯度歸零</span></span><br><span class="line">        loss.backward()     <span class="comment"># 透過 backward 得到每個參數的梯度值</span></span><br><span class="line">        optimizer.step()     <span class="comment"># 透過梯度下降執行下一步參數更新</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 輸出查看每 100 代的 loss 如何</span></span><br><span class="line">    <span class="keyword">if</span> (e + <span class="number">1</span>) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;epoch: <span class="subst">&#123;e + <span class="number">1</span>&#125;</span>, loss: <span class="subst">&#123;loss.item()&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">epoch: 100, loss: 1.128821986640105e-05</span></span><br><span class="line"><span class="string">epoch: 200, loss: 2.5122462830040604e-06</span></span><br><span class="line"><span class="string">epoch: 300, loss: 5.59026375412941e-07</span></span><br><span class="line"><span class="string">epoch: 400, loss: 1.2383770808810368e-07</span></span><br><span class="line"><span class="string">epoch: 500, loss: 2.7535861590877175e-08</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Model-Testing"><a href="#Model-Testing" class="headerlink" title="Model Testing"></a>Model Testing</h3><ol>
+<li>Model 設定為 eval 模式（ evaluation 評估模式）</li>
+<li>停止 gradient 累計</li>
+</ol>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 這邊的 model.fc 是沿用剛才 Build Model 的 function（客家人）</span></span><br><span class="line"><span class="comment"># 所以要用這裡的話，Build Model 要先跑過一次</span></span><br><span class="line">w, b = model.fc.weight.item(), model.fc.bias.item()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;f(x) = <span class="subst">&#123;w:<span class="number">.4</span>&#125;</span>x + <span class="subst">&#123;b:<span class="number">.4</span>&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Model 設定為 eval 模式（evaluation 評估模式）</span></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止 gradient 累計</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    <span class="comment"># test 輸入 X = 10 的時候會輸出什麼</span></span><br><span class="line">    <span class="built_in">print</span>(model(torch.tensor([<span class="number">10.</span>])))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由於方才 X, Y 之間的關係是 Y = 2 * X + 2</span></span><br><span class="line"><span class="comment"># 這裡訓練出的結果是 f(x) = 2.0x + 1.999 其實非常接近了</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">f(x) = 2.0x + 1.999</span></span><br><span class="line"><span class="string">tensor([22.0016])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>上屆助教們的簡報  &lt;(_ _)&gt;</li>
+<li>黃貞瑛老師的課程與簡報</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Python/">#Python</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/12/11/Stable-Diffusion-Installation/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Stable Diffusion - Installation</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/10/29/Cyber-Security-RSA/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - RSA</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">Python - PyTorch</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Course"><span class="nav-text">Course</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-PyTorch"><span class="nav-text">What is PyTorch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax"><span class="nav-text">Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cuda"><span class="nav-text">Cuda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor"><span class="nav-text">Tensor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient"><span class="nav-text">Gradient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-text">Module</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-%E6%A8%A1%E5%9E%8B"><span class="nav-text">Model 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimizer-%E5%84%AA%E5%8C%96%E5%99%A8-%E6%9C%80%E4%BD%B3%E5%8C%96%E5%99%A8"><span class="nav-text">Optimizer 優化器&#x2F;最佳化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Criterion-%E8%A9%95%E5%88%86%E6%A8%99%E6%BA%96"><span class="nav-text">Criterion 評分標準</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modle-Training"><span class="nav-text">Modle Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Testing"><span class="nav-text">Model Testing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2023/08/02/asp-net-mvc-framework-sync-async/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET MVC Framework - Sync &amp; Async">
+<meta property="og:url" content="https://lavinia0724.github.io/2023/08/02/ASP-NET-MVC-Framework-Sync-Async/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="Basic ASP.NET MVC Framework Sync &amp; Async Introduction">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncExample.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/AsyncExample.png">
+<meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/SyncJavaScript.webp">
+<meta property="article:published_time" content="2023-08-01T17:08:10.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:22:22.895Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="MVC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/Sync&Async.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            ASP.NET MVC Framework - Sync &amp; Async -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"zh-TW"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分鐘前","hour":"%s 小時前","day":"%s 天前","week":"%s 周前","month":"%s 個月前","year":"%s 年前"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        首頁
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        相簿
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                首頁
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                相簿
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                文章&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                關於&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post17.jpg" alt="ASP.NET MVC Framework - Sync &amp; Async" />
+                    <h1 class="article-title-cover">ASP.NET MVC Framework - Sync &amp; Async</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-08-02</span>
+        <span class="mobile">2023-08-02</span>
+        <!-- <span class="desktop">2023-08-02 01:08:10</span>
+        <span class="mobile">2023-08-02 01:08</span> -->
+        <span class="hover-info">撰寫</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-09-11</span>
+            <span class="mobile">2024-09-11</span>
+            <!-- <span class="desktop">2024-09-11 23:22:22</span>
+            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/ASP-NET/">ASP.NET</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/ASP-NET/MVC/">MVC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/MVC/">MVC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="Sync-Async"><a href="#Sync-Async" class="headerlink" title="Sync &amp; Async"></a>Sync &amp; Async</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\Sync&Async.jpg"
+                     
+                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://www.oxxostudio.tw/articles/201706/javascript-promise-settimeout.html" >圖片來源</a></p>
+<p>同步 Sync 與非同步 Async</p>
+<ul>
+<li>Sync 同步<ul>
+<li>發起 I&#x2F;O 請求的執行緒不從正在呼叫的 I&#x2F;O 操作函式返回（被阻塞），直到 I&#x2F;O 操作完成</li>
+</ul>
+</li>
+<li>Async 非同步<ul>
+<li>發起 I&#x2F;O 請求的執行緒不等 I&#x2F;O 操作完成，就繼續執行隨後的程式，而 I&#x2F;O 的結果再透過其他方式通知發起 I&#x2F;O 請求的程式</li>
+</ul>
+</li>
+</ul>
+<div class="note-large orange"><div class="notel-title"><p>簡單來說！</p>
+</div><div class="notel-content"><p>同步 Sync：<br>我有好多事要做，但一次只能做一件事，我要等這件事做完才能做其他<br><br>非同步 Async：<br>我有好多事要做，但有些事開始做以後要等他完成，我可以在這期間去做其他事，直到他做好後再回去處理他</p>
+</div></div>
+
+<h2 id="Sync-vs-Async"><a href="#Sync-vs-Async" class="headerlink" title="Sync vs Async"></a>Sync vs Async</h2><p>已準備早餐為例，要吃的東西有：</p>
+<ol>
+<li>咖啡</li>
+<li>蛋</li>
+<li>培根</li>
+<li>吐司</li>
+<li>柳橙汁</li>
+</ol>
+<h3 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h3><p>以同步 Sync 的例子來說，我們會這樣準備：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\SyncExample.png"
+                     
+                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/" >圖片來源</a></p>
+<ol>
+<li>倒杯咖啡</li>
+<li>加熱鍋子，發呆等著鍋子加熱</li>
+<li>熱好鍋子後煎兩顆蛋，發呆等著蛋煎熟</li>
+<li>煎完蛋後煎三片培根，發呆等著培根煎熟</li>
+<li>把吐司放進吐司機加熱，發呆等著吐司熱</li>
+<li>等吐司加熱好後，抹上果醬</li>
+<li>倒杯果汁</li>
+</ol>
+<blockquote>
+<p>但這樣我們會浪費好多時間在發呆等待，大約花了 30 分鐘準備早餐<br>可是在分秒必爭的早晨，這樣怎麼可以呢！</p>
+</blockquote>
+<h3 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h3><p>如果站在程式非同步 Async 的角度來準備：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\AsyncExample.png"
+                     
+                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/" >圖片來源</a></p>
+<ol>
+<li>倒杯咖啡</li>
+<li>加熱煎蛋的鍋子，等鍋子加熱的期間去做下一件事</li>
+<li>加熱煎培根的鍋子，等鍋子加熱的期間去做下一件事</li>
+<li>把吐司放進吐司機加熱，讓吐司慢慢加熱的同時，回去煎蛋</li>
+<li>把蛋煎熟</li>
+<li>把培根煎熟</li>
+<li>吐司加熱好了，抹上果醬</li>
+<li>倒杯果汁</li>
+</ol>
+<blockquote>
+<p>如此一來，我們只花了 15 分鐘準備早餐，就可以多多賴床 15 分鐘了呢！</p>
+</blockquote>
+<h2 id="Sync-or-Async"><a href="#Sync-or-Async" class="headerlink" title="Sync or Async"></a>Sync or Async</h2><p>一般程式碼是由上往下，一行一行程式碼同步 Sync 去執行的，乍看之下也沒什麼問題，甚至大部分的情境都是用同步的方式去撰寫程式</p>
+<p>但若是處理需要等待、不確定需要多久才能完成的任務，ex 存取 I&#x2F;O、外部資源、HTTP Request…等，就會需要使用非同步來處理了</p>
+<h4 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h4><ol>
+<li>JavaScript 用 setTimeout 倒數 10 秒後 alert 訊息，但在等待期間可以先做其他事</li>
+<li>JavaScript 發 HTTP Request 等待 Server 回傳資料的期間，可以先做其他事</li>
+</ol>
+<h3 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h3><p>而非同步中等待完成的任務，會呼叫 Callback Function 來處理接下來要做的事情</p>
+<p>Callback Function 是一個被作為參數帶入另一個函式中的「函式」，而這個作為參數帶入的函式將在未來某個時間點被呼叫和執行</p>
+<p>而在 AJAX 中也會使用到 CallbackFunction<br>關於什麼是 AJAX，可以參考我的這篇文章：<a href="https://lavinia0724.github.io/2023/07/22/ASP-NET-MVC-Framework-AJAX/">ASP.NET MVC Framework - AJAX</a></p>
+<p>這裡是一個範例：</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        var tr = $(this).closest(&#x27;tr&#x27;);</span><br><span class="line">        $(&quot;tr&quot;).remove();</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error)&#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<p>這段程式碼其實是這樣運作的：<br>Server 刪除書本後，Response 回傳給 Client 端，接著才會執行 success 定義的 Callback Function，也就是從 UI 上的 Table 移除該筆資料</p>
+<p>而 Callback Function 只會在非同步 Async 任務執行完成後才會觸發，也就是說，只要 Server 一直沒有 Response，那 Callback Function 就<strong>永遠不會被執行！</strong></p>
+<h3 id="Sync-Async-in-JavaScript"><a href="#Sync-Async-in-JavaScript" class="headerlink" title="Sync &amp; Async in JavaScript"></a>Sync &amp; Async in JavaScript</h3><p>JavaScript 是一種<strong>單執行緒</strong>的程式語言，所有的程式碼片段都會在 stack 中被執行<br>而且一次只會執行一個程式碼片段，也就是一次只做一件事</p>
+<p>但這樣會導致在同步 Sync 狀態下，例如 setTimeout、Event Callback、HTTP Request、UI Render 這些需要時間，卻又不確定觸發執行時間的操作，光等他們就飽了？</p>
+<p>於是可利用同步 Sync、非同步 Async 概念來處理這些事件，將他們以非同步的方式處理，待執行完同步的程式碼任務後，再來處理這些事件</p>
+<h3 id="Sync-in-JavaScript"><a href="#Sync-in-JavaScript" class="headerlink" title="Sync in JavaScript"></a>Sync in JavaScript</h3><p>但正如剛才提到，JavaScript 是單執行緒的程式語言，則該如何處理非同步事件呢？</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\postImgs\SyncJavaScript.webp"
+                     
+                ><!-- 分隔 --><br><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@pavelbely/javascript-event-loop-%D0%B2-%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0%D1%85-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1-a19e4d99f242" >圖片來源</a></p>
+<ol>
+<li>setTimeout、Event、AJAX、UI Render…等等操作，會先被拉出 stack 以避免阻塞</li>
+<li>前一步驟中被拉出的任務執行完畢後，其 Callback Function 會被丟到工作佇列 Queue 中</li>
+<li>等到同步 Sync 的程式碼執行完（Stack 清空），才會去撈在佇列 Queue 中的 Function 執行，這個過程稱為 Event Loop</li>
+</ol>
+<h2 id="Sync-Async-mixed-performance"><a href="#Sync-Async-mixed-performance" class="headerlink" title="Sync &amp; Async mixed performance"></a>Sync &amp; Async mixed performance</h2><h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3><p>再來看看以下這段程式：</p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;POST&quot;,</span><br><span class="line">    url: &quot;/Book/DeleteBook&quot;,</span><br><span class="line">    data: &quot;Id=&quot; + bookId,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    success: function (response) &#123;</span><br><span class="line">        console.log(&quot;Server 已將資料刪除&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (error) &#123;</span><br><span class="line">        alert(&quot;系統發生錯誤&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&quot;想不到吧，是我先被印出&quot;);</span><br></pre></td></tr></table></figure></div>
+
+<p>他的執行順序是這樣：</p>
+<ol>
+<li>一開始先執行的 AJAX 先被拉出 stack</li>
+<li>印出 “想不到吧，是我先被印出”</li>
+<li>等到 Server Response 後，Callback Function 被丟到工作佇列</li>
+<li>同步執行的工作都完成後，撈出工作佇列的 Callback Function 執行</li>
+<li>印出 “Server 已將資料刪除”</li>
+</ol>
+<blockquote>
+<p>所以呀，無論 Server 處理速度多快，就算是瞬間回應，也不會先被印出<br>與此同理，Event 事件觸發、JavaScript 改變 UI…等，也是如此機制</p>
+</blockquote>
+<h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h3><p>再來看看這個例子：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click！&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>如果在 3 秒內觸發了 click Event，卻不會馬上印出 “Click！”<br>而是會等到 3 秒後<br>印出了 “Hello” 後，才會印出 “Click！”</p>
+<h3 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h3><p>那麼那麼，再來看看這個例子：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() &gt; now + <span class="number">3000</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>因為渲染 Render 的事件也是被丟到非同步處理，所以會等所有的同步程式碼執行完才會觸發<br>因此執行的順序是：<br>等待 3 秒 -&gt; 印出 “Hello” -&gt; document.body.innerHTML 清空畫面</p>
+<h2 id="Async-VS-Multithreading"><a href="#Async-VS-Multithreading" class="headerlink" title="Async VS Multithreading"></a>Async VS Multithreading</h2><p>如此一來，雖然感覺非同步 Async 和多執行緒 Multithreading 感覺很像，都能讓完成所有任務的總時長縮減，但本質上兩者大不相同</p>
+<h3 id="Async-1"><a href="#Async-1" class="headerlink" title="Async"></a>Async</h3><ul>
+<li>允許執行緒在等待時間先處理其他作業，透過消除閒置增加效率</li>
+<li>對於吃 CPU 的作業無法處理（改用多執行緒處理會更有效率）</li>
+</ul>
+<h3 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h3><ul>
+<li>建立多執行緒，將多個任務交給不同執行緒個別處理，利用分工加速完成任務總時長</li>
+<li>對於等待 I&#x2F;O 回應的工作幫助不大（改用非同步處理會更有效率）</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Course 5 FrontEnd Advanced 課程（非公開）</li>
+</ul>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/MVC/">#MVC</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/08/04/Cyber-Security-XXE/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Cyber Security - XXE</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/07/22/ASP-NET-MVC-Framework-JSON/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">ASP.NET MVC Framework - JSON</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">INCLAVIC</div>
+        <div class="page-title">ASP.NET MVC Framework - Sync &amp; Async</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-Async"><span class="nav-text">Sync &amp; Async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-vs-Async"><span class="nav-text">Sync vs Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync"><span class="nav-text">Sync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async"><span class="nav-text">Async</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-or-Async"><span class="nav-text">Sync or Async</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Callback-Function"><span class="nav-text">Callback Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-Async-in-JavaScript"><span class="nav-text">Sync &amp; Async in JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sync-in-JavaScript"><span class="nav-text">Sync in JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-Async-mixed-performance"><span class="nav-text">Sync &amp; Async mixed performance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX"><span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addEventListener"><span class="nav-text">addEventListener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innerHTML"><span class="nav-text">innerHTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-VS-Multithreading"><span class="nav-text">Async VS Multithreading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-1"><span class="nav-text">Async</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multithreading"><span class="nav-text">Multithreading</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2024&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        訪客人數&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        文章總瀏覽數&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container"><?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 框架</span>
+                <br>
+            <span class="theme-version-container">主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
