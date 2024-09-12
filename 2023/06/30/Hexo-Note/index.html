@@ -26,7 +26,7 @@
 <meta property="og:description" content="LAVI&#39;s Blog Debut - Hexo Deployment">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-11T15:22:22.909Z">
+<meta property="article:modified_time" content="2024-09-12T12:21:33.309Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -385,10 +385,10 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-11</span>
-            <span class="mobile">2024-09-11</span>
-            <!-- <span class="desktop">2024-09-11 23:22:22</span>
-            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="desktop">2024-09-12</span>
+            <span class="mobile">2024-09-12</span>
+            <!-- <span class="desktop">2024-09-12 20:21:33</span>
+            <span class="mobile">2024-09-12 20:21</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -507,6 +507,21 @@
 <p>程式文章按鈕模板</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% btn center large::&lt;文章名稱&gt;::&lt;文章連結&gt;::fa-regular fa-window %&#125;</span><br></pre></td></tr></table></figure></div>
 
+<h2 id="文章加密"><a href="#文章加密" class="headerlink" title="文章加密"></a>文章加密</h2><p>安裝</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure></div>
+
+<p>在文章 title 新增 <code>password: &lt;密碼&gt;</code></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2016-03-30 21:18:02</span><br><span class="line">password: hello</span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+
+<p>在 hexo <code>_config.yml</code> 新增以下內容</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Security</span><br><span class="line">encrypt: # hexo-blog-encrypt</span><br><span class="line">  abstract: 有東西被加密了, 請輸入密碼查看.</span><br><span class="line">  message: 您好, 這里需要密碼.</span><br><span class="line">  tags:</span><br><span class="line">  - &#123;name: tagName, password: 密碼A&#125;</span><br><span class="line">  - &#123;name: tagName, password: 密碼B&#125;</span><br><span class="line">  wrong_pass_message: 抱歉, 這個密碼看著不太對, 請再試試.</span><br><span class="line">  wrong_hash_message: 抱歉, 這個文章不能被校驗, 不過您還是能看看解密後的內容.</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="文章隱藏"><a href="#文章隱藏" class="headerlink" title="文章隱藏"></a>文章隱藏</h2><p>安裝</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-hide-posts --save</span><br></pre></td></tr></table></figure></div>
+
+<p>在文章 title 新增 <code>hidden: true</code></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2016-03-30 21:18:02</span><br><span class="line">hidden: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+<p>即可隱藏，且文章只是於首頁被隱藏，仍然可以透過連結訪問他</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><h3 id="Redefine-Documents"><a href="#Redefine-Documents" class="headerlink" title="Redefine Documents"></a>Redefine Documents</h3><ul>
 <li><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >Hexo Themes</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/hexo-theme-redefine" >hexo-theme-redefine</a></li>
@@ -520,6 +535,10 @@
 <li><a class="link"   target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10310727" >使用 HEXO 和 github page 建置自己的 Blog</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://israynotarray.com/hexo/20190411/932826160/" >架設 Hexo + GitHub</a></li>
 <li><a class="link"   target="_blank" rel="noopener" href="https://kentdoit.github.io/hexo/356195859/" >Hexo 新增文章和頁面</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md" >hexo-blog-encrypt</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.itfanr.cc/2021/04/16/hexo-blog-article-encryption/" >Hexo博客文章加密</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/cungudafa/article/details/104346521" >Hexo（sakura）设置文章置顶+私密文章</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40790680/article/details/128971474" >hexo 隐藏文章</a></li>
 </ul>
 
             </div>
@@ -585,7 +604,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">Hexo - Deployment</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Deployment"><span class="nav-text">Hexo Deployment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">環境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A1%8C%E4%BF%AE%E6%94%B9"><span class="nav-text">Hexo 主題修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%88%E7%BD%B2%E5%88%B0-Github"><span class="nav-text">佈署到 Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%96%87%E7%AB%A0"><span class="nav-text">新增文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AF%AB%E4%BD%9C%E5%8A%9F%E8%83%BD"><span class="nav-text">常用寫作功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%86%E8%A8%98%E5%8D%80"><span class="nav-text">筆記區</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E7%A4%BA"><span class="nav-text">提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%81%B8%E9%A0%85"><span class="nav-text">多選項</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%BA%E7%96%8A"><span class="nav-text">摺疊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E9%88%95"><span class="nav-text">按鈕</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redefine-Documents"><span class="nav-text">Redefine Documents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Teaching-Articles"><span class="nav-text">Hexo Teaching Articles</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Deployment"><span class="nav-text">Hexo Deployment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">環境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A1%8C%E4%BF%AE%E6%94%B9"><span class="nav-text">Hexo 主題修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%88%E7%BD%B2%E5%88%B0-Github"><span class="nav-text">佈署到 Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%96%87%E7%AB%A0"><span class="nav-text">新增文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AF%AB%E4%BD%9C%E5%8A%9F%E8%83%BD"><span class="nav-text">常用寫作功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%86%E8%A8%98%E5%8D%80"><span class="nav-text">筆記區</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E7%A4%BA"><span class="nav-text">提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E9%81%B8%E9%A0%85"><span class="nav-text">多選項</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%BA%E7%96%8A"><span class="nav-text">摺疊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E9%88%95"><span class="nav-text">按鈕</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86"><span class="nav-text">文章加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E9%9A%B1%E8%97%8F"><span class="nav-text">文章隱藏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redefine-Documents"><span class="nav-text">Redefine Documents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-Teaching-Articles"><span class="nav-text">Hexo Teaching Articles</span></a></li></ol></li></ol>
 
     </div>
 </div>
