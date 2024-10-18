@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Convolutional Neural Networks, CNN只要看 local 的區域就好，不需要看整張照片  Property I of CNN: Local Connectivity Each neuron takes info only from a neighborhood of pixels.    曾原本的 NN 換到 CNN 上，可以學到多少 ?3 維的 input，7 維的">
+        <meta name="description" content="DLCV2 - Convolutional Neural Networks &amp; Image Segmentation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EECS - DLCV2">
+<meta property="og:title" content="DLCV - Convolutional Neural Networks &amp; Image Segmentation">
 <meta property="og:url" content="https://lavinia0724.github.io/2024/09/10/EECS-DLCV2/index.html">
 <meta property="og:site_name" content="LAVI">
-<meta property="og:description" content="Convolutional Neural Networks, CNN只要看 local 的區域就好，不需要看整張照片  Property I of CNN: Local Connectivity Each neuron takes info only from a neighborhood of pixels.    曾原本的 NN 換到 CNN 上，可以學到多少 ?3 維的 input，7 維的">
+<meta property="og:description" content="DLCV2 - Convolutional Neural Networks &amp; Image Segmentation">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/DLCVII01.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/DLCVII02.png">
@@ -40,9 +40,9 @@
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/DLCVII13.png">
 <meta property="og:image" content="https://lavinia0724.github.io/images/postImgs/DLCVII14.png">
 <meta property="article:published_time" content="2024-09-10T01:33:35.000Z">
-<meta property="article:modified_time" content="2024-09-11T15:22:22.908Z">
+<meta property="article:modified_time" content="2024-10-18T07:23:13.593Z">
 <meta property="article:author" content="LAVI">
-<meta property="article:tag" content="LAVI">
+<meta property="article:tag" content="DLCV">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://lavinia0724.github.io/images/postImgs/DLCVII01.png">
     
@@ -56,7 +56,7 @@
     
     <title>
         
-            EECS - DLCV2 -
+            DLCV - Convolutional Neural Networks &amp; Image Segmentation -
         
         INCLAVIC
     </title>
@@ -370,7 +370,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">EECS - DLCV2</h1>
+                    <h1 class="article-title-regular">DLCV - Convolutional Neural Networks &amp; Image Segmentation</h1>
                 </div>
             
                 
@@ -399,15 +399,45 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-11</span>
-            <span class="mobile">2024-09-11</span>
-            <!-- <span class="desktop">2024-09-11 23:22:22</span>
-            <span class="mobile">2024-09-11 23:22</span> -->
+            <span class="desktop">2024-10-18</span>
+            <span class="mobile">2024-10-18</span>
+            <!-- <span class="desktop">2024-10-18 15:23:13</span>
+            <span class="mobile">2024-10-18 15:23</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
 
     
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/DLCV/">DLCV</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/DLCV/Neural-Nets/">Neural Nets</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/DLCV/Neural-Nets/Convolutional-Neural-Networks-Image-Segmentation/">Convolutional Neural Networks &amp; Image Segmentation</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/DLCV/">DLCV</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -567,11 +597,28 @@ MLP 大部分時候放在最後，因為要做分類
 <p>Example 2 可以只做一千萬個乘法<br>EXample 1 要將近十億</p>
 <h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><p>把學好的神經元丟掉，使其成為較小的神經網路，但 drop out 後的神經元再也回不來</p>
 <h3 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h3><p>不能真正的解決 overfitting 問題</p>
+<h3 id="JigSaw"><a href="#JigSaw" class="headerlink" title="JigSaw"></a>JigSaw</h3><p>作業一</p>
+<h3 id="SimCLR"><a href="#SimCLR" class="headerlink" title="SimCLR"></a>SimCLR</h3><p>從不同張照片抓出來的特徵越不像越好</p>
+<h3 id="BYOL-Bootstrap-Your-Own-Latent"><a href="#BYOL-Bootstrap-Your-Own-Latent" class="headerlink" title="BYOL (Bootstrap Your Own Latent)"></a>BYOL (Bootstrap Your Own Latent)</h3><p>為了避免 model collapse，為了避免學到同樣的東西</p>
+<p>同一個 entry 要越像越好，</p>
+<h3 id="Cosegmentation"><a href="#Cosegmentation" class="headerlink" title="Cosegmentation"></a>Cosegmentation</h3><p>把共同出現的物體 segment 出來<br>Unsupervised -&gt; 沒有 label，自己學習哪個是共同物體<br>就不用人工一張張去框出譬如，椅子，的輪廓</p>
+<h3 id="Instance-Segmentation"><a href="#Instance-Segmentation" class="headerlink" title="Instance Segmentation"></a>Instance Segmentation</h3><p>不只把車子認出來，還認出是哪一台車<br>supervised</p>
+<h3 id="Sliding-Window"><a href="#Sliding-Window" class="headerlink" title="Sliding Window"></a>Sliding Window</h3><p>中心點<br>但沒效率，要問超多點，這個方法沒有很聰明</p>
+<h3 id="Fully-Convolutional-Nets"><a href="#Fully-Convolutional-Nets" class="headerlink" title="Fully Convolutional Nets"></a>Fully Convolutional Nets</h3><p>U-Net 原理 ?<br>把原圖變小，再放大，找出不同的區塊間<br>upsampling-&gt; nearest neighbor<br>Transpose Convolution</p>
+<p>會拿 downsampling 的資訊給 upsampling，為了不要丟失資訊</p>
 
             </div>
 
             
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/DLCV/">#DLCV</a>&nbsp;
+                        </li>
+                    
+                </ul>
             
 
             
@@ -588,7 +635,7 @@ MLP 大部分時候放在最後，因為要做分類
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">EECS DLCV3</span>
+                                    <span class="post-nav-title-item">DLCV - Generative Models (I) - AE, VAE &amp; GAN</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -622,8 +669,8 @@ MLP 大部分時候放在最後，因為要做分類
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">EECS - DLCV2</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks-CNN"><span class="nav-text">Convolutional Neural Networks, CNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-a-Convolution"><span class="nav-text">What is a Convolution?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dilated-Convolution"><span class="nav-text">Dilated Convolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU-Rectified-Linear-Unit"><span class="nav-text">ReLU (Rectified Linear Unit)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-Pooling"><span class="nav-text">Max Pooling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResNet"><span class="nav-text">ResNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1x1-Conv"><span class="nav-text">1x1 Conv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Augmentation"><span class="nav-text">Data Augmentation</span></a></li></ol></li></ol>
+        <div class="page-title">DLCV - Convolutional Neural Networks &amp; Image Segmentation</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks-CNN"><span class="nav-text">Convolutional Neural Networks, CNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-a-Convolution"><span class="nav-text">What is a Convolution?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dilated-Convolution"><span class="nav-text">Dilated Convolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU-Rectified-Linear-Unit"><span class="nav-text">ReLU (Rectified Linear Unit)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-Pooling"><span class="nav-text">Max Pooling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResNet"><span class="nav-text">ResNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1x1-Conv"><span class="nav-text">1x1 Conv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Augmentation"><span class="nav-text">Data Augmentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JigSaw"><span class="nav-text">JigSaw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SimCLR"><span class="nav-text">SimCLR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BYOL-Bootstrap-Your-Own-Latent"><span class="nav-text">BYOL (Bootstrap Your Own Latent)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cosegmentation"><span class="nav-text">Cosegmentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Segmentation"><span class="nav-text">Instance Segmentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sliding-Window"><span class="nav-text">Sliding Window</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fully-Convolutional-Nets"><span class="nav-text">Fully Convolutional Nets</span></a></li></ol></li></ol>
 
     </div>
 </div>
