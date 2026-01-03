@@ -26,7 +26,7 @@
 <meta property="og:description" content="LeetCode - 1411. Number of Ways to Paint N × 3 Grid">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-01-03T15:50:00.000Z">
-<meta property="article:modified_time" content="2026-01-03T16:01:42.158Z">
+<meta property="article:modified_time" content="2026-01-03T16:18:28.471Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -499,8 +499,8 @@ mjx-container[display="true"] + br {
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2026-01-04</span>
             <span class="mobile">2026-01-04</span>
-            <!-- <span class="desktop">2026-01-04 00:01:42</span>
-            <span class="mobile">2026-01-04 00:01</span> -->
+            <!-- <span class="desktop">2026-01-04 00:18:28</span>
+            <span class="mobile">2026-01-04 00:18</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -599,27 +599,7 @@ mjx-container[display="true"] + br {
 </ul>
 <h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n)</strong></p>
 <p>Space Complexity<br><strong>O(1)</strong></p>
-<pre><code class="cpp">class Solution {
-public:
-    int numOfWays(int n) {
-        const int MOD = 1e9 + 7;
-
-        // 第 1 列有兩種起始可能
-        long long dpA = 6; // ABC 類型
-        long long dpB = 6; // ABA 類型
-
-        for (int i = 2; i &lt;= n; i++) {
-            long long nextdpA = (dpA * 2 + dpB * 2) % MOD;
-            long long nextdpB = (dpA * 2 + dpB * 3) % MOD;
-
-            dpA = nextdpA;
-            dpB = nextdpB;
-        }
-        return (dpA + dpB) % MOD;
-    }
-};
-</code></pre>
-
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numOfWays</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>{<br>        <span class="hljs-type">const</span> <span class="hljs-type">int</span> MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br>        <span class="hljs-comment">// 第 1 列有兩種起始可能</span><br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> dpA = <span class="hljs-number">6</span>; <span class="hljs-comment">// ABC 類型</span><br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> dpB = <span class="hljs-number">6</span>; <span class="hljs-comment">// ABA 類型</span><br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) {<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> nextdpA = (dpA * <span class="hljs-number">2</span> + dpB * <span class="hljs-number">2</span>) % MOD;<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> nextdpB = (dpA * <span class="hljs-number">2</span> + dpB * <span class="hljs-number">3</span>) % MOD;<br><br>            dpA = nextdpA;<br>            dpB = nextdpB;<br>        }<br>        <span class="hljs-keyword">return</span> (dpA + dpB) % MOD;<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
             </div>
 
             
