@@ -26,7 +26,7 @@
 <meta property="og:description" content="LeetCode - 2463. Minimum Total Distance Traveled">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-14T15:52:53.000Z">
-<meta property="article:modified_time" content="2026-04-14T15:57:10.362Z">
+<meta property="article:modified_time" content="2026-04-14T16:06:23.407Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -497,10 +497,10 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-04-14</span>
-            <span class="mobile">2026-04-14</span>
-            <!-- <span class="desktop">2026-04-14 23:57:10</span>
-            <span class="mobile">2026-04-14 23:57</span> -->
+            <span class="desktop">2026-04-15</span>
+            <span class="mobile">2026-04-15</span>
+            <!-- <span class="desktop">2026-04-15 00:06:23</span>
+            <span class="mobile">2026-04-15 00:06</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -632,45 +632,7 @@ mjx-container[display="true"] + br {
 </ul>
 <h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × m × limit)</strong></p>
 <p>Space Complexity<br><strong>O(n × m)</strong></p>
-<pre><code class="cpp">class Solution {
-public:
-    long long minimumTotalDistance(vector&lt;int&gt;&amp; robot, vector&lt;vector&lt;int&gt;&gt;&amp; factory) {
-        // 最佳解一定可以做到不交叉分配，最佳解應該會是每個 factory 負責一段連續的 robots
-        sort(robot.begin(), robot.end());
-        sort(factory.begin(), factory.end());
-
-        int n = robot.size();
-        int m = factory.size();
-        const long long INF = 1e18; // 不能直接用 LLONG_MAX 會爆掉
-
-        vector&lt;vector&lt;long long&gt;&gt; dp(n + 1, vector&lt;long long&gt;(m + 1, INF));
-        for(int j = 0; j &lt;= m; ++j) dp[0][j] = 0; // 如果沒有 robot 要修，不管有幾間工廠，成本都是 0
-
-        // 第 j 輪表示我們正在考慮第 j 間工廠（實際 index 是 j-1）
-        for (int j = 1; j &lt;= m; j++) {
-            int pos = factory[j - 1][0]; // pos：工廠位置
-            int limit = factory[j - 1][1]; // limit：工廠容量
-
-            for (int i = 1; i &lt;= n; i++) { // 考慮「前 i 個 robots」的最優解
-                dp[i][j] = dp[i][j - 1]; // 不使用第 j 間工廠修理任何 robot
-
-                long long cost = 0;
-
-                // 讓第 j 間工廠修理最後 k 個 robots
-                for (int k = 1; k &lt;= min(i, limit); k++) {
-                    cost += abs((long long)robot[i - k] - pos); // 把最後 k 個 robots 全部分給這間工廠的成本累加起來
-                    // dp[i - k][j - 1] 意思是前 i-k 個 robots 用前 j-1 間工廠搞定
-                    // cost 意思是 最後 k 個 robots 給第 j 間工廠
-                    dp[i][j] = min(dp[i][j], dp[i - k][j - 1] + cost);
-                }
-            }
-        }
-
-        return dp[n][m];
-    }
-};
-</code></pre>
-
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">minimumTotalDistance</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; robot, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; factory)</span> </span>{<br>        <span class="hljs-comment">// 最佳解一定可以做到不交叉分配，最佳解應該會是每個 factory 負責一段連續的 robots</span><br>        <span class="hljs-built_in">sort</span>(robot.<span class="hljs-built_in">begin</span>(), robot.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-built_in">sort</span>(factory.<span class="hljs-built_in">begin</span>(), factory.<span class="hljs-built_in">end</span>());<br><br>        <span class="hljs-type">int</span> n = robot.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> m = factory.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">const</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> INF = <span class="hljs-number">1e18</span>; <span class="hljs-comment">// 不能直接用 LLONG_MAX 會爆掉</span><br><br>        vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;(m + <span class="hljs-number">1</span>, INF));<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= m; ++j) dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">0</span>; <span class="hljs-comment">// 如果沒有 robot 要修，不管有幾間工廠，成本都是 0</span><br><br>        <span class="hljs-comment">// 第 j 輪表示我們正在考慮第 j 間工廠（實際 index 是 j-1）</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) {<br>            <span class="hljs-type">int</span> pos = factory[j - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]; <span class="hljs-comment">// pos：工廠位置</span><br>            <span class="hljs-type">int</span> limit = factory[j - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>]; <span class="hljs-comment">// limit：工廠容量</span><br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) { <span class="hljs-comment">// 考慮「前 i 個 robots」的最優解</span><br>                dp[i][j] = dp[i][j - <span class="hljs-number">1</span>]; <span class="hljs-comment">// 不使用第 j 間工廠修理任何 robot</span><br><br>                <span class="hljs-type">long</span> <span class="hljs-type">long</span> cost = <span class="hljs-number">0</span>;<br><br>                <span class="hljs-comment">// 讓第 j 間工廠修理最後 k 個 robots</span><br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= <span class="hljs-built_in">min</span>(i, limit); k++) {<br>                    cost += <span class="hljs-built_in">abs</span>((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)robot[i - k] - pos); <span class="hljs-comment">// 把最後 k 個 robots 全部分給這間工廠的成本累加起來</span><br>                    <span class="hljs-comment">// dp[i - k][j - 1] 意思是前 i-k 個 robots 用前 j-1 間工廠搞定</span><br>                    <span class="hljs-comment">// cost 意思是 最後 k 個 robots 給第 j 間工廠</span><br>                    dp[i][j] = <span class="hljs-built_in">min</span>(dp[i][j], dp[i - k][j - <span class="hljs-number">1</span>] + cost);<br>                }<br>            }<br>        }<br><br>        <span class="hljs-keyword">return</span> dp[n][m];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
             </div>
 
             
