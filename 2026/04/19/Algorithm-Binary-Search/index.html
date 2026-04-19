@@ -26,7 +26,7 @@
 <meta property="og:description" content="Algorithm - Binary Search">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-19T14:00:25.000Z">
-<meta property="article:modified_time" content="2026-04-19T14:03:03.441Z">
+<meta property="article:modified_time" content="2026-04-19T14:10:11.627Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -387,8 +387,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2026-04-19</span>
             <span class="mobile">2026-04-19</span>
-            <!-- <span class="desktop">2026-04-19 22:03:03</span>
-            <span class="mobile">2026-04-19 22:03</span> -->
+            <!-- <span class="desktop">2026-04-19 22:10:11</span>
+            <span class="mobile">2026-04-19 22:10</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -438,17 +438,11 @@
             
 
             <div class="article-content markdown-body">
-                <h1 id="Binary-Search-Note"><a href="#Binary-Search-Note" class="headerlink" title="Binary Search Note"></a>Binary Search Note</h1><h2 id="核心觀念"><a href="#核心觀念" class="headerlink" title="核心觀念"></a>核心觀念</h2><p>Binary Search 的本質不是「找值」，而是：</p>
-<blockquote>
-<p>找邊界（boundary）</p>
-</blockquote>
-<p>幾乎所有題目都可以轉換成：</p>
-<blockquote>
-<p>在一個布林序列中，找到某個邊界</p>
-</blockquote>
+                <h1 id="Binary-Search-Note"><a href="#Binary-Search-Note" class="headerlink" title="Binary Search Note"></a>Binary Search Note</h1><p>Binary Search 的本質不是「找值」，而是：<strong>找邊界（boundary）</strong></p>
+<p>幾乎所有題目都可以轉換成：<strong>在一個布林序列中，找到某個邊界</strong></p>
 <div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">F F F F T T T T<br>        ↑<br>   找第一個 True<br></code></pre></td></tr></table></figure></div>
 
-<h2 id="最重要模板（找第一個滿足條件的位置）"><a href="#最重要模板（找第一個滿足條件的位置）" class="headerlink" title="最重要模板（找第一個滿足條件的位置）"></a>最重要模板（找第一個滿足條件的位置）</h2><p>適用於：</p>
+<h3 id="最重要模板（找第一個滿足條件的位置）"><a href="#最重要模板（找第一個滿足條件的位置）" class="headerlink" title="最重要模板（找第一個滿足條件的位置）"></a>最重要模板（找第一個滿足條件的位置）</h3><p>適用於：</p>
 <ul>
 <li>lower_bound</li>
 <li>search insert position</li>
@@ -457,7 +451,7 @@
 </ul>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n;<br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) right = mid;<br>    <span class="hljs-keyword">else</span> left = mid + <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
 
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
 <li>區間：<code>[left, right)</code></li>
 <li>while 條件：<code>left &lt; right</code></li>
 <li><code>right = mid</code>：保留 <code>mid</code></li>
@@ -476,35 +470,33 @@
 </ul>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = (left + right + <span class="hljs-number">1</span>) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) left = mid;<br>    <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
 
-<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><ul>
+<h4 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h4><ul>
 <li>區間：<code>[left, right]</code></li>
 <li><code>mid = (left + right + 1) &gt;&gt; 1</code>：mid 偏右，避免死循環</li>
 <li><code>left = mid</code>：保留 <code>mid</code></li>
 <li><code>right = mid - 1</code>：丟掉 <code>mid</code></li>
 </ul>
-<h2 id="傳統寫法（找某個值是否存在）"><a href="#傳統寫法（找某個值是否存在）" class="headerlink" title="傳統寫法（找某個值是否存在）"></a>傳統寫法（找某個值是否存在）</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>    <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (nums[mid] == target) <span class="hljs-keyword">return</span> mid;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br></code></pre></td></tr></table></figure></div>
+<h2 id="找某個值是否存在"><a href="#找某個值是否存在" class="headerlink" title="找某個值是否存在"></a>找某個值是否存在</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>    <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (nums[mid] == target) <span class="hljs-keyword">return</span> mid;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br></code></pre></td></tr></table></figure></div>
 
-<h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><ul>
+<h4 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h4><ul>
 <li>區間：<code>[left, right]</code></li>
 <li>while 條件：<code>left &lt;= right</code></li>
 <li>用於「找值是否存在」</li>
 </ul>
-<h2 id="判斷更新方式的核心原則"><a href="#判斷更新方式的核心原則" class="headerlink" title="判斷更新方式的核心原則"></a>判斷更新方式的核心原則</h2><p>關鍵問題：</p>
-<blockquote>
-<p><code>mid</code> 還有沒有可能是答案？</p>
-</blockquote>
+<h2 id="判斷更新方式的核心原則"><a href="#判斷更新方式的核心原則" class="headerlink" title="判斷更新方式的核心原則"></a>判斷更新方式的核心原則</h2><p>關鍵問題：**<code>mid</code> 還有沒有可能是答案？**</p>
 <h3 id="如果-mid-不可能是答案"><a href="#如果-mid-不可能是答案" class="headerlink" title="如果 mid 不可能是答案"></a>如果 <code>mid</code> 不可能是答案</h3><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">left = mid + <span class="hljs-number">1</span>;<br><span class="hljs-comment">// 或</span><br>right = mid - <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure></div>
 
 <h3 id="如果-mid-可能是答案"><a href="#如果-mid-可能是答案" class="headerlink" title="如果 mid 可能是答案"></a>如果 <code>mid</code> 可能是答案</h3><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">right = mid;<br><span class="hljs-comment">// 或</span><br>left = mid;<br></code></pre></td></tr></table></figure></div>
 
-<h2 id="統一思考方式（推薦）"><a href="#統一思考方式（推薦）" class="headerlink" title="統一思考方式（推薦）"></a>統一思考方式（推薦）</h2><p>解題時優先做這件事：</p>
+<h2 id="總而言之"><a href="#總而言之" class="headerlink" title="總而言之"></a>總而言之</h2><p>解題時優先做這件事：</p>
 <h3 id="Step-1：把問題轉成布林條件"><a href="#Step-1：把問題轉成布林條件" class="headerlink" title="Step 1：把問題轉成布林條件"></a>Step 1：把問題轉成布林條件</h3><div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">F F F T T T<br></code></pre></td></tr></table></figure></div>
 
 <h3 id="Step-2：決定要找哪個邊界"><a href="#Step-2：決定要找哪個邊界" class="headerlink" title="Step 2：決定要找哪個邊界"></a>Step 2：決定要找哪個邊界</h3><ul>
 <li>第一個 True</li>
 <li>最後一個 True</li>
 </ul>
-<h3 id="Step-3：套模板"><a href="#Step-3：套模板" class="headerlink" title="Step 3：套模板"></a>Step 3：套模板</h3><h2 id="常見對應關係"><a href="#常見對應關係" class="headerlink" title="常見對應關係"></a>常見對應關係</h2><table>
+<h3 id="Step-3：套模板"><a href="#Step-3：套模板" class="headerlink" title="Step 3：套模板"></a>Step 3：套模板</h3><p>就套唄 (無情)</p>
+<h2 id="常見對應關係"><a href="#常見對應關係" class="headerlink" title="常見對應關係"></a>常見對應關係</h2><table>
 <thead>
 <tr>
 <th>題型</th>
@@ -603,7 +595,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">Algorithm - Binary Search</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-Note"><span class="nav-text">Binary Search Note</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%80%E5%BF%B5"><span class="nav-text">核心觀念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E6%A8%A1%E6%9D%BF%EF%BC%88%E6%89%BE%E7%AC%AC%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%89"><span class="nav-text">最重要模板（找第一個滿足條件的位置）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A8%AD%E8%A8%88-condition"><span class="nav-text">如何設計 condition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-lower-bound%EF%BC%88%E7%AC%AC%E4%B8%80%E5%80%8B-target%EF%BC%89"><span class="nav-text">1. lower_bound（第一個 &gt;&#x3D; target）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-upper-bound%EF%BC%88%E7%AC%AC%E4%B8%80%E5%80%8B-target%EF%BC%89"><span class="nav-text">2. upper_bound（第一個 &gt; target）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-search-insert-position"><span class="nav-text">3. search insert position</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E6%9C%80%E5%BE%8C%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">找最後一個滿足條件的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7-1"><span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%B3%E7%B5%B1%E5%AF%AB%E6%B3%95%EF%BC%88%E6%89%BE%E6%9F%90%E5%80%8B%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%EF%BC%89"><span class="nav-text">傳統寫法（找某個值是否存在）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7-2"><span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%B7%E6%9B%B4%E6%96%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87"><span class="nav-text">判斷更新方式的核心原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C-mid-%E4%B8%8D%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88"><span class="nav-text">如果 mid 不可能是答案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C-mid-%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88"><span class="nav-text">如果 mid 可能是答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%B1%E4%B8%80%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%EF%BC%88%E6%8E%A8%E8%96%A6%EF%BC%89"><span class="nav-text">統一思考方式（推薦）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%9A%E6%8A%8A%E5%95%8F%E9%A1%8C%E8%BD%89%E6%88%90%E5%B8%83%E6%9E%97%E6%A2%9D%E4%BB%B6"><span class="nav-text">Step 1：把問題轉成布林條件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%9A%E6%B1%BA%E5%AE%9A%E8%A6%81%E6%89%BE%E5%93%AA%E5%80%8B%E9%82%8A%E7%95%8C"><span class="nav-text">Step 2：決定要找哪個邊界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%9A%E5%A5%97%E6%A8%A1%E6%9D%BF"><span class="nav-text">Step 3：套模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E5%B0%8D%E6%87%89%E9%97%9C%E4%BF%82"><span class="nav-text">常見對應關係</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AD%B0%E8%A8%98%E6%86%B6%E6%96%B9%E5%BC%8F"><span class="nav-text">建議記憶方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-text">總結</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-Note"><span class="nav-text">Binary Search Note</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E6%A8%A1%E6%9D%BF%EF%BC%88%E6%89%BE%E7%AC%AC%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%89"><span class="nav-text">最重要模板（找第一個滿足條件的位置）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A8%AD%E8%A8%88-condition"><span class="nav-text">如何設計 condition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-lower-bound%EF%BC%88%E7%AC%AC%E4%B8%80%E5%80%8B-target%EF%BC%89"><span class="nav-text">1. lower_bound（第一個 &gt;&#x3D; target）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-upper-bound%EF%BC%88%E7%AC%AC%E4%B8%80%E5%80%8B-target%EF%BC%89"><span class="nav-text">2. upper_bound（第一個 &gt; target）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-search-insert-position"><span class="nav-text">3. search insert position</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E6%9C%80%E5%BE%8C%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">找最後一個滿足條件的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E6%9F%90%E5%80%8B%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-text">找某個值是否存在</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%B7%E6%9B%B4%E6%96%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87"><span class="nav-text">判斷更新方式的核心原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C-mid-%E4%B8%8D%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88"><span class="nav-text">如果 mid 不可能是答案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C-mid-%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88"><span class="nav-text">如果 mid 可能是答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E8%80%8C%E8%A8%80%E4%B9%8B"><span class="nav-text">總而言之</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%9A%E6%8A%8A%E5%95%8F%E9%A1%8C%E8%BD%89%E6%88%90%E5%B8%83%E6%9E%97%E6%A2%9D%E4%BB%B6"><span class="nav-text">Step 1：把問題轉成布林條件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%9A%E6%B1%BA%E5%AE%9A%E8%A6%81%E6%89%BE%E5%93%AA%E5%80%8B%E9%82%8A%E7%95%8C"><span class="nav-text">Step 2：決定要找哪個邊界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%9A%E5%A5%97%E6%A8%A1%E6%9D%BF"><span class="nav-text">Step 3：套模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E5%B0%8D%E6%87%89%E9%97%9C%E4%BF%82"><span class="nav-text">常見對應關係</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AD%B0%E8%A8%98%E6%86%B6%E6%96%B9%E5%BC%8F"><span class="nav-text">建議記憶方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-text">總結</span></a></li></ol></li></ol>
 
     </div>
 </div>
