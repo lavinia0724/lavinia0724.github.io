@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="LAVI">
+    
+    <meta name="author" content="LAVI">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://lavinia0724.github.io/2026/05/03/leetcode-0-1-knapsack-problems/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="LeetCode - 0&#x2F;1 Knapsack Problems">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode - 0&#x2F;1 Knapsack Problems">
+<meta property="og:url" content="https://lavinia0724.github.io/2026/05/03/LeetCode-0-1-Knapsack-Problems/index.html">
+<meta property="og:site_name" content="LAVI">
+<meta property="og:description" content="LeetCode - 0&#x2F;1 Knapsack Problems">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-03T15:53:56.000Z">
+<meta property="article:modified_time" content="2026-05-03T15:57:09.273Z">
+<meta property="article:author" content="LAVI">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon_momian.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon_momian.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon_momian.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            LeetCode - 0/1 Knapsack Problems -
+        
+        INCLAVIC
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"lavinia0724.github.io","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":false},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推薦閱讀","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background_momian_light.jpg","dark":"/images/background_momian_dark.jpg"},"title":"INCLAVIC","subtitle":{"text":["<i class=\"fa-solid fa-sun-bright\"></i> LAVI's study blog <i class=\"fa-solid fa-star-christmas\"></i>","貓貓的名字是莫眠 Momi <i class=\"fa-solid fa-paw\"></i>"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":50,"backing_speed":50,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/lavinia0724","instagram":"https://www.instagram.com/lavinia_0724/","zhihu":null,"twitter":null,"email":null,"facebook":"https://www.facebook.com/lavinia0724","fa-solid fa-paw":"https://www.instagram.com/catty_familyyy/"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Cantarella","artist":"nero","url":"/music/Cantarella.mp3","cover":"/images/post3.jpg"},{"name":"Stronger than You","artist":"Chara","url":"/music/Chara.mp3","cover":"/images/post39.jpg"},{"name":"Stronger than You","artist":"Frisk","url":"/music/Frisk.mp3","cover":"/images/post38.jpg"},{"name":"Piece of My World","artist":"Night Ravens","url":"/music/Twisted Wonderland OP .mp3","cover":"/images/post6.jpg"},{"name":"Ready As I'll Ever Be","artist":"Tangled","url":"/music/Tangled - Ready As I_ll Ever Be .mp3","cover":"/images/post5.jpg"},{"name":"I See the Light","artist":"Tangled","url":"/music/Tangled - I See the Light.mp3","cover":"/images/post37.jpg"},{"name":"Stippling","artist":"DoubleFace","url":"/music/あんスタ Stippling.mp3","cover":"/images/post4.jpg"},{"name":"砂上ノ楼閣","artist":"旧 Valkyrie","url":"/music/あんスタ 砂上ノ楼閣.mp3","cover":"/images/post7.jpg"},{"name":"EXCEED","artist":"Eden","url":"/music/あんスタ EXCEED.mp3","cover":"/images/post8.jpg"},{"name":"Have you been naughty or nice","artist":"Flambé","url":"/music/あんスタ Have you been naughty or nice.mp3","cover":"/images/post9.jpg"},{"name":"Rewrite The Stars","artist":"Anne-Marie & James Arthur","url":"/music/Rewrite The Stars.mp3","cover":"/images/post10.jpg"},{"name":"Payphone","artist":"Maroon 5","url":"/music/Maroon 5 -  Payphone.mp3","cover":"/images/post61.JPG"},{"name":"Teeth","artist":"Anna & Chloe Breez","url":"/music/Teeth.mp3","cover":"/images/post62.JPG"},{"name":"BLACKSTAR","artist":"小林太郎","url":"/music/BLACKSTAR.mp3","cover":"/images/post11.jpg"},{"name":"へっくしゅん","artist":"RADWIMPS","url":"/music/RADWIMPS-へっくしゅん.mp3","cover":"/images/post59.jpg"},{"name":"SPECIALZ","artist":"King Gnu","url":"/music/SPECIALZ.mp3","cover":"/images/post60.jpg"},{"name":"ADDICT","artist":"HAZBIN HOTEL","url":"/music/HAZBIN HOTEL ADDICT.mp3","cover":"/images/post12.jpg"},{"name":"Poison","artist":"HAZBIN HOTEL","url":"/music/Hazbin Hotel Poison.mp3","cover":"/images/post69.JPG"},{"name":"24H","artist":"SEVENTEEN","url":"/music/SEVENTEEN 24H.mp3","cover":"/images/post20.jpg"},{"name":"CASE 143","artist":"Stray Kids","url":"/music/Stray Kids CASE 143.mp3","cover":"/images/post51.jpg"},{"name":"與海無關","artist":"告五人","url":"/music/告五人 與海無關.mp3","cover":"/images/post17.jpg"},{"name":"愛人錯過","artist":"告五人","url":"/music/告五人 - 愛人錯過.mp3","cover":"/images/post22.jpg"},{"name":"如果可以","artist":"韋禮安","url":"/music/韋禮安 如果可以.mp3","cover":"/images/post66.JPG"},{"name":"Feel Special","artist":"TWICE","url":"/music/TWICE Feel Special MV.mp3","cover":"/images/post70.JPG"},{"name":"I AM","artist":"IVE","url":"/music/IVE I AM.mp3","cover":"/images/post18.jpg"},{"name":"ELEVEN","artist":"IVE","url":"/music/IVE ELEVEN.mp3","cover":"/images/post19.jpg"},{"name":"Panorama","artist":"IZONE","url":"/music/IZONE Panorama.mp3","cover":"/images/post53.jpg"},{"name":"Funny Valentine","artist":"MISAMO","url":"/music/MISAMO - Funny Valentine.mp3","cover":"/images/post45.jpg"},{"name":"New Rules","artist":"Sana","url":"/music/Sana - New Rules.mp3","cover":"/images/post48.jpg"},{"name":"Perfect Night","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Perfect Night.mp3","cover":"/images/post54.jpg"},{"name":"UNFORGIVEN","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - UNFORGIVEN.mp3","cover":"/images/post63.jpg"},{"name":"Eve, Psyche The Bluebeards wife","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM - Eve, Psyche The Bluebeards wife.mp3","cover":"/images/post64.JPG"},{"name":"Smart","artist":"LE SSERAFIM","url":"/music/LE SSERAFIM Smart.mp3","cover":"/images/post67.JPG"},{"name":"Magnetic","artist":"ILLIT","url":"/music/ILLIT Magnetic.mp3","cover":"/images/post68.JPG"},{"name":"I WANT THAT","artist":"(G)I-DLE","url":"/music/(G)I-DLE - I WANT THAT.mp3","cover":"/images/post46.jpg"},{"name":"寒","artist":"(G)I-DLE","url":"/music/(G)I-DLE 寒.mp3","cover":"/images/post56.jpg"},{"name":"Fast Forward","artist":"SOMI","url":"/music/SOMI Fast Forward.mp3","cover":"/images/post47.jpg"},{"name":"INVU","artist":"TAEYEON","url":"/music/TAEYEON INVU.mp3","cover":"/images/post82.jpg"},{"name":"Paranoia","artist":"HEARTSTEEL","url":"/music/HEARTSTEEL – Paranoia.mp3","cover":"/images/post49.jpg"},{"name":"夢裡花","artist":"陳樂一","url":"/music/夢裡花 - 陳樂一.mp3","cover":"/images/post21.jpg"},{"name":"靜悄悄","artist":"大泫","url":"/music/大泫 - 靜悄悄.mp3","cover":"/images/post52.jpg"},{"name":"起風了","artist":"林俊杰","url":"/music/林俊杰 起風了.mp3","cover":"/images/post24.jpg"},{"name":"起風了","artist":"周深","url":"/music/周深 起風了.mp3","cover":"/images/post25.jpg"},{"name":"煙花易冷","artist":"周深","url":"/music/周深 煙花易冷.mp3","cover":"/images/post26.jpg"},{"name":"慢冷","artist":"梁靜茹","url":"/music/梁靜茹 慢冷.mp3","cover":"/images/post75.jpg"},{"name":"我愛他","artist":"丁噹","url":"/music/丁噹 我愛他.mp3","cover":"/images/post76.jpg"},{"name":"泡沫","artist":"鄧紫棋","url":"/music/鄧紫棋 泡沫.mp3","cover":"/images/post77.jpg"},{"name":"句號","artist":"鄧紫棋","url":"/music/鄧紫棋 句號.mp3","cover":"/images/post83.jpg"},{"name":"煎熬","artist":"李佳薇","url":"/music/煎熬.mp3","cover":"/images/post78.jpg"},{"name":"大火","artist":"李佳薇","url":"/music/大火.mp3","cover":"/images/post79.jpg"},{"name":"Lydia","artist":"F.I.R.飛兒樂團","url":"/music/F.I.R.飛兒樂團 Lydia.mp3","cover":"/images/post31.jpg"},{"name":"青のすみか","artist":"キタニタツヤ","url":"/music/青のすみか.mp3","cover":"/images/post33.jpg"},{"name":"燈","artist":"崎山蒼志","url":"/music/燈.mp3","cover":"/images/post32.jpg"},{"name":"群青","artist":"YOASOBI","url":"/music/YOASOBI 群青.mp3","cover":"/images/post34.jpg"},{"name":"祝福","artist":"YOASOBI","url":"/music/YOASOBI 祝福.mp3","cover":"/images/post35.jpg"},{"name":"勇者","artist":"YOASOBI","url":"/music/YOASOBI 勇者.mp3","cover":"/images/post58.jpg"},{"name":"TruE","artist":"黃齡","url":"/music/TruE.mp3","cover":"/images/post40.jpg"},{"name":"Escape","artist":"Darling in the FranXX ED 5","url":"/music/Darling in the Franxx.mp3","cover":"/images/post44.jpg"},{"name":"不眠之夜 WHITE NIGHT","artist":"張杰、Jake Miller、西山晃世、JooYoung","url":"/music/WHITE NIGHT.mp3","cover":"/images/post23.jpg"},{"name":"如果有你在","artist":"伊織","url":"/music/柯南 如果有你在.mp3","cover":"/images/background_momian_dark.jpg"},{"name":"悪魔の子","artist":"樋口愛","url":"/music/悪魔の子.mp3","cover":"/images/post57.jpg"},{"name":"Mephisto","artist":"女王蜂","url":"/music/Mephisto.mp3","cover":"/images/post50.jpg"},{"name":"極楽浄土","artist":"GARNiDELiA","url":"/music/極楽浄土.mp3","cover":"/images/post65.JPG"},{"name":"残響散歌","artist":"Aimer","url":"/music/残響散歌.mp3","cover":"/images/post80.jpg"},{"name":"紅蓮華","artist":"LiSA","url":"/music/紅蓮華.mp3","cover":"/images/post81.jpg"},{"name":"Furinas song","artist":"原神","url":"/music/Furinas song.mp3","cover":"/images/post55.jpg"},{"name":"My Clematis","artist":"Alien Stage","url":"/music/Alien Stage My Clematis.mp3","cover":"/images/post71.JPG"},{"name":"Black Sorrow","artist":"Alien Stage","url":"/music/Alien Stage Black Sorrow.mp3","cover":"/images/post72.JPG"},{"name":"Ruler Of My Heart","artist":"Alien Stage","url":"/music/Alien Stage Ruler Of My Heart.mp3","cover":"/images/post73.jpg"},{"name":"CURE","artist":"Alien Stage","url":"/music/Alien Stage CURE.mp3","cover":"/images/post74.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-solid fa-house-chimney"},"Gallery":{"path":"/masonry","icon":"fa-solid fa-book-open-cover"},"Archive":{"icon":"fa-solid fa-book","submenus":{"Tags":"/tags","Archives":"/archives","Categories":"/categories"}},"About":{"icon":"fa-solid fa-user","submenus":{"Profile":"/profile","Friend Links":"/links"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur","toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true}},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"貓貓的名字是莫眠 <i class=\"fa-solid fa-paw\"></i>","links":{"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Archives":{"path":"/archives","icon":"fa-solid fa-book"},"Categories":{"path":"/categories","icon":"fa-solid fa-bookmark"}}},"article_date_format":"YYYY MM DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    Global.data_config = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                INCLAVIC
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-house-chimney"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/masonry"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-book-open-cover"></i>
+                                        
+                                        GALLERY
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-book"></i>
+                                        
+                                        ARCHIVE&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/tags">TAGS
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/archives">ARCHIVES
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/categories">CATEGORIES
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-solid fa-user"></i>
+                                        
+                                        ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/profile">PROFILE
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/links">FRIEND LINKS
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-solid fa-house-chimney"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/masonry"  >
+                             
+                                
+                                    <i class="fa-solid fa-book-open-cover"></i>
+                                
+                                GALLERY
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-book"></i>
+                                
+                                ARCHIVE&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/tags">TAGS</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/archives">ARCHIVES</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/categories">CATEGORIES</a>
+                            </li>
+                        
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-solid fa-user"></i>
+                                
+                                ABOUT&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/profile">PROFILE</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/links">FRIEND LINKS</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+                      
+                <div class="article-title">
+                    <img src="/images/post114.jpg" alt="LeetCode - 0/1 Knapsack Problems" />
+                    <h1 class="article-title-cover">LeetCode - 0/1 Knapsack Problems</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/logo_momian.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">LAVI</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-05-03</span>
+        <span class="mobile">2026-05-03</span>
+        <!-- <span class="desktop">2026-05-03 23:53:56</span>
+        <span class="mobile">2026-05-03 23:53</span> -->
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-05-03</span>
+            <span class="mobile">2026-05-03</span>
+            <!-- <span class="desktop">2026-05-03 23:57:09</span>
+            <span class="mobile">2026-05-03 23:57</span> -->
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/LeetCode/DP/">DP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/LeetCode/DP/0-1-Knapsack/">0/1 Knapsack</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/LeetCode/">LeetCode</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p><code>Medium</code> <code>Hard</code></p>
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/416.%20Partition%20Equal%20Subset%20Sum.cpp" title="416. Partition Equal Subset Sum"><i class="fa-brands fa-github"></i> 416. Partition Equal Subset Sum</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/494.%20Target%20Sum.cpp" title="494. Target Sum"><i class="fa-brands fa-github"></i> 494. Target Sum</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/474.%20Ones%20and%20Zeroes.cpp" title="474. Ones and Zeroes"><i class="fa-brands fa-github"></i> 474. Ones and Zeroes</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/1049.%20Last%20Stone%20Weight%20II.cpp" title="1049. Last Stone Weight II"><i class="fa-brands fa-github"></i> 1049. Last Stone Weight II</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/2915.%20Length%20of%20the%20Longest%20Subsequence%20That%20Sums%20to%20Target.cpp" title="2915. Length of the Longest Subsequence That Sums to Target"><i class="fa-brands fa-github"></i> 2915. Length of the Longest Subsequence That Sums to Target</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/2787.%20Ways%20to%20Express%20an%20Integer%20as%20Sum%20of%20Powers.cpp" title="2787. Ways to Express an Integer as Sum of Powers"><i class="fa-brands fa-github"></i> 2787. Ways to Express an Integer as Sum of Powers</a>
+
+<a class="button  center large" target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/879.%20Profitable%20Schemes.cpp" title="879. Profitable Schemes"><i class="fa-brands fa-github"></i> 879. Profitable Schemes</a>
+
+<h2 id="0-1-背包基本概念"><a href="#0-1-背包基本概念" class="headerlink" title="0/1 背包基本概念"></a>0/1 背包基本概念</h2><p>0/1 背包的核心是：每個物品只能選一次</p>
+<ul>
+<li>每個 <code>num</code>、每個 <code>stone</code>、每個字串、每個 crime 都只能使用一次</li>
+<li>所以更新 dp 時，容量通常要從大到小更新</li>
+<li>這樣可以避免同一個物品在同一輪被重複使用</li>
+</ul>
+<p>常見寫法：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> item: items){<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = target; j &gt;= item; --j){<br>        dp[j] = ...<br>    }<br>}<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="416-Partition-Equal-Subset-Sum"><a href="#416-Partition-Equal-Subset-Sum" class="headerlink" title="416. Partition Equal Subset Sum"></a>416. Partition Equal Subset Sum</h2><h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>Given an integer array <code>nums</code>, return <code>true</code> if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or <code>false</code> otherwise.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>nums = [1,5,11,5]</code><br>Output: <code>true</code><br>Explanation: The array can be partitioned as <code>[1, 5, 5]</code> and <code>[11]</code>.</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>nums = [1,2,3,5]</code><br>Output: <code>false</code><br>Explanation: The array cannot be partitioned into equal sum subsets.</p>
+<h4 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= nums.length &lt;= 200</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+<h2 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是 0/1 背包<br>每個數字只能被選一次</p>
+<ul>
+<li><p>先計算總和 <code>total</code></p>
+<ul>
+<li>如果 <code>total</code> 是奇數，不可能分成兩個相等 subset</li>
+<li>直接回傳 <code>false</code></li>
+</ul>
+</li>
+<li><p>目標變成：</p>
+<ul>
+<li>能不能從 <code>nums</code> 裡選一些數字，使總和剛好是 <code>total / 2</code></li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[currSum]</code>：是否可以湊出 <code>currSum</code></li>
+</ul>
+</li>
+<li><p>初始化：</p>
+<ul>
+<li><code>dp[0] = true</code></li>
+<li>因為什麼都不選，sum 一定為 <code>0</code></li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>每個 <code>num</code> 只能用一次</li>
+<li>所以 <code>currSum</code> 要從大到小更新</li>
+<li><code>dp[currSum] = dp[currSum] || dp[currSum - num]</code></li>
+</ul>
+</li>
+<li><p>最後答案為：<br>  <code>dp[total]</code></p>
+</li>
+</ul>
+<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × target)</strong></p>
+<p>Space Complexity<br><strong>O(target)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canPartition</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>{<br>        <span class="hljs-type">int</span> total = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> num: nums) total += num;<br><br>        <span class="hljs-keyword">if</span>(total % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        total /= <span class="hljs-number">2</span>;<br><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(total + <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 因為甚麼都不加 sum 一定為 0</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> num: nums){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> currSum = total; currSum &gt;= num; --currSum){<br>                dp[currSum] = dp[currSum] || dp[currSum - num]; <span class="hljs-comment">// 去試有沒有可能達到 total </span><br>            }<br>        }<br>        <span class="hljs-keyword">return</span> dp[total];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="494-Target-Sum"><a href="#494-Target-Sum" class="headerlink" title="494. Target Sum"></a>494. Target Sum</h2><h2 id="題目-1"><a href="#題目-1" class="headerlink" title="題目"></a>題目</h2><p>You are given an integer array <code>nums</code> and an integer <code>target</code>.</p>
+<p>You want to build an expression out of <code>nums</code> by adding one of the symbols <code>'+'</code> and <code>'-'</code> before each integer in <code>nums</code> and then concatenate all the integers.</p>
+<p>Return the number of different expressions that you can build, which evaluates to <code>target</code>.</p>
+<h4 id="Example-1-1"><a href="#Example-1-1" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>nums = [1,1,1,1,1]</code>, <code>target = 3</code><br>Output: <code>5</code><br>Explanation: There are 5 ways to assign symbols to make the sum of <code>nums</code> be target <code>3</code>.</p>
+<h4 id="Example-2-1"><a href="#Example-2-1" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>nums = [1]</code>, <code>target = 1</code><br>Output: <code>1</code></p>
+<h4 id="Constraints-1"><a href="#Constraints-1" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= nums.length &lt;= 20</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
+<li><code>0 &lt;= sum(nums[i]) &lt;= 1000</code></li>
+<li><code>-1000 &lt;= target &lt;= 1000</code></li>
+</ul>
+<h2 id="解題思路-1"><a href="#解題思路-1" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題每個數字都只能用一次<br>每個數字有兩種選擇：加上去或減掉</p>
+<ul>
+<li><p>先計算 <code>totalSum</code></p>
+<ul>
+<li>如果 <code>abs(target) &gt; totalSum</code></li>
+<li>代表不可能湊出 target，直接回傳 <code>0</code></li>
+</ul>
+</li>
+<li><p>因為 sum 可能是負數</p>
+<ul>
+<li>所以用 offset 的方式</li>
+<li>實際存取時用 <code>sum + totalSum</code></li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[i][sum + totalSum]</code></li>
+<li>代表使用到第 <code>i</code> 個數字時，得到 sum 的方法數</li>
+</ul>
+</li>
+<li><p>初始化：</p>
+<ul>
+<li>第一個數字可以加，也可以減</li>
+<li><code>dp[0][totalSum + nums[0]] += 1</code></li>
+<li><code>dp[0][totalSum - nums[0]] += 1</code></li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>枚舉前一層所有可能的 sum</li>
+<li>如果以前有更新過<ul>
+<li>可以選擇加上 <code>nums[i]</code></li>
+<li>也可以選擇減掉 <code>nums[i]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最後答案為：<br>  <code>dp[nums.size()-1][target + totalSum]</code></p>
+</li>
+</ul>
+<h2 id="Solution-Code-1"><a href="#Solution-Code-1" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × totalSum)</strong></p>
+<p>Space Complexity<br><strong>O(n × totalSum)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findTargetSumWays</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>{<br>        <span class="hljs-type">int</span> totalSum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(target) &gt; totalSum) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(nums.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span> * totalSum + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br><br>        dp[<span class="hljs-number">0</span>][totalSum + nums[<span class="hljs-number">0</span>]] += <span class="hljs-number">1</span>;<br>        dp[<span class="hljs-number">0</span>][totalSum - nums[<span class="hljs-number">0</span>]] += <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); ++i){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = -totalSum; j &lt;= totalSum; ++j){ <span class="hljs-comment">// 就是把 -totalSum ~ totalSum 全跑一遍</span><br>                <span class="hljs-keyword">if</span>(dp[i<span class="hljs-number">-1</span>][j + totalSum] &gt; <span class="hljs-number">0</span>){ <span class="hljs-comment">// 代表以前有更新過</span><br>                    dp[i][j + totalSum + nums[i]] += dp[i<span class="hljs-number">-1</span>][j + totalSum]; <span class="hljs-comment">// 更新加上 nums[i] 的 dp 那格的值</span><br>                    dp[i][j + totalSum - nums[i]] += dp[i<span class="hljs-number">-1</span>][j + totalSum]; <span class="hljs-comment">// 同理，只是是更新減掉 nums[i] 的 dp 那格的值</span><br>                }<br>            }<br>        }<br>        <br>        <span class="hljs-keyword">return</span> dp[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][target + totalSum];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="474-Ones-and-Zeroes"><a href="#474-Ones-and-Zeroes" class="headerlink" title="474. Ones and Zeroes"></a>474. Ones and Zeroes</h2><h2 id="題目-2"><a href="#題目-2" class="headerlink" title="題目"></a>題目</h2><p>You are given an array of binary strings <code>strs</code> and two integers <code>m</code> and <code>n</code>.</p>
+<p>Return the size of the largest subset of <code>strs</code> such that there are at most <code>m</code> <code>0</code>‘s and <code>n</code> <code>1</code>‘s in the subset.</p>
+<p>A set <code>x</code> is a subset of a set <code>y</code> if all elements of <code>x</code> are also elements of <code>y</code>.</p>
+<h4 id="Example-1-2"><a href="#Example-1-2" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>strs = ["10","0001","111001","1","0"]</code>, <code>m = 5</code>, <code>n = 3</code><br>Output: <code>4</code><br>Explanation: The largest subset with at most 5 <code>0</code>‘s and 3 <code>1</code>‘s is <code>{"10", "0001", "1", "0"}</code>, so the answer is <code>4</code>.</p>
+<h4 id="Example-2-2"><a href="#Example-2-2" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>strs = ["10","0","1"]</code>, <code>m = 1</code>, <code>n = 1</code><br>Output: <code>2</code><br>Explanation: The largest subset is <code>{"0", "1"}</code>, so the answer is <code>2</code>.</p>
+<h4 id="Constraints-2"><a href="#Constraints-2" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= strs.length &lt;= 600</code></li>
+<li><code>1 &lt;= strs[i].length &lt;= 100</code></li>
+<li><code>strs[i]</code> consists only of digits <code>'0'</code> and <code>'1'</code>.</li>
+<li><code>1 &lt;= m, n &lt;= 100</code></li>
+</ul>
+<h2 id="解題思路-2"><a href="#解題思路-2" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是二維 0/1 背包<br>每個字串只能選一次</p>
+<ul>
+<li><p>背包容量有兩個維度：</p>
+<ul>
+<li>最多可以使用 <code>m</code> 個 <code>0</code></li>
+<li>最多可以使用 <code>n</code> 個 <code>1</code></li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[i][j]</code>：最多使用 <code>i</code> 個 <code>0</code> 和 <code>j</code> 個 <code>1</code>，可以選到的最大 subset size</li>
+</ul>
+</li>
+<li><p>對每個字串：</p>
+<ul>
+<li>先計算這個字串裡有幾個 <code>0</code></li>
+<li>再計算這個字串裡有幾個 <code>1</code></li>
+</ul>
+</li>
+<li><p>因為每個字串只能選一次</p>
+<ul>
+<li>所以 <code>i</code> 和 <code>j</code> 都要從大到小更新</li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>不選目前字串：維持 <code>dp[i][j]</code></li>
+<li>選目前字串：<code>dp[i-zeronum][j-onenum] + 1</code></li>
+<li>因此：<br>  <code>dp[i][j] = max(dp[i][j], dp[i-zeronum][j-onenum] + 1)</code></li>
+</ul>
+</li>
+<li><p>最後答案為：<br>  <code>dp[m][n]</code></p>
+</li>
+</ul>
+<h2 id="Solution-Code-2"><a href="#Solution-Code-2" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(strs.length × m × n)</strong></p>
+<p>Space Complexity<br><strong>O(m × n)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMaxForm</span><span class="hljs-params">(vector&lt;string&gt;&amp; strs, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span> </span>{<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(m+<span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> str: strs){<br>            <span class="hljs-type">int</span> zeronum = <span class="hljs-number">0</span>, onenum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> s: str){<br>                <span class="hljs-keyword">if</span>(s == <span class="hljs-string">'0'</span>) zeronum++;<br>                <span class="hljs-keyword">else</span> onenum++;<br>            }<br><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = m; i &gt;= zeronum; --i){<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = n; j &gt;= onenum; --j){<br>                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i][j], dp[i-zeronum][j-onenum] + <span class="hljs-number">1</span>);<br>                }<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> dp[m][n];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="1049-Last-Stone-Weight-II"><a href="#1049-Last-Stone-Weight-II" class="headerlink" title="1049. Last Stone Weight II"></a>1049. Last Stone Weight II</h2><h2 id="題目-3"><a href="#題目-3" class="headerlink" title="題目"></a>題目</h2><p>You are given an array of integers <code>stones</code> where <code>stones[i]</code> is the weight of the <code>i</code>th stone.</p>
+<p>We are playing a game with the stones. On each turn, we choose any two stones and smash them together.</p>
+<p>Suppose the stones have weights <code>x</code> and <code>y</code> with <code>x &lt;= y</code>. The result of this smash is:</p>
+<ul>
+<li>If <code>x == y</code>, both stones are destroyed</li>
+<li>If <code>x != y</code>, the stone of weight <code>x</code> is destroyed, and the stone of weight <code>y</code> has new weight <code>y - x</code></li>
+</ul>
+<p>At the end of the game, there is at most one stone left.</p>
+<p>Return the smallest possible weight of the left stone. If there are no stones left, return <code>0</code>.</p>
+<h4 id="Example-1-3"><a href="#Example-1-3" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>stones = [2,7,4,1,8,1]</code><br>Output: <code>1</code></p>
+<h4 id="Example-2-3"><a href="#Example-2-3" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>stones = [31,26,33,21,40]</code><br>Output: <code>5</code></p>
+<h4 id="Constraints-3"><a href="#Constraints-3" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= stones.length &lt;= 30</code></li>
+<li><code>1 &lt;= stones[i] &lt;= 100</code></li>
+</ul>
+<h2 id="解題思路-3"><a href="#解題思路-3" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題可以轉成 0/1 背包<br>目標是把 stones 分成兩堆，讓兩堆重量差最小</p>
+<ul>
+<li><p>設全部石頭總重量為 <code>total</code></p>
+</li>
+<li><p>如果其中一堆重量是 <code>sum</code></p>
+</li>
+<li><p>另一堆就是 <code>total - sum</code></p>
+</li>
+<li><p>最後剩下的重量就是：<br>  <code>abs(total - sum - sum)</code></p>
+</li>
+<li><p>所以問題變成：</p>
+<ul>
+<li>找一堆石頭</li>
+<li>重量盡量接近 <code>total / 2</code></li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[j]</code>：容量為 <code>j</code> 時，可以裝到的最大石頭重量</li>
+</ul>
+</li>
+<li><p>每顆石頭只能用一次</p>
+<ul>
+<li>所以是 0/1 背包</li>
+<li><code>j</code> 要從大到小更新</li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li><code>dp[j] = max(dp[j], dp[j - stone] + stone)</code></li>
+</ul>
+</li>
+<li><p>最後答案為：<br>  <code>total - 2 * dp[target]</code></p>
+</li>
+</ul>
+<h2 id="Solution-Code-3"><a href="#Solution-Code-3" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × total)</strong></p>
+<p>Space Complexity<br><strong>O(total)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lastStoneWeightII</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; stones)</span> </span>{<br>        <span class="hljs-type">int</span> total = <span class="hljs-built_in">accumulate</span>(stones.<span class="hljs-built_in">begin</span>(), stones.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>        <span class="hljs-type">int</span> target = total / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(target + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> stone: stones){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = target; j &gt;= stone; --j){<br>                dp[j] = <span class="hljs-built_in">max</span>(dp[j], dp[j - stone] + stone);<br>            }<br>        }<br><br>        <span class="hljs-keyword">return</span> total - <span class="hljs-number">2</span> * dp[target];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="2915-Length-of-the-Longest-Subsequence-That-Sums-to-Target"><a href="#2915-Length-of-the-Longest-Subsequence-That-Sums-to-Target" class="headerlink" title="2915. Length of the Longest Subsequence That Sums to Target"></a>2915. Length of the Longest Subsequence That Sums to Target</h2><h2 id="題目-4"><a href="#題目-4" class="headerlink" title="題目"></a>題目</h2><p>You are given a 0-indexed array of integers <code>nums</code>, and an integer <code>target</code>.</p>
+<p>Return the length of the longest subsequence of <code>nums</code> that sums up to <code>target</code>. If no such subsequence exists, return <code>-1</code>.</p>
+<p>A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.</p>
+<h4 id="Example-1-4"><a href="#Example-1-4" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>nums = [1,2,3,4,5]</code>, <code>target = 9</code><br>Output: <code>3</code></p>
+<h4 id="Example-2-4"><a href="#Example-2-4" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>nums = [4,1,3,2,1,5]</code>, <code>target = 7</code><br>Output: <code>4</code></p>
+<h4 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3"></a>Example 3</h4><p>Input: <code>nums = [1,1,5,4,5]</code>, <code>target = 3</code><br>Output: <code>-1</code></p>
+<h4 id="Constraints-4"><a href="#Constraints-4" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= target &lt;= 1000</code></li>
+</ul>
+<h2 id="解題思路-4"><a href="#解題思路-4" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是 0/1 背包<br>每個數字只能選一次，目標是湊出 <code>target</code></p>
+<ul>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[j]</code>：總和為 <code>j</code> 時，最長 subsequence 長度</li>
+</ul>
+</li>
+<li><p>初始化：</p>
+<ul>
+<li><code>dp[0] = 0</code></li>
+<li>其他設成 <code>INT_MIN</code></li>
+<li>代表目前還湊不出來</li>
+</ul>
+</li>
+<li><p>對每個 <code>num</code></p>
+<ul>
+<li>因為每個數字只能選一次</li>
+<li>所以 <code>j</code> 要從大到小更新</li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>選目前的 <code>num</code></li>
+<li><code>dp[j] = max(dp[j], dp[j - num] + 1)</code></li>
+</ul>
+</li>
+<li><p>最後：</p>
+<ul>
+<li>如果 <code>dp[target] &gt; 0</code>，回傳 <code>dp[target]</code></li>
+<li>否則回傳 <code>-1</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Solution-Code-4"><a href="#Solution-Code-4" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × target)</strong></p>
+<p>Space Complexity<br><strong>O(target)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLongestSubsequence</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>{<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(target+<span class="hljs-number">1</span>, INT_MIN)</span></span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num: nums){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = target; j &gt;= num; --j){<br>                dp[j] = <span class="hljs-built_in">max</span>(dp[j], dp[j - num] + <span class="hljs-number">1</span>);<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> (dp[target] &gt; <span class="hljs-number">0</span>) ? dp[target] : <span class="hljs-number">-1</span>;<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="2787-Ways-to-Express-an-Integer-as-Sum-of-Powers"><a href="#2787-Ways-to-Express-an-Integer-as-Sum-of-Powers" class="headerlink" title="2787. Ways to Express an Integer as Sum of Powers"></a>2787. Ways to Express an Integer as Sum of Powers</h2><h2 id="題目-5"><a href="#題目-5" class="headerlink" title="題目"></a>題目</h2><p>Given two positive integers <code>n</code> and <code>x</code>.</p>
+<p>Return the number of ways <code>n</code> can be expressed as the sum of the <code>x</code>th power of unique positive integers, in other words, the number of sets of unique integers <code>[n1, n2, ..., nk]</code> where <code>n = n1^x + n2^x + ... + nk^x</code>.</p>
+<p>Since the result can be very large, return it modulo <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="7.147ex" height="2.14ex" role="img" focusable="false" viewBox="0 -864 3159 946"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></g></g><g data-mml-node="mo" transform="translate(1658.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(2659,0)"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path></g></g></g></svg></mjx-container>.</p>
+<h4 id="Example-1-5"><a href="#Example-1-5" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>n = 10</code>, <code>x = 2</code><br>Output: <code>1</code><br>Explanation: We can express <code>n</code> as <code>3^2 + 1^2 = 10</code>.</p>
+<h4 id="Example-2-5"><a href="#Example-2-5" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>n = 4</code>, <code>x = 1</code><br>Output: <code>2</code></p>
+<h4 id="Constraints-5"><a href="#Constraints-5" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= n &lt;= 300</code></li>
+<li><code>1 &lt;= x &lt;= 5</code></li>
+</ul>
+<h2 id="解題思路-5"><a href="#解題思路-5" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是 0/1 背包<br>每個 positive integer 的 <code>x</code> 次方只能使用一次</p>
+<ul>
+<li><p>先枚舉每個數字 <code>i</code></p>
+<ul>
+<li>計算 <code>i^x</code></li>
+<li>如果 <code>i^x</code> 超過 <code>n</code>，後面就不用考慮</li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[j]</code>：湊出總和 <code>j</code> 的方法數</li>
+</ul>
+</li>
+<li><p>初始化：</p>
+<ul>
+<li><code>dp[0] = 1</code></li>
+<li>代表湊出 0 有一種方式，就是什麼都不選</li>
+</ul>
+</li>
+<li><p>因為每個 <code>i^x</code> 只能選一次</p>
+<ul>
+<li>所以 <code>j</code> 要從大到小更新</li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>這題是求方法數，所以用 <code>+=</code></li>
+<li><code>dp[j] = dp[j] + dp[j - nx]</code></li>
+</ul>
+</li>
+<li><p>最後答案為：<br>  <code>dp[n]</code></p>
+</li>
+</ul>
+<h2 id="Solution-Code-5"><a href="#Solution-Code-5" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × n)</strong></p>
+<p>Space Complexity<br><strong>O(n)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numberOfWays</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> x)</span> </span>{<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-type">const</span> <span class="hljs-type">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i){<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span> nx = <span class="hljs-built_in">pow</span>(i, x);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = n; j &gt;= nx; --j){<br>                dp[j] = (dp[j] + dp[j-nx]) % mod; <span class="hljs-comment">// 求方法數用 +=</span><br>            }<br>        }<br>        <span class="hljs-keyword">return</span> dp[n];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="879-Profitable-Schemes"><a href="#879-Profitable-Schemes" class="headerlink" title="879. Profitable Schemes"></a>879. Profitable Schemes</h2><h2 id="題目-6"><a href="#題目-6" class="headerlink" title="題目"></a>題目</h2><p>There is a group of <code>n</code> members, and a list of various crimes they could commit. The <code>i</code>th crime generates a <code>profit[i]</code> and requires <code>group[i]</code> members to participate in it. If a member participates in one crime, that member can’t participate in another crime.</p>
+<p>Let’s call a profitable scheme any subset of these crimes that generates at least <code>minProfit</code> profit, and the total number of members participating in that subset of crimes is at most <code>n</code>.</p>
+<p>Return the number of schemes that can be chosen. Since the answer may be very large, return it modulo <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="7.147ex" height="2.14ex" role="img" focusable="false" viewBox="0 -864 3159 946"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></g></g><g data-mml-node="mo" transform="translate(1658.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(2659,0)"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path></g></g></g></svg></mjx-container>.</p>
+<h4 id="Example-1-6"><a href="#Example-1-6" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>n = 5</code>, <code>minProfit = 3</code>, <code>group = [2,2]</code>, <code>profit = [2,3]</code><br>Output: <code>2</code></p>
+<h4 id="Example-2-6"><a href="#Example-2-6" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>n = 10</code>, <code>minProfit = 5</code>, <code>group = [2,3,5]</code>, <code>profit = [6,7,8]</code><br>Output: <code>7</code></p>
+<h4 id="Constraints-6"><a href="#Constraints-6" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
+<li><code>1 &lt;= n &lt;= 100</code></li>
+<li><code>0 &lt;= minProfit &lt;= 100</code></li>
+<li><code>1 &lt;= group.length &lt;= 100</code></li>
+<li><code>1 &lt;= group[i] &lt;= 100</code></li>
+<li><code>profit.length == group.length</code></li>
+<li><code>0 &lt;= profit[i] &lt;= 100</code></li>
+</ul>
+<h2 id="解題思路-6"><a href="#解題思路-6" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是二維 0/1 背包<br>每個 crime 只能選一次</p>
+<ul>
+<li><p>背包容量有兩個維度：</p>
+<ul>
+<li>使用的人數 <code>g</code></li>
+<li>達到的 profit <code>p</code></li>
+</ul>
+</li>
+<li><p>DP 定義：</p>
+<ul>
+<li><code>dp[g][p]</code>：用 <code>g</code> 個人，達到 profit 至少 <code>p</code> 的方案數</li>
+</ul>
+</li>
+<li><p>初始化：</p>
+<ul>
+<li><code>dp[0][0] = 1</code></li>
+<li>代表不選任何 crime，也是一種方案</li>
+</ul>
+</li>
+<li><p>對每個 crime：</p>
+<ul>
+<li><code>members = group[i]</code></li>
+<li><code>earn = profit[i]</code></li>
+</ul>
+</li>
+<li><p>因為每個 crime 只能選一次</p>
+<ul>
+<li>所以 <code>g</code> 要從大到小更新</li>
+<li><code>p</code> 也從大到小更新</li>
+</ul>
+</li>
+<li><p>profit 最多只需要記到 <code>minProfit</code></p>
+<ul>
+<li>超過 <code>minProfit</code> 的都壓成 <code>minProfit</code></li>
+<li><code>newProfit = min(minProfit, p + earn)</code></li>
+</ul>
+</li>
+<li><p>狀態轉移：</p>
+<ul>
+<li>這題是找方法數，所以用 <code>+=</code></li>
+<li><code>dp[g][newProfit] += dp[g - members][p]</code></li>
+</ul>
+</li>
+<li><p>最後把所有 <code>dp[g][minProfit]</code> 加起來</p>
+<ul>
+<li>因為人數只要不超過 <code>n</code> 都可以</li>
+</ul>
+</li>
+</ul>
+<h2 id="Solution-Code-6"><a href="#Solution-Code-6" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(crimes × n × minProfit)</strong></p>
+<p>Space Complexity<br><strong>O(n × minProfit)</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">profitableSchemes</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> minProfit, vector&lt;<span class="hljs-type">int</span>&gt;&amp; group, vector&lt;<span class="hljs-type">int</span>&gt;&amp; profit)</span> </span>{<br>        vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n+<span class="hljs-number">1</span> , <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span>&gt;(minProfit+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)); <span class="hljs-comment">// dp[g][p] = 用 g 個人，達到 profit 至少 p 的方案數</span><br>        <span class="hljs-type">const</span> <span class="hljs-type">int</span> mod = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br><br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; group.<span class="hljs-built_in">size</span>(); ++i){  <span class="hljs-comment">// group.size() == profit.size() 一樣的</span><br>            <span class="hljs-type">int</span> members = group[i];<br>            <span class="hljs-type">int</span> earn = profit[i];<br><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> g = n; g &gt;= members; --g){ <span class="hljs-comment">// dp 第一維是 group，第二維是 profit，所以 for 第二圈從 group 開始更新</span><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> p = minProfit; p &gt;= <span class="hljs-number">0</span>; --p){<br>                    <span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span> newProfit = <span class="hljs-built_in">min</span>(minProfit, p + earn);<br>                    dp[g][newProfit] = (dp[g][newProfit] + dp[g - members][p]) % mod; <span class="hljs-comment">// 這題是找方法數問題，用 +=</span><br>                }<br>            }<br>        }<br><br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> g = <span class="hljs-number">0</span>; g &lt;= n; ++g){<br>            ans = (ans + dp[g][minProfit]) % mod;<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>0/1 背包的重點是每個物品只能使用一次</p>
+<ul>
+<li><p>如果是一般一維容量</p>
+<ul>
+<li>通常用一維 <code>dp</code></li>
+<li>容量從大到小更新</li>
+</ul>
+</li>
+<li><p>如果有兩種容量限制</p>
+<ul>
+<li>例如 <code>0</code> 的數量和 <code>1</code> 的數量</li>
+<li>或是人數和 profit</li>
+<li>就會變成二維背包</li>
+</ul>
+</li>
+<li><p>如果是求可不可行</p>
+<ul>
+<li>常用 <code>bool dp</code></li>
+</ul>
+</li>
+<li><p>如果是求最大值</p>
+<ul>
+<li>常用 <code>max</code></li>
+</ul>
+</li>
+<li><p>如果是求方法數</p>
+<ul>
+<li>常用 <code>+=</code></li>
+</ul>
+</li>
+</ul>
+<p>最重要的是更新方向：<br>0/1 背包為了避免同一個物品被重複使用，容量要從大到小更新</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/LeetCode/">#LeetCode</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2026/05/03/LeetCode-Complete-Knapsack-Problems/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">LeetCode - Complete Knapsack Problems</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2026/05/03/Algorithm-DP-Knapsack/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Algorithm - DP Knapsack</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">LeetCode - 0/1 Knapsack Problems</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-%E8%83%8C%E5%8C%85%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">0&#x2F;1 背包基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#416-Partition-Equal-Subset-Sum"><span class="nav-text">416. Partition Equal Subset Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#494-Target-Sum"><span class="nav-text">494. Target Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-1"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-1"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-1"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#474-Ones-and-Zeroes"><span class="nav-text">474. Ones and Zeroes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-2"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-2"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-2"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1049-Last-Stone-Weight-II"><span class="nav-text">1049. Last Stone Weight II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-3"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-3"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-3"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2915-Length-of-the-Longest-Subsequence-That-Sums-to-Target"><span class="nav-text">2915. Length of the Longest Subsequence That Sums to Target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-4"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-4"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-4"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2787-Ways-to-Express-an-Integer-as-Sum-of-Powers"><span class="nav-text">2787. Ways to Express an Integer as Sum of Powers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-5"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-5"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-5"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#879-Profitable-Schemes"><span class="nav-text">879. Profitable Schemes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-6"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-6"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-6"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            <!--  -->
+            2021 - 
+            2026&nbsp;&nbsp;<i class="fa-solid fa-paw"></i>&nbsp;&nbsp;<a href="/">LAVI</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.1</a>
+        </div>
+        
+        
+        
+        
+            <div class="customize-info info-item">「<i class="fa-solid fa-sun-bright"></i> 陪伴是我們共度的時間 <i class="fa-solid fa-star-christmas"></i>」</div>
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
