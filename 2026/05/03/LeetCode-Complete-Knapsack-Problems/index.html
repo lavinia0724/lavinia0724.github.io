@@ -26,7 +26,7 @@
 <meta property="og:description" content="LeetCode - Complete Knapsack Problems">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-03T15:54:19.000Z">
-<meta property="article:modified_time" content="2026-05-03T15:56:54.242Z">
+<meta property="article:modified_time" content="2026-05-03T16:10:20.206Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -497,10 +497,10 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-05-03</span>
-            <span class="mobile">2026-05-03</span>
-            <!-- <span class="desktop">2026-05-03 23:56:54</span>
-            <span class="mobile">2026-05-03 23:56</span> -->
+            <span class="desktop">2026-05-04</span>
+            <span class="mobile">2026-05-04</span>
+            <!-- <span class="desktop">2026-05-04 00:10:20</span>
+            <span class="mobile">2026-05-04 00:10</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -573,8 +573,11 @@ mjx-container[display="true"] + br {
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> item: items){<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = item; j &lt;= target; ++j){<br>        dp[j] = ...<br>    }<br>}<br></code></pre></td></tr></table></figure></div>
 
 <p>因為物品可以重複使用，所以容量通常從小到大更新</p>
+<p>我的另一篇文章有解說各種背包問題的思路，底家 XD：</p>
+<a class="button  center large" href="https://lavinia0724.github.io/2026/05/03/Algorithm-DP-Knapsack/" title="Algorithm - DP Knapsack"><i class="fa-solid fa-paper-plane"></i> Algorithm - DP Knapsack</a>
+
 <hr>
-<h2 id="322-Coin-Change"><a href="#322-Coin-Change" class="headerlink" title="322. Coin Change"></a>322. Coin Change</h2><h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.</p>
+<h2 id="322-Coin-Change"><a href="#322-Coin-Change" class="headerlink" title="322. Coin Change"></a>322. Coin Change</h2><h4 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h4><p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.</p>
 <p>Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.</p>
 <p>You may assume that you have an infinite number of each kind of coin.</p>
 <h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>coins = [1,2,5]</code>, <code>amount = 11</code><br>Output: <code>3</code><br>Explanation: <code>11 = 5 + 5 + 1</code></p>
@@ -585,7 +588,7 @@ mjx-container[display="true"] + br {
 <li><code>1 &lt;= coins[i] &lt;= 2^31 - 1</code></li>
 <li><code>0 &lt;= amount &lt;= 10^4</code></li>
 </ul>
-<h2 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是完全背包<br>每種 coin 都可以使用無限次</p>
+<h4 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h4><p>這題是完全背包<br>每種 coin 都可以使用無限次</p>
 <ul>
 <li><p>DP 定義：</p>
 <ul>
@@ -619,12 +622,12 @@ mjx-container[display="true"] + br {
 <li><p>否則回傳：<br>  <code>dp[amount]</code></p>
 </li>
 </ul>
-<h2 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(coins.length × amount)</strong></p>
+<h4 id="Solution-Code"><a href="#Solution-Code" class="headerlink" title="Solution Code"></a>Solution Code</h4><p>Time Complexity<br><strong>O(coins.length × amount)</strong></p>
 <p>Space Complexity<br><strong>O(amount)</strong></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">coinChange</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; coins, <span class="hljs-type">int</span> amount)</span> </span>{<br>        <span class="hljs-type">int</span> n = coins.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">const</span> <span class="hljs-type">int</span> INF = <span class="hljs-number">1e9</span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(amount+<span class="hljs-number">1</span>, INF)</span></span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> coin: coins){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = coin; j &lt;= amount; ++j){<br>                dp[j] = <span class="hljs-built_in">min</span>(dp[j], dp[j-coin] + <span class="hljs-number">1</span>);<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> (dp[amount] == INF) ? <span class="hljs-number">-1</span> : dp[amount];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
 
 <hr>
-<h2 id="518-Coin-Change-II"><a href="#518-Coin-Change-II" class="headerlink" title="518. Coin Change II"></a>518. Coin Change II</h2><h2 id="題目-1"><a href="#題目-1" class="headerlink" title="題目"></a>題目</h2><p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.</p>
+<h2 id="518-Coin-Change-II"><a href="#518-Coin-Change-II" class="headerlink" title="518. Coin Change II"></a>518. Coin Change II</h2><h4 id="題目-1"><a href="#題目-1" class="headerlink" title="題目"></a>題目</h4><p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.</p>
 <p>Return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return <code>0</code>.</p>
 <p>You may assume that you have an infinite number of each kind of coin.</p>
 <p>The answer is guaranteed to fit into a signed 32-bit integer.</p>
@@ -643,7 +646,7 @@ mjx-container[display="true"] + br {
 <li>All the values of <code>coins</code> are unique.</li>
 <li><code>0 &lt;= amount &lt;= 5000</code></li>
 </ul>
-<h2 id="解題思路-1"><a href="#解題思路-1" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是完全背包<br>每種 coin 都可以使用無限次</p>
+<h4 id="解題思路-1"><a href="#解題思路-1" class="headerlink" title="解題思路"></a>解題思路</h4><p>這題是完全背包<br>每種 coin 都可以使用無限次</p>
 <ul>
 <li><p>DP 定義：</p>
 <ul>
@@ -676,19 +679,19 @@ mjx-container[display="true"] + br {
 <li><p>最後答案為：<br>  <code>dp[amount]</code></p>
 </li>
 </ul>
-<h2 id="Solution-Code-1"><a href="#Solution-Code-1" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(coins.length × amount)</strong></p>
+<h4 id="Solution-Code-1"><a href="#Solution-Code-1" class="headerlink" title="Solution Code"></a>Solution Code</h4><p>Time Complexity<br><strong>O(coins.length × amount)</strong></p>
 <p>Space Complexity<br><strong>O(amount)</strong></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-type">int</span> amount, vector&lt;<span class="hljs-type">int</span>&gt;&amp; coins)</span> </span>{<br>        <span class="hljs-type">int</span> n = coins.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(amount+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> coin: coins){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = coin; j &lt;= amount; ++j){<br>                dp[j] += dp[j-coin];<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> dp[amount];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
 
 <hr>
-<h2 id="279-Perfect-Squares"><a href="#279-Perfect-Squares" class="headerlink" title="279. Perfect Squares"></a>279. Perfect Squares</h2><h2 id="題目-2"><a href="#題目-2" class="headerlink" title="題目"></a>題目</h2><p>Given an integer <code>n</code>, return the least number of perfect square numbers that sum to <code>n</code>.</p>
+<h2 id="279-Perfect-Squares"><a href="#279-Perfect-Squares" class="headerlink" title="279. Perfect Squares"></a>279. Perfect Squares</h2><h4 id="題目-2"><a href="#題目-2" class="headerlink" title="題目"></a>題目</h4><p>Given an integer <code>n</code>, return the least number of perfect square numbers that sum to <code>n</code>.</p>
 <p>A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, <code>1</code>, <code>4</code>, <code>9</code>, and <code>16</code> are perfect squares while <code>3</code> and <code>11</code> are not.</p>
 <h4 id="Example-1-2"><a href="#Example-1-2" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>n = 12</code><br>Output: <code>3</code><br>Explanation: <code>12 = 4 + 4 + 4</code>.</p>
 <h4 id="Example-2-2"><a href="#Example-2-2" class="headerlink" title="Example 2"></a>Example 2</h4><p>Input: <code>n = 13</code><br>Output: <code>2</code><br>Explanation: <code>13 = 4 + 9</code>.</p>
 <h4 id="Constraints-2"><a href="#Constraints-2" class="headerlink" title="Constraints"></a>Constraints</h4><ul>
 <li><code>1 &lt;= n &lt;= 10^4</code></li>
 </ul>
-<h2 id="解題思路-2"><a href="#解題思路-2" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是完全背包<br>每個 perfect square 都可以重複使用</p>
+<h4 id="解題思路-2"><a href="#解題思路-2" class="headerlink" title="解題思路"></a>解題思路</h4><p>這題是完全背包<br>每個 perfect square 都可以重複使用</p>
 <ul>
 <li><p>可以把每個 perfect square 當成一種物品</p>
 <ul>
@@ -729,12 +732,12 @@ mjx-container[display="true"] + br {
 <li><p>最後答案為：<br>  <code>dp[n]</code></p>
 </li>
 </ul>
-<h2 id="Solution-Code-2"><a href="#Solution-Code-2" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(n × n)</strong></p>
+<h4 id="Solution-Code-2"><a href="#Solution-Code-2" class="headerlink" title="Solution Code"></a>Solution Code</h4><p>Time Complexity<br><strong>O(n × n)</strong></p>
 <p>Space Complexity<br><strong>O(n)</strong></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numSquares</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>{<br>        <span class="hljs-type">const</span> <span class="hljs-type">int</span> INF = <span class="hljs-number">1e9</span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n+<span class="hljs-number">1</span>, INF)</span></span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num = <span class="hljs-number">1</span>; num &lt;= n; ++num){<br>            <span class="hljs-type">int</span> x = <span class="hljs-built_in">sqrt</span>(num);<br>            <span class="hljs-keyword">if</span>(x * x == num){<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = num; j &lt;= n; ++j){<br>                    dp[j] = <span class="hljs-built_in">min</span>(dp[j], dp[j - num] + <span class="hljs-number">1</span>);<br>                }<br>            }<br>        }<br><br>        <span class="hljs-keyword">return</span> dp[n];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
 
 <hr>
-<h2 id="377-Combination-Sum-IV"><a href="#377-Combination-Sum-IV" class="headerlink" title="377. Combination Sum IV"></a>377. Combination Sum IV</h2><h2 id="題目-3"><a href="#題目-3" class="headerlink" title="題目"></a>題目</h2><p>Given an array of distinct integers <code>nums</code> and a target integer <code>target</code>, return the number of possible combinations that add up to <code>target</code>.</p>
+<h2 id="377-Combination-Sum-IV"><a href="#377-Combination-Sum-IV" class="headerlink" title="377. Combination Sum IV"></a>377. Combination Sum IV</h2><h4 id="題目-3"><a href="#題目-3" class="headerlink" title="題目"></a>題目</h4><p>Given an array of distinct integers <code>nums</code> and a target integer <code>target</code>, return the number of possible combinations that add up to <code>target</code>.</p>
 <p>The test cases are generated so that the answer can fit in a 32-bit integer.</p>
 <h4 id="Example-1-3"><a href="#Example-1-3" class="headerlink" title="Example 1"></a>Example 1</h4><p>Input: <code>nums = [1,2,3]</code>, <code>target = 4</code><br>Output: <code>7</code><br>Explanation: The possible combination ways are:</p>
 <ul>
@@ -754,7 +757,7 @@ mjx-container[display="true"] + br {
 <li>All the elements of <code>nums</code> are unique.</li>
 <li><code>1 &lt;= target &lt;= 1000</code></li>
 </ul>
-<h2 id="解題思路-3"><a href="#解題思路-3" class="headerlink" title="解題思路"></a>解題思路</h2><p>這題是完全背包<br>每個 <code>num</code> 可以重複使用</p>
+<h4 id="解題思路-3"><a href="#解題思路-3" class="headerlink" title="解題思路"></a>解題思路</h4><p>這題是完全背包<br>每個 <code>num</code> 可以重複使用</p>
 <p>但這題比較特別，是求排列數<br>不同順序會被當成不同答案</p>
 <ul>
 <li><p>DP 定義：</p>
@@ -784,7 +787,7 @@ mjx-container[display="true"] + br {
 <li><p>最後答案為：<br>  <code>dp[target]</code></p>
 </li>
 </ul>
-<h2 id="Solution-Code-3"><a href="#Solution-Code-3" class="headerlink" title="Solution Code"></a>Solution Code</h2><p>Time Complexity<br><strong>O(nums.length × target)</strong></p>
+<h4 id="Solution-Code-3"><a href="#Solution-Code-3" class="headerlink" title="Solution Code"></a>Solution Code</h4><p>Time Complexity<br><strong>O(nums.length × target)</strong></p>
 <p>Space Complexity<br><strong>O(target)</strong></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">combinationSum4</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>{<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(target+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br><br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= target; ++j){<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> num: nums){<br>                <span class="hljs-keyword">if</span>(j &gt;= num) dp[j] += dp[j - num];<br>            }<br>        }<br>        <br>        <span class="hljs-keyword">return</span> dp[target];<br>    }<br>};<br></code></pre></td></tr></table></figure></div>
 
@@ -881,7 +884,7 @@ mjx-container[display="true"] + br {
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">LeetCode - Complete Knapsack Problems</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">完全背包基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#322-Coin-Change"><span class="nav-text">322. Coin Change</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#518-Coin-Change-II"><span class="nav-text">518. Coin Change II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-1"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-1"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-1"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#279-Perfect-Squares"><span class="nav-text">279. Perfect Squares</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-2"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-2"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-2"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#377-Combination-Sum-IV"><span class="nav-text">377. Combination Sum IV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE-3"><span class="nav-text">題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF-3"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Code-3"><span class="nav-text">Solution Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">完全背包基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#322-Coin-Change"><span class="nav-text">322. Coin Change</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#518-Coin-Change-II"><span class="nav-text">518. Coin Change II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#279-Perfect-Squares"><span class="nav-text">279. Perfect Squares</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#377-Combination-Sum-IV"><span class="nav-text">377. Combination Sum IV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
 
     </div>
 </div>
