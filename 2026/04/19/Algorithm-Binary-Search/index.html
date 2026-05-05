@@ -26,7 +26,7 @@
 <meta property="og:description" content="Algorithm - Binary Search">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-19T14:00:25.000Z">
-<meta property="article:modified_time" content="2026-05-05T13:07:08.039Z">
+<meta property="article:modified_time" content="2026-05-05T14:48:17.371Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -387,8 +387,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2026-05-05</span>
             <span class="mobile">2026-05-05</span>
-            <!-- <span class="desktop">2026-05-05 21:07:08</span>
-            <span class="mobile">2026-05-05 21:07</span> -->
+            <!-- <span class="desktop">2026-05-05 22:48:17</span>
+            <span class="mobile">2026-05-05 22:48</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -462,7 +462,7 @@
 <tr>
 <th>題型</th>
 <th>搜尋目標</th>
-<th>常見模板</th>
+<th>模板</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -473,12 +473,12 @@
 <tr>
 <td>找第一個滿足條件的位置</td>
 <td>first true &#x2F; lower bound &#x2F; 最小可行解</td>
-<td><code>while (left &lt; right)</code> + <code>right = mid</code></td>
+<td><code>while (left &lt; right)</code> 、 <code>right = mid</code></td>
 </tr>
 <tr>
 <td>找最後一個滿足條件的位置</td>
 <td>last true &#x2F; 最大可行解</td>
-<td><code>while (left &lt; right)</code> + <code>left = mid</code></td>
+<td><code>while (left &lt; right)</code> 、 <code>left = mid</code></td>
 </tr>
 <tr>
 <td>根據趨勢找答案</td>
@@ -513,19 +513,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="2-如果使用-left-mid，mid-要偏右"><a href="#2-如果使用-left-mid，mid-要偏右" class="headerlink" title="2. 如果使用 left &#x3D; mid，mid 要偏右"></a>2. 如果使用 left &#x3D; mid，mid 要偏右</h2><p>如果寫：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure></div>
-
-<p>這是左中位數</p>
-<p>當區間只剩兩個元素時：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">left = 0, right = 1<br>mid = 0<br></code></pre></td></tr></table></figure></div>
-
-<p>如果又寫：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">left = mid;<br></code></pre></td></tr></table></figure></div>
-
-<p>那 <code>left</code> 不會移動，會造成死循環</p>
-<p>因此：</p>
-<table>
+<h3 id="2-如果使用-left-mid，mid-要偏右"><a href="#2-如果使用-left-mid，mid-要偏右" class="headerlink" title="2. 如果使用 left &#x3D; mid，mid 要偏右"></a>2. 如果使用 left &#x3D; mid，mid 要偏右</h3><table>
 <thead>
 <tr>
 <th>更新方式</th>
@@ -542,9 +530,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="模板一：找某個值是否存在"><a href="#模板一：找某個值是否存在" class="headerlink" title="模板一：找某個值是否存在"></a>模板一：找某個值是否存在</h3><p>適用於：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">在 sorted array 中找 target<br></code></pre></td></tr></table></figure></div>
-
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="模板一：找某個值是否存在"><a href="#模板一：找某個值是否存在" class="headerlink" title="模板一：找某個值是否存在"></a>模板一：找某個值是否存在</h3><p>適用於：<br>在 sorted array 中找 target</p>
 <p>例如：</p>
 <ul>
 <li>Binary Search</li>
@@ -553,7 +539,7 @@
 </ul>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-keyword">if</span> (nums[mid] == target) &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &lt; target) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><table>
+<table>
 <thead>
 <tr>
 <th>項目</th>
@@ -581,10 +567,6 @@
 <td>找到回傳 index，找不到回傳 <code>-1</code></td>
 </tr>
 </tbody></table>
-<h4 id="判斷方式"><a href="#判斷方式" class="headerlink" title="判斷方式"></a>判斷方式</h4><p>看到題目問：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">target 是否存在？<br>target 的 index 是多少？<br></code></pre></td></tr></table></figure></div>
-
-<p>通常使用這個模板</p>
 <hr>
 <h3 id="模板二：找第一個滿足條件的位置"><a href="#模板二：找第一個滿足條件的位置" class="headerlink" title="模板二：找第一個滿足條件的位置"></a>模板二：找第一個滿足條件的位置</h3><p>這是最常用的 Binary Search 模板</p>
 <p>適用於：</p>
@@ -603,7 +585,7 @@
 
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) &#123;<br>        right = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        left = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h4><table>
+<table>
 <thead>
 <tr>
 <th>項目</th>
@@ -639,28 +621,18 @@
 <td><code>left</code> 或 <code>right</code>，兩者最後相同</td>
 </tr>
 </tbody></table>
-<h3 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound"></a>lower_bound</h3><p>找第一個 <code>&gt;= target</code> 的位置</p>
+<h4 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound"></a>lower_bound</h4><p>例如:<br>找第一個 <code>&gt;= target</code> 的位置<br><code>condition(mid) = nums[mid] &gt;= target;</code></p>
+<p><strong>Search Insert Position 題型</strong>也是用這個模板</p>
+<ul>
+<li>如果找得到 target，回傳 target 的位置</li>
+<li>如果找不到 target，回傳第一個比 target 大的位置</li>
+</ul>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowerBound</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>();<br><br>    <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-keyword">if</span> (nums[mid] &gt;= target) &#123;<br>            right = mid;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> left;<br>&#125;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="condition"><a href="#condition" class="headerlink" title="condition"></a>condition</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">condition</span>(mid) = nums[mid] &gt;= target;<br></code></pre></td></tr></table></figure></div>
-
-<h4 id="搜尋區間為什麼是-0-n"><a href="#搜尋區間為什麼是-0-n" class="headerlink" title="搜尋區間為什麼是 [0, n]"></a>搜尋區間為什麼是 <code>[0, n]</code></h4><p>因為 target 可能要插在最後面</p>
-<p>例如：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">nums = [1, 3, 5]<br>target = 7<br></code></pre></td></tr></table></figure></div>
-
-<p>答案是 index <code>3</code>，也就是 <code>n</code></p>
 <hr>
-<h3 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound"></a>upper_bound</h3><p>找第一個 <code>&gt; target</code> 的位置</p>
+<h4 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound"></a>upper_bound</h4><p>例如:<br>找第一個 <code>&gt; target</code> 的位置<br><code>condition(mid) = nums[mid] &gt; target;</code></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">upperBound</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>();<br><br>    <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-keyword">if</span> (nums[mid] &gt; target) &#123;<br>            right = mid;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> left;<br>&#125;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="condition-1"><a href="#condition-1" class="headerlink" title="condition"></a>condition</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">condition</span>(mid) = nums[mid] &gt; target;<br></code></pre></td></tr></table></figure></div>
-
-<hr>
-<h2 id="Search-Insert-Position"><a href="#Search-Insert-Position" class="headerlink" title="Search Insert Position"></a>Search Insert Position</h2><p>等同 lower_bound</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">condition</span>(mid) = nums[mid] &gt;= target;<br></code></pre></td></tr></table></figure></div>
-
-<p>如果找得到 target，回傳 target 的位置</p>
-<p>如果找不到 target，回傳第一個比 target 大的位置</p>
 <hr>
 <h3 id="模板三：找最後一個滿足條件的位置"><a href="#模板三：找最後一個滿足條件的位置" class="headerlink" title="模板三：找最後一個滿足條件的位置"></a>模板三：找最後一個滿足條件的位置</h3><p>適用於：</p>
 <ul>
@@ -671,9 +643,9 @@
 </ul>
 <h4 id="布林序列-1"><a href="#布林序列-1" class="headerlink" title="布林序列"></a>布林序列</h4><div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">T T T T F F F F<br>      ↑<br> 找最後一個 True<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) &#123;<br>        left = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> right = n - <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) &#123;<br>        left = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h4><table>
+<table>
 <thead>
 <tr>
 <th>項目</th>
@@ -711,8 +683,6 @@
 </tbody></table>
 <h4 id="例子：找最後一個"><a href="#例子：找最後一個" class="headerlink" title="例子：找最後一個 &lt;= target"></a>例子：找最後一個 <code>&lt;= target</code></h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lastLessEqual</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>        <span class="hljs-type">int</span> mid = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br><br>        <span class="hljs-keyword">if</span> (nums[mid] &lt;= target) &#123;<br>            left = mid;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> left;<br>&#125;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="condition-2"><a href="#condition-2" class="headerlink" title="condition"></a>condition</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">condition</span>(mid) = nums[mid] &lt;= target;<br></code></pre></td></tr></table></figure></div>
-
 <hr>
 <h3 id="模板四：Answer-Binary-Search"><a href="#模板四：Answer-Binary-Search" class="headerlink" title="模板四：Answer Binary Search"></a>模板四：Answer Binary Search</h3><p>有些題目不是在 array 裡二分，而是在「答案範圍」上二分</p>
 <p>常見題型：</p>
@@ -725,61 +695,27 @@
 <li>最小化最大值</li>
 <li>最大化最小值</li>
 </ul>
-<h4 id="判斷方式-1"><a href="#判斷方式-1" class="headerlink" title="判斷方式"></a>判斷方式</h4><p>如果題目問：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">最小的 x，使得可以完成任務<br></code></pre></td></tr></table></figure></div>
-
+<h4 id="判斷方式"><a href="#判斷方式" class="headerlink" title="判斷方式"></a>判斷方式</h4><p>如果題目問：<br>最小的 x，使得可以完成任務</p>
 <p>通常是：</p>
 <div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">F F F F T T T T<br>        ↑<br>   找第一個 True<br></code></pre></td></tr></table></figure></div>
 
-<p>使用第一個 True 模板</p>
-<p>如果題目問：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">最大的 x，使得仍然可以完成任務<br></code></pre></td></tr></table></figure></div>
-
+<p>使用第一個 True 模板<br>如果題目問：<br>最大的 x，使得仍然可以完成任務</p>
 <p>通常是：</p>
 <div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">T T T T F F F F<br>      ↑<br> 找最後一個 True<br></code></pre></td></tr></table></figure></div>
 
 <p>使用最後一個 True 模板</p>
 <hr>
-<h3 id="最小可行解模板"><a href="#最小可行解模板" class="headerlink" title="最小可行解模板"></a>最小可行解模板</h3><p>例如：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">找最小速度 k，使得可以在 h 小時內吃完香蕉<br></code></pre></td></tr></table></figure></div>
-
-<p>速度越大，越容易完成</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">k:        1  2  3  4  5  6  7<br>can(k):   F  F  F  T  T  T  T<br>                    ↑<br>              找第一個 True<br></code></pre></td></tr></table></figure></div>
-
-<p>模板：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = minValue;<br><span class="hljs-type">int</span> right = maxValue;<br><br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">can</span>(mid)) &#123;<br>        right = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        left = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
-
-<hr>
-<h3 id="最大可行解模板"><a href="#最大可行解模板" class="headerlink" title="最大可行解模板"></a>最大可行解模板</h3><p>例如：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">找最大的最小距離，使得仍然可以放置 m 顆球<br></code></pre></td></tr></table></figure></div>
-
-<p>距離越大，越難完成</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">distance: 1  2  3  4  5  6  7<br>can(d):   T  T  T  T  F  F  F<br>                       ↑<br>                找最後一個 True<br></code></pre></td></tr></table></figure></div>
-
-<p>模板：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> left = minValue;<br><span class="hljs-type">int</span> right = maxValue;<br><br><span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-type">int</span> mid = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">can</span>(mid)) &#123;<br>        left = mid;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        right = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">return</span> left;<br></code></pre></td></tr></table></figure></div>
-
-<hr>
 <h3 id="模板五：根據趨勢找答案"><a href="#模板五：根據趨勢找答案" class="headerlink" title="模板五：根據趨勢找答案"></a>模板五：根據趨勢找答案</h3><p>有些題目不是傳統 sorted array，也不是明顯的布林序列，但仍然可以透過局部趨勢排除一半</p>
 <p>代表題目：</p>
 <ul>
-<li><ol start="162">
-<li>Find Peak Element</li>
-</ol>
-</li>
-<li><ol start="153">
-<li>Find Minimum in Rotated Sorted Array</li>
-</ol>
-</li>
+<li>162 Find Peak Element</li>
+<li>153 Find Minimum in Rotated Sorted Array</li>
 </ul>
+<a class="button  center large" target="_blank" rel="noopener" href='https://github.com/lavinia0724/LeetCode/blob/main/Binary%20Search/162.%20Find%20Peak%20Element.cpp' title='162. Find Peak Element'><i class='fa-brands fa-github'></i> 162. Find Peak Element</a>
+<a class="button  center large" target="_blank" rel="noopener" href='https://github.com/lavinia0724/LeetCode/blob/main/Binary%20Search/153.%20Find%20Minimum%20in%20Rotated%20Sorted%20Array.cpp' title='153. Find Minimum in Rotated Sorted Array'><i class='fa-brands fa-github'></i> 153. Find Minimum in Rotated Sorted Array</a>
+
 <hr>
-<h4 id="162-Find-Peak-Element"><a href="#162-Find-Peak-Element" class="headerlink" title="162. Find Peak Element"></a>162. Find Peak Element</h4><p>題目重點：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">nums[-1] = -∞<br>nums[n] = -∞<br>nums[i] != nums[i + 1]<br></code></pre></td></tr></table></figure></div>
-
-<p>因此陣列中一定存在 peak</p>
-<h4 id="判斷邏輯"><a href="#判斷邏輯" class="headerlink" title="判斷邏輯"></a>判斷邏輯</h4><p>只比較：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">nums[mid] 和 nums[mid + <span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure></div>
-
+<h4 id="162-Find-Peak-Element"><a href="#162-Find-Peak-Element" class="headerlink" title="162. Find Peak Element"></a>162. Find Peak Element</h4><p>題目敘述中得知陣列中一定存在 peak<br>因此比較對象是：<br><code>nums[mid] 和 nums[mid + 1]</code></p>
 <table>
 <thead>
 <tr>
@@ -799,23 +735,10 @@
 <td><code>left = mid + 1</code></td>
 </tr>
 </tbody></table>
-<h4 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findPeakElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>            <span class="hljs-keyword">if</span> (nums[mid] &gt; nums[mid + <span class="hljs-number">1</span>]) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></div>
+<h4 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h4><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findPeakElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> right = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br><br>            <span class="hljs-keyword">if</span> (nums[mid] &gt; nums[mid + <span class="hljs-number">1</span>]) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></div>
 
-<h4 id="為什麼-left-0-right-n-1"><a href="#為什麼-left-0-right-n-1" class="headerlink" title="為什麼 left = 0, right = n - 1"></a>為什麼 <code>left = 0, right = n - 1</code></h4><p>因為頭尾也可能是 peak</p>
-<p>例如：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">[3, 2, 1]<br></code></pre></td></tr></table></figure></div>
-
-<p>peak 是 index <code>0</code></p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">[1, 2, 3]<br></code></pre></td></tr></table></figure></div>
-
-<p>peak 是 index <code>2</code></p>
-<p>所以不能初始化成：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">left = <span class="hljs-number">1</span>;<br>right = n - <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure></div>
-
-<p>否則會漏掉邊界答案</p>
 <hr>
-<h2 id="left-right-初始化原則"><a href="#left-right-初始化原則" class="headerlink" title="left &#x2F; right 初始化原則"></a>left &#x2F; right 初始化原則</h2><h3 id="核心原則"><a href="#核心原則" class="headerlink" title="核心原則"></a>核心原則</h3><div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">初始化範圍必須包含所有可能答案<br></code></pre></td></tr></table></figure></div>
-
+<h2 id="left-right-初始化原則"><a href="#left-right-初始化原則" class="headerlink" title="left &#x2F; right 初始化原則"></a>left &#x2F; right 初始化原則</h2><h3 id="核心原則"><a href="#核心原則" class="headerlink" title="核心原則"></a>核心原則</h3><p>初始化範圍必須包含所有可能答案</p>
 <table>
 <thead>
 <tr>
@@ -879,18 +802,8 @@
 <td>維持答案一定在區間內，最後收斂到 <code>left == right</code></td>
 </tr>
 </tbody></table>
-<h3 id="什麼時候用-left"><a href="#什麼時候用-left" class="headerlink" title="什麼時候用 left &lt;= right"></a>什麼時候用 <code>left &lt;= right</code></h3><p>當題目是：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">我要找某個明確 target<br>如果 nums[mid] == target，就可以直接 return<br></code></pre></td></tr></table></figure></div>
-
-<p>使用：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (left &lt;= right)<br></code></pre></td></tr></table></figure></div>
-
-<h3 id="什麼時候用-left-right"><a href="#什麼時候用-left-right" class="headerlink" title="什麼時候用 left &lt; right"></a>什麼時候用 <code>left &lt; right</code></h3><p>當題目是：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">我要找一個邊界<br>答案一直保留在 [left, right] 裡面<br>最後 left == right 就是答案<br></code></pre></td></tr></table></figure></div>
-
-<p>使用：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (left &lt; right)<br></code></pre></td></tr></table></figure></div>
-
+<h3 id="什麼時候用-left"><a href="#什麼時候用-left" class="headerlink" title="什麼時候用 left &lt;= right"></a>什麼時候用 <code>left &lt;= right</code></h3><p>當題目是：<br><strong>我要找某個明確 target</strong><br>如果 <code>nums[mid] == target</code>，就可以直接 return</p>
+<h3 id="什麼時候用-left-right"><a href="#什麼時候用-left-right" class="headerlink" title="什麼時候用 left &lt; right"></a>什麼時候用 <code>left &lt; right</code></h3><p>當題目是：<br><strong>我要找一個邊界</strong><br>答案一直保留在 <code>[left, right]</code> 裡面<br>最後 <code>left == right</code> 就是答案</p>
 <hr>
 <h3 id="mid-寫法整理"><a href="#mid-寫法整理" class="headerlink" title="mid 寫法整理"></a>mid 寫法整理</h3><table>
 <thead>
@@ -987,24 +900,19 @@
 </tr>
 </tbody></table>
 <hr>
-<h1 id="面試時的判斷流程"><a href="#面試時的判斷流程" class="headerlink" title="面試時的判斷流程"></a>面試時的判斷流程</h1><h3 id="Step-1：先判斷是不是找明確-target"><a href="#Step-1：先判斷是不是找明確-target" class="headerlink" title="Step 1：先判斷是不是找明確 target"></a>Step 1：先判斷是不是找明確 target</h3><p>如果題目是：</p>
-<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">找 target 是否存在<br>找 target 的 index<br></code></pre></td></tr></table></figure></div>
-
-<p>使用：</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (left &lt;= right)<br></code></pre></td></tr></table></figure></div>
-
+<h1 id="面試時的判斷流程"><a href="#面試時的判斷流程" class="headerlink" title="面試時的判斷流程"></a>面試時的判斷流程</h1><h3 id="Step-1：先判斷是不是找明確-target"><a href="#Step-1：先判斷是不是找明確-target" class="headerlink" title="Step 1：先判斷是不是找明確 target"></a>Step 1：先判斷是不是找明確 target</h3><p>如果題目是：<br><strong>找 target 是否存在</strong><br><strong>找 target 的 index</strong></p>
+<p>使用：<code>while (left &lt;= right)</code></p>
 <hr>
 <h3 id="Step-2：如果不是找-target，判斷是不是找邊界"><a href="#Step-2：如果不是找-target，判斷是不是找邊界" class="headerlink" title="Step 2：如果不是找 target，判斷是不是找邊界"></a>Step 2：如果不是找 target，判斷是不是找邊界</h3><p>如果可以轉成：</p>
 <div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">F F F T T T<br></code></pre></td></tr></table></figure></div>
 
-<p>代表找第一個 True</p>
-<p>使用：</p>
+<p>而且要找<strong>第一個 True</strong><br>使用：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (left &lt; right)<br>mid = left + (right - left) / <span class="hljs-number">2</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) right = mid;<br><span class="hljs-keyword">else</span> left = mid + <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure></div>
 
 <hr>
 <h3 id="Step-3：如果可以轉成："><a href="#Step-3：如果可以轉成：" class="headerlink" title="Step 3：如果可以轉成："></a>Step 3：如果可以轉成：</h3><div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">T T T F F F<br></code></pre></td></tr></table></figure></div>
 
-<p>代表找最後一個 True</p>
+<p>而且要<strong>找最後一個 True</strong></p>
 <p>使用：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (left &lt; right)<br>mid = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-built_in">condition</span>(mid)) left = mid;<br><span class="hljs-keyword">else</span> right = mid - <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure></div>
 
@@ -1076,8 +984,8 @@
 </tbody></table>
 <hr>
 <h3 id="最短記憶版"><a href="#最短記憶版" class="headerlink" title="最短記憶版"></a>最短記憶版</h3><p>找值：<br>while (left &lt;&#x3D; right)<br>mid 不是答案就丟掉</p>
-<p>找第一個 True：<br>F F F T T T<br>right &#x3D; mid<br>left &#x3D; mid + 1<br>mid 用左中位數</p>
-<p>找最後一個 True：<br>T T T F F F<br>left &#x3D; mid<br>right &#x3D; mid - 1<br>mid 用右中位數</p>
+<p>找第一個 True：<br>right &#x3D; mid<br>left &#x3D; mid + 1<br>mid 用左中位數</p>
+<p>找最後一個 True：<br>left &#x3D; mid<br>right &#x3D; mid - 1<br>mid 用右中位數</p>
 <p>初始化：<br>left &#x2F; right 必須包含所有可能答案</p>
 <p>更新：<br>mid 可能是答案，就保留 mid<br>mid 不可能是答案，就丟掉 mid</p>
 
@@ -1144,7 +1052,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">Algorithm - Binary Search</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-Note"><span class="nav-text">Binary Search Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-%E9%A1%8C%E5%9E%8B%E7%B8%BD%E8%A6%BD"><span class="nav-text">Binary Search 題型總覽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%88%A4%E6%96%B7%E5%8E%9F%E5%89%87"><span class="nav-text">核心判斷原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-mid-%E9%82%84%E6%9C%89%E6%B2%92%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88%EF%BC%9F"><span class="nav-text">1. mid 還有沒有可能是答案？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8-left-mid%EF%BC%8Cmid-%E8%A6%81%E5%81%8F%E5%8F%B3"><span class="nav-text">2. 如果使用 left &#x3D; mid，mid 要偏右</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%80%EF%BC%9A%E6%89%BE%E6%9F%90%E5%80%8B%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-text">模板一：找某個值是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BA%8C%EF%BC%9A%E6%89%BE%E7%AC%AC%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">模板二：找第一個滿足條件的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound"><span class="nav-text">lower_bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upper-bound"><span class="nav-text">upper_bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-Insert-Position"><span class="nav-text">Search Insert Position</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%89%EF%BC%9A%E6%89%BE%E6%9C%80%E5%BE%8C%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">模板三：找最後一個滿足條件的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%9B%9B%EF%BC%9AAnswer-Binary-Search"><span class="nav-text">模板四：Answer Binary Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%A1%8C%E8%A7%A3%E6%A8%A1%E6%9D%BF"><span class="nav-text">最小可行解模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%8F%AF%E8%A1%8C%E8%A7%A3%E6%A8%A1%E6%9D%BF"><span class="nav-text">最大可行解模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BA%94%EF%BC%9A%E6%A0%B9%E6%93%9A%E8%B6%A8%E5%8B%A2%E6%89%BE%E7%AD%94%E6%A1%88"><span class="nav-text">模板五：根據趨勢找答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#left-right-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E5%89%87"><span class="nav-text">left &#x2F; right 初始化原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87"><span class="nav-text">核心原則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#left"><span class="nav-text">left &lt;&#x3D; right 和 left &lt; right 的差別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%99%82%E5%80%99%E7%94%A8-left"><span class="nav-text">什麼時候用 left &lt;&#x3D; right</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%99%82%E5%80%99%E7%94%A8-left-right"><span class="nav-text">什麼時候用 left &lt; right</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mid-%E5%AF%AB%E6%B3%95%E6%95%B4%E7%90%86"><span class="nav-text">mid 寫法整理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E9%A1%8C%E5%9E%8B%E5%88%A4%E6%96%B7%E8%A1%A8"><span class="nav-text">常見題型判斷表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E8%A9%A6%E6%99%82%E7%9A%84%E5%88%A4%E6%96%B7%E6%B5%81%E7%A8%8B"><span class="nav-text">面試時的判斷流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%B7%E6%98%AF%E4%B8%8D%E6%98%AF%E6%89%BE%E6%98%8E%E7%A2%BA-target"><span class="nav-text">Step 1：先判斷是不是找明確 target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%98%AF%E6%89%BE-target%EF%BC%8C%E5%88%A4%E6%96%B7%E6%98%AF%E4%B8%8D%E6%98%AF%E6%89%BE%E9%82%8A%E7%95%8C"><span class="nav-text">Step 2：如果不是找 target，判斷是不是找邊界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%9A%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%BD%89%E6%88%90%EF%BC%9A"><span class="nav-text">Step 3：如果可以轉成：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%98%AF%E6%98%8E%E9%A1%AF%E5%B8%83%E6%9E%97%E5%BA%8F%E5%88%97%EF%BC%8C%E7%9C%8B%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8%E8%B6%A8%E5%8B%A2%E6%8E%92%E9%99%A4%E4%B8%80%E5%8D%8A"><span class="nav-text">Step 4：如果不是明顯布林序列，看能不能用趨勢排除一半</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E7%B8%BD%E7%B5%90"><span class="nav-text">最後總結</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%A8%98%E6%86%B6%E7%89%88"><span class="nav-text">最短記憶版</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-Note"><span class="nav-text">Binary Search Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Binary-Search-%E9%A1%8C%E5%9E%8B%E7%B8%BD%E8%A6%BD"><span class="nav-text">Binary Search 題型總覽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%88%A4%E6%96%B7%E5%8E%9F%E5%89%87"><span class="nav-text">核心判斷原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-mid-%E9%82%84%E6%9C%89%E6%B2%92%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E7%AD%94%E6%A1%88%EF%BC%9F"><span class="nav-text">1. mid 還有沒有可能是答案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8-left-mid%EF%BC%8Cmid-%E8%A6%81%E5%81%8F%E5%8F%B3"><span class="nav-text">2. 如果使用 left &#x3D; mid，mid 要偏右</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%80%EF%BC%9A%E6%89%BE%E6%9F%90%E5%80%8B%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-text">模板一：找某個值是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BA%8C%EF%BC%9A%E6%89%BE%E7%AC%AC%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">模板二：找第一個滿足條件的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%89%EF%BC%9A%E6%89%BE%E6%9C%80%E5%BE%8C%E4%B8%80%E5%80%8B%E6%BB%BF%E8%B6%B3%E6%A2%9D%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">模板三：找最後一個滿足條件的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%9B%9B%EF%BC%9AAnswer-Binary-Search"><span class="nav-text">模板四：Answer Binary Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BA%94%EF%BC%9A%E6%A0%B9%E6%93%9A%E8%B6%A8%E5%8B%A2%E6%89%BE%E7%AD%94%E6%A1%88"><span class="nav-text">模板五：根據趨勢找答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#left-right-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E5%89%87"><span class="nav-text">left &#x2F; right 初始化原則</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%89%87"><span class="nav-text">核心原則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#left"><span class="nav-text">left &lt;&#x3D; right 和 left &lt; right 的差別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%99%82%E5%80%99%E7%94%A8-left"><span class="nav-text">什麼時候用 left &lt;&#x3D; right</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%99%82%E5%80%99%E7%94%A8-left-right"><span class="nav-text">什麼時候用 left &lt; right</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mid-%E5%AF%AB%E6%B3%95%E6%95%B4%E7%90%86"><span class="nav-text">mid 寫法整理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E9%A1%8C%E5%9E%8B%E5%88%A4%E6%96%B7%E8%A1%A8"><span class="nav-text">常見題型判斷表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E8%A9%A6%E6%99%82%E7%9A%84%E5%88%A4%E6%96%B7%E6%B5%81%E7%A8%8B"><span class="nav-text">面試時的判斷流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%9A%E5%85%88%E5%88%A4%E6%96%B7%E6%98%AF%E4%B8%8D%E6%98%AF%E6%89%BE%E6%98%8E%E7%A2%BA-target"><span class="nav-text">Step 1：先判斷是不是找明確 target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%98%AF%E6%89%BE-target%EF%BC%8C%E5%88%A4%E6%96%B7%E6%98%AF%E4%B8%8D%E6%98%AF%E6%89%BE%E9%82%8A%E7%95%8C"><span class="nav-text">Step 2：如果不是找 target，判斷是不是找邊界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%9A%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%BD%89%E6%88%90%EF%BC%9A"><span class="nav-text">Step 3：如果可以轉成：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%98%AF%E6%98%8E%E9%A1%AF%E5%B8%83%E6%9E%97%E5%BA%8F%E5%88%97%EF%BC%8C%E7%9C%8B%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8%E8%B6%A8%E5%8B%A2%E6%8E%92%E9%99%A4%E4%B8%80%E5%8D%8A"><span class="nav-text">Step 4：如果不是明顯布林序列，看能不能用趨勢排除一半</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E7%B8%BD%E7%B5%90"><span class="nav-text">最後總結</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%A8%98%E6%86%B6%E7%89%88"><span class="nav-text">最短記憶版</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>
