@@ -26,7 +26,7 @@
 <meta property="og:description" content="Algorithm - LIS and LCS">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-07T08:27:09.000Z">
-<meta property="article:modified_time" content="2026-05-07T13:47:03.666Z">
+<meta property="article:modified_time" content="2026-05-07T14:39:01.697Z">
 <meta property="article:author" content="LAVI">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -387,8 +387,8 @@
             <i class="fa-regular fa-wrench"></i>&nbsp;
             <span class="desktop">2026-05-07</span>
             <span class="mobile">2026-05-07</span>
-            <!-- <span class="desktop">2026-05-07 21:47:03</span>
-            <span class="mobile">2026-05-07 21:47</span> -->
+            <!-- <span class="desktop">2026-05-07 22:39:01</span>
+            <span class="mobile">2026-05-07 22:39</span> -->
             <span class="hover-info">Updated</span>
         </span>
     
@@ -438,11 +438,9 @@
             
 
             <div class="article-content markdown-body">
-                <!-- 
-想參考 DP LIS and LCS 的各種實戰題型的話，我有整理底家，刷起來！：
-<a class="button  center large" href='https://lavinia0724.github.io/2026/05/03/LeetCode-0-1-Knapsack-Problems/' title='LeetCode - LIS Series'><i class='fa-solid fa-paper-plane'></i> LeetCode - LIS Series</a>
-<a class="button  center large" href='https://lavinia0724.github.io/2026/05/03/LeetCode-Complete-Knapsack-Problems/' title='LeetCode - Complete Knapsack Problems'><i class='fa-solid fa-paper-plane'></i> LeetCode - Complete Knapsack Problems</a>
-<a class="button  center large" href='https://lavinia0724.github.io/2026/05/03/LeetCode-Multiple-Knapsack-Problems/' title='LeetCode - Multiple Knapsack Problems'><i class='fa-solid fa-paper-plane'></i> LeetCode - Multiple Knapsack Problems</a> -->
+                <p>想參考 DP LIS and LCS 的各種實戰題型的話，我有整理底家，刷起來！：</p>
+<a class="button  center large" href='https://lavinia0724.github.io/2026/05/07/LeetCode-LIS-Series/' title='LeetCode - LIS Series'><i class='fa-solid fa-paper-plane'></i> LeetCode - LIS Series</a>
+<a class="button  center large" href='https://lavinia0724.github.io/2026/05/07/LeetCode-LCS-Series/' title='LeetCode - LCS Series'><i class='fa-solid fa-paper-plane'></i> LeetCode - LCS Series</a>
 
 <h1 id="LIS-and-LCS-Note"><a href="#LIS-and-LCS-Note" class="headerlink" title="LIS and LCS Note"></a>LIS and LCS Note</h1><table>
 <thead>
@@ -658,7 +656,7 @@
 <li>不選 <code>s2[j - 1]</code></li>
 </ul>
 <p>轉移<code>dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);</code></p>
-<h2 id="LCS-模板"><a href="#LCS-模板" class="headerlink" title="LCS 模板"></a>LCS 模板</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestCommonSubsequence</span><span class="hljs-params">(string s1, string s2)</span> </span>&#123;<br>    <span class="hljs-type">int</span> m = s1.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> n = s2.<span class="hljs-built_in">size</span>();<br><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(m + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; ++j) &#123;<br>            <span class="hljs-keyword">if</span> (s1[i - <span class="hljs-number">1</span>] == s2[j - <span class="hljs-number">1</span>]) &#123;<br>                dp[i][j] = dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                dp[i][j] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> dp[m][n];<br>&#125;<br></code></pre></td></tr></table></figure></div>
+<h3 id="LCS-模板"><a href="#LCS-模板" class="headerlink" title="LCS 模板"></a>LCS 模板</h3><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestCommonSubsequence</span><span class="hljs-params">(string s1, string s2)</span> </span>&#123;<br>    <span class="hljs-type">int</span> m = s1.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-type">int</span> n = s2.<span class="hljs-built_in">size</span>();<br><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(m + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; ++j) &#123;<br>            <span class="hljs-keyword">if</span> (s1[i - <span class="hljs-number">1</span>] == s2[j - <span class="hljs-number">1</span>]) &#123;<br>                dp[i][j] = dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                dp[i][j] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> dp[m][n];<br>&#125;<br></code></pre></td></tr></table></figure></div>
 
 <h1 id="LIS-和-LCS-比較"><a href="#LIS-和-LCS-比較" class="headerlink" title="LIS 和 LCS 比較"></a>LIS 和 LCS 比較</h1><table>
 <thead>
@@ -736,125 +734,75 @@
 </ul>
 <p>LCS 的本質：</p>
 <p>在兩個序列中，找出共同保留下來的最長部分</p>
-<h1 id="常見題目整理"><a href="#常見題目整理" class="headerlink" title="常見題目整理"></a>常見題目整理</h1><h2 id="LIS-題目"><a href="#LIS-題目" class="headerlink" title="LIS 題目"></a>LIS 題目</h2><table>
+<h2 id="經典題目"><a href="#經典題目" class="headerlink" title="經典題目"></a>經典題目</h2><table>
 <thead>
 <tr>
-<th>題號</th>
+<th>類型</th>
 <th>題目</th>
-<th>重點</th>
+<th>備註</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>300</td>
-<td>Longest Increasing Subsequence</td>
-<td>LIS 基礎</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/300.%20Longest%20Increasing%20Subsequence.cpp" >300. Longest Increasing Subsequence</a></td>
+<td>最標準 LIS，本題核心是 <code>dp[i] = 以 nums[i] 結尾的 LIS 長度</code></td>
 </tr>
 <tr>
-<td>673</td>
-<td>Number of Longest Increasing Subsequence</td>
-<td>LIS 長度 + 計數</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/673.%20Number%20of%20Longest%20Increasing%20Subsequence.cpp" >673. Number of Longest Increasing Subsequence</a></td>
+<td>LIS 數量題，同時維護 <code>len[i]</code> 與 <code>count[i]</code>，更長就覆蓋，一樣長就累加</td>
 </tr>
 <tr>
-<td>674</td>
-<td>Longest Continuous Increasing Subsequence</td>
-<td>連續遞增，不是 subsequence</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/674.%20Longest%20Continuous%20Increasing%20Subsequence.cpp" >674. Longest Continuous Increasing Subsequence</a></td>
+<td>連續版 LIS，只能接前一個元素，核心是目前連續遞增長度 <code>cur</code></td>
 </tr>
 <tr>
-<td>354</td>
-<td>Russian Doll Envelopes</td>
-<td>二維 LIS</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/354.%20Russian%20Doll%20Envelopes.cpp" >354. Russian Doll Envelopes</a></td>
+<td>二維 LIS，先排序 <code>width</code>，再對 <code>height</code> 做 LIS</td>
 </tr>
 <tr>
-<td>646</td>
-<td>Maximum Length of Pair Chain</td>
-<td>pair chain 版本 LIS</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/368.%20Largest%20Divisible%20Subset.cpp" >368. Largest Divisible Subset</a></td>
+<td>LIS-like DP，排序後條件從 <code>nums[j] &lt; nums[i]</code> 改成 <code>nums[i] % nums[j] == 0</code></td>
 </tr>
 <tr>
-<td>1048</td>
-<td>Longest String Chain</td>
-<td>字串版本 LIS 思想</td>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/646.%20Maximum%20Length%20of%20Pair%20Chain.cpp" >646. Maximum Length of Pair Chain</a></td>
+<td>LIS-like chain 題，條件是前一個 pair 的尾巴 <code>&lt;</code> 下一個 pair 的開頭</td>
+</tr>
+<tr>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/1027.%20Longest%20Arithmetic%20Subsequence.cpp" >1027. Longest Arithmetic Subsequence</a></td>
+<td>LIS-like DP，需要多記一個公差 <code>diff</code>，狀態為 <code>dp[i][diff]</code></td>
+</tr>
+<tr>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/1048.%20Longest%20String%20Chain.cpp" >1048. Longest String Chain</a></td>
+<td>LIS-like DP，先依字串長度排序，判斷短字串是否能加一個字元變成長字串</td>
+</tr>
+<tr>
+<td>LIS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/2501.%20Longest%20Square%20Streak%20in%20an%20Array.cpp" >2501. Longest Square Streak in an Array</a></td>
+<td>LIS-like DP，條件是下一個數字等於前一個數字的平方，可用 <code>dp[x]</code> 記錄以 <code>x</code> 結尾的最長 streak</td>
+</tr>
+<tr>
+<td>LCS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/1143.%20Longest%20Common%20Subsequence.cpp" >1143. Longest Common Subsequence</a></td>
+<td>最標準 LCS，本題核心是 <code>dp[i][j] = text1 前 i 個與 text2 前 j 個的 LCS 長度</code></td>
+</tr>
+<tr>
+<td>LCS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/1035.%20Uncrossed%20Lines.cpp" >1035. Uncrossed Lines</a></td>
+<td>幾乎等同 LCS，只是把兩個字串換成兩個整數陣列</td>
+</tr>
+<tr>
+<td>LCS</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://github.com/lavinia0724/LeetCode/blob/main/DP/583.%20Delete%20Operation%20for%20Two%20Strings.cpp" >583. Delete Operation for Two Strings</a></td>
+<td>LCS 應用，先求 LCS，答案為 <code>word1.size() + word2.size() - 2 * LCS</code></td>
 </tr>
 </tbody></table>
-<p>建議順序：</p>
-<ol>
-<li><ol start="300">
-<li>Longest Increasing Subsequence</li>
-</ol>
-</li>
-<li><ol start="673">
-<li>Number of Longest Increasing Subsequence</li>
-</ol>
-</li>
-<li><ol start="646">
-<li>Maximum Length of Pair Chain</li>
-</ol>
-</li>
-<li><ol start="1048">
-<li>Longest String Chain</li>
-</ol>
-</li>
-<li><ol start="354">
-<li>Russian Doll Envelopes</li>
-</ol>
-</li>
-</ol>
-<h2 id="LCS-題目"><a href="#LCS-題目" class="headerlink" title="LCS 題目"></a>LCS 題目</h2><table>
-<thead>
-<tr>
-<th>題號</th>
-<th>題目</th>
-<th>重點</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1143</td>
-<td>Longest Common Subsequence</td>
-<td>LCS 基礎</td>
-</tr>
-<tr>
-<td>1035</td>
-<td>Uncrossed Lines</td>
-<td>本質是 LCS</td>
-</tr>
-<tr>
-<td>583</td>
-<td>Delete Operation for Two Strings</td>
-<td>LCS 變形</td>
-</tr>
-<tr>
-<td>712</td>
-<td>Minimum ASCII Delete Sum for Two Strings</td>
-<td>LCS + 刪除成本</td>
-</tr>
-<tr>
-<td>72</td>
-<td>Edit Distance</td>
-<td>雙字串 DP 經典題</td>
-</tr>
-</tbody></table>
-<p>建議順序：</p>
-<ol>
-<li><ol start="1143">
-<li>Longest Common Subsequence</li>
-</ol>
-</li>
-<li><ol start="1035">
-<li>Uncrossed Lines</li>
-</ol>
-</li>
-<li><ol start="583">
-<li>Delete Operation for Two Strings</li>
-</ol>
-</li>
-<li><ol start="712">
-<li>Minimum ASCII Delete Sum for Two Strings</li>
-</ol>
-</li>
-<li><ol start="72">
-<li>Edit Distance</li>
-</ol>
-</li>
-</ol>
 
             </div>
 
@@ -919,7 +867,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">Algorithm - DP LIS and LCS</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS-and-LCS-Note"><span class="nav-text">LIS and LCS Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS%EF%BC%9ALongest-Increasing-Subsequence"><span class="nav-text">LIS：Longest Increasing Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-text">LIS 核心思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E9%95%B7%E5%BA%A6%E9%A1%8C"><span class="nav-text">LIS 長度題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-O-n-2-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS O(n^2) 模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E9%A1%8C%EF%BC%9AO-n-log-n-%E8%A7%A3%E6%B3%95"><span class="nav-text">LIS 計數題：O(n log n) 解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-O-n-log-n-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS O(n log n) 模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound-%E5%92%8C-upper-bound"><span class="nav-text">lower_bound 和 upper_bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E9%A1%8C%EF%BC%9ANumber-of-LIS"><span class="nav-text">LIS 計數題：Number of LIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS 計數模板</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LCS%EF%BC%9ALongest-Common-Subsequence"><span class="nav-text">LCS：Longest Common Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-text">LCS 核心思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-DP-%E5%AE%9A%E7%BE%A9"><span class="nav-text">LCS DP 定義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-%E7%8B%80%E6%85%8B%E8%BD%89%E7%A7%BB"><span class="nav-text">LCS 狀態轉移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LCS 模板</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS-%E5%92%8C-LCS-%E6%AF%94%E8%BC%83"><span class="nav-text">LIS 和 LCS 比較</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%8C%E5%9E%8B%E5%88%A4%E6%96%B7"><span class="nav-text">題型判斷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E9%A1%8C%E5%9E%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">LIS 題型特徵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS-%E9%A1%8C%E5%9E%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">LCS 題型特徵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E9%A1%8C%E7%9B%AE%E6%95%B4%E7%90%86"><span class="nav-text">常見題目整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E9%A1%8C%E7%9B%AE"><span class="nav-text">LIS 題目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS-%E9%A1%8C%E7%9B%AE"><span class="nav-text">LCS 題目</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS-and-LCS-Note"><span class="nav-text">LIS and LCS Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS%EF%BC%9ALongest-Increasing-Subsequence"><span class="nav-text">LIS：Longest Increasing Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-text">LIS 核心思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E9%95%B7%E5%BA%A6%E9%A1%8C"><span class="nav-text">LIS 長度題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-O-n-2-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS O(n^2) 模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E9%A1%8C%EF%BC%9AO-n-log-n-%E8%A7%A3%E6%B3%95"><span class="nav-text">LIS 計數題：O(n log n) 解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-O-n-log-n-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS O(n log n) 模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound-%E5%92%8C-upper-bound"><span class="nav-text">lower_bound 和 upper_bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E9%A1%8C%EF%BC%9ANumber-of-LIS"><span class="nav-text">LIS 計數題：Number of LIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-%E8%A8%88%E6%95%B8%E6%A8%A1%E6%9D%BF"><span class="nav-text">LIS 計數模板</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LCS%EF%BC%9ALongest-Common-Subsequence"><span class="nav-text">LCS：Longest Common Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-text">LCS 核心思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-DP-%E5%AE%9A%E7%BE%A9"><span class="nav-text">LCS DP 定義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-%E7%8B%80%E6%85%8B%E8%BD%89%E7%A7%BB"><span class="nav-text">LCS 狀態轉移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-%E6%A8%A1%E6%9D%BF"><span class="nav-text">LCS 模板</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LIS-%E5%92%8C-LCS-%E6%AF%94%E8%BC%83"><span class="nav-text">LIS 和 LCS 比較</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%8C%E5%9E%8B%E5%88%A4%E6%96%B7"><span class="nav-text">題型判斷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-%E9%A1%8C%E5%9E%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">LIS 題型特徵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS-%E9%A1%8C%E5%9E%8B%E7%89%B9%E5%BE%B5"><span class="nav-text">LCS 題型特徵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%93%E5%85%B8%E9%A1%8C%E7%9B%AE"><span class="nav-text">經典題目</span></a></li></ol></li></ol>
 
     </div>
 </div>
